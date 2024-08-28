@@ -1,112 +1,114 @@
-import Image from "next/image";
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div className='bg-primary text-primary-foreground py-4 md:py-8 px-4'>
+        <div className='max-w-6xl flex justify-between items-center mx-auto'>
+          <h1 className='text-lg md:text-3xl font-semibold'>Sharp Knife Club</h1>
+          <div className='flex gap-6'>
+            <a href='https://wa.me/6596770773' className='items-center gap-1 hidden md:flex'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='icon icon-tabler icon-tabler-brand-whatsapp text-primary-foreground h-8 w-8'
+                width='44'
+                height='44'
+                viewBox='0 0 24 24'
+                strokeWidth='1.5'
+                stroke='#f8fafc'
+                fill='none'
+                strokeLinecap='round'
+                strokeLinejoin='round'>
+                <path stroke='none' d='M0 0h24v24H0z' fill='none' />
+                <path d='M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9' />
+                <path d='M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1' />
+              </svg>
+              <p className='text-lg font-semibold'>(65) 9677 0773</p>
+            </a>
+            <Button variant={'secondary'} size={'lg'} className='text-lg font-semibold hidden md:block'>
+              Get Started
+            </Button>
+            <Button variant={'secondary'} size={'sm'} className='text-sm font-semibold block md:hidden'>
+              Get Started
+            </Button>
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className='h-[65vh] w-screen relative'>
+        <Image src={'/images/hero.jpg'} alt='Sharp Knife Club' fill objectFit='cover' priority />
       </div>
+      <div className='max-w-2xl mx-auto py-16 px-4'>
+        <h1 className='text-5xl font-bold mb-8'>Hello!</h1>
+        <p className='text-xl mb-8'>
+          We help pick up and sharpen knives for over 500 home cooks and professional chefs. Let us help you next!
+        </p>
+        <div className='mb-16 bg-accent text-accent-foreground p-4 rounded-lg'>
+          <h3 className='text-2xl font-bold'>How does it work?</h3>
+          <br></br>
+          <p className='text-xl'>It&apos;s a simple 3 step process.</p>
+          <br></br>
+          <ul className='text-xl list-disc pl-5'>
+            <li className='mb-4'>
+              <b>Drop Off:</b> Leave your knives at one of our many locations across Singapore.
+            </li>
+            <li className='mb-4'>
+              <b>Sharpen:</b> Our expert knifesmiths skillfully restore those edges and make them sharper than the day
+              you bought them.
+            </li>{' '}
+            <li className=''>
+              <b>Enjoy:</b> In about a week, you will be slicing and dicing with a fresh edge again.
+            </li>{' '}
+          </ul>
+        </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
+        <h1 className='text-3xl font-bold mb-8'>How much do you charge?</h1>
+        <div className='mb-8'>
+          <p className='text-xl'>
+            Prices are inclusive of pick up and drop off fees. A minimum of 3 knives are required.
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+        </div>
+        <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
+          <h3 className='text-xl font-bold mb-4'>Basic - $10 / knife</h3>
+          <p className='text-xl'>
+            This is for your standard kitchen knife. Get it back as sharp as when you first bought it, guaranteed. It
+            will glide through paper and slice meat effortlessly. <i>No serrated knives or scissors.</i>
           </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
+        </div>
+        <div className='mb-16 bg-secondary text-secondary-foreground p-4 rounded-lg'>
+          <h3 className='text-xl font-bold'>Premium - $25 / knife</h3>
+          <br></br>
+          <p className='text-xl'>
+            This is for your high-end kitchen knives, japanese knives, etc. Our experts will sharpen it with the best
+            treatment according to its individual material, design and anatomy.
           </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+          <br></br>
+          <p className='text-xl'>
+            It will be hand sharpened with whetstones, up to 50,000 grit, and returned with a mirror finish.
           </p>
-        </a>
+        </div>
+        <h1 className='text-3xl font-bold mb-8'>Why should I sharpen my knives?</h1>
+        <div className='mb-16'>
+          <ul className='text-xl list-disc pl-5'>
+            <li className='mb-4'>
+              <b>Enjoyable:</b> Cooking with dull knives is frustrating and time-consuming. Make cooking pleasurable and
+              faster with sharp knives.
+            </li>
+            <li className='mb-4'>
+              <b>Safer:</b> A dull knife is the main reason for knife-related incidents. Stay safe by keeping your
+              knives sharp.
+            </li>{' '}
+            <li className=''>
+              <b>Tastier:</b> Sharp knives will cause the smallest amount of damage and conserve the oils, flavors and
+              nutrients in your food.
+            </li>{' '}
+          </ul>
+        </div>
+        <h1 className='text-3xl font-bold mb-8'>Why choose Sharp Knife Club?</h1>
+        <p className='text-xl'>
+          We help make repair, installation, and maintenance easy for more than 15,000 businesses and homeowners. Let us
+          help you next!
+        </p>
       </div>
     </main>
   );
