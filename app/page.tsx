@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='w-screen relative hidden md:block'>
+      <div className='relative hidden md:block'>
         <video autoPlay loop muted playsInline>
           <source src={'/images/hero.mp4'} type='video/mp4' />
         </video>
