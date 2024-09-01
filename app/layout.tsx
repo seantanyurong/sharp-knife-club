@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Knife Sharpening - Professional Pick-up Service | Sharp Knife Club SG',
+  title: 'Knife Sharpening - Professional Pick-up Service',
   description:
     'Order professional knife sharpening today with our fast and convenient pick-up service. Join the professional chefs and home cooks who love our results and service.',
 };
