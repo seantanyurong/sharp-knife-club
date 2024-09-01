@@ -39,7 +39,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='h-[65vh] w-screen relative'></div>
+      <div className='w-screen relative hidden md:block'>
+        <video autoPlay loop muted playsInline>
+          <source src={'/images/hero.mp4'} type='video/mp4' />
+        </video>
+      </div>
+      <div className='h-[65vh] block md:hidden'>
+        <video autoPlay loop muted playsInline className='object-cover h-full'>
+          <source src={'/images/hero.mp4'} type='video/mp4' />
+        </video>
+      </div>
       <div className='max-w-2xl mx-auto pt-16 pb-8 px-6'>
         <h1 className='text-5xl font-bold mb-8'>Hello!</h1>
         <p className='md:text-xl text-lg mb-8'>
