@@ -39,9 +39,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='h-[65vh] w-screen relative'>
-        <Image src={'/images/hero.jpg'} alt='Sharp Knife Club' fill className='object-cover' priority />
-      </div>
+      <div className='h-[65vh] w-screen relative'></div>
       <div className='max-w-2xl mx-auto pt-16 pb-8 px-6'>
         <h1 className='text-5xl font-bold mb-8'>Hello!</h1>
         <p className='md:text-xl text-lg mb-8'>
@@ -50,9 +48,14 @@ export default function Home() {
         <div className='mb-16 bg-accent text-accent-foreground p-4 rounded-lg'>
           <h3 className='text-2xl font-bold'>How does it work?</h3>
           <br></br>
-          <p className='md:text-xl text-lg'>It&apos;s a simple 3 step process.</p>
+          <p className='md:text-xl text-lg mb-4'>It&apos;s a simple 3 step process.</p>
+          <div className='hidden md:flex justify-between items-center'>
+            <Image src={'/images/step-1.png'} alt='drop' width={190} height={190} priority className='rounded-lg' />
+            <Image src={'/images/step-2.png'} alt='sharpen' width={190} height={190} priority className='rounded-lg' />
+            <Image src={'/images/step-3.png'} alt='use' width={190} height={190} priority className='rounded-lg' />
+          </div>
           <br></br>
-          <ul className='md:text-xl text-lg list-disc pl-5'>
+          <ul className='md:text-xl text-lg list-disc pl-5 mb-8'>
             <li className='mb-4'>
               <b>Drop Off:</b> Leave your knives at one of our many locations across Singapore.
             </li>
@@ -64,23 +67,24 @@ export default function Home() {
               <b>Enjoy:</b> In about a week, you will be slicing and dicing with a fresh edge again.
             </li>{' '}
           </ul>
+          <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
+            <Button className='text-sm md:text-lg font-semibold w-full'>Join Waitlist</Button>
+          </a>
         </div>
 
         <h1 className='text-3xl font-bold mb-8'>How much do you charge?</h1>
         <div className='mb-8'>
-          <p className='md:text-xl text-lg'>
-            Prices are inclusive of pick up and drop off fees. A minimum of 3 knives are required.
-          </p>
+          <p className='md:text-xl text-lg'>Prices are inclusive of pick up and drop off fees.</p>
         </div>
         <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
-          <h3 className='md:text-xl text-lg font-bold mb-4'>Basic - $10 / knife</h3>
+          <h3 className='md:text-xl text-lg font-bold mb-4'>Basic - $10 / knife*</h3>
           <p className='md:text-xl text-lg'>
             This is for your standard kitchen knife. Get it back as sharp as when you first bought it, guaranteed. It
             will glide through paper and slice meat effortlessly. <i>No serrated knives or scissors.</i>
           </p>
         </div>
-        <div className='mb-16 bg-secondary text-secondary-foreground p-4 rounded-lg'>
-          <h3 className='md:text-xl text-lg font-bold'>Premium - $25 / knife</h3>
+        <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
+          <h3 className='md:text-xl text-lg font-bold'>Premium - $25 / knife*</h3>
           <br></br>
           <p className='md:text-xl text-lg'>
             This is for your high-end kitchen knives, japanese knives, etc. Our experts will sharpen it with the best
@@ -90,6 +94,9 @@ export default function Home() {
           <p className='md:text-xl text-lg'>
             It will be hand sharpened with whetstones, up to 50,000 grit, and returned with a mirror finish.
           </p>
+        </div>
+        <div className='mb-16'>
+          <p className='md:text-xl text-lg'>*A minimum of 3 knives are required.</p>
         </div>
         <h1 className='text-3xl font-bold mb-8'>Why should I sharpen my knives?</h1>
         <div className='mb-16'>
@@ -113,8 +120,7 @@ export default function Home() {
           <ul className='md:text-xl text-lg list-disc pl-5 mb-8'>
             <li className='mb-4'>
               <b>Convenience:</b> We make it easy for you. With multiple drop-off points across Singapore, you can
-              conveniently leave your knives with us, and we’ll take care of the rest. No need to worry about making
-              time in your busy schedule.
+              conveniently leave your knives with us, and we’ll take care of the rest.
             </li>
             <li className='mb-4'>
               <b>Guaranteed Satisfaction:</b> We stand behind our work with confidence. If your knives aren’t sharper
@@ -129,7 +135,7 @@ export default function Home() {
             Questions?{' '}
             <a
               href='https://wa.me/6596770773'
-              className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600'>
+              className='underline text-blue-600 hover:text-blue-1 visited:text-purple-600'>
               Drop us a message.
             </a>
           </p>
