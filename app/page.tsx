@@ -27,10 +27,10 @@ export default function Home() {
               <p className='text-lg font-semibold'>(65) 9677 0773</p>
             </a>
             <Button variant={'secondary'} size={'lg'} className='text-lg font-semibold hidden md:block'>
-              Get Started
+              Join Waitlist
             </Button>
             <Button variant={'secondary'} size={'sm'} className='text-sm font-semibold block md:hidden'>
-              Get Started
+              Join Waitlist
             </Button>
           </div>
         </div>
@@ -105,10 +105,31 @@ export default function Home() {
           </ul>
         </div>
         <h1 className='text-3xl font-bold mb-8'>Why choose Sharp Knife Club?</h1>
-        <p className='text-xl'>
-          We help make repair, installation, and maintenance easy for more than 15,000 businesses and homeowners. Let us
-          help you next!
-        </p>
+        <div className='mb-16'>
+          <ul className='text-xl list-disc pl-5 mb-8'>
+            <li className='mb-4'>
+              <b>Convenience:</b> We make it easy for you. With multiple drop-off points across Singapore, you can
+              conveniently leave your knives with us, and we’ll take care of the rest. No need to worry about making
+              time in your busy schedule.
+            </li>
+            <li className='mb-4'>
+              <b>Guaranteed Satisfaction:</b> We stand behind our work with confidence. If your knives aren’t sharper
+              than the day you bought them, we’ll make it right – no questions asked.
+            </li>{' '}
+            <li className=''>
+              <b>Expert Craftsmanship:</b> Our sharpening process is more than just a quick fix. We use traditional
+              techniques and the finest grit to ensure a razor-sharp edge with a flawless finish.
+            </li>{' '}
+          </ul>
+          <p className='text-xl'>
+            Questions?{' '}
+            <a
+              href='https://wa.me/6596770773'
+              className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600'>
+              Drop us a message.
+            </a>
+          </p>
+        </div>
       </div>
     </main>
   );
