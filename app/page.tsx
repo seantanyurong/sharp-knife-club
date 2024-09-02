@@ -64,16 +64,16 @@ export default function Home() {
             <Image src={'/images/step-3.png'} alt='use' width={190} height={190} priority className='rounded-lg' />
           </div>
           <br></br>
-          <ul className='md:text-xl text-lg list-disc pl-5 mb-8'>
+          <ul className='md:text-xl text-lg list-decimal pl-5 mb-8'>
             <li className='mb-4'>
-              <b>Drop Off:</b> Leave your knives at one of our many locations across Singapore.
+              <b>Pick up:</b> Choose a time for us to swing by and collect your knives.
             </li>
             <li className='mb-4'>
-              <b>Sharpen:</b> Our expert knifesmiths skillfully restore those edges and make them sharper than the day
-              you bought them.
+              <b>Sharpen:</b> Our expert knifesmiths will restore your edges and make them sharper than the day you
+              bought them.
             </li>{' '}
             <li className=''>
-              <b>Enjoy:</b> In about a week, you will be slicing and dicing with a fresh edge again.
+              <b>Enjoy:</b> We will drop them off in 7 days, and you will be slicing and dicing with a fresh edge again.
             </li>{' '}
           </ul>
           <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
@@ -83,7 +83,7 @@ export default function Home() {
 
         <h1 className='text-3xl font-bold mb-8'>How much do you charge?</h1>
         <div className='mb-8'>
-          <p className='md:text-xl text-lg'>Prices are inclusive of pick up and drop off fees.</p>
+          <p className='md:text-xl text-lg'>Prices are inclusive of door pick up and drop off fees.</p>
         </div>
         <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
           <h3 className='md:text-xl text-lg font-bold mb-4'>Basic - $10 / knife*</h3>
@@ -105,7 +105,7 @@ export default function Home() {
           </p>
         </div>
         <div className='mb-16'>
-          <p className='md:text-xl text-lg'>*A minimum of 3 knives are required.</p>
+          <p className='md:text-xl text-lg'>*A minimum of 5 knives (basic and premium) are required.</p>
         </div>
         <h1 className='text-3xl font-bold mb-8'>Why should I sharpen my knives?</h1>
         <div className='mb-16'>
@@ -128,8 +128,8 @@ export default function Home() {
         <div className='mb-16'>
           <ul className='md:text-xl text-lg list-disc pl-5 mb-8'>
             <li className='mb-4'>
-              <b>Convenience:</b> We make it easy for you. With multiple drop-off points across Singapore, you can
-              conveniently leave your knives with us, and we’ll take care of the rest.
+              <b>Convenience:</b> We make it easy for you. With door-to-door pick up and drop off, you can get your
+              knives sharpened without ever leaving your home.
             </li>
             <li className='mb-4'>
               <b>Guaranteed Satisfaction:</b> We stand behind our work with confidence. If your knives aren’t sharper
