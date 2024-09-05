@@ -52,7 +52,8 @@ export default function Home() {
       <div className='max-w-2xl mx-auto pt-16 pb-8 px-6'>
         <h1 className='text-5xl font-bold mb-8'>Hello!</h1>
         <p className='md:text-xl text-lg mb-8'>
-          We help pick up and sharpen knives for over 500 home cooks and professional chefs. Let us help you next!
+          We have picked up and sharpened over 10,000 knives for home cooks and professional chefs. Let us help you
+          next!
         </p>
         <div className='mb-16 bg-accent text-accent-foreground p-4 rounded-lg'>
           <h3 className='text-2xl font-bold'>How does it work?</h3>
@@ -154,7 +155,7 @@ export default function Home() {
         <div className='max-w-2xl mx-auto pb-16 px-6'>
           <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Sharp Knife Club SG.</p>
           <p className='text-center text-sm text-gray-500 mb-1'>
-            Pick-up knife sharpening service for more than 500 homecooks and professional chefs.
+            Pick-up knife sharpening service for more than 10,000 knives.
           </p>
           <p className='text-center text-sm text-gray-500'>&copy; 2024. All rights reserved.</p>
         </div>
