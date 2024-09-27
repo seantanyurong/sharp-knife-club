@@ -8,7 +8,7 @@ export default function Home() {
         <div className='max-w-6xl flex justify-between items-center mx-auto'>
           <Image src={'/logo.png'} alt='Sharp Knife Club' width={80} height={80} priority />
           <div className='flex gap-6'>
-            <a href='https://wa.me/6596770773' className='items-center gap-1 hidden md:flex'>
+            <a href='https://wa.me/6580684206' className='items-center gap-1 hidden md:flex'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='icon icon-tabler icon-tabler-brand-whatsapp text-primary-foreground h-8 w-8'
@@ -24,16 +24,16 @@ export default function Home() {
                 <path d='M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9' />
                 <path d='M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1' />
               </svg>
-              <p className='text-lg font-semibold'>(65) 9677 0773</p>
+              <p className='text-lg font-semibold'>(65) 8068 4206</p>
             </a>
-            <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
+            <a href='https://wa.me/6580684206'>
               <Button variant={'secondary'} size={'lg'} className='text-lg font-semibold hidden md:block'>
-                Join Waitlist
+                Sharpen Knife
               </Button>
             </a>
-            <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
+            <a href='https://wa.me/6580684206'>
               <Button variant={'secondary'} size={'sm'} className='text-sm font-semibold block md:hidden'>
-                Join Waitlist
+                Sharpen Knife
               </Button>
             </a>
           </div>
@@ -77,8 +77,8 @@ export default function Home() {
               <b>Enjoy:</b> We will drop them off in 7 days, and you will be slicing and dicing with a fresh edge again.
             </li>{' '}
           </ul>
-          <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
-            <Button className='text-sm md:text-lg font-semibold w-full'>Join Waitlist</Button>
+          <a href='https://wa.me/6580684206'>
+            <Button className='text-sm md:text-lg font-semibold w-full'>Sharpen Knife</Button>
           </a>
         </div>
 
@@ -144,7 +144,7 @@ export default function Home() {
           <p className='md:text-xl text-lg'>
             Questions?{' '}
             <a
-              href='https://wa.me/6596770773'
+              href='https://wa.me/6580684206'
               className='underline text-blue-600 hover:text-blue-1 visited:text-purple-600'>
               Drop us a message.
             </a>
@@ -160,14 +160,14 @@ export default function Home() {
           <p className='text-center text-sm text-gray-500'>&copy; 2024. All rights reserved.</p>
         </div>
       </footer>
-      <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
+      <a href='https://wa.me/6580684206'>
         <Button size={'lg'} className='text-lg font-semibold hidden md:block fixed bottom-6 right-6'>
-          Join Waitlist
+          Sharpen Knife
         </Button>
       </a>
-      <a href='https://szuv34ek50v.typeform.com/to/p8aeHQyl'>
+      <a href='https://wa.me/6580684206'>
         <Button size={'sm'} className='text-sm font-semibold block md:hidden fixed bottom-4 right-4'>
-          Join Waitlist
+          Sharpen Knife
         </Button>
       </a>
     </main>
