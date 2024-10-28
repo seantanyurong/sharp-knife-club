@@ -52,7 +52,7 @@ export default function Home() {
       <div className='max-w-2xl mx-auto pt-16 pb-8 px-6'>
         <h1 className='text-5xl font-bold mb-8'>Hello!</h1>
         <p className='md:text-xl text-lg mb-8'>
-          We have picked up and sharpened over 10,000 knives for home cooks and professional chefs. Let us help you
+          Our team has picked up and sharpened over 10,000 knives for home cooks and professional chefs. Let us help you
           next!
         </p>
         <div className='mb-16 bg-accent text-accent-foreground p-4 rounded-lg'>
@@ -74,7 +74,8 @@ export default function Home() {
               bought them.
             </li>{' '}
             <li className=''>
-              <b>Enjoy:</b> We will drop them off in 7 days, and you will be slicing and dicing with a fresh edge again.
+              <b>Enjoy:</b> We will drop them off within 48 hours, and you will be slicing and dicing with a fresh edge
+              again.
             </li>{' '}
           </ul>
           <a href='https://wa.me/6580684206'>
@@ -86,14 +87,29 @@ export default function Home() {
         <div className='mb-8'>
           <p className='md:text-xl text-lg'>Prices are inclusive of door pick up and drop off fees.</p>
         </div>
-        <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
-          <h3 className='md:text-xl text-lg font-bold mb-4'>Basic - $10 / knife*</h3>
-          <p className='md:text-xl text-lg'>
+        <div className='mb-16 bg-secondary text-secondary-foreground p-4 rounded-lg'>
+          <h3 className='md:text-2xl text-lg font-bold mb-4'>
+            1 Blade - $25 <span className='font-normal text-xl text-muted-foreground'>($25/knife)</span>
+          </h3>
+          <h3 className='md:text-2xl text-lg font-bold mb-4'>
+            2 Blades - $30 <span className='font-normal text-xl text-muted-foreground'>($15/knife)</span>
+          </h3>
+          <h3 className='md:text-2xl text-lg font-bold'>
+            3+ Blades - $10/knife (Best Deal){' '}
+            {/* <span className='font-normal text-xl text-muted-foreground'>($10/knife)</span> */}
+          </h3>
+          {/* <h3 className='md:text-2xl text-lg font-bold mb-4'>
+            4 Blades - $30 <span className='font-normal text-xl text-muted-foreground'>($30/knife)</span>
+          </h3>
+          <h3 className='md:text-2xl text-lg font-bold'>
+            5+ Blades - $30 <span className='font-normal text-xl text-muted-foreground'>($30/knife)</span>
+          </h3> */}
+          {/* <p className='md:text-xl text-lg'>
             This is for your standard kitchen knife. Get it back as sharp as when you first bought it, guaranteed. It
             will glide through paper and slice meat effortlessly. <i>No serrated knives or scissors.</i>
-          </p>
+          </p> */}
         </div>
-        <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
+        {/* <div className='mb-8 bg-secondary text-secondary-foreground p-4 rounded-lg'>
           <h3 className='md:text-xl text-lg font-bold'>Premium - $25 / knife*</h3>
           <br></br>
           <p className='md:text-xl text-lg'>
@@ -104,9 +120,27 @@ export default function Home() {
           <p className='md:text-xl text-lg'>
             It will be hand sharpened with whetstones, up to 50,000 grit, and returned with a mirror finish.
           </p>
-        </div>
+        </div> */}
+        {/* <div className='mb-16'>
+          <p className='md:text-xl text-lg'>*A minimum of 2 knives (basic / premium) are required.</p>
+        </div> */}
+        <h1 className='text-3xl font-bold mb-8'>How do we sharpen your knives?</h1>
         <div className='mb-16'>
-          <p className='md:text-xl text-lg'>*A minimum of 5 knives (basic and premium) are required.</p>
+          <p className='md:text-xl text-lg'>
+            We use a Tormek belt sharpener. Precision is our top priority – we take great care in ensuring the angle is
+            optimal. This approach ensures not only the sharpest edge but also minimizes the amount of metal removed,
+            prioritizing the longevity of your blades.
+          </p>
+          <br></br>
+          <p className='md:text-xl text-lg'>
+            To guarantee optimal performance, we will test every knife on paper to ensure it slices effortlessly. Your
+            satisfaction and the functionality of your blades are of utmost importance to us.
+          </p>
+          <br></br>
+          <p className='md:text-xl text-lg'>
+            If requested, we can use ultra fine diamond whetstones. You will be able to choose the angle. Finishing and
+            stropping will be up to 50,000 grit. However, there will be an additional charge of $15/knife.
+          </p>
         </div>
         <h1 className='text-3xl font-bold mb-8'>Why should I sharpen my knives?</h1>
         <div className='mb-16'>
