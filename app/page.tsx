@@ -89,7 +89,7 @@ export default function Home() {
         </div>
         <div className='mb-16 bg-secondary text-secondary-foreground p-4 rounded-lg'>
           <h3 className='md:text-2xl text-lg font-bold mb-4'>
-            1 Blade - $25 <span className='font-normal text-xl text-muted-foreground'>($25/knife)</span>
+            1 Blade - $20 <span className='font-normal text-xl text-muted-foreground'>($20/knife)</span>
           </h3>
           <h3 className='md:text-2xl text-lg font-bold mb-4'>
             2 Blades - $30 <span className='font-normal text-xl text-muted-foreground'>($15/knife)</span>
