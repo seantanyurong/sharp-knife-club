@@ -139,7 +139,7 @@ export default function Home() {
           <br></br>
           <p className='md:text-xl text-lg'>
             If requested, we can use ultra fine diamond whetstones. You will be able to choose the angle. Finishing and
-            stropping will be up to 50,000 grit. However, there will be an additional charge of $15/knife.
+            stropping will be up to 50,000 grit. However, there will be an additional charge of $20/knife.
           </p>
         </div>
         <h1 className='text-3xl font-bold mb-8'>Why should I sharpen my knives?</h1>
