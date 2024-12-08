@@ -19,7 +19,16 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <GoogleTagManager gtmId='GTM-KH7TZBT6' />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <noscript>
+          <iframe
+            src='https://www.googletagmanager.com/ns.html?id=GTM-KH7TZBT6'
+            height='0'
+            width='0'
+            style={{ display: 'none', visibility: 'hidden' }}></iframe>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }
