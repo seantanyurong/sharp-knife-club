@@ -1,18 +1,9 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { GoogleTagManager } from '@next/third-parties/google';
 
 export default function Home() {
   return (
     <main>
-      <GoogleTagManager gtmId='GTM-KH7TZBT6' />
-      <noscript>
-        <iframe
-          src='https://www.googletagmanager.com/ns.html?id=GTM-KH7TZBT6'
-          height='0'
-          width='0'
-          style={{ display: 'none', visibility: 'hidden' }}></iframe>
-      </noscript>
       <div className='bg-primary text-primary-foreground py-4 md:py-6 px-6'>
         <div className='max-w-6xl flex justify-between items-center mx-auto'>
           <Image src={'/logo.png'} alt='Sharp Knife Club' width={80} height={80} priority />
