@@ -74,7 +74,7 @@ export default function Home() {
               bought them.
             </li>{' '}
             <li className=''>
-              <b>Enjoy:</b> We will drop them off within 48 hours, and you will be slicing and dicing with a fresh edge
+              <b>Enjoy:</b> We will drop them off within 24 hours, and you will be slicing and dicing with a fresh edge
               again.
             </li>{' '}
           </ul>
@@ -82,20 +82,19 @@ export default function Home() {
             <Button className='text-sm md:text-lg font-semibold w-full'>Sharpen Knife</Button>
           </a>
         </div>
-
         <h1 className='text-3xl font-bold mb-8'>How much do you charge?</h1>
         <div className='mb-8'>
-          <p className='md:text-xl text-lg'>Prices are inclusive of door pick up and drop off fees.</p>
+          <p className='md:text-xl text-lg'>Prices are inclusive of door pick up and drop off within 24 hours.</p>
         </div>
         <div className='mb-16 bg-secondary text-secondary-foreground p-4 rounded-lg'>
           <h3 className='md:text-2xl text-lg font-bold mb-4'>
-            1 Blade - $20 <span className='font-normal text-xl text-muted-foreground'>($20/knife)</span>
+            1 Blade - $30 <span className='font-normal text-xl text-muted-foreground'>($30/knife)</span>
           </h3>
           <h3 className='md:text-2xl text-lg font-bold mb-4'>
-            2 Blades - $30 <span className='font-normal text-xl text-muted-foreground'>($15/knife)</span>
+            2 Blades - $40 <span className='font-normal text-xl text-muted-foreground'>($20/knife)</span>
           </h3>
           <h3 className='md:text-2xl text-lg font-bold'>
-            3+ Blades - $10/knife (Best Deal){' '}
+            3+ Blades - $15/knife (Best Deal){' '}
             {/* <span className='font-normal text-xl text-muted-foreground'>($10/knife)</span> */}
           </h3>
           {/* <h3 className='md:text-2xl text-lg font-bold mb-4'>
@@ -124,6 +123,10 @@ export default function Home() {
         {/* <div className='mb-16'>
           <p className='md:text-xl text-lg'>*A minimum of 2 knives (basic / premium) are required.</p>
         </div> */}
+        <div className='mb-16'>
+          <script src='https://static.elfsight.com/platform/platform.js' async></script>
+          <div className='elfsight-app-496fdd13-2782-4c61-844c-744c4975f85c' data-elfsight-app-lazy></div>
+        </div>
         <h1 className='text-3xl font-bold mb-8'>How do we sharpen your knives?</h1>
         <div className='mb-16'>
           <p className='md:text-xl text-lg'>
@@ -189,7 +192,7 @@ export default function Home() {
         <div className='max-w-2xl mx-auto pb-16 px-6'>
           <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Sharp Knife Club SG.</p>
           <p className='text-center text-sm text-gray-500 mb-1'>
-            Pick-up knife sharpening service for more than 10,000 knives.
+            Professional knife sharpening, picked up & delivered over 10,000 knives.
           </p>
           <p className='text-center text-sm text-gray-500'>&copy; 2024. All rights reserved.</p>
         </div>

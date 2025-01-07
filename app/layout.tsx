@@ -6,9 +6,9 @@ import { GoogleTagManager } from '@next/third-parties/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Knife Sharpening - Professional Pick-up Service',
+  title: 'Professional Knife Sharpening - Picked Up & Delivered',
   description:
-    'Order professional knife sharpening today with our fast and convenient pick-up service. Join the professional chefs and home cooks who love our results and service.',
+    'Order professional knife sharpening today with our fast and convenient pick-up service. 24H turnaround. Join the professional chefs and home cooks who love our results and service.',
 };
 
 export default function RootLayout({
