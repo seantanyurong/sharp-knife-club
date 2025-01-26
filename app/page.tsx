@@ -8,7 +8,7 @@ export default function Home() {
         <div className='max-w-6xl flex justify-between items-center mx-auto'>
           <Image src={'/logo.png'} alt='Knife Sharpening Singapore' width={180} height={180} priority />
           <div className='flex gap-6'>
-            <a href='https://wa.me/6580684206' className='items-center gap-1 hidden md:flex'>
+            <a href='https://wa.me/message/LQDK2KE5I3PNF1' className='items-center gap-1 hidden md:flex'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='icon icon-tabler icon-tabler-brand-whatsapp text-primary-foreground h-8 w-8'
@@ -26,12 +26,12 @@ export default function Home() {
               </svg>
               <p className='text-lg font-semibold'>(65) 8068 4206</p>
             </a>
-            <a href='https://wa.me/6580684206'>
+            <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
               <Button variant={'secondary'} size={'lg'} className='text-lg font-semibold hidden md:block'>
                 Sharpen Knife
               </Button>
             </a>
-            <a href='https://wa.me/6580684206'>
+            <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
               <Button variant={'secondary'} size={'sm'} className='text-sm font-semibold block md:hidden'>
                 Sharpen Knife
               </Button>
@@ -78,7 +78,7 @@ export default function Home() {
               again.
             </li>{' '}
           </ul>
-          <a href='https://wa.me/6580684206'>
+          <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
             <Button className='text-sm md:text-lg font-semibold w-full'>Sharpen Knife</Button>
           </a>
         </div>
@@ -181,7 +181,7 @@ export default function Home() {
           <p className='md:text-xl text-lg'>
             Questions?{' '}
             <a
-              href='https://wa.me/6580684206'
+              href='https://wa.me/message/LQDK2KE5I3PNF1'
               className='underline text-blue-600 hover:text-blue-1 visited:text-purple-600'>
               Drop us a message.
             </a>
@@ -197,12 +197,12 @@ export default function Home() {
           <p className='text-center text-sm text-gray-500'>&copy; 2024. All rights reserved.</p>
         </div>
       </footer>
-      <a href='https://wa.me/6580684206'>
+      <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
         <Button size={'lg'} className='text-lg font-semibold hidden md:block fixed bottom-6 right-6'>
           Sharpen Knife
         </Button>
       </a>
-      <a href='https://wa.me/6580684206'>
+      <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
         <Button size={'sm'} className='text-sm font-semibold block md:hidden fixed bottom-4 right-4'>
           Sharpen Knife
         </Button>
