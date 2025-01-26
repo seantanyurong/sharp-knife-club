@@ -6,7 +6,7 @@ export default function Home() {
     <main>
       <div className='bg-primary text-primary-foreground py-4 md:py-6 px-6'>
         <div className='max-w-6xl flex justify-between items-center mx-auto'>
-          <Image src={'/logo.png'} alt='Sharp Knife Club' width={80} height={80} priority />
+          <Image src={'/logo.png'} alt='Knife Sharpening Singapore' width={180} height={180} priority />
           <div className='flex gap-6'>
             <a href='https://wa.me/6580684206' className='items-center gap-1 hidden md:flex'>
               <svg
@@ -52,7 +52,7 @@ export default function Home() {
       <div className='max-w-2xl mx-auto pt-16 pb-8 px-6'>
         <h1 className='text-5xl font-bold mb-8'>Hello!</h1>
         <p className='md:text-xl text-lg mb-8'>
-          Our team has picked up and sharpened over 10,000 knives for home cooks and professional chefs. Let us help you
+          Our team has picked up and sharpened knives for over 10,000 home cooks and professional chefs. Let us help you
           next!
         </p>
         <div className='mb-16 bg-accent text-accent-foreground p-4 rounded-lg'>
@@ -67,7 +67,7 @@ export default function Home() {
           <br></br>
           <ul className='md:text-xl text-lg list-decimal pl-5 mb-8'>
             <li className='mb-4'>
-              <b>Pick up:</b> Choose a time for us to swing by and collect your knives.
+              <b>Pick up:</b> Doorstep pick ups every 2 weeks. The next pick up is on 1st February, 2025.
             </li>
             <li className='mb-4'>
               <b>Sharpen:</b> Our expert knifesmiths will restore your edges and make them sharper than the day you
@@ -162,7 +162,7 @@ export default function Home() {
             </li>{' '}
           </ul>
         </div>
-        <h1 className='text-3xl font-bold mb-8'>Why choose Sharp Knife Club?</h1>
+        <h1 className='text-3xl font-bold mb-8'>Why choose Knife Sharpening Singapore?</h1>
         <div className='mb-16'>
           <ul className='md:text-xl text-lg list-disc pl-5 mb-8'>
             <li className='mb-4'>
@@ -190,9 +190,9 @@ export default function Home() {
       </div>
       <footer>
         <div className='max-w-2xl mx-auto pb-16 px-6'>
-          <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Sharp Knife Club SG.</p>
+          <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Knife Sharpening Singapore.</p>
           <p className='text-center text-sm text-gray-500 mb-1'>
-            Professional knife sharpening, picked up & delivered over 10,000 knives.
+            Professional knife sharpening, picked up & delivered.
           </p>
           <p className='text-center text-sm text-gray-500'>&copy; 2024. All rights reserved.</p>
         </div>
