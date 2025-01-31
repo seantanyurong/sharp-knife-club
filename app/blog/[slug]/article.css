@@ -1,0 +1,75 @@
+/* Article.module.css */
+.article-container {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5; /* Reset line-height to default for normal line spacing */
+}
+
+.article-container p {
+  margin-bottom: 1.2em; /* Add space between paragraphs */
+}
+
+.article-container h1,
+.article-container h2,
+.article-container h3,
+.article-container h4,
+.article-container h5,
+.article-container h6 {
+  font-weight: bold;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  color: #000; /* Set headings to black */
+}
+
+.article-container h1 {
+  font-size: 2.5rem;
+}
+
+.article-container h2 {
+  font-size: 2.25rem;
+}
+
+.article-container h3 {
+  font-size: 2rem;
+}
+
+.article-container h4 {
+  font-size: 1.75rem;
+}
+
+.article-container h5 {
+  font-size: 1.5rem;
+}
+
+.article-container h6 {
+  font-size: 1.25rem;
+}
+
+.article-container ul {
+  padding-left: 1.5em;
+  list-style-type: disc;
+}
+
+.article-container ol {
+  padding-left: 1.5em;
+  list-style-type: decimal;
+}
+
+.article-container a {
+  text-decoration: underline;
+  color: #0070f3;
+}
+
+.article-container img {
+  display: block;
+  max-width: 60%;
+  height: auto;
+  margin: 0.5em auto; /* Center image and add margin */
+}
+.article-container img + em {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0.5em;
+  color: #555; /* Set a subtle color for emphasis */
+}
