@@ -18,11 +18,11 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
   if (metadata && article) {
     return {
       title: metadata.title,
-      description: 'Default Description',
+      description: article.slice(0, 250),
       openGraph: {
         type: 'article',
         title: metadata.title,
-        description: 'Default Description',
+        description: article.slice(0, 250),
         url: `https://knifesharpening.sg/blog/${slug}`,
         siteName: 'Knife Sharpening Singapore Blog',
         images: []
