@@ -5,10 +5,15 @@ import { getArticle } from '../utils';
 
 export const revalidate = 600;
 
-export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => {  
   const { slug } = await params;
+  console.log(slug)
+
   const articleInfo = getArticle(slug)
   const { frontMatter: metadata, markdownContent: article } = articleInfo
+
+  console.log(metadata)
+  console.log(article.slice(0,100))
 
   if (metadata && article) {
     return {
@@ -34,6 +39,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const articleInfo = getArticle(slug)
   const { frontMatter: metadata, markdownContent: article } = articleInfo
+
+  console.log("ARTICLE")
+  console.log(metadata)
+  console.log(article.slice(0, 100))
 
   return (
     <>
