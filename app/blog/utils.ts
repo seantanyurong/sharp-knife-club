@@ -16,7 +16,7 @@ interface ArticleInfo {
 }
 
 export const getArticle = (slug: string): ArticleInfo => {
-    const filePath = path.join(process.cwd(), 'app', 'blog', '[slug]', 'pages', `${slug}.md`);
+    const filePath = path.join(process.cwd(), 'public', 'blog', 'pages', `${slug}.md`);
     let markdownContent = '';
     let frontMatter: FrontMatter = { title: '', publishedAt: '', slug: '' };
   
@@ -35,7 +35,7 @@ export const getArticle = (slug: string): ArticleInfo => {
 }
 
 export const getAllArticles = (): ArticleInfo[] => {
-    const articlesDir = path.join(process.cwd(), 'app', 'blog', '[slug]', 'pages');
+    const articlesDir = path.join(process.cwd(), 'public', 'blog', 'pages');
     const articles: ArticleInfo[] = [];
 
     try {
