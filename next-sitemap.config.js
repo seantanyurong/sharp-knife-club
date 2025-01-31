@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  siteUrl: 'https://knifesharpening.sg',
+  siteUrl: 'https://www.knifesharpening.sg',
   generateRobotsTxt: true,
   async additionalPaths(config) {
     const dynamicRoutes = await fetchDynamicRoutes();

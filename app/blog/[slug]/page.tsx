@@ -23,7 +23,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
         type: 'article',
         title: metadata.title,
         description: article.slice(0, 250),
-        url: `https://knifesharpening.sg/blog/${slug}`,
+        url: `https://www.knifesharpening.sg/blog/${slug}`,
         siteName: 'Knife Sharpening Singapore Blog',
         images: []
       },
