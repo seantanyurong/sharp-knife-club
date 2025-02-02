@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { NEXT_PICKUP_DATE } from '@/constants/dates';
 
 export default function Home() {
   return (
@@ -32,7 +33,7 @@ export default function Home() {
           <br></br>
           <ul className='md:text-xl text-lg list-decimal pl-5 mb-8'>
             <li className='mb-4'>
-              <b>Pick up:</b> Doorstep pick ups every 2 weeks. The next pick up is on 1st February, 2025.
+              <b>Pick up:</b> Doorstep pick ups every 2 weeks. The next pick up is on {`${NEXT_PICKUP_DATE}`}.
             </li>
             <li className='mb-4'>
               <b>Sharpen:</b> Our expert knifesmiths will restore your edges and make them sharper than the day you
