@@ -48,11 +48,13 @@
 .article-container ul {
   padding-left: 1.5em;
   list-style-type: disc;
+  padding-bottom: 1em;
 }
 
 .article-container ol {
   padding-left: 1.5em;
   list-style-type: decimal;
+  padding-bottom: 1em;
 }
 
 .article-container a {
@@ -72,4 +74,25 @@
   font-style: italic;
   margin-top: 0.5em;
   color: #555; /* Set a subtle color for emphasis */
+}
+
+.article-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.article-container th,
+.article-container td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+}
+
+.article-container th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.article-container tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
