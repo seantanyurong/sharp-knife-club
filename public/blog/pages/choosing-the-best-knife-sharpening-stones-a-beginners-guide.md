@@ -10,6 +10,8 @@ One of the best ways to maintain your knives is by using sharpening stones, also
 
 ##### Knife Sharpening Methods
 
+Before we dive right in to sharpening stones (which is one of many knife sharpening methods), let's briefly compare the different methods available.
+
 When it comes to sharpening knives, different tools offer varying levels of precision, speed, and ease of use. Some methods, like sharpening stones, require patience and technique but provide superior control over the blade’s edge. Others, like pull-through sharpeners and electric grinders, prioritize convenience and speed, making them appealing to casual users. The table below compares four common sharpening methods—sharpening stones, sharpening belts, pull-through sharpeners, and electric grinders—to help you choose the best one for your needs.
 
 | Feature | **Sharpening Stones** 🪨 | **Sharpening Belts** 🔄 | **Pull-Through Sharpeners** 🏃‍♂️ | **Electric Grinders** ⚡ |
