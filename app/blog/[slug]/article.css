@@ -80,6 +80,8 @@
   width: 100%;
   border-collapse: collapse;
   margin: 1em 0;
+  overflow-x: auto; /* Enable horizontal scrolling for the table */
+  display: block; /* Make the table a block element to allow scrolling */
 }
 
 .article-container th,
