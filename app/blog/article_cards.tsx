@@ -20,21 +20,24 @@ export default async function ArticleCards() {
         const { title, publishedAt, slug } = frontMatter
 
         return (
-          <Link href={`/blog/${slug}`} key={slug} className='flex justify-center'>
-            <div className='inline-block'>
-              <div className='overflow-hidden rounded mb-2 inline-block'>
-                <Image
-                  src={`/blog/thumbnail/${slug}.webp`}
-                  alt={slug}
-                  width={200}
-                  height={200}
-                  className={'h-auto w-auto object-cover aspect-square'}
-                />
-              </div>
-              <div className='space-y-1 text-sm'>
-                <h3 className='font-bold leading-none'>{title}</h3>
-                <p className='text-xs text-muted-foreground'>{publishedAt}</p>
-              </div>
+          <Link
+            href={`/blog/${slug}`}
+            key={slug}
+            className="block w-full max-w-xs mx-auto"
+          >
+            <div className="overflow-hidden rounded mb-2">
+              <Image
+                src={`/blog/thumbnail/${slug}.webp`}
+                alt={slug}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full h-auto object-cover aspect-square"
+              />
+            </div>
+            <div className="space-y-1 text-sm">
+              <h3 className="font-bold leading-small text-base">{title}</h3>
+              <p className="text-xs text-muted-foreground">{publishedAt}</p>
             </div>
           </Link>
         );
