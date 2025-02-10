@@ -20,6 +20,4 @@ const getNextPickupDate = (): string => {
   return nextPickupDate.toLocaleDateString('en-US', options);
 };
 
-// export const NEXT_PICKUP_DATE = getNextPickupDate();
-
-export const NEXT_PICKUP_DATE = 'Saturday, March 1st, 2025';
+export const NEXT_PICKUP_DATE = getNextPickupDate();
