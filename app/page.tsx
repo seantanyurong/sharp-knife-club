@@ -23,7 +23,7 @@ export default function Home() {
             </h1>
             <p className='mt-4 font-medium'>
               <Balancer>
-                Our team has picked up and sharpened 100s of knives for home cooks and professional chefs.
+                Our team has picked up and sharpened over 100 knives for home cooks and professional chefs.
               </Balancer>
             </p>
             <div className='mt-8 flex gap-4 flex-col lg:flex-row'>
@@ -32,23 +32,26 @@ export default function Home() {
                 target='_blank'
                 rel='noreferrer'
                 className='block w-full lg:w-auto'>
-                <Button size={'xl'} className='text-lg font-black flex gap-1 w-full lg:w-auto'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='icon icon-tabler icon-tabler-brand-whatsapp h-5 w-5'
-                    width='44'
-                    height='44'
-                    viewBox='0 0 24 24'
-                    strokeWidth='2.5'
-                    stroke='#FFFFFF'
-                    fill='none'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'>
-                    <path stroke='none' d='M0 0h24v24H0z' />
-                    <path d='M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9' />
-                    <path d='M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1' />
-                  </svg>
-                  Sharpen Your Knives Now
+                <Button size={'xl'} className='flex flex-col gap-0 w-full lg:w-auto'>
+                  <div className='text-lg font-black flex gap-1 items-center'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='icon icon-tabler icon-tabler-brand-whatsapp h-5 w-5'
+                      width='44'
+                      height='44'
+                      viewBox='0 0 24 24'
+                      strokeWidth='2.5'
+                      stroke='#FFFFFF'
+                      fill='none'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'>
+                      <path stroke='none' d='M0 0h24v24H0z' />
+                      <path d='M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9' />
+                      <path d='M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1' />
+                    </svg>
+                    Sharpen Your Knives Now
+                  </div>
+                  <p className='text-xs'>Next Collection: {NEXT_PICKUP_DATE}</p>
                 </Button>
               </a>
               <a href='https://g.co/kgs/aXcTBcs' target='_blank' rel='noreferrer' className='block w-full lg:w-auto'>
@@ -143,41 +146,23 @@ export default function Home() {
             <h1 className='text-2xl md:text-3xl text-primary font-black mb-8 text-center'>A Simple 3-Step Process</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
               <div className='col-span-1'>
-                <Image
-                  src={'/images/step-1.png'}
-                  alt='Instructions'
-                  width={1000}
-                  height={500}
-                  className='rounded-2xl'
-                />
+                <Image src={'/images/step-1.png'} alt='Instructions' width={500} height={500} className='rounded-2xl' />
                 <h2 className='text-xl text-primary font-black mt-4'>1. Pick Up</h2>
-                <p>Leave your knives at your doorstep and we’ll swing by to collect it!</p>
+                <p>Leave your knives at your doorstep and we will swing by to collect it!</p>
                 <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
                   <Badge className='mt-4'>Next Collection: {NEXT_PICKUP_DATE}</Badge>
                 </a>
               </div>
               <div className='col-span-1'>
-                <Image
-                  src={'/images/step-2.png'}
-                  alt='Instructions'
-                  width={1000}
-                  height={500}
-                  className='rounded-2xl'
-                />
+                <Image src={'/images/step-2.png'} alt='Instructions' width={500} height={500} className='rounded-2xl' />
                 <h2 className='text-xl text-primary font-black mt-4'>2. Sharpen</h2>
                 <p>
-                  Our expert knifesmiths will restore your edges till its razor sharp. That’s a Knife Sharpening
+                  Our expert knifesmiths will restore your edges till it&apos;s razor sharp. That’s a Knife Sharpening
                   Singapore Guarantee!
                 </p>
               </div>
               <div className='col-span-1'>
-                <Image
-                  src={'/images/step-3.png'}
-                  alt='Instructions'
-                  width={1000}
-                  height={500}
-                  className='rounded-2xl'
-                />
+                <Image src={'/images/step-3.png'} alt='Instructions' width={500} height={500} className='rounded-2xl' />
                 <h2 className='text-xl text-primary font-black mt-4'>3. Delivered</h2>
                 <p>
                   We will drop them off within 24 hours at your doorstep, and you will be slicing and dicing with a
@@ -190,7 +175,7 @@ export default function Home() {
         {/* PRICING */}
         <div className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 lg:gap-8 px-6 mt-16'>
           <div className='col-span-1'>
-            <Image src={'/images/price.png'} alt='Price' width={1000} height={500} className='rounded-2xl' />
+            <Image src={'/images/price.png'} alt='Price' width={500} height={500} className='rounded-2xl' />
           </div>
           <div className='col-span-2 mt-8 lg:mt-0'>
             <h1 className='text-primary text-3xl md:text-4xl font-black'>Pricing</h1>
@@ -202,8 +187,15 @@ export default function Home() {
                 <h1 className='text-lg md:text-2xl font-black'>2 Blades — $20 / knife</h1>
               </div>
               <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
-                <div className='bg-primary rounded-2xl p-4'>
-                  <h1 className='text-lg md:text-2xl text-white font-black'>3+ Blades — $15 / knife (Best Deal)</h1>
+                <div className='bg-primary rounded-2xl p-4 relative'>
+                  <h1 className='text-lg md:text-2xl text-white font-black'>3+ Blades — $15 / knife</h1>
+                  <Image
+                    src={'/images/best-deal.png'}
+                    alt='Price'
+                    width={80}
+                    height={80}
+                    className='absolute -top-8 -right-6 z-99'
+                  />
                 </div>
               </a>
             </div>
@@ -211,7 +203,7 @@ export default function Home() {
           </div>
         </div>
         {/* CAROUSEL */}
-        <div className='mt-16 px-6'>
+        {/* <div className='mt-16 px-6'>
           <Carousel
             opts={{
               align: 'start',
@@ -230,7 +222,7 @@ export default function Home() {
               ))}
             </CarouselContent>
           </Carousel>
-        </div>
+        </div> */}
         {/* CONTACT US */}
         <div className='max-w-6xl mx-auto mt-16 px-6'>
           <h1 className='text-3xl text-primary font-black text-center'>Contact Us</h1>
@@ -244,10 +236,7 @@ export default function Home() {
             <div className='col-span-1 bg-muted rounded-2xl p-8 md:p-12 text-center'>
               <h2 className='text-xl md:text-4xl text-primary font-black'>For Individuals</h2>
               <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
-                <Button
-                  variant={'secondary'}
-                  size={'lg'}
-                  className='text-lg font-black text-primary flex gap-2 w-full mt-4'>
+                <Button size={'lg'} className='text-lg font-black flex gap-2 w-full mt-4'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     className='icon icon-tabler icon-tabler-brand-whatsapp h-8 w-8'
@@ -255,7 +244,7 @@ export default function Home() {
                     height='44'
                     viewBox='0 0 24 24'
                     strokeWidth='2.5'
-                    stroke='#FAB130'
+                    stroke='#FFFFFF'
                     fill='none'
                     strokeLinecap='round'
                     strokeLinejoin='round'>
@@ -270,10 +259,7 @@ export default function Home() {
             <div className='col-span-1 bg-muted rounded-2xl p-8 md:p-12 text-center'>
               <h2 className='text-xl md:text-4xl text-primary font-black'>For Restaurants</h2>
               <a href='mailto:hello@knifesharpening.sg'>
-                <Button
-                  variant={'secondary'}
-                  size={'lg'}
-                  className='text-lg font-black text-primary flex gap-2 w-full mt-4'>
+                <Button size={'lg'} className='text-lg font-black flex gap-2 w-full mt-4'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
