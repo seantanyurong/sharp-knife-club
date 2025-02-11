@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { getAllArticles } from './utils';
 
-export default async function ArticleCards() {
+export default async function ArticleCards({ currentArticle, random=false, limit=0 } : { currentArticle?: string; random?: boolean; limit?: number }) {
     const articles = getAllArticles()
 
   const renderArticleCards = () => {
@@ -12,12 +12,19 @@ export default async function ArticleCards() {
     }
 
     return articles
-      .sort(function (a, b) {
-        return new Date(b.frontMatter.publishedAt).getTime() - new Date(a.frontMatter.publishedAt).getTime();
+      .filter(article => {
+        return article.frontMatter.slug != currentArticle;
       })
+      .sort(function (a, b) {
+        if (!random) {
+          return new Date(b.frontMatter.publishedAt).getTime() - new Date(a.frontMatter.publishedAt).getTime();
+        }
+        return 0.5 - Math.random();
+      })
+      .slice(0, limit === 0 ? articles.length : limit)
       .map((article) => {
         const { frontMatter } = article;
-        const { title, publishedAt, slug } = frontMatter
+        const { title, publishedAt, slug } = frontMatter;
 
         return (
           <Link

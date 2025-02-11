@@ -9,7 +9,7 @@ function page() {
             <section className='relative'>
               <div className='py-8 md:py-12'>
                 <div className='relative max-w-7xl mx-auto px-4 sm:px-6'>
-                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12'>{<ArticleCards />}</div>
+                  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12'>{<ArticleCards />}</div>
                 </div>
               </div>
             </section>
