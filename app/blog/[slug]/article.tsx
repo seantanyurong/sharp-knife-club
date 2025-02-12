@@ -8,6 +8,13 @@ export default function Article({ text }: { text: string }) {
     <div className='article-container mt-2'>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        components={{
+          a: ({ node, ...props }) => (
+            <a {...props} target="_blank" rel="noopener noreferrer">
+              {props.children}
+            </a>
+          ),
+        }}
       >
         {text}
       </ReactMarkdown>

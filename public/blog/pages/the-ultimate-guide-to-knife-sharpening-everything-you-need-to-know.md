@@ -61,6 +61,8 @@ The sharper the blade, the less resistance it encounters. This makes a huge diff
 
 ##### Understanding Knife Anatomy
 
+Understanding the parts of a knife can not only help you sharpen better, but also helps you make more informed decisions when purchasing a new knife.
+
 ###### Parts of a Knife
 
 - **Blade:** The cutting part of the knife.
@@ -69,6 +71,9 @@ The sharper the blade, the less resistance it encounters. This makes a huge diff
 - **Heel:** The rear part of the blade, used for cutting through tougher items.
 - **Tang:** The extension of the blade into the handle, providing balance.
 - **Handle:** Where you grip the knife.
+
+![Anatomy of a Kichen Knife](/blog/knife_anatomy_fnsharp.webp)
+*Anatomy of a Kitchen Knife - Source: [FNSharp](https://fnsharp.com/blogs/fns/parts-of-a-kitchen-knife)*
 
 | **Type of Knife Blade** | **Description** | **Best For** |
 | --- | --- | --- |
@@ -117,6 +122,8 @@ In general, knifes for professional use are more likely to require sharpening th
 Regular knife maintenance, including both honing and sharpening, not only extends the lifespan of your knives but also improves safety and efficiency in the kitchen.
 
 ##### Sharpening Tools and Equipment
+
+When it comes to sharpening knives, different tools offer varying levels of precision, speed, and ease of use. Some methods, like sharpening stones, require patience and technique but provide superior control over the blade’s edge. Others, like pull-through sharpeners and electric grinders, prioritize convenience and speed, making them appealing to casual users. 
 
 ###### Whetstones (Sharpening Stones)
 
