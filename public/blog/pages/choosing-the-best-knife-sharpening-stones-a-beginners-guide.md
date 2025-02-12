@@ -196,5 +196,7 @@ Investing in a good sharpening stone is the first step to keeping your knives in
 
 Whether you choose water stones, oil stones, or diamond stones, the key is to practice and maintain your sharpening skills regularly. And most importantly, enjoy the knife sharpening process!
 
-P.s. If you’re in Singapore and need professional sharpening, feel free to [**visit our knife sharpening service**](/)! We offer precision sharpening for all types of knives, ensuring your blades stay razor-sharp.
+Still curious? Check out our [Ultimate Guide to Knife Sharpening](/blog/the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know).
+
+P.s. If you’re in Singapore and need professional sharpening, feel free to [visit our knife sharpening service](/)! We offer precision sharpening for all types of knives, ensuring your blades stay razor-sharp.
 

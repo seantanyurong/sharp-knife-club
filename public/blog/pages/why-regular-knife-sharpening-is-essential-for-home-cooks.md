@@ -71,3 +71,5 @@ Save yourself the effort of sharpening your knives and the headache of rememberi
 Even if you don’t do anything else, send your knife to a [knife sharpening service](https://www.knifesharpening.sg) like us — we take care of the entire process, from pick up to delivery, all within 48 hours.
 
 Cooking should be an enjoyable and fulfilling activity, not a frustrating struggle (let that be washing dishes). Using a sharp knife allows you to work smoothly and confidently, making your time in the kitchen more enjoyable. It also encourages you to try new recipes and techniques, helping you grow as a home cook.
+
+Still curious? Check out our [Ultimate Guide to Knife Sharpening](/blog/the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know).
