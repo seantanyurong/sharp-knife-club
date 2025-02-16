@@ -5,12 +5,9 @@ import { NEXT_PICKUP_DATE } from '@/constants/dates';
 import Balancer from 'react-wrap-balancer';
 // import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { useState } from 'react';
 import HeroVideo from '@/components/heroVideo';
 
 export default function Home() {
-  const [videoLoaded, setVideoLoaded] = useState(false);
-
   return (
     <main>
       <div className='pt-8 lg:pt-16 pb-8 font-medium'>
