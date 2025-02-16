@@ -1,5 +1,5 @@
 const getNextPickupDate = (): string => {
-  const startDate = new Date(Date.UTC(2025, 1, 1)); // 1st February 2025, GMT
+  const startDate = new Date(Date.UTC(2025, 1, 1));
   const currentDate = new Date();
   const currentDateUTC = new Date(
     Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate()),
