@@ -3,20 +3,20 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { NEXT_PICKUP_DATE } from '@/constants/dates';
 import Balancer from 'react-wrap-balancer';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+// import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useState } from 'react';
+import HeroVideo from '@/components/heroVideo';
 
 export default function Home() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   return (
     <main>
       <div className='pt-8 lg:pt-16 pb-8 font-medium'>
         {/* HERO BANNER */}
         <div className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 lg:gap-8 px-6'>
-          <div className='col-span-1'>
-            <video autoPlay loop muted playsInline className='rounded-2xl'>
-              <source src={'/images/new-hero.mp4'} type='video/mp4' />
-            </video>
-          </div>
+          <HeroVideo />
           <div className='col-span-2 mt-8 lg:mt-16'>
             <h1 className='text-primary text-3xl md:text-4xl font-black'>
               <Balancer>Professional Knife Sharpening, Picked Up & Delivered</Balancer>
