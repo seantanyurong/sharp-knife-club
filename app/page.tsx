@@ -1,11 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
+import Link from 'next/link';
 import { NEXT_PICKUP_DATE } from '@/constants/dates';
 import Balancer from 'react-wrap-balancer';
 // import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import HeroVideo from '@/components/heroVideo';
+import BlogCarousel from '@/components/blogCarousel';
 
 export default function Home() {
   return (
@@ -278,7 +280,7 @@ export default function Home() {
           </div>
         </div>
         {/* FAQ */}
-        <div className='max-w-6xl mx-auto mt-16 px-6 mb-16 md:mb-32'>
+        <div className='max-w-6xl mx-auto mt-16 px-6 mb-16'>
           <h1 className='text-3xl text-primary font-black text-center'>Frequently Asked Questions</h1>
           <p className='mt-2 text-center'>
             <Balancer>
@@ -348,6 +350,13 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
         </div>
+
+        {/* Blog Carousel */}
+        <div className='max-w-6xl mx-auto mt-2 px-6 mb-8'>
+          <Link href="/blog"><h1 className='text-3xl text-primary font-black text-center'>Blog</h1></Link>
+          <BlogCarousel />
+        </div>
+        
       </div>
     </main>
   );

@@ -3,6 +3,7 @@ import Article from './article';
 import { getArticle } from '../utils';
 import { NEXT_PICKUP_DATE } from '@/constants/dates';
 import ArticleCards from '../article_cards';
+import Link from 'next/link';
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -18,6 +19,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {/* <TableOfContentsSidebar markdown={article} /> */}
 
       <div className="max-w-3xl mx-auto px-4 py-6">
+        <Link href="/blog">
+          <span className="text-blue-500 hover:underline mb-4 block">Back to Blog</span>
+        </Link>
         <h1 className="text-3xl font-semibold mb-4">{metadata.title}</h1>
         <p className="text-sm text-gray-500 mb-8">{metadata.publishedAt}</p>
 
