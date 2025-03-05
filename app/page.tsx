@@ -352,7 +352,7 @@ export default function Home() {
           </Accordion>
         </div>
 
-        <FeaturedSection />        
+        <FeaturedSection homepage />        
       </div>
     </main>
   );
