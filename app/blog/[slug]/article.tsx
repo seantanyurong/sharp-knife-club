@@ -11,7 +11,7 @@ export default function Article({ text }: { text: string }) {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[
           rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: 'wrap' }]
+          // [rehypeAutolinkHeadings, { behavior: 'wrap' }]
         ]}
         components={{
           a: ({ node, ...props }) => (

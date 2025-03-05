@@ -275,7 +275,6 @@ Sharpening your knife doesn’t have to be complicated. Whether you're using a w
 5. **Rinse & Test** 🚿
     
     Rinse the blade and carefully test the sharpness by slicing through a piece of paper or a tomato. If it glides through effortlessly, you’re done!
-    
 
 ###### 📏 Honing Rod Techniques
 

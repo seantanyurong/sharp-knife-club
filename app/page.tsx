@@ -8,6 +8,7 @@ import Balancer from 'react-wrap-balancer';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import HeroVideo from '@/components/heroVideo';
 import BlogCarousel from '@/components/blogCarousel';
+import FeaturedSection from './blog/featured_section';
 
 export default function Home() {
   return (
@@ -351,12 +352,7 @@ export default function Home() {
           </Accordion>
         </div>
 
-        {/* Blog Carousel */}
-        <div className='max-w-6xl mx-auto mt-2 px-6 mb-8'>
-          <Link href="/blog"><h1 className='text-3xl text-primary font-black text-center'>Blog</h1></Link>
-          <BlogCarousel />
-        </div>
-        
+        <FeaturedSection />        
       </div>
     </main>
   );
