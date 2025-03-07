@@ -5,7 +5,7 @@ function FeaturedSection({ homepage=false } : { homepage?: boolean }) {
 
   return (
     <section className="w-full bg-[#fcf3e3] py-12 mt-6">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
+      <div className="container mx-auto px-6 flex flex-col max-w-6xl md:flex-row items-center gap-8">
         <div className="md:w-1/2">
           <Image 
             src={`/blog/thumbnail/${featuredArticleSlug}.webp`}
