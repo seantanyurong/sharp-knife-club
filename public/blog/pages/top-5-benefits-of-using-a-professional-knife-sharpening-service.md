@@ -1,6 +1,6 @@
 ---
 title: "Top 5 Benefits of Using a Professional Knife Sharpening Service"
-publishedAt: "2025-02-15"
+publishedAt: "2025-02-28"
 slug: 'top-5-benefits-of-using-a-professional-knife-sharpening-service'
 ---
 

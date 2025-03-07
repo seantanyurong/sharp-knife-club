@@ -1,6 +1,6 @@
 ---
 title: "What to Expect from a Professional Knife Sharpening Service"
-publishedAt: "2025-02-08"
+publishedAt: "2025-01-24"
 slug: 'what-to-expect-from-a-professional-knife-sharpening-service'
 ---
 

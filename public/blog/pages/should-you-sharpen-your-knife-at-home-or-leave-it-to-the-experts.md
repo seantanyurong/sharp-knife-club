@@ -1,6 +1,6 @@
 ---
 title: "Should You Sharpen Your Knife at Home or Leave It to the Experts?"
-publishedAt: "2025-02-13"
+publishedAt: "2025-02-21"
 slug: 'should-you-sharpen-your-knife-at-home-or-leave-it-to-the-experts'
 ---
 
