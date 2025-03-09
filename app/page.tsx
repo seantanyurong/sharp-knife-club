@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import Link from 'next/link';
 import { NEXT_PICKUP_DATE } from '@/constants/dates';
 import Balancer from 'react-wrap-balancer';
 // import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
@@ -9,6 +8,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import HeroVideo from '@/components/heroVideo';
 import BlogCarousel from '@/components/blogCarousel';
 import FeaturedSection from './blog/featured_section';
+import WhatsAppLink from '@/components/ui/whatsapp';
+import PostHogEventCapture from '@/components/ui/posthogeventcapture';
 
 export default function Home() {
   return (
@@ -27,11 +28,7 @@ export default function Home() {
               </Balancer>
             </p>
             <div className='mt-8 flex gap-4 flex-col lg:flex-row'>
-              <a
-                href='https://wa.me/message/LQDK2KE5I3PNF1'
-                target='_blank'
-                rel='noreferrer'
-                className='block w-full lg:w-auto'>
+              <WhatsAppLink origin="main">
                 <Button size={'xl'} className='flex flex-col gap-0 w-full lg:w-auto'>
                   <div className='text-lg font-black flex gap-1 items-center'>
                     <svg
@@ -53,7 +50,7 @@ export default function Home() {
                   </div>
                   <p className='text-xs'>Next Collection: {NEXT_PICKUP_DATE}</p>
                 </Button>
-              </a>
+              </WhatsAppLink>
               <a href='https://g.co/kgs/aXcTBcs' target='_blank' rel='noreferrer' className='block w-full lg:w-auto'>
                 <Button
                   variant={'outline'}
@@ -149,9 +146,9 @@ export default function Home() {
                 <Image src={'/images/step-1.png'} alt='Instructions' width={500} height={500} className='rounded-2xl' />
                 <h2 className='text-xl text-primary font-black mt-4'>1. Pick Up</h2>
                 <p>Leave your knives at your doorstep and we will swing by to collect it!</p>
-                <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
+                <WhatsAppLink origin="collection">
                   <Badge className='mt-4'>Next Collection: {NEXT_PICKUP_DATE}</Badge>
-                </a>
+                </WhatsAppLink>
               </div>
               <div className='col-span-1'>
                 <Image src={'/images/step-2.png'} alt='Instructions' width={500} height={500} className='rounded-2xl' />
@@ -235,7 +232,7 @@ export default function Home() {
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8'>
             <div className='col-span-1 bg-muted rounded-2xl p-8 md:p-12 text-center'>
               <h2 className='text-xl md:text-4xl text-primary font-black'>For Individuals</h2>
-              <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
+              <WhatsAppLink origin="contact">
                 <Button size={'lg'} className='text-lg font-black flex gap-2 w-full mt-4'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -254,7 +251,7 @@ export default function Home() {
                   </svg>
                   (65) 8068 4206
                 </Button>
-              </a>
+              </WhatsAppLink>
             </div>
             <div className='col-span-1 bg-muted rounded-2xl p-8 md:p-12 text-center'>
               <h2 className='text-xl md:text-4xl text-primary font-black'>For Restaurants</h2>
@@ -290,65 +287,71 @@ export default function Home() {
             </Balancer>
           </p>
           <Accordion type='single' collapsible className='w-full mt-4 text-base'>
-            <AccordionItem value='item-1'>
-              <AccordionTrigger>How do we sharpen your knives?</AccordionTrigger>
-              <AccordionContent>
-                <p>
-                  We use a belt sharpener. Precision is our top priority – we take great care in ensuring the angle is
-                  optimal. This approach ensures not only the sharpest edge but also minimizes the amount of metal
-                  removed, prioritizing the longevity of your blades.
-                </p>
-                <br></br>
-                <p>
-                  To guarantee optimal performance, we will test every knife on paper to ensure it slices effortlessly.
-                  Your satisfaction and the functionality of your blades are of utmost importance to us.
-                </p>
-                <br></br>
-                <p>
-                  If requested, we can use ultra fine diamond whetstones. You will be able to choose the angle.
-                  Finishing and stropping will be up to 50,000 grit. However, there will be an additional charge of
-                  $20/knife.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value='item-2'>
-              <AccordionTrigger>Why should I sharpen my knives?</AccordionTrigger>
-              <AccordionContent>
-                <ul className='list-disc pl-5'>
-                  <li className='mb-4'>
-                    <b>Enjoyable:</b> Cooking with dull knives is frustrating and time-consuming. Make cooking
-                    pleasurable and faster with sharp knives.
-                  </li>
-                  <li className='mb-4'>
-                    <b>Safer:</b> A dull knife is the main reason for knife-related incidents. Stay safe by keeping your
-                    knives sharp.
-                  </li>{' '}
-                  <li className=''>
-                    <b>Tastier:</b> Sharp knives will cause the smallest amount of damage and conserve the oils, flavors
-                    and nutrients in your food.
-                  </li>{' '}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value='item-3'>
-              <AccordionTrigger>Why choose Knife Sharpening Singapore?</AccordionTrigger>
-              <AccordionContent>
-                <ul className='list-disc pl-5 mb-8'>
-                  <li className='mb-4'>
-                    <b>Convenience:</b> We make it easy for you. With door-to-door pick up and drop off, you can get
-                    your knives sharpened without ever leaving your home.
-                  </li>
-                  <li className='mb-4'>
-                    <b>Guaranteed Satisfaction:</b> We stand behind our work with confidence. If your knives aren’t
-                    sharper than the day you bought them, we’ll make it right – no questions asked.
-                  </li>{' '}
-                  <li className=''>
-                    <b>Expert Craftsmanship:</b> Our sharpening process is more than just a quick fix. We use
-                    traditional techniques and the finest grit to ensure a razor-sharp edge with a flawless finish.
-                  </li>{' '}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
+            <PostHogEventCapture name="faq" origin="how-to-sharpen"> 
+              <AccordionItem value='item-1'>
+                <AccordionTrigger>How do we sharpen your knives?</AccordionTrigger>
+                <AccordionContent>
+                  <p>
+                    We use a belt sharpener. Precision is our top priority – we take great care in ensuring the angle is
+                    optimal. This approach ensures not only the sharpest edge but also minimizes the amount of metal
+                    removed, prioritizing the longevity of your blades.
+                  </p>
+                  <br></br>
+                  <p>
+                    To guarantee optimal performance, we will test every knife on paper to ensure it slices effortlessly.
+                    Your satisfaction and the functionality of your blades are of utmost importance to us.
+                  </p>
+                  <br></br>
+                  <p>
+                    If requested, we can use ultra fine diamond whetstones. You will be able to choose the angle.
+                    Finishing and stropping will be up to 50,000 grit. However, there will be an additional charge of
+                    $20/knife.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            </PostHogEventCapture>
+            <PostHogEventCapture name="faq" origin="why-sharpen">
+              <AccordionItem value='item-2'>
+                <AccordionTrigger>Why should I sharpen my knives?</AccordionTrigger>
+                <AccordionContent>
+                  <ul className='list-disc pl-5'>
+                    <li className='mb-4'>
+                      <b>Enjoyable:</b> Cooking with dull knives is frustrating and time-consuming. Make cooking
+                      pleasurable and faster with sharp knives.
+                    </li>
+                    <li className='mb-4'>
+                      <b>Safer:</b> A dull knife is the main reason for knife-related incidents. Stay safe by keeping your
+                      knives sharp.
+                    </li>{' '}
+                    <li className=''>
+                      <b>Tastier:</b> Sharp knives will cause the smallest amount of damage and conserve the oils, flavors
+                      and nutrients in your food.
+                    </li>{' '}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </PostHogEventCapture>
+            <PostHogEventCapture name="faq" origin="why-us">
+              <AccordionItem value='item-3'>
+                <AccordionTrigger>Why choose Knife Sharpening Singapore?</AccordionTrigger>
+                <AccordionContent>
+                  <ul className='list-disc pl-5 mb-8'>
+                    <li className='mb-4'>
+                      <b>Convenience:</b> We make it easy for you. With door-to-door pick up and drop off, you can get
+                      your knives sharpened without ever leaving your home.
+                    </li>
+                    <li className='mb-4'>
+                      <b>Guaranteed Satisfaction:</b> We stand behind our work with confidence. If your knives aren’t
+                      sharper than the day you bought them, we’ll make it right – no questions asked.
+                    </li>{' '}
+                    <li className=''>
+                      <b>Expert Craftsmanship:</b> Our sharpening process is more than just a quick fix. We use
+                      traditional techniques and the finest grit to ensure a razor-sharp edge with a flawless finish.
+                    </li>{' '}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </PostHogEventCapture>
           </Accordion>
         </div>
 

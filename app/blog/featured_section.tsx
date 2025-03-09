@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import PostHogEventCapture from '@/components/ui/posthogeventcapture'
 
 function FeaturedSection({ homepage=false } : { homepage?: boolean }) {
   const featuredArticleSlug = "the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know"
@@ -16,18 +17,22 @@ function FeaturedSection({ homepage=false } : { homepage?: boolean }) {
           />
         </div>
         {homepage
-        ?
-        <div className="md:w-1/2 text-center md:text-left">
-          <h2 className="text-3xl text-primary font-black text-[#faaf2e]">The Ultimate Guide to Knife Sharpening</h2>
-          <p className="mt-4 text-black">Discover why professional sharpening extends your knife&apos;s lifespan and enhances your cooking experience.</p>
-          <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-600 transition">Read More</a>
-        </div>
-        :
-        <div className="md:w-1/2 text-center md:text-left">
-          <h2 className="text-2xl text-black font-bold">The Ultimate Guide to Knife Sharpening</h2>
-          <p className="mt-4 text-gray-600">Discover why professional sharpening extends your knife&apos;s lifespan and enhances your cooking experience.</p>
-          <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-600 transition">Read More</a>
-        </div>
+          ?
+          <div className="md:w-1/2 text-center md:text-left">
+            <h2 className="text-3xl text-primary font-black text-[#faaf2e]">The Ultimate Guide to Knife Sharpening</h2>
+            <p className="mt-4 text-black">Discover why professional sharpening extends your knife&apos;s lifespan and enhances your cooking experience.</p>
+            <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-600 transition">
+              <PostHogEventCapture name="ultimate-guide" origin="homepage">
+                Read More
+              </PostHogEventCapture>    
+            </a>
+          </div>
+          :
+          <div className="md:w-1/2 text-center md:text-left">
+            <h2 className="text-2xl text-black font-bold">The Ultimate Guide to Knife Sharpening</h2>
+            <p className="mt-4 text-gray-600">Discover why professional sharpening extends your knife&apos;s lifespan and enhances your cooking experience.</p>
+            <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-600 transition">Read More</a>
+          </div>
         }
 
       </div>
