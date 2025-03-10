@@ -1,13 +1,25 @@
 'use client'
 
-import posthog from 'posthog-js'
+import { ReactNode } from 'react';
+import posthog from 'posthog-js';
 
-function PostHogEventCapture({ name, origin, children } : { name: string; origin: string; children: React.ReactNode }) {
+interface PostHogEventCaptureProps {
+  name: string
+  origin: string
+  children: ReactNode
+  wrapper?: keyof JSX.IntrinsicElements
+}
+
+function PostHogEventCapture({ name, origin, children, wrapper: Wrapper = 'span' }: PostHogEventCaptureProps) {
+  const handleClick = () => {
+    posthog.capture(name, { origin })
+  }
+
   return (
-    <a onClick={() => posthog.capture(name, { origin: origin })}>
+    <Wrapper onClick={handleClick} style={{ display: 'inline' }}>
       {children}
-    </a>
+    </Wrapper>
   )
 }
 
-export default PostHogEventCapture
+export default PostHogEventCapture;
