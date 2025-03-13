@@ -4,7 +4,18 @@ import { getArticle } from '../utils';
 import { NEXT_PICKUP_DATE } from '@/constants/dates';
 import ArticleCards from '../article_cards';
 import Link from 'next/link';
-import Head from 'next/head';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const articleInfo = getArticle(slug);
+  const { frontMatter: metadata, markdownContent: article } = articleInfo;
+
+  return {
+    title: metadata.title,
+    description: article.slice(0, 120),
+  };
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -17,12 +28,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <Head>
-        <title>{metadata.title} | Knife Sharpening SG Blog</title>
-        <meta name="description" content={article.slice(0, 120)} />
-        {/* <meta name="keywords" content={metadata.keywords.join(', ')} />
-        <meta name="author" content={metadata.author} /> */}
-      </Head>
       {/* <TableOfContentsSidebar markdown={article} /> */}
 
       <div className="max-w-3xl mx-auto px-4 py-6">
