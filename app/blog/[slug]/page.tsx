@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: metadata.title,
-    description: article.slice(0, 120),
+    description: article.slice(0, 250),
   };
 }
 
