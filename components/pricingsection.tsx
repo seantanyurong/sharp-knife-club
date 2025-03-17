@@ -8,14 +8,17 @@ function PricingSection({ control=true }: { control: boolean; }) {
   const [showFeature, setShowFeature] = useState<boolean>(false);
 
   useEffect(() => {
-    const flag = posthog.getFeatureFlag('pricing-positioning-conversion') || "control";
-    console.log(flag, control)
-    if (flag === 'position-top' && !control) {
+    const flag = posthog.getFeatureFlag('pricing-positioning-conversion');
+    console.log(flag)
+    const resolvedFlag = flag !== undefined ? flag : "control";
+    console.log(resolvedFlag, control);
+
+    if (resolvedFlag === 'position-top' && !control) {
       console.log("Top");
       setShowFeature(true);
     }
 
-    if (flag !== 'position-top' && control) {
+    if (resolvedFlag !== 'position-top' && control) {
       console.log("Bottom");
       setShowFeature(true);
     }
