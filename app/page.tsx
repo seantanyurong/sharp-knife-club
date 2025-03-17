@@ -253,7 +253,7 @@ export default function Home() {
             <div className='col-span-1 bg-muted rounded-2xl p-8 md:p-12 text-center'>
               <h2 className='text-xl md:text-4xl text-primary font-black'>For Restaurants</h2>
               <a href='mailto:hello@knifesharpening.sg'>
-                <Button size={'lg'} className='text-lg font-black flex gap-2 w-full mt-4'>
+                <Button size={'lg'} className='md:text-lg font-black flex gap-2 w-full mt-4'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
