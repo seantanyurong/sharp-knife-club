@@ -193,7 +193,10 @@ export default function Home() {
                 </div>
               </a>
             </div>
-            <p className='mt-4 italic'>Additional costs apply for major repairs, de-rusting and serrated knives.</p>
+            <p className='mt-4 italic'>
+              Additional costs apply for major repairs, de-rusting and serrated knives. We cannot sharpen ceramic
+              knives.
+            </p>
           </div>
         </div>
         {/* CAROUSEL */}
@@ -277,12 +280,6 @@ export default function Home() {
         {/* FAQ */}
         <div className='max-w-6xl mx-auto mt-16 px-6 mb-16'>
           <h1 className='text-3xl text-primary font-black text-center'>Frequently Asked Questions</h1>
-          <p className='mt-2 text-center'>
-            <Balancer>
-              Here are some questions we frequently get from our customers! If you are not able to find the answer you
-              were looking for, reach out to our team via Whatsapp or Email and we’re more than happy to help.
-            </Balancer>
-          </p>
           <Accordion type='single' collapsible className='w-full mt-4 text-base'>
             <PostHogEventCapture name='faq' origin='how-to-sharpen'>
               <AccordionItem value='item-1'>
