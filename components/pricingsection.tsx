@@ -2,14 +2,34 @@
 
 import Image from 'next/image'
 import { useFeatureFlagVariantKey } from 'posthog-js/react'
+import posthog from 'posthog-js'
+import { useEffect, useRef } from 'react'
 
 function PricingSection({ control=true }: { control: boolean; }) {
   const variant = useFeatureFlagVariantKey('pricing-positioning-conversion') || "control";
   console.log(variant)
 
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+        if (isVisible) {
+          posthog.capture('PricingSection Viewed', { variant });
+          window.removeEventListener('scroll', handleScroll);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [variant, control]);
+
   if ((variant === 'position-top' && !control) || (variant !== 'position-top' && control)) {
     return (
-      <div className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 lg:gap-8 px-6 mt-16'>
+      <div ref={sectionRef} className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 lg:gap-8 px-6 mt-16'>
         <div className='col-span-1'>
           <Image src={'/images/price.png'} alt='Price' width={500} height={500} className='rounded-2xl' />
         </div>
