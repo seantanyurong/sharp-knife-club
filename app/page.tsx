@@ -228,7 +228,7 @@ export default function Home() {
             <div className='col-span-1 bg-muted rounded-2xl p-8 md:p-12 text-center'>
               <h2 className='text-xl md:text-4xl text-primary font-black'>For Restaurants</h2>
               <a href='mailto:hello@knifesharpening.sg'>
-                <Button size={'lg'} className='text-lg font-black flex gap-2 w-full mt-4'>
+                <Button size={'lg'} className='md:text-lg font-black flex gap-2 w-full mt-4'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='24'
@@ -252,12 +252,6 @@ export default function Home() {
         {/* FAQ */}
         <div className='max-w-6xl mx-auto mt-16 px-6 mb-16'>
           <h1 className='text-3xl text-primary font-black text-center'>Frequently Asked Questions</h1>
-          <p className='mt-2 text-center'>
-            <Balancer>
-              Here are some questions we frequently get from our customers! If you are not able to find the answer you
-              were looking for, reach out to our team via Whatsapp or Email and we’re more than happy to help.
-            </Balancer>
-          </p>
           <Accordion type='single' collapsible className='w-full mt-4 text-base'>
             <PostHogEventCapture name='faq' origin='how-to-sharpen'>
               <AccordionItem value='item-1'>
