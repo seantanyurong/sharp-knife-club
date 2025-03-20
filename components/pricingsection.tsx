@@ -7,7 +7,6 @@ import { useEffect, useRef } from 'react'
 
 function PricingSection({ control=true }: { control: boolean; }) {
   const variant = useFeatureFlagVariantKey('pricing-positioning-conversion') || "control";
-  console.log(variant)
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
