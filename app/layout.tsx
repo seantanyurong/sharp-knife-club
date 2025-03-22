@@ -7,6 +7,7 @@ import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
 import Chat from '@/components/ui/chat';
 import { PostHogProvider } from './providers';
+import PostHogReady from '@/components/ui/posthogloadcheck';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={openSans.className}>
         <PostHogProvider>
           <Header />
+          <PostHogReady />
           {children}
           <Footer />
           <Chat />
