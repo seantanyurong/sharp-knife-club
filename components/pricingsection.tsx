@@ -3,10 +3,15 @@
 import Image from 'next/image'
 import { useFeatureFlagVariantKey } from 'posthog-js/react'
 import posthog from 'posthog-js'
-import { useEffect, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 function PricingSection({ control=true }: { control: boolean; }) {
-  const variant = useFeatureFlagVariantKey('pricing-positioning-conversion') || "control";
+  const [variant, setVariant] = useState<string>("control");
+  
+  useEffect(() => {
+    const featureVariant = useFeatureFlagVariantKey('pricing-positioning-conversion');
+    if (featureVariant === 'position-top' || featureVariant === 'control') setVariant(featureVariant);
+  }, [posthog.__loaded]);  
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -16,7 +21,7 @@ function PricingSection({ control=true }: { control: boolean; }) {
         const rect = sectionRef.current.getBoundingClientRect();
         const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
         if (isVisible) {
-          posthog.capture('PricingSection Viewed', { variant });
+          posthog.capture('PricingSection Viewed');
           window.removeEventListener('scroll', handleScroll);
         }
       }
@@ -24,7 +29,7 @@ function PricingSection({ control=true }: { control: boolean; }) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [variant, control]);
+  }, []);
 
   if ((variant === 'position-top' && !control) || (variant !== 'position-top' && control)) {
     return (
