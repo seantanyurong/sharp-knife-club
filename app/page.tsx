@@ -11,6 +11,7 @@ import WhatsAppLink from '@/components/ui/whatsapp';
 import PostHogEventCapture from '@/components/ui/posthogeventcapture';
 import GoogleReviewCarousel from '@/components/googleReviewCarousel';
 import PricingSection from '@/components/pricingsection';
+import CollectionDateFeatureFlag from '@/components/collectiondatefeatureflag';
 
 export default function Home() {
   return (
@@ -49,7 +50,7 @@ export default function Home() {
                     </svg>
                     Sharpen Your Knives Now
                   </div>
-                  <p className='text-xs'>Next Collection: {NEXT_PICKUP_DATE}</p>
+                  <CollectionDateFeatureFlag type="main" />
                 </Button>
               </WhatsAppLink>
               <a href='https://g.co/kgs/aXcTBcs' target='_blank' rel='noreferrer' className='block w-full lg:w-auto'>
@@ -147,7 +148,7 @@ export default function Home() {
                 <h2 className='text-xl text-primary font-black mt-4'>1. Pick Up</h2>
                 <p>Leave your knives at your doorstep and we will swing by to collect it!</p>
                 <WhatsAppLink origin='collection'>
-                  <Badge className='mt-4'>Next Collection: {NEXT_PICKUP_DATE}</Badge>
+                  <CollectionDateFeatureFlag type="badge" />
                 </WhatsAppLink>
               </div>
               <div className='col-span-1'>

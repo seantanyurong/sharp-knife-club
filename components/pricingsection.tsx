@@ -3,15 +3,10 @@
 import Image from 'next/image'
 import { useFeatureFlagVariantKey } from 'posthog-js/react'
 import posthog from 'posthog-js'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 function PricingSection({ control=true }: { control: boolean; }) {
-  const [variant, setVariant] = useState<string>("control");
-  
-  useEffect(() => {
-    const featureVariant = useFeatureFlagVariantKey('pricing-positioning-conversion');
-    if (featureVariant === 'position-top' || featureVariant === 'control') setVariant(featureVariant);
-  }, [posthog.__loaded]);  
+  const variant = useFeatureFlagVariantKey('pricing-positioning-conversion') || 'control';
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
