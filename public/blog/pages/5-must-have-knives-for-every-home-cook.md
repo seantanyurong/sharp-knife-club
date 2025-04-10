@@ -1,6 +1,6 @@
 ---
 title: "5 Must-Have Knives for Every Home Cook"
-publishedAt: "2025-03-06"
+publishedAt: "2025-03-21"
 slug: '5-must-have-knives-for-every-home-cook'
 ---
 

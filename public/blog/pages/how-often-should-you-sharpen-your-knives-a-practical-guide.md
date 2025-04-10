@@ -1,6 +1,6 @@
 ---
 title: "How Often Should You Sharpen Your Knives? A Practical Guide"
-publishedAt: "2025-03-05"
+publishedAt: "2025-03-14"
 slug: 'how-often-should-you-sharpen-your-knives-a-practical-guide'
 ---
 
