@@ -22,4 +22,4 @@ const getNextPickupDate = (): string => {
 
 export const NEXT_PICKUP_DATE = getNextPickupDate();
 
-// export const NEXT_PICKUP_DATE = 'Apr 5, 2025';
+// export const NEXT_PICKUP_DATE = 'Apr 12, 2025';
