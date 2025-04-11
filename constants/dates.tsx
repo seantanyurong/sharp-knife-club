@@ -20,4 +20,4 @@
 //   return nextPickupDate.toLocaleDateString('en-US', options);
 // };
 
-export const NEXT_PICKUP_DATE = 'Apr 5, 2025';
+export const NEXT_PICKUP_DATE = 'Apr 12, 2025';
