@@ -1,6 +1,6 @@
 ---
 title: "5 Common Knife Care Mistakes (And How to Avoid Them)"
-publishedAt: "2025-03-04"
+publishedAt: "2025-03-07"
 slug: '5-common-knife-care-mistakes-and-how-to-avoid-them'
 ---
 

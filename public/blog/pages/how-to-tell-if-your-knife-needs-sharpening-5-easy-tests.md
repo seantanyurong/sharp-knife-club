@@ -1,6 +1,6 @@
 ---
 title: "How to Tell If Your Knife Needs Sharpening (5 Easy Tests)"
-publishedAt: "2025-03-07"
+publishedAt: "2025-03-28"
 slug: 'how-to-tell-if-your-knife-needs-sharpening-5-easy-tests'
 ---
 
