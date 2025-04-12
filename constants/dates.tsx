@@ -7,7 +7,7 @@ const getNextPickupDate = (): string => {
 
   const diffInWeeks = Math.floor((currentDateUTC.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 7));
 
-  const nextPickupWeek = diffInWeeks % 2 === 0 ? diffInWeeks + 2 : diffInWeeks + 1;
+  const nextPickupWeek = diffInWeeks + 1;
 
   const nextPickupDate = new Date(startDate);
   nextPickupDate.setDate(startDate.getDate() + nextPickupWeek * 7);
