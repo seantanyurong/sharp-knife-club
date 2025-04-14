@@ -26,7 +26,7 @@ export default function Home() {
             </h1>
             <p className='mt-4 font-medium'>
               <Balancer>
-                Our team has picked up and sharpened over 100 knives for home cooks and professional chefs.
+                Our team has picked up and sharpened 100s of knives for home cooks and professional chefs.
               </Balancer>
             </p>
             <div className='mt-8 flex gap-4 flex-col lg:flex-row'>
