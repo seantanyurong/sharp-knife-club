@@ -12,6 +12,7 @@ import PostHogEventCapture from '@/components/ui/posthogeventcapture';
 import GoogleReviewCarousel from '@/components/googleReviewCarousel';
 import PricingSection from '@/components/pricingsection';
 import CollectionDateFeatureFlag from '@/components/collectiondatefeatureflag';
+import CopyChangeWrapper from '@/components/abtest/CopyChangeWrapper';
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
           <HeroVideo />
           <div className='col-span-2 mt-8 lg:mt-16'>
             <h1 className='text-primary text-3xl md:text-4xl font-black'>
-              <Balancer>Professional Knife Sharpening, Picked Up & Delivered</Balancer>
+              <Balancer><CopyChangeWrapper feature='copy-change-hero-section-title'>Professional Knife Sharpening, Picked Up & Delivered</CopyChangeWrapper></Balancer>
             </h1>
             <p className='mt-4 font-medium'>
               <Balancer>
