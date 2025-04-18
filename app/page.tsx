@@ -135,7 +135,6 @@ export default function Home() {
           </div>
         </div>
 
-        <PricingSection control={false} />
         {/* REVIEWS */}
         <GoogleReviewCarousel />
         {/* INSTRUCTIONS */}
