@@ -9,6 +9,11 @@ const variants = {
     variant_a: 'Professional Knife Sharpening, Picked Up & Delivered Within One Day',
     variant_b: 'Knife Sharpening in One Day – Pickup & Delivery Included'
   },
+  'copy-change-hero-section-cta-button': {
+    control: 'Sharpen Your Knives Now',
+    variant_a: 'Book Knife Pickup',
+    variant_b: 'WhatsApp Us to Sharpen',
+  },
 };
 
 function CopyChangeWrapper({ feature, children } : { feature: string; children: React.ReactNode; }) {
