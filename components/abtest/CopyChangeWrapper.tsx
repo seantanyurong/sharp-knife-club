@@ -14,6 +14,10 @@ const variants = {
     variant_a: 'Book Knife Pickup',
     variant_b: 'WhatsApp Us to Sharpen',
   },
+  'copy-change-process-section-header': {
+    control: 'A Simple 3-Step Process',
+    variant_a: 'Free Pickup Islandwide | Delivered Within One Day',
+  },
 };
 
 function CopyChangeWrapper({ feature, children } : { feature: string; children: React.ReactNode; }) {

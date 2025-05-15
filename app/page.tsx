@@ -149,7 +149,7 @@ export default function Home() {
         {/* INSTRUCTIONS */}
         <div className='mt-16 bg-muted py-12'>
           <div className='max-w-6xl mx-auto px-6'>
-            <h1 className='text-2xl md:text-3xl text-primary font-black mb-8 text-center'>A Simple 3-Step Process</h1>
+            <h1 className='text-2xl md:text-3xl text-primary font-black mb-8 text-center'><CopyChangeWrapper feature='copy-change-process-section-header'>A Simple 3-Step Process</CopyChangeWrapper></h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
               <div className='col-span-1'>
                 <Image src={'/images/step-1.png'} alt='Instructions' width={500} height={500} className='rounded-2xl' />
