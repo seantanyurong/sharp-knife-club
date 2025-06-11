@@ -9,7 +9,7 @@ function Footer() {
         </Link>
         <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Knife Sharpening Singapore.</p>
         <p className='text-center text-sm text-gray-500 mb-1'>
-          Professional knife sharpening, picked up & delivered.
+          Professional knife sharpening, free pickup islandwide.
         </p>
         <p className='text-center text-sm text-gray-500 mb-1'>&copy; 2024. All rights reserved.</p>
         <div className='text-center mt-4'>
@@ -18,7 +18,7 @@ function Footer() {
           </a>
         </div>
       </div>
-    </footer>  
+    </footer>
   )
 }
 

@@ -12,7 +12,7 @@ import PostHogReady from '@/components/ui/posthogloadcheck';
 const openSans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Professional Knife Sharpening - Picked Up & Delivered',
+  title: 'Professional Knife Sharpening - Free Pickup Islandwide',
   description:
     'Get your knives sharpened today with our fast and convenient pick-up service. 24H turnaround. Join the professional chefs and home cooks who love our results and service.',
 };
