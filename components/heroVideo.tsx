@@ -5,6 +5,8 @@ import Image from 'next/image';
 import CopyChangeWrapper from './abtest/CopyChangeWrapper';
 
 export default function HeroVideo() {
+  const video_src = CopyChangeWrapper({feature: 'hero-section-video', children: null}) as string;
+
   return (
     <div className='col-span-1'>
       <Suspense
@@ -18,8 +20,8 @@ export default function HeroVideo() {
             className='rounded-2xl'
           />
         }>
-        <video width={400} height={400} autoPlay loop muted playsInline className='rounded-2xl'>
-          <source src={`/images/${CopyChangeWrapper({feature: 'hero-section-video', children: null})}.mp4`} type='video/mp4' />
+        <video key={video_src} width={400} height={400} autoPlay loop muted playsInline className='rounded-2xl'>
+          <source src={`/images/${video_src}.mp4`} type='video/mp4' />
         </video>
       </Suspense>
     </div>
