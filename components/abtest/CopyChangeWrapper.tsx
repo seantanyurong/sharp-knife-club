@@ -18,6 +18,10 @@ const variants = {
     control: 'A Simple 3-Step Process',
     variant_a: 'Free Pickup Islandwide | Delivered Within One Day',
   },
+  'hero-section-video': {
+    control: 'new-hero',
+    variant_a: 'new-hero-variant-a',
+  },
 };
 
 function CopyChangeWrapper({ feature, children } : { feature: string; children: React.ReactNode; }) {
@@ -30,6 +34,11 @@ function CopyChangeWrapper({ feature, children } : { feature: string; children: 
   const variantKey = typeof posthogVariantKey === 'string' ? posthogVariantKey : 'control';
   const featureVariants = variants[feature as keyof typeof variants];
   const copy = featureVariants[variantKey as keyof typeof featureVariants];
+
+
+  if (!children) {
+    return copy;
+  }
 
   return (
     <>{copy}</>

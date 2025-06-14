@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react';
 import Image from 'next/image';
+import CopyChangeWrapper from './abtest/CopyChangeWrapper';
 
 export default function HeroVideo() {
   return (
@@ -18,7 +19,7 @@ export default function HeroVideo() {
           />
         }>
         <video width={400} height={400} autoPlay loop muted playsInline className='rounded-2xl'>
-          <source src={'/images/new-hero.mp4'} type='video/mp4' />
+          <source src={`/images/${CopyChangeWrapper({feature: 'hero-section-video', children: null})}.mp4`} type='video/mp4' />
         </video>
       </Suspense>
     </div>
