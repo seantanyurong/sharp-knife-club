@@ -22,6 +22,10 @@ const variants = {
     control: 'new-hero',
     variant_a: 'new-hero-variant-a',
   },
+  'hero-section-google-reviews-button': {
+    control: false,
+    variant_a: true,
+  },
 };
 
 function CopyChangeWrapper({ feature, children } : { feature: string; children: React.ReactNode; }) {
