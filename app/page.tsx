@@ -102,7 +102,7 @@ export default function Home() {
           </div>
         </div>
         {/* PRICING */}
-        <PricingSection control={true} />
+        <PricingSection />
         {/* CAROUSEL */}
         {/* <div className='mt-16 px-6'>
           <Carousel
