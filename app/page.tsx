@@ -13,6 +13,7 @@ import GoogleReviewCarousel from '@/components/googleReviewCarousel';
 import PricingSection from '@/components/pricingsection';
 import CollectionDateFeatureFlag from '@/components/collectiondatefeatureflag';
 import GoogleReviewButton from '@/components/googleReviewButton';
+import LogoSection from '@/components/logosection';
 
 export default function Home() {
   return (
@@ -67,8 +68,11 @@ export default function Home() {
           </div>
         </div>
 
+        <LogoSection position='hero_section' />
+
         {/* REVIEWS */}
         <GoogleReviewCarousel />
+
         {/* INSTRUCTIONS */}
         <div className='mt-16 bg-muted py-12'>
           <div className='max-w-6xl mx-auto px-6'>
@@ -124,6 +128,9 @@ export default function Home() {
             </CarouselContent>
           </Carousel>
         </div> */}
+
+        <LogoSection position='pricing_section' />
+
         {/* CONTACT US */}
         <div className='max-w-6xl mx-auto mt-16 px-6'>
           <h1 className='text-3xl text-primary font-black text-center'>Contact Us</h1>

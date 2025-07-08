@@ -30,6 +30,11 @@ const variants = {
     control: 'price',
     variant_a: 'price-variant-a',
   },
+  'logo-section-position': {
+    control: 'no_section',
+    variant_a: 'hero_section',
+    variant_b: 'pricing_section',
+  },
 };
 
 function CopyChangeWrapper({ feature, children } : { feature: string; children: React.ReactNode; }) {
