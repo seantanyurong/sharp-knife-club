@@ -18,22 +18,17 @@ import LogoSection from '@/components/logosection';
 export default function Home() {
   return (
     <main>
-      <div className='pt-8 lg:pt-16 pb-8 font-medium'>
+      <div className='pb-8 font-medium'>
         {/* HERO BANNER */}
-        <div className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 lg:gap-8 px-6'>
-          <HeroVideo />
-          <div className='col-span-2 mt-8 lg:mt-16'>
-            <h1 className='text-primary text-3xl md:text-4xl font-black'>
-              <Balancer>Knife Sharpening in One Day – Pickup & Delivery Included</Balancer>
+        <div className='bg-[url(/images/hero-bg.png)] bg-cover py-20 lg:py-32'>
+          <div className='max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center '>
+            {/* <HeroVideo /> */}
+            <h1 className='text-primary-foreground text-2xl md:text-6xl font-black'>
+              <Balancer>KNIFE SHARPENING IN ONE DAY - PICKUP & DELIVERY INCLUDED</Balancer>
             </h1>
-            <p className='mt-4 font-medium'>
-              <Balancer>
-                Our team has picked up and sharpened 100s of knives for home cooks and professional chefs.
-              </Balancer>
-            </p>
-            <div className='mt-8 flex gap-4 flex-col lg:flex-row'>
+            <div className='mt-8 flex gap-4 flex-col lg:flex-row justify-center'>
               <WhatsAppLink origin='main'>
-                <Button size={'xl'} className='flex flex-col gap-0 w-full lg:w-auto'>
+                <Button variant={'secondary'} size={'xl'} className='flex flex-col gap-0 w-full lg:w-auto'>
                   <div className='text-lg font-black flex gap-1 items-center'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -58,7 +53,7 @@ export default function Home() {
                         d='M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z'
                         clipRule='evenodd'></path>
                     </svg>
-                    Book Knife Pickup
+                    BOOK KNIFE PICKUP
                   </div>
                   <CollectionDateFeatureFlag type='main' />
                 </Button>
@@ -66,15 +61,12 @@ export default function Home() {
               <GoogleReviewButton />
             </div>
           </div>
+          <LogoSection position='hero_section' />
+          {/* REVIEWS */}
+          <GoogleReviewCarousel />
         </div>
-
-        <LogoSection position='hero_section' />
-
-        {/* REVIEWS */}
-        <GoogleReviewCarousel />
-
         {/* INSTRUCTIONS */}
-        <div className='mt-16 bg-muted py-12'>
+        <div className='pt-16 bg-muted py-12'>
           <div className='max-w-6xl mx-auto px-6'>
             <h1 className='text-2xl md:text-3xl text-primary font-black mb-8 text-center'>Free Pickup Islandwide | Delivered Within One Day</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>

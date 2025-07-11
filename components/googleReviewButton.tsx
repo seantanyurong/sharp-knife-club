@@ -6,7 +6,7 @@ import GoogleLogo from '@/components/ui/googlelogo';
 import CopyChangeWrapper from './abtest/CopyChangeWrapper';
 
 const GoogleReviewButton = () => {
-  const showGoogleReviewsVariant = CopyChangeWrapper({feature: 'hero-section-google-reviews-button', children: null}) as boolean;
+  const showGoogleReviewsVariant = CopyChangeWrapper({ feature: 'hero-section-google-reviews-button', children: null }) as boolean;
 
   return (
     <a href='https://g.co/kgs/aXcTBcs' target='_blank' rel='noreferrer' className='block w-full lg:w-auto'>
@@ -41,7 +41,7 @@ const GoogleReviewButton = () => {
             </span>
           )}
         </div>
-        <p className='text-xs text-gray-500 font-medium underline'>Read our Google Reviews</p>
+        <p className='text-xs text-gray-500 font-medium underline'>No.1 Reviewed in SG</p>
       </Button>
     </a>
   );

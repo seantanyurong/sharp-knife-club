@@ -14,7 +14,7 @@ function Header() {
         </Link>
         <div className='flex gap-6'>
           <WhatsAppLink origin='header'>
-            <Button variant={'secondary'} size={'lg'} className='text-lg font-black text-primary hidden md:flex gap-2'>
+            <Button variant={'secondary'} size={'lg'} className='text-lg font-black hidden md:flex gap-2'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 x='0px'
@@ -42,7 +42,7 @@ function Header() {
             </Button>
           </WhatsAppLink>
           <WhatsAppLink origin='header'>
-            <Button variant={'secondary'} size={'sm'} className='text-sm font-black text-primary flex md:hidden gap-1'>
+            <Button variant={'secondary'} size={'sm'} className='text-sm font-black flex md:hidden gap-1'>
               <svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='100' height='100' viewBox='0 0 48 48'>
                 <path
                   fill='#fff'
