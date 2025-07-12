@@ -119,7 +119,7 @@ export default function GoogleReviewCarousel() {
   const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
-    <div className='max-w-6xl mx-auto mt-16 px-6'>
+    <div className='max-w-6xl mx-auto mt-8 lg:mt-16 px-6'>
       <Carousel
         opts={{
           align: 'start',

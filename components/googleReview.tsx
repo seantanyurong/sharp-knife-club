@@ -17,7 +17,7 @@ export default function GoogleReview({ name, rating, comment }: { name: string; 
         </div>
         <div className='mt-2 flex space-x-1'>
           {[...Array(rating)].map((_, i) => (
-            <Star key={i} className='w-5 h-5 text-yellow-400 fill-yellow-400' />
+            <Star key={i} className='w-5 h-5 text-secondary fill-secondary' />
           ))}
         </div>
         <p className='mt-2 text-gray-800'>{comment.length > 120 ? comment.slice(0, 120) + '...' : comment}</p>

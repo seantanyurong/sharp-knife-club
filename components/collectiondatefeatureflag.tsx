@@ -11,13 +11,13 @@ function CollectionDateFeatureFlag({ type }: { type: string }) {
   // if (variant === "no-collection-date") {
   //   return null;
   // } else {
-    if (type === "badge") return (
-      <Badge className='mt-4'>Next Collection: {NEXT_PICKUP_DATE}</Badge>
-    )
-  
-    if (type === "main") return (
-      <p className='text-xs'>Next Collection: {NEXT_PICKUP_DATE}</p>
-    )
+  if (type === "badge") return (
+    <Badge className='mt-4'>Next Collection: {NEXT_PICKUP_DATE}</Badge>
+  )
+
+  if (type === "main") return (
+    <p className='text-sm'>Next Collection: {NEXT_PICKUP_DATE}</p>
+  )
   // }
 
   return null;

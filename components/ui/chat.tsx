@@ -7,7 +7,7 @@ function Chat() {
       <WhatsAppLink origin='chat'>
         <Button
           size={'lg'}
-          variant={'destructive'}
+          variant={'whatsapp'}
           className='text-lg font-black hidden md:flex fixed bottom-6 right-6 z-99'>
           <svg
             xmlns='http://www.w3.org/2000/svg'

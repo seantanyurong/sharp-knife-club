@@ -8,7 +8,7 @@ function page() {
   return (
     <>
       <div className='max-w-3xl mx-auto p-6'>
-        <h1 className='text-3xl mt-6 font-bold text-center'>Blog</h1>
+        <h1 className='text-3xl mt-6 mb-6 font-bold text-center'>Blog</h1>
 
         <FeaturedSection />
 
