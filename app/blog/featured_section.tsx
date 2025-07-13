@@ -21,7 +21,7 @@ function FeaturedSection({ homepage = false }: { homepage?: boolean }) {
           <div className="md:w-1/2  text-center md:text-left">
             <h2 className="text-3xl font-black text-primary-foreground">The Ultimate Guide to Knife Sharpening</h2>
             <p className="mt-4 text-black text-primary-foreground">Discover why professional sharpening extends your knife&apos;s lifespan and enhances your cooking experience.</p>
-            <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-lg shadow-md hover:bg-[#F6A008] transition">
+            <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-md shadow-md hover:bg-[#F6A008] transition">
               <PostHogEventCapture name="ultimate-guide" origin="homepage">
                 Read More
               </PostHogEventCapture>

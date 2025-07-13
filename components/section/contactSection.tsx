@@ -6,7 +6,7 @@ export default function ContactSection() {
   return (
     <div className='bg-[url(/images/contact-bg.png)] bg-cover py-16 px-6'>
       <div className='max-w-6xl mx-auto'>
-        <h1 className='text-5xl text-primary-foreground font-black text-center'>CONTACT US</h1>
+        <h1 className='text-3xl md:text-4xl text-primary-foreground font-black text-center'>CONTACT US</h1>
         <p className='mt-4 text-center text-primary-foreground'>
           <Balancer>
             We are available to answer 24/7 and will reply in &lt;10 minutes most of the time.

@@ -3,13 +3,14 @@ import WhatsAppLink from "../ui/whatsapp"
 import { Button } from "../ui/button"
 import GoogleReviewButton from "../googleReviewButton"
 import GoogleReviewCarousel from "../googleReviewCarousel"
+import { NEXT_PICKUP_DATE } from "@/constants/dates"
 
 export default function HeroSection() {
   return (
     <div className='bg-[url(/images/hero-bg.png)] bg-cover py-20 lg:py-40'>
       <div className='max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center '>
-        <h1 className='text-primary-foreground text-2xl md:text-6xl font-black'>
-          <Balancer>KNIFE SHARPENING IN ONE DAY - PICKUP & DELIVERY INCLUDED</Balancer>
+        <h1 className='text-primary-foreground text-3xl md:text-6xl font-black'>
+          <Balancer>KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY</Balancer>
         </h1>
         <div className='mt-8 flex gap-4 flex-col lg:flex-row justify-center'>
           <WhatsAppLink origin='main'>
@@ -40,6 +41,7 @@ export default function HeroSection() {
                 </svg>
                 BOOK KNIFE PICKUP
               </div>
+              <p className='text-sm text-secondary-foreground'>Next Collection: {NEXT_PICKUP_DATE}</p>
             </Button>
           </WhatsAppLink>
           <GoogleReviewButton />
