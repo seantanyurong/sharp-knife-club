@@ -25,7 +25,7 @@ const GoogleReviewButton = () => {
           </div>
           {showGoogleReviewsVariant && (
             <span className='text-xs text-gray-500 font-medium'>
-              (66)
+              (82)
             </span>
           )}
         </div>
