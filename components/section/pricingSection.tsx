@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import CopyChangeWrapper from './abtest/CopyChangeWrapper'
+import CopyChangeWrapper from '../abtest/CopyChangeWrapper'
 
 function PricingSection() {
   const img_src = CopyChangeWrapper({ feature: 'pricing-section-image', children: null }) as string;
