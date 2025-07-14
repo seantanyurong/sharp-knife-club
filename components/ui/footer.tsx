@@ -2,12 +2,12 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="bg-muted">
       <div className='max-w-2xl mx-auto pb-16 px-6'>
         <Link href='/blog'>
-          <p className='text-center text-sm text-gray-500 mb-1 italic'>Blog</p>
+          <p className='text-center text-sm mb-1 text-gray-500 italic underline font-bold'>Blog</p>
         </Link>
-        <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Knife Sharpening Singapore.</p>
+        <p className='text-center text-sm text-gray-500 mb-1 font-bold'>Knife Sharpening Singapore Pte. Ltd</p>
         <p className='text-center text-sm text-gray-500 mb-1'>
           Professional knife sharpening, free pickup islandwide.
         </p>
