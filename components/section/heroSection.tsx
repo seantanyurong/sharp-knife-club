@@ -3,7 +3,7 @@ import WhatsAppLink from "../ui/whatsapp"
 import { Button } from "../ui/button"
 import GoogleReviewButton from "../googleReviewButton"
 import GoogleReviewCarousel from "../googleReviewCarousel"
-import { NEXT_PICKUP_DATE } from "@/constants/dates"
+import NextPickupDate from "../NextPickupDate"
 
 export default function HeroSection() {
   return (
@@ -41,7 +41,7 @@ export default function HeroSection() {
                 </svg>
                 BOOK KNIFE PICKUP
               </div>
-              <p className='text-sm text-secondary-foreground'>Next Collection: {NEXT_PICKUP_DATE}</p>
+              <p className='text-sm text-secondary-foreground'>Next Collection: <NextPickupDate /></p>
             </Button>
           </WhatsAppLink>
           <GoogleReviewButton />

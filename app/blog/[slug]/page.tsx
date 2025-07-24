@@ -1,7 +1,7 @@
 import Article from './article';
 // import TableOfContentsSidebar from './sidebar';
 import { getArticle } from '../utils';
-import { NEXT_PICKUP_DATE } from '@/constants/dates';
+import NextPickupDate from '../../../components/NextPickupDate';
 import ArticleCards from '../article_cards';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -41,7 +41,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         <p className='text-sm text-gray-500 mb-8'>
           <i>
-            We are currently only operating in Singapore. Our next pick up will be on {`${NEXT_PICKUP_DATE}`}.
+            We are currently only operating in Singapore. Our next pick up will be on <NextPickupDate />.
           </i>
         </p>
 

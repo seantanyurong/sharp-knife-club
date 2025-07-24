@@ -1,4 +1,4 @@
-const getNextPickupDate = (): string => {
+export const getNextPickupDate = (): string => {
   const startDate = new Date(Date.UTC(2025, 1, 1));
   const currentDate = new Date();
   const currentDateUTC = new Date(
@@ -19,7 +19,5 @@ const getNextPickupDate = (): string => {
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
   return nextPickupDate.toLocaleDateString('en-US', options);
 };
-
-export const NEXT_PICKUP_DATE = getNextPickupDate();
 
 // export const NEXT_PICKUP_DATE = 'Apr 12, 2025';
