@@ -6,17 +6,17 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 const STEPS = [
   {
-    image: '/images/step-1.png',
+    image: '/images/step-1.webp',
     title: 'PICK UP',
     description: 'Leave your knives at your doorstep and we’ll swing by to collect it!',
   },
   {
-    image: '/images/step-2.png',
+    image: '/images/step-2.webp',
     title: 'SHARPEN',
     description: 'Our expert knifesmiths will restore your edges till its razor sharp. That’s a Knife Sharpening Singapore Guarantee!',
   },
   {
-    image: '/images/step-3.png',
+    image: '/images/step-3.webp',
     title: 'DELIVERED',
     description: 'We will drop them off within 24 hours at your doorstep, and you will be slicing and dicing with a fresh edge again.',
   },
