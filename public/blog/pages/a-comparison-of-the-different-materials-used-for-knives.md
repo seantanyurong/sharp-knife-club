@@ -1,6 +1,6 @@
 ---
 title: "A Comparison of the Different Materials Used for Knives"
-publishedAt: "2025-07-06"
+publishedAt: "2025-07-04"
 slug: 'a-comparison-of-the-different-materials-used-for-knives'
 ---
 
