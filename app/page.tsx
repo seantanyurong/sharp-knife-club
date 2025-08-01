@@ -7,6 +7,7 @@ import HeroSection from '@/components/section/heroSection';
 import ContactSection from '@/components/section/contactSection';
 import SingleReviewSection from '@/components/section/singleReviewSection';
 import FaqSection from '@/components/section/faqSection';
+import ResultSection from '@/components/section/resultSection';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <PricingSection />
         <LogoSection />
         <ContactSection />
+        <ResultSection />
         <SingleReviewSection />
         <FaqSection />
         <FeaturedSection homepage />

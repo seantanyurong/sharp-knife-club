@@ -35,6 +35,10 @@ const variants = {
     variant_a: 'hero_section',
     variant_b: 'pricing_section',
   },
+  'sharpened-results-section': {
+    control: false,
+    variant_a: true,
+  },
 };
 
 function CopyChangeWrapper({ feature, children } : { feature: string; children: React.ReactNode; }) {
