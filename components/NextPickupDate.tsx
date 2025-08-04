@@ -1,3 +1,5 @@
+'use client'
+
 import { getNextPickupDate } from '../constants/dates';
 
 export default function NextPickupDate() {
