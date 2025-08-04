@@ -1,13 +1,14 @@
 import { Star } from 'lucide-react';
+import { Avatar, AvatarImage } from './ui/avatar';
 
-export default function GoogleReview({ name, rating, comment }: { name: string; rating: number; comment: string }) {
+export default function GoogleReview({ profile, name, rating, comment }: { profile: string; name: string; rating: number; comment: string }) {
   return (
     <div className='bg-white p-4 rounded-xl shadow-md max-w-sm border h-[275px] flex flex-col justify-between'>
       <div>
         <div className='flex items-center space-x-3'>
-          <div className='bg-gray-300 text-white w-10 h-10 flex items-center justify-center rounded-full text-lg font-bold'>
-            {name.charAt(0).toUpperCase()}
-          </div>
+          <Avatar className="w-10 h-10">
+            <AvatarImage src={`/google-reviews/profile/${profile}.png`} alt="profile picture" />
+          </Avatar>
           <div className='flex flex-col'>
             <div className='flex items-center space-x-1'>
               <span className='font-semibold'>{name}</span>
