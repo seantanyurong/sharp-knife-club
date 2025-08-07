@@ -18,10 +18,10 @@ export default function ResultSection() {
     Autoplay({ delay: 3000, stopOnInteraction: false })
   )
 
-  // const showSection = CopyChangeWrapper({ feature: 'sharpened-results-section', children: null })
-  // if (!showSection) {
-  //   return null
-  // }
+  const showSection = CopyChangeWrapper({ feature: 'sharpened-results-section', children: null })
+  if (!showSection) {
+    return null
+  }
 
   return (
     <div className="w-full bg-white overflow-hidden">
