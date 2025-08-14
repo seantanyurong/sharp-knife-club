@@ -20,7 +20,7 @@ export default function Home() {
         <ContactSection />
         <ResultSection />
         <SingleReviewSection />
-        <FaqSection />
+        <FaqSection homepage />
         <FeaturedSection homepage />
       </div>
     </main >
