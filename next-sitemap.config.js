@@ -9,6 +9,7 @@ module.exports = {
     const allRoutes = [
       { loc: '/', changefreq: 'daily', priority: 1.0 },
       { loc: '/blog', changefreq: 'daily', priority: 1.0 },
+      { loc: '/faq', changefreq: 'daily', priority: 1.0 },
       ...dynamicRoutes.map((route) => ({
         loc: route,
         changefreq: 'daily',
