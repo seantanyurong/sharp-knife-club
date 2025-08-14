@@ -1,6 +1,5 @@
-'use client'
-
 import Image from 'next/image'
+import WhatsappLink from '../ui/whatsapp'
 
 function PricingSection() {
 
@@ -19,7 +18,7 @@ function PricingSection() {
             <div className='bg-muted rounded-md p-4'>
               <h1 className='text-lg md:text-2xl font-black'>2 BLADES - $20 PER KNIFE</h1>
             </div>
-            <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
+            <WhatsappLink origin='pricing'>
               <div className='bg-secondary rounded-md p-4 relative'>
                 <h1 className='text-lg md:text-2xl text-white font-black'>3+ BLADES — $15 PER KNIFE</h1>
                 <Image
@@ -30,7 +29,7 @@ function PricingSection() {
                   className='absolute -top-8 -right-6 z-99'
                 />
               </div>
-            </a>
+            </WhatsappLink>
           </div>
           <p className='mt-4 italic text-primary-foreground'>Free pickup and delivery. Free repair of small chips. Additional costs for larger repairs.</p>
         </div>
