@@ -8,6 +8,7 @@ import Footer from '@/components/ui/footer';
 import Chat from '@/components/ui/chat';
 import { PostHogProvider } from './providers';
 import PostHogReady from '@/components/ui/posthogloadcheck';
+import ClientProvider from './clientProvider';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -26,11 +27,13 @@ export default function RootLayout({
     <html lang='en'>
       <body className={openSans.className}>
         <PostHogProvider>
-          <Header />
-          <PostHogReady />
-          {children}
-          <Footer />
-          <Chat />
+          <ClientProvider>
+            <Header />
+            <PostHogReady />
+            {children}
+            <Footer />
+            <Chat />
+          </ClientProvider>
         </PostHogProvider>
       </body>
       <GoogleTagManager gtmId='GTM-KH7TZBT6' />
