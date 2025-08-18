@@ -13,6 +13,7 @@ function WhatsAppLink({ origin, children }: { origin: string; children: React.Re
       href='https://wa.me/message/LQDK2KE5I3PNF1'
       target='_blank'
       rel='noreferrer'
+      className='inline-block'
     >
       {children}
     </a>

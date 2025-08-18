@@ -1,4 +1,4 @@
-export const getNextPickupDate = (): string => {
+const getNextPickupDateObject = (): Date => {
   const startDate = new Date(Date.UTC(2025, 1, 1));
   const currentDate = new Date();
   const currentDateUTC = new Date(
@@ -16,8 +16,22 @@ export const getNextPickupDate = (): string => {
   const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
   nextPickupDate.setDate(nextPickupDate.getDate() + daysUntilSaturday);
 
+  return nextPickupDate;
+};
+
+export const getNextPickupDate = (): string => {
+  const nextPickupDate = getNextPickupDateObject();
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
   return nextPickupDate.toLocaleDateString('en-US', options);
+};
+
+export const getNextReturnDate = (): string => {
+  const nextPickupDate = getNextPickupDateObject();
+  const nextReturnDate = new Date(nextPickupDate);
+  nextReturnDate.setDate(nextPickupDate.getDate() + 1);
+  
+  const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+  return nextReturnDate.toLocaleDateString('en-US', options);
 };
 
 // export const NEXT_PICKUP_DATE = 'Apr 12, 2025';
