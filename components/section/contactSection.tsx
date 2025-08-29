@@ -1,6 +1,7 @@
 import Balancer from "react-wrap-balancer"
 import WhatsAppLink from "../ui/whatsapp"
 import { Button } from "../ui/button"
+import PurchaseFormTrigger from "../purchaseFormTrigger"
 
 export default function ContactSection() {
   return (
@@ -13,7 +14,7 @@ export default function ContactSection() {
           </Balancer>
         </p>
         <div className='max-w-xl grid grid-cols-1 gap-2 mt-4 mx-auto'>
-          <WhatsAppLink origin='contact'>
+          <PurchaseFormTrigger origin='contact'>
             <Button size={'xl'} variant={'secondary'} className='text-xl font-black flex gap-2 w-full mt-4'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -40,7 +41,7 @@ export default function ContactSection() {
               </svg>
               (65) 8068 4206
             </Button>
-          </WhatsAppLink>
+          </PurchaseFormTrigger>
           <a href='mailto:hello@knifesharpening.sg'>
             <Button size={'xl'} variant={'muted'} className='text-xl font-black flex gap-2 w-full mt-4'>
               <svg

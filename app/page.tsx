@@ -8,6 +8,7 @@ import ContactSection from '@/components/section/contactSection';
 import SingleReviewSection from '@/components/section/singleReviewSection';
 import FaqSection from '@/components/section/faqSection';
 import ResultSection from '@/components/section/resultSection';
+import PurchaseForm from '@/components/section/purchaseForm';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <SingleReviewSection />
         <FaqSection homepage />
         <FeaturedSection homepage />
+        <PurchaseForm />
       </div>
     </main >
   );
