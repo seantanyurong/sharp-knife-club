@@ -14,7 +14,7 @@ const openSans = Open_Sans({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Professional Knife Sharpening - Free Pickup Islandwide',
   description:
-    'Get your knives picked up and sharpened by the No.1 sharpening service in Singapore. Join the professional chefs and home cooks who love our results and service.',
+    'We offer professional knife sharpening servces in Singapore for kitchen knives, chef knives, scissors, serrated blades, and more. Free pickup and delivery islandwide.',
 };
 
 export default function RootLayout({
