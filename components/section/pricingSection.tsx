@@ -19,7 +19,7 @@ function PricingSection() {
             <div className='bg-muted rounded-md p-4'>
               <h1 className='text-lg md:text-2xl font-black'>2 BLADES - $20 PER KNIFE</h1>
             </div>
-            <a href='https://wa.me/message/LQDK2KE5I3PNF1'>
+            <a href='https://wa.me/6580684206?text=Hello%21%20Can%20you%20share%20more%20information%3F'>
               <div className='bg-secondary rounded-md p-4 relative'>
                 <h1 className='text-lg md:text-2xl text-white font-black'>3+ BLADES — $15 PER KNIFE</h1>
                 <Image
