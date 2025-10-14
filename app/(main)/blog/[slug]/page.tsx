@@ -1,7 +1,7 @@
 import Article from './article';
 // import TableOfContentsSidebar from './sidebar';
 import { getArticle } from '../utils';
-import NextPickupDate from '../../../components/NextPickupDate';
+import NextPickupDate from '@/components/NextPickupDate';
 import ArticleCards from '../article_cards';
 import Link from 'next/link';
 import type { Metadata } from 'next';
