@@ -66,7 +66,18 @@ export default function Order() {
                 onClick={() => setNumberOfKnives(option)}
                 variant={option === numberOfKnives ? 'secondary' : 'muted'}
                 size="lg"
-                className="w-full"
+                className="w-full hidden md:block"
+              >
+                {option}
+              </Button>
+            ))}
+            {numberOfKnivesOptions.map((option) => (
+              <Button
+                key={option}
+                onClick={() => setNumberOfKnives(option)}
+                variant={option === numberOfKnives ? 'secondary' : 'muted'}
+                size="sm"
+                className="w-full block md:hidden"
               >
                 {option}
               </Button>
@@ -83,7 +94,7 @@ export default function Order() {
             Repairing small chips are free. Repairing large chips, de-rusting,
             and straightening blades are all an additional $10.
           </p>
-          <div className="flex gap-1 mt-2">
+          <div className="gap-1 mt-2 hidden md:flex">
             <Button
               variant="outline"
               size="lg"
@@ -102,6 +113,31 @@ export default function Order() {
             <Button
               variant="outline"
               size="lg"
+              onClick={() => setNumberOfRepairs((r) => r + 1)}
+              aria-label="Increase repairs"
+            >
+              +
+            </Button>
+          </div>
+          <div className="gap-1 mt-2 flex md:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={
+                () => setNumberOfRepairs((r) => Math.max(0, r - 1)) // clamp at 0
+              }
+              aria-label="Decrease repairs"
+            >
+              -
+            </Button>
+            <div
+              className={`${numberOfRepairs > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-8 text-xs rounded-md px-8 shadow w-full flex justify-center items-center`}
+            >
+              <p>{numberOfRepairs}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => setNumberOfRepairs((r) => r + 1)}
               aria-label="Increase repairs"
             >
@@ -127,7 +163,12 @@ export default function Order() {
         {/* </div> */}
 
         {/* Bottom actions */}
-        <Button asChild size="lg" variant="secondary" className="w-full mt-8">
+        <Button
+          asChild
+          size="lg"
+          variant="destructive"
+          className="w-full mt-16"
+        >
           <Link href={checkoutHref}>Make Payment</Link>
         </Button>
         <Button asChild variant="whatsapp" size="lg" className="w-full mt-4">
