@@ -167,7 +167,7 @@ export default function Order() {
           asChild
           size="lg"
           variant="destructive"
-          className="w-full mt-16"
+          className="w-full mt-12"
         >
           <Link href={checkoutHref}>Make Payment</Link>
         </Button>
