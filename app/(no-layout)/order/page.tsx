@@ -5,14 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@/public/logo.png';
 import { Button } from '@/components/ui/button';
-// import { Checkbox } from '@/components/ui/checkbox';
-// import { Label } from '@/components/ui/label';
 import { Star } from 'lucide-react';
 
 export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(4);
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
-  // const [urgentOrder, setUrgentOrder] = useState(false);
 
   const numberOfKnivesOptions = [4, 5, 7, 10, 14];
 
@@ -145,22 +142,6 @@ export default function Order() {
             </Button>
           </div>
         </div>
-
-        {/* Urgent */}
-        {/* <div className="mt-8 flex items-center gap-2"> */}
-        {/*   <Checkbox */}
-        {/*     id="urgent" */}
-        {/*     checked={urgentOrder} */}
-        {/*     onCheckedChange={(v) => setUrgentOrder(Boolean(v))} */}
-        {/*     className="bg-white data-[state=checked]:bg-secondary data-[state=checked]:text-secondary-foreground" */}
-        {/*   /> */}
-        {/*   <Label */}
-        {/*     htmlFor="urgent" */}
-        {/*     className="text-primary-foreground cursor-pointer" */}
-        {/*   > */}
-        {/*     Urgent Order? */}
-        {/*   </Label> */}
-        {/* </div> */}
 
         {/* Bottom actions */}
         <Button
