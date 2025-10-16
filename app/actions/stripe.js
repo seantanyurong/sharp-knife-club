@@ -13,6 +13,9 @@ export async function fetchClientSecret(knives, repairs) {
     shipping_address_collection: {
       allowed_countries: ['SG'],
     },
+    phone_number_collection: {
+      enabled: true,
+    },
     line_items: [
       {
         price: 'price_1SGZZ0GaVAbUPxo7NVHaCdex',
