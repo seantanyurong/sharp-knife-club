@@ -5,16 +5,15 @@ import {
   EmbeddedCheckoutProvider,
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-
-import { useSearchParams } from 'next/navigation';
-
 import { fetchClientSecret } from '../app/actions/stripe.js';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 );
 
-export default function Checkout() {
+function CheckoutComponent() {
   const searchParams = useSearchParams();
   const knives = searchParams.get('knives');
   const repairs = searchParams.get('repairs');
@@ -30,5 +29,13 @@ export default function Checkout() {
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
     </div>
+  );
+}
+
+export default function Checkout() {
+  return (
+    <Suspense>
+      <CheckoutComponent />
+    </Suspense>
   );
 }
