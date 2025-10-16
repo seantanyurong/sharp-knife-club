@@ -6,6 +6,8 @@ import {
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
+import { useSearchParams } from 'next/navigation';
+
 import { fetchClientSecret } from '../app/actions/stripe.js';
 
 const stripePromise = loadStripe(
@@ -13,11 +15,17 @@ const stripePromise = loadStripe(
 );
 
 export default function Checkout() {
+  const searchParams = useSearchParams();
+  const knives = searchParams.get('knives');
+  const repairs = searchParams.get('repairs');
+
   return (
     <div id="checkout">
       <EmbeddedCheckoutProvider
         stripe={stripePromise}
-        options={{ fetchClientSecret }}
+        options={{
+          fetchClientSecret: () => fetchClientSecret(knives, repairs),
+        }}
       >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

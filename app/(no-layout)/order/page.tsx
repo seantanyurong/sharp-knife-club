@@ -13,12 +13,8 @@ export default function Order() {
 
   const numberOfKnivesOptions = [4, 5, 7, 10, 14];
 
-  // Prefill WhatsApp message
   const checkoutHref = useMemo(
-    () =>
-      `/checkout?knives=${encodeURIComponent(
-        numberOfKnives,
-      )}&repairs=${encodeURIComponent(numberOfRepairs)}}`,
+    () => `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}`,
     [numberOfKnives, numberOfRepairs],
   );
 

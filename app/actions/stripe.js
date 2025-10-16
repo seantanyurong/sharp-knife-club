@@ -4,7 +4,7 @@ import { headers } from 'next/headers';
 
 import { stripe } from '../../lib/stripe';
 
-export async function fetchClientSecret() {
+export async function fetchClientSecret(knives, repairs) {
   const origin = (await headers()).get('origin');
 
   const session = await stripe.checkout.sessions.create({
@@ -16,7 +16,11 @@ export async function fetchClientSecret() {
     line_items: [
       {
         price: 'price_1SGZZ0GaVAbUPxo7NVHaCdex',
-        quantity: 3,
+        quantity: knives,
+      },
+      {
+        price: 'price_1SIkIaGaVAbUPxo7O41lFZVp',
+        quantity: repairs,
       },
     ],
     custom_fields: [
@@ -31,8 +35,8 @@ export async function fetchClientSecret() {
       },
     ],
     metadata: {
-      knives: 3,
-      repairs: 0,
+      knives: knives,
+      repairs: repairs,
     },
     mode: 'payment',
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
