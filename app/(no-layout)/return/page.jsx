@@ -21,8 +21,8 @@ export default async function Return({ searchParams }) {
   if (status === 'complete') {
     return (
       <section id="success">
-        <div className="bg-primary min-h-screen flex flex-col items-center justify-center p-4 text-center">
-          <div className="max-w-xl text-primary-foreground">
+        <div className="bg-secondary min-h-screen flex flex-col items-center justify-center p-4 text-center">
+          <div className="max-w-xl text-primary">
             <h1 className="text-3xl font-bold">Order Confirmed!</h1>
             <p className="mt-4">
               Thank you for trusting your blades with Knife Sharpening SG! We
