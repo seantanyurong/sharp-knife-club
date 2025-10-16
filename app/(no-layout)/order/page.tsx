@@ -44,7 +44,11 @@ export default function Order() {
               />
             ))}
           </div>
-          <span className="text-xs text-gray-500 font-medium">(116)</span>
+          <a target="_blank" href="https://g.co/kgs/aXcTBcs">
+            <span className="text-xs text-gray-500 font-medium underline">
+              (116)
+            </span>
+          </a>
         </div>
 
         {/* Knives */}
