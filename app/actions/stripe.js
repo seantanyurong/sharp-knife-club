@@ -7,22 +7,22 @@ import { stripe } from '../../lib/stripe';
 function getKnifePriceIdFromKnifeQuantity(knives) {
   switch (knives) {
     case 4:
-      return 'price_1SGZZ0GaVAbUPxo7NVHaCdex';
+      return 'price_1S7Dl4GUii3OcuGTAWGfzL1o';
     case 5:
-      return 'price_1SIkIaGaVAbUPxo7O41lFZVp';
+      return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
     case 7:
-      return 'price_1SJ1a0GaVAbUPxo7O41lFZVp';
+      return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
     case 10:
-      return 'price_1SJ5a0GaVAbUPxo7O41lFZVp';
+      return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
     case 14:
-      return 'price_1SJ9a0GaVAbUPxo7O41lFZVp';
+      return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
     default:
-      return 'price_1SGZZ0GaVAbUPxo7NVHaCdex';
+      return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
   }
 }
 
 function getRepairPriceIdFromRepairQuantity(repairs) {
-  return 'price_1SIkIaGaVAbUPxo7O41lFZVp';
+  return 'price_1RoeFWGUii3OcuGTaHdLbs5D';
 }
 
 function generateLineItems(knives, repairs) {
