@@ -8,10 +8,25 @@ import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 
 export default function Order() {
-  const [numberOfKnives, setNumberOfKnives] = useState(0);
+  const [numberOfKnives, setNumberOfKnives] = useState(3);
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
 
   // const numberOfKnivesOptions = [4, 5, 7, 10, 14];
+
+  const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
+    return getKnifePriceFromKnivesQuantity(knivesQuantity) * knivesQuantity;
+  };
+
+  const getKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
+    switch (knivesQuantity) {
+      case 1:
+        return 35;
+      case 2:
+        return 20;
+      default:
+        return 15;
+    }
+  };
 
   const checkoutHref = useMemo(
     () => `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}`,
@@ -56,12 +71,16 @@ export default function Order() {
           <h2 className="text-start mt-8 text-primary-foreground">
             How Many Knives?
           </h2>
+          <p className="italic text-primary-foreground text-xs">
+            ${getTotalKnifePriceFromKnivesQuantity(numberOfKnives)} ($
+            {getKnifePriceFromKnivesQuantity(numberOfKnives)} per knife)
+          </p>
           <div className="gap-1 mt-2 hidden md:flex">
             <Button
               variant="outline"
               size="lg"
               onClick={
-                () => setNumberOfKnives((r) => Math.max(0, r - 1)) // clamp at 0
+                () => setNumberOfKnives((r) => Math.max(1, r - 1)) // clamp at 0
               }
               aria-label="Decrease knives"
             >
@@ -86,7 +105,7 @@ export default function Order() {
               variant="outline"
               size="sm"
               onClick={
-                () => setNumberOfKnives((r) => Math.max(0, r - 1)) // clamp at 0
+                () => setNumberOfKnives((r) => Math.max(1, r - 1)) // clamp at 0
               }
               aria-label="Decrease knives"
             >
@@ -139,7 +158,7 @@ export default function Order() {
           </h2>
           <p className="italic text-primary-foreground text-xs">
             Repairing small chips are free. Repairing large chips, de-rusting,
-            and straightening blades are all an additional $10.
+            and straightening blades are all an additional $10/repair.
           </p>
           <div className="gap-1 mt-2 hidden md:flex">
             <Button
