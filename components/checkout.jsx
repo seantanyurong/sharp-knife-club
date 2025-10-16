@@ -19,16 +19,14 @@ function CheckoutComponent() {
   const repairs = searchParams.get('repairs');
 
   return (
-    <div id="checkout">
-      <EmbeddedCheckoutProvider
-        stripe={stripePromise}
-        options={{
-          fetchClientSecret: () => fetchClientSecret(knives, repairs),
-        }}
-      >
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-    </div>
+    <EmbeddedCheckoutProvider
+      stripe={stripePromise}
+      options={{
+        fetchClientSecret: () => fetchClientSecret(knives, repairs),
+      }}
+    >
+      <EmbeddedCheckout />
+    </EmbeddedCheckoutProvider>
   );
 }
 
