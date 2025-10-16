@@ -45,6 +45,12 @@ function generateLineItems(knives, repairs) {
     });
   }
 
+  // Free Delivery
+  line_items.push({
+    price: 'price_1SIksgGUii3OcuGT8iFhQHPE',
+    quantity: 1,
+  });
+
   return line_items;
 }
 
