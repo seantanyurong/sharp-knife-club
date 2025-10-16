@@ -5,9 +5,9 @@ import { headers } from 'next/headers';
 import { stripe } from '../../lib/stripe';
 
 function getKnifePriceIdFromKnifeQuantity(knives) {
-  switch (knives) {
+  switch (Number(knives)) {
     case 4:
-      return 'price_1S7Dl4GUii3OcuGTAWGfzL1o';
+      return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
     case 5:
       return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
     case 7:
