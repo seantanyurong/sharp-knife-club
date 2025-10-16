@@ -8,10 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 
 export default function Order() {
-  const [numberOfKnives, setNumberOfKnives] = useState(4);
+  const [numberOfKnives, setNumberOfKnives] = useState(0);
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
 
-  const numberOfKnivesOptions = [4, 5, 7, 10, 14];
+  // const numberOfKnivesOptions = [4, 5, 7, 10, 14];
 
   const checkoutHref = useMemo(
     () => `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}`,
@@ -56,30 +56,80 @@ export default function Order() {
           <h2 className="text-start mt-8 text-primary-foreground">
             How Many Knives?
           </h2>
-          <div className="flex items-center gap-2 mt-2">
-            {numberOfKnivesOptions.map((option) => (
-              <Button
-                key={option}
-                onClick={() => setNumberOfKnives(option)}
-                variant={option === numberOfKnives ? 'secondary' : 'muted'}
-                size="lg"
-                className="w-full hidden md:block"
-              >
-                {option}
-              </Button>
-            ))}
-            {numberOfKnivesOptions.map((option) => (
-              <Button
-                key={option}
-                onClick={() => setNumberOfKnives(option)}
-                variant={option === numberOfKnives ? 'secondary' : 'muted'}
-                size="sm"
-                className="w-full block md:hidden"
-              >
-                {option}
-              </Button>
-            ))}
+          <div className="gap-1 mt-2 hidden md:flex">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={
+                () => setNumberOfKnives((r) => Math.max(0, r - 1)) // clamp at 0
+              }
+              aria-label="Decrease knives"
+            >
+              -
+            </Button>
+            <div
+              className={`${numberOfKnives > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-10 rounded-md px-8 shadow w-full flex justify-center items-center`}
+            >
+              <p>{numberOfKnives}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setNumberOfKnives((r) => r + 1)}
+              aria-label="Increase knives"
+            >
+              +
+            </Button>
           </div>
+          <div className="gap-1 mt-2 flex md:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={
+                () => setNumberOfKnives((r) => Math.max(0, r - 1)) // clamp at 0
+              }
+              aria-label="Decrease knives"
+            >
+              -
+            </Button>
+            <div
+              className={`${numberOfKnives > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-8 text-xs rounded-md px-8 shadow w-full flex justify-center items-center`}
+            >
+              <p>{numberOfKnives}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setNumberOfKnives((r) => r + 1)}
+              aria-label="Increase knives"
+            >
+              +
+            </Button>
+          </div>
+          {/* <div className="flex items-center gap-2 mt-2"> */}
+          {/*   {numberOfKnivesOptions.map((option) => ( */}
+          {/*     <Button */}
+          {/*       key={option} */}
+          {/*       onClick={() => setNumberOfKnives(option)} */}
+          {/*       variant={option === numberOfKnives ? 'secondary' : 'muted'} */}
+          {/*       size="lg" */}
+          {/*       className="w-full hidden md:block" */}
+          {/*     > */}
+          {/*       {option} */}
+          {/*     </Button> */}
+          {/*   ))} */}
+          {/*   {numberOfKnivesOptions.map((option) => ( */}
+          {/*     <Button */}
+          {/*       key={option} */}
+          {/*       onClick={() => setNumberOfKnives(option)} */}
+          {/*       variant={option === numberOfKnives ? 'secondary' : 'muted'} */}
+          {/*       size="sm" */}
+          {/*       className="w-full block md:hidden" */}
+          {/*     > */}
+          {/*       {option} */}
+          {/*     </Button> */}
+          {/*   ))} */}
+          {/* </div> */}
         </div>
 
         {/* Repairs */}
@@ -144,14 +194,25 @@ export default function Order() {
         </div>
 
         {/* Bottom actions */}
-        <Button
-          asChild
-          size="lg"
-          variant="destructive"
-          className="w-full mt-12"
-        >
-          <Link href={checkoutHref}>Make Payment</Link>
-        </Button>
+        {numberOfKnives === 0 ? (
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="w-full mt-12 cursor-not-allowed"
+          >
+            <p>Please select knives</p>
+          </Button>
+        ) : (
+          <Button
+            asChild
+            size="lg"
+            variant="destructive"
+            className="w-full mt-12"
+          >
+            <Link href={checkoutHref}>Make Payment</Link>
+          </Button>
+        )}
         <Button asChild variant="whatsapp" size="lg" className="w-full mt-4">
           <a
             href={`https://wa.me/6580684206`}
