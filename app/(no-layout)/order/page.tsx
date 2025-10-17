@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Logo from '@/public/logo.png';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
+import NextPickupDate from '@/components/NextPickupDate';
 
 export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
@@ -208,6 +209,47 @@ export default function Order() {
               aria-label="Increase repairs"
             >
               +
+            </Button>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-start mt-8 text-primary-foreground">
+            Select Pickup Date
+          </h2>
+          <p className="italic text-primary-foreground text-xs">
+            Your blades will be sharpened and returned to you within 24 hours.
+          </p>
+          <div className="flex items-center gap-1 mt-2">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="w-full hidden md:block"
+            >
+              <NextPickupDate />
+            </Button>
+            <Button
+              size="lg"
+              variant="muted"
+              disabled
+              className="w-full cursor-not-allowed hidden md:block"
+            >
+              No next date
+            </Button>
+            <Button
+              size="sm"
+              variant="secondary"
+              className="w-full block md:hidden"
+            >
+              <NextPickupDate />
+            </Button>
+            <Button
+              size="sm"
+              variant="muted"
+              disabled
+              className="w-full cursor-not-allowed block md:hidden"
+            >
+              No next date
             </Button>
           </div>
         </div>
