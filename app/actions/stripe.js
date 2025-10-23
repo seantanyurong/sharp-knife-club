@@ -6,10 +6,10 @@ import { stripe } from '../../lib/stripe';
 
 function getKnifePriceIdFromKnifeQuantity(knives) {
   switch (Number(knives)) {
-    case 1:
-      return 'price_1S7Dl4GUii3OcuGTAWGfzL1o';
-    case 2:
+    case 3:
       return 'price_1RdNENGUii3OcuGTovsjRdjd';
+    case 4:
+      return 'price_1SLHbmGUii3OcuGTOs39v1i6';
     default:
       return 'price_1RQ0nJGUii3OcuGTVmHk4nxc';
   }
