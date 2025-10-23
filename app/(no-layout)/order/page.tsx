@@ -1,5 +1,6 @@
 'use client';
 
+import { toast } from "sonner"
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,10 +21,10 @@ export default function Order() {
 
   const getKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
     switch (knivesQuantity) {
-      case 1:
-        return 35;
-      case 2:
+      case 3:
         return 20;
+      case 4:
+        return 18;
       default:
         return 15;
     }
@@ -81,7 +82,12 @@ export default function Order() {
               variant="outline"
               size="lg"
               onClick={
-                () => setNumberOfKnives((r) => Math.max(1, r - 1)) // clamp at 0
+                () => {
+                  if (numberOfKnives === 3) {
+                    toast("Minimum order count of 3 knives!")
+                  }
+                  setNumberOfKnives((r) => Math.max(3, r - 3)) // clamp at 3
+                }
               }
               aria-label="Decrease knives"
             >
@@ -106,7 +112,12 @@ export default function Order() {
               variant="outline"
               size="sm"
               onClick={
-                () => setNumberOfKnives((r) => Math.max(1, r - 1)) // clamp at 0
+                () => {
+                  if (numberOfKnives === 3) {
+                    toast("Minimum order count of 3 knives!")
+                  }
+                  setNumberOfKnives((r) => Math.max(3, r - 3)) // clamp at 3
+                }
               }
               aria-label="Decrease knives"
             >

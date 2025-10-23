@@ -1,5 +1,6 @@
 import '../globals.css';
 import type { Metadata } from 'next';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
   title: 'Professional Knife Sharpening - Free Pickup Islandwide',
@@ -14,7 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+      {children}
+      <Toaster />
+      </body>
     </html>
   )
 }
