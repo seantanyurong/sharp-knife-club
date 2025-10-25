@@ -16,6 +16,7 @@ function formatForDisplay(isoDate: string) {
 }
 
 export default function NextPickupDateClient({ pickupDate }: { pickupDate: string }) {
+  // fallback to avoid error
   if (!pickupDate) {
     const regularDate = getNextPickupDate();
     return <span>{regularDate}</span>
