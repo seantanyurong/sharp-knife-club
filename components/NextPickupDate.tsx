@@ -1,9 +1,7 @@
-'use client'
+import { fetchOrderConstants } from '@/app/actions/notion';
+import NextPickupDateClient from './NextPickupDateClient';
 
-import { getNextPickupDate } from '../constants/dates';
-
-export default function NextPickupDate() {
-  const NEXT_PICKUP_DATE = getNextPickupDate();
-
-  return <span>{NEXT_PICKUP_DATE}</span>;
+export default async function NextPickupDate() {
+  const constants = await fetchOrderConstants();
+  return <NextPickupDateClient pickupDate={constants.pickupDate} />;
 }
