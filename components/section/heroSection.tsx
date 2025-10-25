@@ -5,7 +5,7 @@ import GoogleReviewButton from "../googleReviewButton"
 import GoogleReviewCarousel from "../googleReviewCarousel"
 import NextPickupDate from "../NextPickupDate"
 
-export default function HeroSection() {
+export default async function HeroSection() {
   return (
     <div className='bg-[url(/images/hero-bg-alt.webp)] bg-cover py-20 lg:py-40'>
       <div className='max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center '>
