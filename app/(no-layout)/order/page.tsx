@@ -86,7 +86,7 @@ export default function Order() {
                   if (numberOfKnives === 3) {
                     toast("Minimum order count of 3 knives!")
                   }
-                  setNumberOfKnives((r) => Math.max(3, r - 3)) // clamp at 3
+                  setNumberOfKnives((r) => Math.max(3, r - 1)) // clamp at 3
                 }
               }
               aria-label="Decrease knives"
