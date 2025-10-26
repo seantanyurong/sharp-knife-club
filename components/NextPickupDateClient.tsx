@@ -1,6 +1,7 @@
 'use client';
 
 import { getNextPickupDate } from "@/constants/dates";
+import { useEffect, useState } from "react";
 
 function formatForDisplay(isoDate: string) {
   if (!isoDate) return '';
@@ -16,11 +17,28 @@ function formatForDisplay(isoDate: string) {
 }
 
 export default function NextPickupDateClient({ pickupDate }: { pickupDate: string }) {
-  // fallback to avoid error
-  if (!pickupDate) {
-    const regularDate = getNextPickupDate();
-    return <span>{regularDate}</span>
+  const [nextPickupDate, setNextPickupDate] = useState(getNextPickupDate());
+
+  const fetchOrderConstants = async () => {
+    try {
+      const response = await fetch('/api/notion/getOrderConstants', {
+        headers: {
+          "Cache-Control": "no-cache",
+          "Pragma": "no-cache",
+          "Expires": "0",
+        }
+      });
+      const result = await response.json();
+
+      setNextPickupDate(formatForDisplay(result.data.pickupDate));
+    } catch (error) {
+      // ignore
+    }
   }
 
-  return <span>{formatForDisplay(pickupDate)}</span>;
+  useEffect(() => {
+    fetchOrderConstants();
+  }, [pickupDate]);
+
+  return <span>{formatForDisplay(pickupDate) || nextPickupDate}</span>;
 }

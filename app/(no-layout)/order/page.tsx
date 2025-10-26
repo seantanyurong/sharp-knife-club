@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Logo from '@/public/logo.png';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
-import NextPickupDate from '@/components/NextPickupDate';
+import NextPickupDateClient from "@/components/NextPickupDateClient";
 
 export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
@@ -237,7 +237,7 @@ export default function Order() {
               variant="secondary"
               className="w-full hidden md:block"
             >
-              <NextPickupDate />
+              <NextPickupDateClient pickupDate={''} />
             </Button>
             <Button
               size="lg"
@@ -252,7 +252,7 @@ export default function Order() {
               variant="secondary"
               className="w-full block md:hidden"
             >
-              <NextPickupDate />
+              <NextPickupDateClient pickupDate={''} />
             </Button>
             <Button
               size="sm"
