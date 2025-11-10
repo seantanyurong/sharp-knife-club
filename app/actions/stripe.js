@@ -19,11 +19,16 @@ function getRepairPriceIdFromRepairQuantity(repairs) {
   return 'price_1RoeFWGUii3OcuGTaHdLbs5D';
 }
 
-function generateLineItems(knives, repairs) {
+function getUrgentPriceId() {
+  return 'price_1RdNF9GUii3OcuGTNd5pCMqw';
+}
+
+function generateLineItems(knives, repairs, urgent) {
   const line_items = [];
 
   const knifePriceId = getKnifePriceIdFromKnifeQuantity(knives);
   const repairPriceId = getRepairPriceIdFromRepairQuantity(repairs);
+  const urgentPriceId = getUrgentPriceId();
 
   if (knives > 0) {
     line_items.push({
@@ -39,19 +44,26 @@ function generateLineItems(knives, repairs) {
     });
   }
 
-  // Free Delivery
-  line_items.push({
-    price: 'price_1SIksgGUii3OcuGT8iFhQHPE',
-    quantity: 1,
-  });
+  if (urgent > 0) {
+    line_items.push({
+      price: urgentPriceId,
+      quantity: 1,
+    });
+  } else {
+    // Free Delivery
+    line_items.push({
+      price: 'price_1SIksgGUii3OcuGT8iFhQHPE',
+      quantity: 1,
+    });
+  }
 
   return line_items;
 }
 
-export async function fetchClientSecret(knives, repairs) {
+export async function fetchClientSecret(knives, repairs, urgent) {
   const origin = (await headers()).get('origin');
 
-  const line_items = generateLineItems(knives, repairs);
+  const line_items = generateLineItems(knives, repairs, urgent);
 
   const session = await stripe.checkout.sessions.create({
     ui_mode: 'embedded',

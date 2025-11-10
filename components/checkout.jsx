@@ -17,12 +17,13 @@ function CheckoutComponent() {
   const searchParams = useSearchParams();
   const knives = searchParams.get('knives');
   const repairs = searchParams.get('repairs');
+  const urgent = searchParams.get('urgent');
 
   return (
     <EmbeddedCheckoutProvider
       stripe={stripePromise}
       options={{
-        fetchClientSecret: () => fetchClientSecret(knives, repairs),
+        fetchClientSecret: () => fetchClientSecret(knives, repairs, urgent),
       }}
     >
       <EmbeddedCheckout />
