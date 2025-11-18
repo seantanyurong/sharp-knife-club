@@ -71,11 +71,11 @@ export default function Order() {
         {/* Knives */}
         <div>
           <h2 className="text-start mt-8 text-primary-foreground">
-            How Many Knives?
+            How Many Knives / Scissors?
           </h2>
           <p className="italic text-primary-foreground text-xs">
             ${getTotalKnifePriceFromKnivesQuantity(numberOfKnives)} ($
-            {getKnifePriceFromKnivesQuantity(numberOfKnives)} per knife)
+            {getKnifePriceFromKnivesQuantity(numberOfKnives)} per blade)
           </p>
           <div className="gap-1 mt-2 hidden md:flex">
             <Button
