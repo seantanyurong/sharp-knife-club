@@ -10,19 +10,12 @@ import GoogleLogo from "../ui/googlelogo";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
-import CopyChangeWrapper from "../abtest/CopyChangeWrapper";
 import { googleReviews } from "@/constants/google_reviews";
 
 export default function ResultSection() {
   const autoplayPlugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: false })
   )
-
-  const showSection = CopyChangeWrapper({ feature: 'sharpened-results-section', children: null })
-  if (!showSection) {
-    return null
-  }
-
   return (
     <div className="w-full bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 pt-12 pb-4">
