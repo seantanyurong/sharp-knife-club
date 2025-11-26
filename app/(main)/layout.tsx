@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import '../globals.css';
 import { GoogleTagManager } from '@next/third-parties/google';
+import MetaPixel from "@/components/scripts/MetaPixel";
 
 import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={openSans.className}>
+        <MetaPixel />
         <PostHogProvider>
           <Header />
           <PostHogReady />
