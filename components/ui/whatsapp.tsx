@@ -13,7 +13,7 @@ function WhatsAppLink({ origin, children }: { origin: string; children: React.Re
     });
 
     if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Lead', {
+      window.fbq('track', 'InitiateCheckout', {
         content_name: 'WhatsApp Contact',
         content_category: origin,
         value: 10.00,
