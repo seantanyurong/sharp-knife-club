@@ -12,6 +12,13 @@ function WhatsAppLink({ origin, children }: { origin: string; children: React.Re
       clicked_at: clickedAt,
     });
 
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Contact', {
+        content_name: 'WhatsApp Click',
+        content_category: 'Contact'
+      });
+    }
+
     try {
       fetch('https://server.knifesharpening.sg/analytics/whatsapp-click', {
         method: 'POST',
