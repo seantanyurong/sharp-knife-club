@@ -13,9 +13,12 @@ function WhatsAppLink({ origin, children }: { origin: string; children: React.Re
     });
 
     if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact', {
-        content_name: 'WhatsApp Click',
-        content_category: 'Contact'
+      window.fbq('track', 'Lead', {
+        content_name: 'WhatsApp Contact',
+        content_category: origin,
+        value: 10.00,
+        currency: 'SGD',
+        status: true,
       });
     }
 
