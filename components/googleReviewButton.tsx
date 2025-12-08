@@ -22,7 +22,7 @@ const GoogleReviewButton = () => {
             ))}
           </div>
           <span className='text-xs text-gray-500 font-medium'>
-            (112)
+            (127)
           </span>
         </div>
         <p className='text-sm text-gray-500 font-medium underline'>No.1 Google Reviews in SG</p>
