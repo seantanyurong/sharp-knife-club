@@ -11,7 +11,6 @@ async function getData(): Promise<Payment[]> {
       status: "pending",
       email: "m@example.com",
     },
-    // ...
   ]
 }
 
@@ -19,7 +18,7 @@ export default async function DriverDashboard() {
   const data = await getData()
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="w-full mx-auto py-10">
       <DataTable columns={columns} data={data} />
     </div>
   )
