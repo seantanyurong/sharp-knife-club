@@ -13,8 +13,6 @@ export default function ProfileCard() {
     isPending,
   } = useSession()
 
-  console.log(session)
-
   if (isPending) {
     return <div>Loading...</div>
   }
