@@ -52,7 +52,7 @@ function PostHogPageView() {
       if (utm_content !== null) utmParams.utm_content = utm_content;
 
       if (Object.keys(utmParams).length > 0) {
-        posthog.people.set_once(utmParams);
+        posthog.setPersonProperties(utmParams);
       }
     }
   }, [posthog, searchParams])
