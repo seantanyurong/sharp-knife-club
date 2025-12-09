@@ -1,21 +1,14 @@
-'use client'
-
 import * as React from "react";
-import { authClient } from "@/lib/auth-client";
 
-export default function MasterDashboard() {
-  const { useSession } = authClient;
+type Props = {
+  role: string,
+}
 
-  const {
-    data: session,
-    isPending,
-  } = useSession()
+export default function MasterDashboard({
+  role
+}: Props) {
 
-  if (isPending) {
-    return <div>Loading...</div>
-  }
-
-  switch (session?.user?.role) {
+  switch (role) {
     case "admin":
       return <div>admin</div>
     case "sharpener":
