@@ -54,7 +54,7 @@ const SignInPage = () => {
             toast(ctx.error.message)
           },
           onSuccess: async () => {
-            router.replace("/");
+            router.replace("/admin/dashboard");
           },
         },
       );
