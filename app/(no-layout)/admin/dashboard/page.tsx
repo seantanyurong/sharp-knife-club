@@ -1,20 +1,18 @@
-'use client'
-
 import * as React from "react";
-import { authClient } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import ProfileCard from "@/components/admin/ProfileCard";
 import MasterDashboard from "@/components/admin/MasterDashboard";
 
-export default function Dashboard() {
+export default async function Dashboard() {
 
-  const { useSession } = authClient;
+  const response = await auth.api.getSession({
+    headers: await headers()
+  })
 
-  const {
-    data: session,
-    isPending,
-  } = useSession()
+  const user = response?.user;
 
-  if (isPending || !session) {
+  if (!user) {
     return (<div className="flex h-screen w-screen justify-center items-center">
       <h1>Loading...</h1>
     </div>)
@@ -22,8 +20,8 @@ export default function Dashboard() {
 
   return (
     <div className="p-4 flex justify-center flex-col">
-      <ProfileCard name={session.user.name || 'No Name'} role={session.user.role || 'No Role'} />
-      <MasterDashboard role={session.user.role || 'No Role'} />
+      <ProfileCard name={user.name || 'No Name'} role={user.role || 'No Role'} />
+      <MasterDashboard role={user.role || 'No Role'} />
     </div>
   );
 }

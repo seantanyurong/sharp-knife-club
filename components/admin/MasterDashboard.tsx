@@ -1,5 +1,8 @@
 import * as React from "react";
 
+import DriverDashboard from "@/components/admin/DriverDashboard/page"
+
+
 type Props = {
   role: string,
 }
@@ -14,7 +17,7 @@ export default function MasterDashboard({
     case "sharpener":
       return <div>user</div>
     case "driver":
-      return <div>driver</div>
+      return <DriverDashboard />
     default:
       return <div>default</div>
   }
