@@ -34,6 +34,29 @@ function PostHogPageView() {
   const searchParams = useSearchParams()
   const posthog = usePostHog()
 
+  // Track UTM parameters once on load
+  useEffect(() => {
+    if (posthog) {
+      const utmParams: Record<string, string> = {};
+
+      const utm_source = searchParams.get("utm_source");
+      const utm_medium = searchParams.get("utm_medium");
+      const utm_campaign = searchParams.get("utm_campaign");
+      const utm_term = searchParams.get("utm_term");
+      const utm_content = searchParams.get("utm_content");
+
+      if (utm_source !== null) utmParams.utm_source = utm_source;
+      if (utm_medium !== null) utmParams.utm_medium = utm_medium;
+      if (utm_campaign !== null) utmParams.utm_campaign = utm_campaign;
+      if (utm_term !== null) utmParams.utm_term = utm_term;
+      if (utm_content !== null) utmParams.utm_content = utm_content;
+
+      if (Object.keys(utmParams).length > 0) {
+        posthog.people.set_once(utmParams);
+      }
+    }
+  }, [posthog, searchParams])
+
   // Track pageviews
   useEffect(() => {
     if (pathname && posthog) {
