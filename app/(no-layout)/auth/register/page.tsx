@@ -141,7 +141,7 @@ const RegisterPage = () => {
 
         <div className="mt-2 flex items-center gap-1 text-[0.8rem]">
           <p>Already have an account?</p>
-          <Link href="/auth/signin" className="text-blue-500 underline">
+          <Link href="/auth/sign-in" className="text-blue-500 underline">
             Sign in.
           </Link>
         </div>
