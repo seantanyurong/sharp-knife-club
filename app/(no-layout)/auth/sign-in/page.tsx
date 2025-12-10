@@ -83,7 +83,7 @@ const SignInPage = () => {
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="jane@example.com"
+                      placeholder="sean@gmail.com"
                       disabled={isLoading}
                       {...field}
                     />

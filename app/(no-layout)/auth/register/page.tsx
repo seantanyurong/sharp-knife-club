@@ -85,7 +85,7 @@ const RegisterPage = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Jane Doe" disabled={isLoading} {...field} />
+                    <Input placeholder="Sean Tan" disabled={isLoading} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -100,7 +100,7 @@ const RegisterPage = () => {
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="jane@example.com"
+                      placeholder="sean@gmail.com"
                       disabled={isLoading}
                       {...field}
                     />
