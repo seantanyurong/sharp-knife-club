@@ -14,9 +14,14 @@ export function getTextFromNotionProperty(property: PageObjectResponse['properti
   } else if (propertyType === 'rich_text') {
     return property.rich_text[0].plain_text
   } else if (propertyType === 'rollup') {
+    console.log(property);
     const rollupType = property.rollup.type;
 
     if (rollupType === 'array') {
+      if (property.rollup.array.length === 0) {
+        return '';
+      }
+
       const arrayType = property.rollup.array[0].type;
 
       if (arrayType === 'title') {
@@ -53,5 +58,15 @@ export function formatOrders(orders: QueryDataSourceResponse['results']) {
         address,
         note
       };
+    });
+}
+
+export function getDriverAssignedOrders(orders: QueryDataSourceResponse['results'], userId: string) {
+  return orders
+    .filter((order): order is PageObjectResponse => 'properties' in order)
+    .filter((order) => {
+      const properties = order.properties;
+      const assignedDriverId = getTextFromNotionProperty(properties['Driver ID']) || '';
+      return assignedDriverId === userId;
     });
 }

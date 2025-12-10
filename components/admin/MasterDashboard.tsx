@@ -5,10 +5,12 @@ import DriverDashboard from "@/components/admin/DriverDashboard/page"
 
 type Props = {
   role: string,
+  userId: string,
 }
 
 export default function MasterDashboard({
-  role
+  role,
+  userId
 }: Props) {
 
   switch (role) {
@@ -17,7 +19,7 @@ export default function MasterDashboard({
     case "sharpener":
       return <div>user</div>
     case "driver":
-      return <DriverDashboard />
+      return <DriverDashboard driverId={userId} />
     default:
       return <div>default</div>
   }

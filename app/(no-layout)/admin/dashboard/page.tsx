@@ -21,7 +21,7 @@ export default async function Dashboard() {
   return (
     <div className="p-4 flex justify-center flex-col">
       <ProfileCard name={user.name || 'No Name'} role={user.role || 'No Role'} />
-      <MasterDashboard role={user.role || 'No Role'} />
+      <MasterDashboard role={user.role || 'No Role'} userId={user.id || 'No ID'} />
     </div>
   );
 }
