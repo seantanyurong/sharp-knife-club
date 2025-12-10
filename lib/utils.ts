@@ -14,7 +14,6 @@ export function getTextFromNotionProperty(property: PageObjectResponse['properti
   } else if (propertyType === 'rich_text') {
     return property.rich_text[0].plain_text
   } else if (propertyType === 'rollup') {
-    console.log(property);
     const rollupType = property.rollup.type;
 
     if (rollupType === 'array') {

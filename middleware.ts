@@ -3,7 +3,6 @@ import { NextResponse, NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const session = await auth.api.getSession(req);
-  console.log({ session });
 
   if (!session) {
     return NextResponse.redirect(new URL("/auth/sign-in", req.url));

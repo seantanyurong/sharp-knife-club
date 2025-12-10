@@ -13,9 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
+export type Order = {
   orderId: string;
   customerName: string;
   whatsApp: string;
@@ -23,7 +21,7 @@ export type Payment = {
   note: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Order>[] = [
   {
     accessorKey: "orderId",
     header: "Order ID",
@@ -47,7 +45,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
+      const order = row.original
 
       return (
         <DropdownMenu>
@@ -60,11 +58,18 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              className="cursor-pointer"
+              onClick={() => navigator.clipboard.writeText(order.address)}
             >
               Copy Address
             </DropdownMenuItem>
-            <DropdownMenuItem>WhatsApp Customer</DropdownMenuItem>
+            <a href={`https://wa.me/${order.whatsApp}`} target="_blank" rel="noreferrer">
+              <DropdownMenuItem
+                className="cursor-pointer"
+              >
+                WhatsApp Customer
+              </DropdownMenuItem>
+            </a>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Submit Collection Picture</DropdownMenuItem>
             <DropdownMenuItem>Submit Delivery Picture</DropdownMenuItem>

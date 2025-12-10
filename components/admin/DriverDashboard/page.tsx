@@ -1,12 +1,11 @@
-import { columns, Payment } from "./columns"
+import { columns, Order } from "./columns"
 import { DataTable } from "./data-table"
 import { fetchOrderConstants, getOrders } from "@/app/actions/notion"
 import { formatOrders, getDriverAssignedOrders } from "@/lib/utils"
 
-async function getData(driverId: string): Promise<Payment[]> {
+async function getData(driverId: string): Promise<Order[]> {
   const orderConstants = await fetchOrderConstants();
   const orders = await getOrders(orderConstants.orderGroup);
-  console.log(orders);
   if (!orders) {
     return [];
   }
