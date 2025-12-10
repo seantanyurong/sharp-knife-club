@@ -1,18 +1,17 @@
 import * as React from "react"
 import { columns, Payment } from "./columns"
 import { DataTable } from "./data-table"
+import { fetchOrderConstants, getOrders } from "@/app/actions/notion"
+import { formatOrders } from "@/lib/utils"
 
 async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      orderId: "728ed52f",
-      customerName: "John Doe",
-      whatsApp: "+1234567890",
-      address: "123 Main St, Anytown, USA",
-      note: "This is a note",
-    },
-  ]
+  const orderConstants = await fetchOrderConstants();
+  const orders = await getOrders(orderConstants.orderGroup);
+  if (!orders) {
+    return [];
+  }
+  const formattedOrders = formatOrders(orders);
+  return formattedOrders;
 }
 
 export default async function DriverDashboard() {
