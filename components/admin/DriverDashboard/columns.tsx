@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { CollectionPictureInput } from "@/components/admin/DriverDashboard/CollectionPictureInput"
 
 export type Order = {
   orderId: string;
@@ -71,8 +72,8 @@ export const columns: ColumnDef<Order>[] = [
               </DropdownMenuItem>
             </a>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Submit Collection Picture</DropdownMenuItem>
-            <DropdownMenuItem>Submit Delivery Picture</DropdownMenuItem>
+            <CollectionPictureInput orderId={order.orderId} kind="collection" />
+            <CollectionPictureInput orderId={order.orderId} kind="delivery" />
           </DropdownMenuContent>
         </DropdownMenu>
       )
