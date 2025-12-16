@@ -3,12 +3,19 @@
 import * as React from "react";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { refreshDashboard } from "@/app/actions/helper";
 
 type Kind = "collection" | "delivery";
 
 type BaseProps = {
-  orderId?: string;
+  orderId: string;
   kind?: Kind;
+  collected?: boolean;
+  delivered?: boolean;
+  // eslint-disable-next-line
+  setCollectedAction?: (orderId: string, value: boolean) => void;
+  // eslint-disable-next-line
+  setDeliveredAction?: (orderId: string, value: boolean) => void;
 };
 
 const LABELS: Record<Kind, string> = {
@@ -29,6 +36,10 @@ const ENDPOINTS: Record<Kind, string> = {
 export function CollectionPictureInput({
   orderId,
   kind = "collection",
+  collected,
+  delivered,
+  setCollectedAction,
+  setDeliveredAction,
 }: BaseProps) {
   const apiBaseUrl = 'http://localhost:8080';
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -42,12 +53,11 @@ export function CollectionPictureInput({
 
     try {
       setUploading(true);
+      if (!orderId) throw new Error("No order ID");
 
       const form = new FormData();
       form.append("image", file);
-      if (orderId) form.append("orderId", orderId);
-      // Helpful for a single backend route to branch on:
-      form.append("kind", kind);
+      form.append("orderId", orderId);
 
       const endpoint = ENDPOINTS[kind];
       const url = `${apiBaseUrl.replace(/\/$/, "")}${endpoint}`;
@@ -63,6 +73,9 @@ export function CollectionPictureInput({
       }
 
       toast.success(SUCCESS[kind]);
+      if (setCollectedAction) setCollectedAction(orderId, true);
+      if (setDeliveredAction) setDeliveredAction(orderId, true);
+      refreshDashboard();
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
@@ -94,7 +107,7 @@ export function CollectionPictureInput({
           e.preventDefault(); // keep the menu open until the picker opens
           triggerPicker();
         }}
-        disabled={uploading}
+        disabled={uploading || collected || delivered}
       >
         {uploading ? "Uploading…" : LABELS[kind]}
       </DropdownMenuItem>

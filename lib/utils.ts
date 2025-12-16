@@ -35,6 +35,8 @@ export function getTextFromNotionProperty(property: PageObjectResponse['properti
         return property.rollup.array[0].rich_text[0].plain_text;
       }
     }
+  } else if (propertyType === 'checkbox') {
+    return property.checkbox.toString();
   }
 }
 
@@ -44,18 +46,22 @@ export function formatOrders(orders: QueryDataSourceResponse['results']) {
     .filter((order): order is PageObjectResponse => 'properties' in order)
     .map((order: PageObjectResponse) => {
       const properties = order.properties;
-      const orderId = getTextFromNotionProperty(properties['ID']) || '';
-      const customerName = getTextFromNotionProperty(properties['Customer Name']) || '';
-      const whatsApp = getTextFromNotionProperty(properties['Customer Phone']) || '';
-      const address = getTextFromNotionProperty(properties['Customer Address']) || '';
-      const note = getTextFromNotionProperty(properties['Note']) || '';
+      const orderId = getTextFromNotionProperty(properties['ID']) || 'NA';
+      const customerName = getTextFromNotionProperty(properties['Customer Name']) || 'NA';
+      const whatsApp = getTextFromNotionProperty(properties['Customer Phone']) || 'NA';
+      const address = getTextFromNotionProperty(properties['Customer Address']) || 'NA';
+      const note = getTextFromNotionProperty(properties['Note']) || 'NA';
+      const collected = getTextFromNotionProperty(properties['Collected']) === 'true' || false;
+      const delivered = getTextFromNotionProperty(properties['Delivered']) === 'true' || false;
 
       return {
         orderId,
         customerName,
         whatsApp,
         address,
-        note
+        note,
+        collected,
+        delivered
       };
     });
 }

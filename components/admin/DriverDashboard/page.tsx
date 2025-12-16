@@ -1,7 +1,7 @@
-import { columns, Order } from "./columns"
-import { DataTable } from "./data-table"
+import { Order } from "./columns"
 import { fetchOrderConstants, getOrders } from "@/app/actions/notion"
 import { formatOrders, getDriverAssignedOrders } from "@/lib/utils"
+import DriverDashboardTable from "./DriverDashboardTable"
 
 async function getData(driverId: string): Promise<Order[]> {
   const orderConstants = await fetchOrderConstants();
@@ -23,7 +23,7 @@ export default async function DriverDashboard({ driverId }: Props) {
 
   return (
     <div className="w-full mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DriverDashboardTable data={data} />
     </div>
   )
 }
