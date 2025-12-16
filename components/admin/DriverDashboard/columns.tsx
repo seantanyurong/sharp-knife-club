@@ -79,7 +79,7 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
 
         return (
           <Checkbox
-            checked={order.delivered}
+            checked={deliveredById[order.orderId]}
           />
         )
       },

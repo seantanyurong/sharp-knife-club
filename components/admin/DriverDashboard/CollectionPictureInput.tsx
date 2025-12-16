@@ -72,9 +72,10 @@ export function CollectionPictureInput({
         throw new Error(msg);
       }
 
-      toast.success(SUCCESS[kind]);
       if (setCollectedAction) setCollectedAction(orderId, true);
       if (setDeliveredAction) setDeliveredAction(orderId, true);
+
+      toast.success(SUCCESS[kind]);
       refreshDashboard();
     } catch (err) {
       if (err instanceof Error) {
