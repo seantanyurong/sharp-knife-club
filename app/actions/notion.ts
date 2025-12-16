@@ -1,7 +1,8 @@
 'use server';
 
-import { unstable_noStore as noStore } from 'next/cache';
+import { unstable_noStore as noStore } from 'next/cache.js';
 import { notion } from '@/lib/notionClient';
+import type { QueryDataSourceParameters } from '@notionhq/client'
 
 export type OrderConstants = {
   pickupDate: string;
@@ -12,6 +13,7 @@ export type OrderConstants = {
 };
 
 const ORDER_CONSTANTS_DATASOURCE_ID = '286b653f-dfd3-800c-adf4-000b46bcc393';
+const ORDERS_DATASOURCE_ID = '9c015ed7-2d42-4689-b036-794ac2ba6295';
 
 async function getOrderConstants(): Promise<OrderConstants> {
   try {
@@ -57,3 +59,34 @@ export async function fetchOrderConstants(): Promise<OrderConstants> {
     throw new Error('Failed to fetch order constants.');
   }
 }
+
+export const getOrders = async (orderGroup: number, includeUrgent = false) => {
+  try {
+    type FilterUnion = NonNullable<QueryDataSourceParameters['filter']>;
+    type AndArray = Extract<FilterUnion, { and: unknown }>['and'];
+
+    const filters: AndArray = [
+      { property: 'ID', rich_text: { contains: `${orderGroup}O` } },
+    ];
+
+    if (!includeUrgent) {
+      filters.push({
+        property: 'ID',
+        rich_text: { does_not_contain: 'U' },
+      });
+    }
+
+    const response = await notion.dataSources.query({
+      data_source_id: ORDERS_DATASOURCE_ID,
+      filter: { and: filters },
+      sorts: [{ property: 'ID', direction: 'ascending' }],
+    });
+    return response.results;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('An error occurred:', error.message);
+    } else {
+      console.error('An error occurred:', error);
+    }
+  }
+};
