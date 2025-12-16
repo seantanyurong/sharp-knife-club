@@ -32,7 +32,7 @@ export default function NextPickupDateClient({ pickupDate }: { pickupDate: strin
 
       setNextPickupDate(formatForDisplay(result.data.pickupDate));
     } catch (error) {
-      // ignore
+      console.error('Error fetching order constants:', error);
     }
   }
 

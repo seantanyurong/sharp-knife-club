@@ -41,7 +41,7 @@ export function CollectionPictureInput({
   setCollectedAction,
   setDeliveredAction,
 }: BaseProps) {
-  const apiBaseUrl = 'http://localhost:8080';
+  const apiBaseUrl = '';
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = React.useState(false);
 

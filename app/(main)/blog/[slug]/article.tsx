@@ -2,7 +2,7 @@ import './article.css';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { ComponentPropsWithoutRef } from "react";
 
 export default function Article({ text }: { text: string }) {
   return (
@@ -14,9 +14,12 @@ export default function Article({ text }: { text: string }) {
           // [rehypeAutolinkHeadings, { behavior: 'wrap' }]
         ]}
         components={{
-          a: ({ node, ...props }) => (
+          a: ({
+            children,
+            ...props
+          }: ComponentPropsWithoutRef<"a">) => (
             <a {...props} target="_blank" rel="noopener noreferrer">
-              {props.children}
+              {children}
             </a>
           ),
         }}

@@ -1,8 +1,6 @@
-import Image from "next/image"
 import WhatsAppLink from "../ui/whatsapp"
 import { Button } from "../ui/button"
 import NextPickupDate from "../NextPickupDate"
-import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 const STEPS = [
   {

@@ -15,7 +15,7 @@ function getKnifePriceIdFromKnifeQuantity(knives) {
   }
 }
 
-function getRepairPriceIdFromRepairQuantity(repairs) {
+function getRepairPriceIdFromRepairQuantity() {
   return 'price_1RoeFWGUii3OcuGTaHdLbs5D';
 }
 
@@ -27,7 +27,7 @@ function generateLineItems(knives, repairs, urgent) {
   const line_items = [];
 
   const knifePriceId = getKnifePriceIdFromKnifeQuantity(knives);
-  const repairPriceId = getRepairPriceIdFromRepairQuantity(repairs);
+  const repairPriceId = getRepairPriceIdFromRepairQuantity();
   const urgentPriceId = getUrgentPriceId();
 
   if (knives > 0) {

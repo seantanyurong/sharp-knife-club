@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import posthog from 'posthog-js'
 
 function WhatsAppLink({ origin, children }: { origin: string; children: React.ReactNode }) {
@@ -28,8 +29,8 @@ function WhatsAppLink({ origin, children }: { origin: string; children: React.Re
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ distinctId, origin, clickedAt }),
       });
-    } catch(e) {
-      // do nothing
+    } catch (e) {
+      console.error(e);
     }
   };
 

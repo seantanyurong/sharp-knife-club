@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import ArticleCards from './article_cards'
 import FeaturedSection from './featured_section'
 

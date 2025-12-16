@@ -1,4 +1,4 @@
-import Link from "next/link";
+import React from "react";
 import PostHogEventCapture from "@/components/ui/posthogeventcapture";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
