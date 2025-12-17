@@ -59,7 +59,7 @@ const RegisterPage = () => {
             toast('Registration Failed')
           },
           onSuccess: async () => {
-            router.replace("/");
+            router.replace("/admin/dashboard");
           },
         },
       );
