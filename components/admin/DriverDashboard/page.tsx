@@ -22,7 +22,7 @@ export default async function DriverDashboard({ driverId }: Props) {
   const data = await getData(driverId)
 
   return (
-    <div className="w-full mx-auto py-10">
+    <div className="w-full mx-auto pb-10">
       <DriverDashboardTable data={data} />
     </div>
   )
