@@ -98,7 +98,6 @@ export function CollectionPictureInput({
         className="hidden"
         type="file"
         accept="image/*"
-        capture="environment"
         onChange={onFileChange}
       />
 
