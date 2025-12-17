@@ -62,8 +62,6 @@ const SignInPage = () => {
       // network or unexpected errors
       console.error("Sign-in error:", error);
       toast('Something went wrong');
-    } finally {
-      setIsLoading(false);
     }
   };
 
