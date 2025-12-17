@@ -105,6 +105,13 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
               >
                 Copy Address
               </DropdownMenuItem>
+              <a href={`https://www.google.com/maps/search/?api=1&query=${order.address}`} target="_blank" rel="noreferrer">
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                >
+                  Go to Google Maps
+                </DropdownMenuItem>
+              </a>
               <a href={`https://wa.me/${order.whatsApp}`} target="_blank" rel="noreferrer">
                 <DropdownMenuItem
                   className="cursor-pointer"
