@@ -34,6 +34,10 @@ export default async function DriverDashboard({ driverId }: Props) {
           <Button variant="outline">Google Maps</Button>
         </a>
       </div>
+      <div className="flex flex-col gap-2 border border-grey-200 rounded-md p-4 mt-4">
+        <h2 className="text-sm font-medium">Total Payment</h2>
+        <p>{data.length} order(s) x $16 = ${data.length * 16}</p>
+      </div>
     </div>
   )
 }
