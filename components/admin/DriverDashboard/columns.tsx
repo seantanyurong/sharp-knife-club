@@ -67,6 +67,7 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
         return (
           <Checkbox
             checked={collectedById[order.orderId]}
+            className="cursor-not-allowed"
           />
         )
       },
@@ -80,6 +81,7 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
         return (
           <Checkbox
             checked={deliveredById[order.orderId]}
+            className="cursor-not-allowed"
           />
         )
       },
