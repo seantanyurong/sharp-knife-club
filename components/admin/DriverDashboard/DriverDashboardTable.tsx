@@ -23,7 +23,7 @@ export default function DriverDashboardTable({ data }: Props) {
   const columns = makeColumns({ collectedById, deliveredById, setCollectedAction, setDeliveredAction });
 
   return (
-    <div className="w-full mx-auto py-10">
+    <div className="w-full mx-auto py-2">
       <DataTable columns={columns} data={data} />
     </div>
   )
