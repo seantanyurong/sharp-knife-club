@@ -10,6 +10,7 @@ export type OrderConstants = {
   orderGroup: number;
   currentOrder: number;
   timing: string;
+  driverOrderGroup: number;
 };
 
 const ORDER_CONSTANTS_DATASOURCE_ID = '286b653f-dfd3-800c-adf4-000b46bcc393';
@@ -30,6 +31,7 @@ async function getOrderConstants(): Promise<OrderConstants> {
       orderGroup: first.properties['Order Group']?.number,
       currentOrder: first.properties['Current Order']?.number,
       timing: first.properties['Timing']?.rich_text?.[0]?.plain_text,
+      driverOrderGroup: first.properties['Driver Order Group']?.number,
     };
 
     if (
@@ -37,7 +39,8 @@ async function getOrderConstants(): Promise<OrderConstants> {
       !constants.deliveryDate ||
       typeof constants.orderGroup !== 'number' ||
       typeof constants.currentOrder !== 'number' ||
-      typeof constants.timing !== 'string'
+      typeof constants.timing !== 'string' ||
+      typeof constants.driverOrderGroup !== 'number'
     ) {
       throw new Error('Notion data missing or malformed');
     }
