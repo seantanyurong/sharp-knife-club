@@ -2,17 +2,17 @@ import { Order } from "./columns"
 import SharpenerInfo from "./SharpenerInfo"
 import DriverOrderPaymentInfo from "./DriverOrderPaymentInfo"
 import { fetchOrderConstants, getOrders } from "@/app/actions/notion"
-import { formatOrders, getDriverAssignedOrders } from "@/lib/utils"
+import { formatOrders } from "@/lib/utils"
 import DriverDashboardTable from "./DriverDashboardTable"
 
 async function getData(driverId: string): Promise<Order[]> {
   const orderConstants = await fetchOrderConstants();
-  const orders = await getOrders(orderConstants.driverOrderGroup);
+  const orders = await getOrders({ orderGroup: orderConstants.driverOrderGroup, driverId });
   if (!orders) {
     return [];
   }
-  const assignedOrders = getDriverAssignedOrders(orders, driverId);
-  const formattedOrders = formatOrders(assignedOrders);
+  console.log(orders);
+  const formattedOrders = formatOrders(orders);
   return formattedOrders;
 }
 

@@ -63,7 +63,13 @@ export async function fetchOrderConstants(): Promise<OrderConstants> {
   }
 }
 
-export const getOrders = async (orderGroup: number, includeUrgent = false) => {
+type GetOrdersParams = {
+  orderGroup: number;
+  driverId?: string;
+  includeUrgent?: boolean;
+};
+
+export const getOrders = async ({ orderGroup, driverId, includeUrgent = false }: GetOrdersParams) => {
   try {
     type FilterUnion = NonNullable<QueryDataSourceParameters['filter']>;
     type AndArray = Extract<FilterUnion, { and: unknown }>['and'];
@@ -77,6 +83,19 @@ export const getOrders = async (orderGroup: number, includeUrgent = false) => {
         property: 'ID',
         rich_text: { does_not_contain: 'U' },
       });
+    }
+
+    if (driverId) {
+      filters.push({
+        property: 'Driver ID',
+        rollup: {
+          any: {
+            "rich_text": {
+              "contains": driverId,
+            }
+          },
+        },
+      })
     }
 
     const response = await notion.dataSources.query({
