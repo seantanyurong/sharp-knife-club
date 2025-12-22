@@ -112,3 +112,19 @@ export const getOrders = async ({ orderGroup, driverId, includeUrgent = false }:
     }
   }
 };
+
+export const getPageBody = async (pageId: string) => {
+  try {
+    const response = await notion.blocks.children.list({
+      block_id: pageId,
+      page_size: 50,
+    });
+    return response.results;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('An error occurred:', error.message);
+    } else {
+      console.error('An error occurred:', error);
+    }
+  }
+};

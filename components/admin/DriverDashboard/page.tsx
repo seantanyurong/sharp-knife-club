@@ -11,7 +11,6 @@ async function getData(driverId: string): Promise<Order[]> {
   if (!orders) {
     return [];
   }
-  console.log(orders);
   const formattedOrders = formatOrders(orders);
   return formattedOrders;
 }
