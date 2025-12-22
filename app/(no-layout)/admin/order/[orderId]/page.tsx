@@ -1,16 +1,15 @@
-'use client'
-import { use } from 'react'
+import ProfileCard from "@/components/admin/ProfileCard";
 
-export default function OrderPage({
+export default async function OrderPage({
   params,
 }: {
   params: Promise<{ orderId: string }>
 }) {
-  const { orderId } = use(params)
+  const { orderId } = await params;
 
   return (
-    <div>
-      <p>{orderId}</p>
+    <div className="p-4 flex justify-center flex-col">
+      <ProfileCard name='Order Details' subtitle={orderId} />
     </div>
   )
 }
