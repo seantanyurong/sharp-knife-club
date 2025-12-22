@@ -1,7 +1,7 @@
 "use client"
 
 import { makeColumns, Order } from "./columns"
-import { DataTable } from "./data-table"
+import { DataTable } from "./DataTable"
 import { useState } from "react"
 
 type Props = {

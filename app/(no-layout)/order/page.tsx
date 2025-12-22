@@ -13,8 +13,6 @@ export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
 
-  // const numberOfKnivesOptions = [4, 5, 7, 10, 14];
-
   const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
     return getKnifePriceFromKnivesQuantity(knivesQuantity) * knivesQuantity;
   };
@@ -137,30 +135,6 @@ export default function Order() {
               +
             </Button>
           </div>
-          {/* <div className="flex items-center gap-2 mt-2"> */}
-          {/*   {numberOfKnivesOptions.map((option) => ( */}
-          {/*     <Button */}
-          {/*       key={option} */}
-          {/*       onClick={() => setNumberOfKnives(option)} */}
-          {/*       variant={option === numberOfKnives ? 'secondary' : 'muted'} */}
-          {/*       size="lg" */}
-          {/*       className="w-full hidden md:block" */}
-          {/*     > */}
-          {/*       {option} */}
-          {/*     </Button> */}
-          {/*   ))} */}
-          {/*   {numberOfKnivesOptions.map((option) => ( */}
-          {/*     <Button */}
-          {/*       key={option} */}
-          {/*       onClick={() => setNumberOfKnives(option)} */}
-          {/*       variant={option === numberOfKnives ? 'secondary' : 'muted'} */}
-          {/*       size="sm" */}
-          {/*       className="w-full block md:hidden" */}
-          {/*     > */}
-          {/*       {option} */}
-          {/*     </Button> */}
-          {/*   ))} */}
-          {/* </div> */}
         </div>
 
         {/* Repairs */}
