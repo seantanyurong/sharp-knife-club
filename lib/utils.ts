@@ -40,30 +40,38 @@ export function getTextFromNotionProperty(property: PageObjectResponse['properti
   }
 }
 
-export function formatOrders(orders: QueryDataSourceResponse['results']) {
-
+export function formatOrders(orders: QueryDataSourceResponse["results"]) {
   return orders
-    .filter((order): order is PageObjectResponse => 'properties' in order)
-    .map((order: PageObjectResponse) => {
-      const properties = order.properties;
-      const pageId = order.id;
-      const orderId = getTextFromNotionProperty(properties['ID']) || 'NA';
-      const customerName = getTextFromNotionProperty(properties['Customer Name']) || 'NA';
-      const whatsApp = getTextFromNotionProperty(properties['Customer Phone']) || 'NA';
-      const address = getTextFromNotionProperty(properties['Customer Address']) || 'NA';
-      const note = getTextFromNotionProperty(properties['Note']) || 'NA';
-      const collected = getTextFromNotionProperty(properties['Collected']) === 'true' || false;
-      const delivered = getTextFromNotionProperty(properties['Delivered']) === 'true' || false;
-
-      return {
-        pageId,
-        orderId,
-        customerName,
-        whatsApp,
-        address,
-        note,
-        collected,
-        delivered
-      };
-    });
+    .filter((order): order is PageObjectResponse => "properties" in order)
+    .map(formatOrder);
 }
+
+export function formatOrder(order: PageObjectResponse) {
+  const properties = order.properties;
+
+  const pageId = order.id;
+  const orderId = getTextFromNotionProperty(properties["ID"]) ?? "NA";
+  const customerName =
+    getTextFromNotionProperty(properties["Customer Name"]) ?? "NA";
+  const whatsApp =
+    getTextFromNotionProperty(properties["Customer Phone"]) ?? "NA";
+  const address =
+    getTextFromNotionProperty(properties["Customer Address"]) ?? "NA";
+  const note = getTextFromNotionProperty(properties["Note"]) ?? "NA";
+  const collected =
+    getTextFromNotionProperty(properties["Collected"]) === "true";
+  const delivered =
+    getTextFromNotionProperty(properties["Delivered"]) === "true";
+
+  return {
+    pageId,
+    orderId,
+    customerName,
+    whatsApp,
+    address,
+    note,
+    collected,
+    delivered,
+  };
+}
+

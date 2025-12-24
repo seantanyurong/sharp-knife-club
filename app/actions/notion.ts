@@ -2,7 +2,7 @@
 
 import { unstable_noStore as noStore } from 'next/cache.js';
 import { notion } from '@/lib/notionClient';
-import type { QueryDataSourceParameters } from '@notionhq/client'
+import type { QueryDataSourceParameters, PageObjectResponse } from '@notionhq/client'
 
 export type OrderConstants = {
   pickupDate: string;
@@ -111,6 +111,19 @@ export const getOrders = async ({ orderGroup, driverId, includeUrgent = false }:
       console.error('An error occurred:', error);
     }
   }
+};
+
+export const getOrderByPageId = async (
+  pageId: string
+): Promise<PageObjectResponse> => {
+  const response = await notion.pages.retrieve({ page_id: pageId });
+
+  // Narrow the union
+  if (!("properties" in response)) {
+    throw new Error("Retrieved page is a partial page object");
+  }
+
+  return response;
 };
 
 export const getPageBody = async (pageId: string) => {

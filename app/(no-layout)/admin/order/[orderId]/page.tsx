@@ -1,5 +1,6 @@
 import ProfileCard from "@/components/admin/ProfileCard";
-import { getPageBody } from "@/app/actions/notion";
+import { getPageBody, getOrderByPageId } from "@/app/actions/notion";
+import { formatOrder } from "@/lib/utils";
 import type { BlockObjectResponse, PartialBlockObjectResponse } from '@notionhq/client'
 import Image from 'next/image';
 
@@ -11,6 +12,8 @@ export default async function OrderPage({
   const { orderId } = await params;
 
   const pageBody = await getPageBody(orderId);
+  const order = await getOrderByPageId(orderId);
+  const formattedOrder = formatOrder(order);
 
   const isFullBlock = (block: PartialBlockObjectResponse | BlockObjectResponse) => {
     return 'type' in block;
@@ -34,7 +37,7 @@ export default async function OrderPage({
 
   return (
     <div className="p-4 flex justify-center flex-col">
-      <ProfileCard name='Order Details' subtitle={orderId} />
+      <ProfileCard name={formattedOrder.orderId} subtitle={formattedOrder.address} />
       <div className='mt-4'>
         {
           pageBody?.length ? pageBody.filter(isFullBlock).map((block, index) => {
