@@ -5,6 +5,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import Link from "next/link"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +18,7 @@ import { CollectionPictureInput } from "@/components/admin/DriverDashboard/Colle
 
 
 export type Order = {
+  pageId: string;
   orderId: string;
   customerName: string;
   whatsApp: string;
@@ -121,6 +123,13 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
                   WhatsApp Customer
                 </DropdownMenuItem>
               </a>
+              <Link href={`/admin/order/${order.pageId}`}>
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                >
+                  View Order Details
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuSeparator />
               <CollectionPictureInput orderId={order.orderId} kind="collection" collected={collectedById[order.orderId]} setCollectedAction={setCollectedAction} />
               <CollectionPictureInput orderId={order.orderId} kind="delivery" delivered={deliveredById[order.orderId]} setDeliveredAction={setDeliveredAction} />

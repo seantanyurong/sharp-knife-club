@@ -46,6 +46,7 @@ export function formatOrders(orders: QueryDataSourceResponse['results']) {
     .filter((order): order is PageObjectResponse => 'properties' in order)
     .map((order: PageObjectResponse) => {
       const properties = order.properties;
+      const pageId = order.id;
       const orderId = getTextFromNotionProperty(properties['ID']) || 'NA';
       const customerName = getTextFromNotionProperty(properties['Customer Name']) || 'NA';
       const whatsApp = getTextFromNotionProperty(properties['Customer Phone']) || 'NA';
@@ -55,6 +56,7 @@ export function formatOrders(orders: QueryDataSourceResponse['results']) {
       const delivered = getTextFromNotionProperty(properties['Delivered']) === 'true' || false;
 
       return {
+        pageId,
         orderId,
         customerName,
         whatsApp,
@@ -63,15 +65,5 @@ export function formatOrders(orders: QueryDataSourceResponse['results']) {
         collected,
         delivered
       };
-    });
-}
-
-export function getDriverAssignedOrders(orders: QueryDataSourceResponse['results'], userId: string) {
-  return orders
-    .filter((order): order is PageObjectResponse => 'properties' in order)
-    .filter((order) => {
-      const properties = order.properties;
-      const assignedDriverId = getTextFromNotionProperty(properties['Driver ID']) || '';
-      return assignedDriverId === userId;
     });
 }
