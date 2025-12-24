@@ -37,9 +37,9 @@ export default async function OrderPage({
       <ProfileCard name='Order Details' subtitle={orderId} />
       <div className='mt-4'>
         {
-          pageBody?.filter(isFullBlock).map((block, index) => {
+          pageBody?.length ? pageBody.filter(isFullBlock).map((block, index) => {
             return convertPageBlockToJsx(block, index);
-          })
+          }) : <p>No additional details</p>
         }
       </div>
     </div>
