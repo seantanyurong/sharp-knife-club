@@ -3,6 +3,7 @@ import { getPageBody, getOrderByPageId } from "@/app/actions/notion";
 import { formatOrder } from "@/lib/utils";
 import type { BlockObjectResponse, PartialBlockObjectResponse } from '@notionhq/client'
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function OrderPage({
   params,
@@ -37,6 +38,7 @@ export default async function OrderPage({
 
   return (
     <div className="p-4 flex justify-center flex-col">
+      <Link href='/admin/dashboard' className='underline cursor-pointer mb-2'>Back to Dashboard</Link>
       <ProfileCard name={formattedOrder.orderId} subtitle={formattedOrder.address} />
       <div className='mt-4'>
         {
