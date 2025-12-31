@@ -28,7 +28,7 @@ export function getTextFromNotionProperty(property: PageObjectResponse['properti
       }
 
       if (arrayType === 'phone_number') {
-        return property.rollup.array[0].phone_number;
+        return property.rollup.array[0].phone_number?.replace(' ', '');
       }
 
       if (arrayType === 'rich_text') {

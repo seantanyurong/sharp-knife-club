@@ -41,7 +41,7 @@ export function CollectionPictureInput({
   setCollectedAction,
   setDeliveredAction,
 }: BaseProps) {
-  const apiBaseUrl = 'https://server.knifesharpening.sg';
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_SERVER_URL || 'https://server.knifesharpening.sg';
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = React.useState(false);
 
