@@ -55,6 +55,21 @@ const ALL_FAQS: FAQ[] = [
       "Sharp knives make cooking faster and more enjoyable, reduce the risk of accidents, and preserve the oils, flavors, and nutrients in your food.",
   },
   {
+    slug: "why-not-sharpen-myself",
+    question: "Why can't I sharpen it myself?",
+    answer: (
+      <>
+        <p>You absolutely can, and you should. We recommend everybody buy a stone and learn how to sharpen it yourself.</p>
+        <br></br>
+        <p>However, if you don&apos;t have the time or patience to develop the skillset, that&apos;s where we come in. We offer quality and convenience, with a doorstep pick and sharpening process.</p>
+        <br></br>
+        <p><i>A cheap pull through sharpener is not recommended as it will damage your knife and remove more metal than it should.</i></p>
+      </>
+    ),
+    plainTextAnswer:
+      "Sharp knives make cooking faster and more enjoyable, reduce the risk of accidents, and preserve the oils, flavors, and nutrients in your food.",
+  },
+  {
     slug: "why-us",
     question: "Why choose Knife Sharpening Singapore?",
     answer: (
@@ -75,6 +90,18 @@ const ALL_FAQS: FAQ[] = [
     ),
     plainTextAnswer:
       "We offer door-to-door pickup and delivery, a satisfaction guarantee if your knives aren’t sharper than new, and expert craftsmanship using traditional techniques with the finest grit for a flawless edge.",
+  },
+  {
+    slug: "pickup-delivery",
+    question: "Do you offer pick-up and delivery?",
+    answer: (
+      <>
+        Yes — we provide convenient, door-to-door pickup and return anywhere in Singapore.
+        Simply prepare your knives, and our driver will collect and return them within 24 hours. No need to visit a shop.
+      </>
+    ),
+    plainTextAnswer:
+      "Yes, we provide convenient, door-to-door pickup and return anywhere in Singapore within 24 hours.",
   },
   {
     slug: "turnaround-time",
@@ -98,18 +125,6 @@ const ALL_FAQS: FAQ[] = [
     ),
     plainTextAnswer:
       "Pricing is based on the number of knives and work required, with additional charges for serrated or damaged blades; contact us with a photo for a quote.",
-  },
-  {
-    slug: "pickup-delivery",
-    question: "Do you offer pick-up and delivery?",
-    answer: (
-      <>
-        Yes — we provide convenient, door-to-door pickup and return anywhere in Singapore.
-        Simply prepare your knives, and our driver will collect and return them within 24 hours. No need to visit a shop.
-      </>
-    ),
-    plainTextAnswer:
-      "Yes, we provide convenient, door-to-door pickup and return anywhere in Singapore within 24 hours.",
   },
   {
     slug: "serrated-knives",
@@ -236,7 +251,7 @@ function FAQSchema({ faqs }: { faqs: FAQ[] }) {
 }
 
 export default function FaqSection({ homepage = false }: { homepage?: boolean }) {
-  const faqs = homepage ? ALL_FAQS.slice(0, 3) : ALL_FAQS;
+  const faqs = homepage ? ALL_FAQS.slice(0, 5) : ALL_FAQS;
 
   return (
     <section className="bg-muted py-16 px-6">
