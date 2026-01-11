@@ -158,15 +158,3 @@ export function DataTable({
     </div>
   )
 }
-
-
-{/* <TableRow */ }
-{/*   key={row.id} */ }
-{/*   data-state={row.getIsSelected() && "selected"} */ }
-{/* > */ }
-{/*   {row.getVisibleCells().map((cell) => ( */ }
-{/*     <TableCell key={cell.id} className='min-w-[100px]'> */ }
-{/*       {flexRender(cell.column.columnDef.cell, cell.getContext())} */ }
-{/*     </TableCell> */ }
-{/*   ))} */ }
-{/* </TableRow> */ }
