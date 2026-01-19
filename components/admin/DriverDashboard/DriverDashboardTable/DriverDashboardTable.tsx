@@ -1,8 +1,9 @@
 "use client"
 
-import { makeColumns, Order } from "./columns"
+import { makeColumns } from "./Columns"
 import { DataTable } from "./DataTable"
 import { useState } from "react"
+import { type Order } from "../../Types"
 
 type Props = {
   data: Order[],

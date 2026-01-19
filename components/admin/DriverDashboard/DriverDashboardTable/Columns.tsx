@@ -14,19 +14,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CollectionPictureInput } from "@/components/admin/DriverDashboard/CollectionPictureInput"
-
-
-export type Order = {
-  pageId: string;
-  orderId: string;
-  customerName: string;
-  whatsApp: string;
-  address: string;
-  note: string;
-  collected: boolean;
-  delivered: boolean;
-};
+import { CollectionPictureInput } from "@/components/admin/DriverDashboard/DriverDashboardTable/CollectionPictureInput"
+import { IconGripVertical } from "@tabler/icons-react"
+import { useSortable } from "@dnd-kit/sortable"
+import { type Order } from "../../Types"
 
 type MakeColumnsProps = {
   collectedById: Record<string, boolean>;
@@ -38,8 +29,31 @@ type MakeColumnsProps = {
 };
 
 
+function DragHandle({ id }: { id: string }) {
+  const { attributes, listeners } = useSortable({
+    id,
+  })
+  return (
+    <Button
+      {...attributes}
+      {...listeners}
+      variant="ghost"
+      size="icon"
+      className="text-muted-foreground size-7 hover:bg-transparent"
+    >
+      <IconGripVertical className="text-muted-foreground size-3" />
+      <span className="sr-only">Drag to reorder</span>
+    </Button>
+  )
+}
+
 export function makeColumns({ collectedById, setCollectedAction, deliveredById, setDeliveredAction }: MakeColumnsProps): ColumnDef<Order>[] {
   return [
+    {
+      id: "drag",
+      header: () => null,
+      cell: ({ row }) => <DragHandle id={row.original.orderId} />,
+    },
     {
       accessorKey: "orderId",
       header: "Order",
