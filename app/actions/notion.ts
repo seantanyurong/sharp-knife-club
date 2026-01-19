@@ -14,14 +14,14 @@ export type OrderGroupDetails = {
 
 export type OrderConstants = {
   bookingOrderGroup: OrderGroupDetails;
-  driverOrderGroup: OrderGroupDetails;
+  serviceOrderGroup: OrderGroupDetails;
 };
 
 const ORDER_STATUS_DATASOURCE_ID = '2edb653f-dfd3-8033-83ee-000b9e670c37';
 const ORDERS_DATASOURCE_ID = '9c015ed7-2d42-4689-b036-794ac2ba6295';
 
 
-async function getOrderStatusRow(name: 'Booking' | 'Driver'): Promise<{ orderGroupId: string; orderGroupNumber: number }> {
+async function getOrderStatusRow(name: 'Booking' | 'Service'): Promise<{ orderGroupId: string; orderGroupNumber: number }> {
   const response: any = await notion.dataSources.query({
     data_source_id: ORDER_STATUS_DATASOURCE_ID,
     filter: {
@@ -73,18 +73,18 @@ async function countOrdersForGroup(orderGroup: number): Promise<number> {
 
 async function getOrderConstants(): Promise<OrderConstants> {
   try {
-    // Fetch Booking and Driver status in parallel
-    const [bookingStatus, driverStatus] = await Promise.all([
+    // Fetch Booking and Service status in parallel
+    const [bookingStatus, serviceStatus] = await Promise.all([
       getOrderStatusRow('Booking'),
-      getOrderStatusRow('Driver'),
+      getOrderStatusRow('Service'),
     ]);
 
     // Get order group details and count orders for both groups in parallel
-    const [bookingDetails, driverDetails, bookingOrderCount, driverOrderCount] = await Promise.all([
+    const [bookingDetails, serviceDetails, bookingOrderCount, serviceOrderCount] = await Promise.all([
       getOrderGroupDetails(bookingStatus.orderGroupId),
-      getOrderGroupDetails(driverStatus.orderGroupId),
+      getOrderGroupDetails(serviceStatus.orderGroupId),
       countOrdersForGroup(bookingStatus.orderGroupNumber),
-      countOrdersForGroup(driverStatus.orderGroupNumber),
+      countOrdersForGroup(serviceStatus.orderGroupNumber),
     ]);
 
     const constants: OrderConstants = {
@@ -95,12 +95,12 @@ async function getOrderConstants(): Promise<OrderConstants> {
         timing: bookingDetails.timing,
         currentOrder: bookingOrderCount,
       },
-      driverOrderGroup: {
-        orderGroupNumber: driverStatus.orderGroupNumber,
-        pickupDate: driverDetails.pickupDate,
-        deliveryDate: driverDetails.deliveryDate,
-        timing: driverDetails.timing,
-        currentOrder: driverOrderCount,
+      serviceOrderGroup: {
+        orderGroupNumber: serviceStatus.orderGroupNumber,
+        pickupDate: serviceDetails.pickupDate,
+        deliveryDate: serviceDetails.deliveryDate,
+        timing: serviceDetails.timing,
+        currentOrder: serviceOrderCount,
       },
     };
 
