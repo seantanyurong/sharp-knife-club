@@ -101,7 +101,10 @@ export const getOrders = async ({ orderGroup, driverId, includeUrgent = false }:
     const response = await notion.dataSources.query({
       data_source_id: ORDERS_DATASOURCE_ID,
       filter: { and: filters },
-      sorts: [{ property: 'ID', direction: 'ascending' }],
+      sorts: [
+        { property: 'Pickup Order', direction: 'ascending' },
+        { property: 'ID', direction: 'ascending' }
+      ],
     });
     return response.results;
   } catch (error) {
