@@ -1,5 +1,6 @@
 'use client';
 
+import { fetchOrderConstants } from "@/app/actions/notion";
 import { getNextPickupDate } from "@/constants/dates";
 import { useEffect, useState } from "react";
 
@@ -16,29 +17,30 @@ function formatForDisplay(isoDate: string) {
   });
 }
 
-export default function NextPickupDateClient({ pickupDate }: { pickupDate: string }) {
-  const [nextPickupDate, setNextPickupDate] = useState(getNextPickupDate());
-
-  const fetchOrderConstants = async () => {
-    try {
-      const response = await fetch('/api/notion/getOrderConstants', {
-        headers: {
-          "Cache-Control": "no-cache",
-          "Pragma": "no-cache",
-          "Expires": "0",
-        }
-      });
-      const result = await response.json();
-
-      setNextPickupDate(formatForDisplay(result.data.pickupDate));
-    } catch (error) {
-      console.error('Error fetching order constants:', error);
-    }
-  }
+export default function NextPickupDateClient({ pickupDate }: { pickupDate?: string }) {
+  const [displayDate, setDisplayDate] = useState(() =>
+    pickupDate ? formatForDisplay(pickupDate) : getNextPickupDate()
+  );
 
   useEffect(() => {
-    fetchOrderConstants();
+    // If pickupDate was provided (from server), use it directly
+    if (pickupDate) {
+      setDisplayDate(formatForDisplay(pickupDate));
+      return;
+    }
+
+    // Otherwise fetch from server action
+    const loadOrderConstants = async () => {
+      try {
+        const constants = await fetchOrderConstants();
+        setDisplayDate(formatForDisplay(constants.bookingOrderGroup.pickupDate));
+      } catch (error) {
+        console.error('Error fetching order constants:', error);
+      }
+    };
+
+    loadOrderConstants();
   }, [pickupDate]);
 
-  return <span>{formatForDisplay(pickupDate) || nextPickupDate}</span>;
+  return <span>{displayDate}</span>;
 }

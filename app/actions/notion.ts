@@ -4,46 +4,105 @@ import { unstable_noStore as noStore } from 'next/cache.js';
 import { notion } from '@/lib/notionClient';
 import type { QueryDataSourceParameters, PageObjectResponse } from '@notionhq/client'
 
-export type OrderConstants = {
+export type OrderGroupDetails = {
+  orderGroupNumber: number;
   pickupDate: string;
   deliveryDate: string;
-  orderGroup: number;
-  currentOrder: number;
   timing: string;
-  driverOrderGroup: number;
+  currentOrder: number;
 };
 
-const ORDER_CONSTANTS_DATASOURCE_ID = '286b653f-dfd3-800c-adf4-000b46bcc393';
+export type OrderConstants = {
+  bookingOrderGroup: OrderGroupDetails;
+  driverOrderGroup: OrderGroupDetails;
+};
+
+const ORDER_STATUS_DATASOURCE_ID = '2edb653f-dfd3-8033-83ee-000b9e670c37';
 const ORDERS_DATASOURCE_ID = '9c015ed7-2d42-4689-b036-794ac2ba6295';
+
+
+async function getOrderStatusRow(name: 'Booking' | 'Driver'): Promise<{ orderGroupId: string; orderGroupNumber: number }> {
+  const response: any = await notion.dataSources.query({
+    data_source_id: ORDER_STATUS_DATASOURCE_ID,
+    filter: {
+      property: 'Name',
+      title: { equals: name },
+    },
+  });
+
+  const row = response?.results?.[0];
+  if (!row) throw new Error(`No "${name}" row found in Order Status`);
+
+  const relation = row.properties['Order Group']?.relation?.[0];
+  if (!relation?.id) throw new Error(`No Order Group relation found for "${name}"`);
+
+  // Get the order group number from the relation's title
+  const orderGroupPage: any = await notion.pages.retrieve({ page_id: relation.id });
+  const orderGroupNumber = parseInt(orderGroupPage.properties['Name']?.title?.[0]?.plain_text, 10);
+
+  if (isNaN(orderGroupNumber)) throw new Error(`Invalid order group number for "${name}"`);
+
+  return { orderGroupId: relation.id, orderGroupNumber };
+}
+
+async function getOrderGroupDetails(orderGroupId: string): Promise<{ pickupDate: string; deliveryDate: string; timing: string }> {
+  const page: any = await notion.pages.retrieve({ page_id: orderGroupId });
+
+  const pickupDate = page.properties['Pickup Date']?.date?.start;
+  const deliveryDate = page.properties['Delivery Date']?.date?.start;
+  const timing = page.properties['Timing']?.rich_text?.[0]?.plain_text;
+
+  if (!pickupDate || !deliveryDate || typeof timing !== 'string') {
+    throw new Error('Order Group missing required fields');
+  }
+
+  return { pickupDate, deliveryDate, timing };
+}
+
+async function countOrdersForGroup(orderGroup: number): Promise<number> {
+  const response: any = await notion.dataSources.query({
+    data_source_id: ORDERS_DATASOURCE_ID,
+    filter: {
+      property: 'ID',
+      rich_text: { contains: `${orderGroup}O` },
+    },
+  });
+
+  return response?.results?.length ?? 0;
+}
 
 async function getOrderConstants(): Promise<OrderConstants> {
   try {
-    const response: any = await notion.dataSources.query({
-      data_source_id: ORDER_CONSTANTS_DATASOURCE_ID!,
-    });
+    // Fetch Booking and Driver status in parallel
+    const [bookingStatus, driverStatus] = await Promise.all([
+      getOrderStatusRow('Booking'),
+      getOrderStatusRow('Driver'),
+    ]);
 
-    const first = response?.results?.[0];
-    if (!first) throw new Error('No rows returned from Notion');
+    // Get order group details and count orders for both groups in parallel
+    const [bookingDetails, driverDetails, bookingOrderCount, driverOrderCount] = await Promise.all([
+      getOrderGroupDetails(bookingStatus.orderGroupId),
+      getOrderGroupDetails(driverStatus.orderGroupId),
+      countOrdersForGroup(bookingStatus.orderGroupNumber),
+      countOrdersForGroup(driverStatus.orderGroupNumber),
+    ]);
 
     const constants: OrderConstants = {
-      pickupDate: first.properties['Pickup Date']?.date?.start,
-      deliveryDate: first.properties['Delivery Date']?.date?.start,
-      orderGroup: first.properties['Order Group']?.number,
-      currentOrder: first.properties['Current Order']?.number,
-      timing: first.properties['Timing']?.rich_text?.[0]?.plain_text,
-      driverOrderGroup: first.properties['Driver Order Group']?.number,
+      bookingOrderGroup: {
+        orderGroupNumber: bookingStatus.orderGroupNumber,
+        pickupDate: bookingDetails.pickupDate,
+        deliveryDate: bookingDetails.deliveryDate,
+        timing: bookingDetails.timing,
+        currentOrder: bookingOrderCount,
+      },
+      driverOrderGroup: {
+        orderGroupNumber: driverStatus.orderGroupNumber,
+        pickupDate: driverDetails.pickupDate,
+        deliveryDate: driverDetails.deliveryDate,
+        timing: driverDetails.timing,
+        currentOrder: driverOrderCount,
+      },
     };
-
-    if (
-      !constants.pickupDate ||
-      !constants.deliveryDate ||
-      typeof constants.orderGroup !== 'number' ||
-      typeof constants.currentOrder !== 'number' ||
-      typeof constants.timing !== 'string' ||
-      typeof constants.driverOrderGroup !== 'number'
-    ) {
-      throw new Error('Notion data missing or malformed');
-    }
 
     return constants;
   } catch (error: any) {
