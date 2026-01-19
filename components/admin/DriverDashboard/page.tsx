@@ -1,9 +1,9 @@
-import { Order } from "./columns"
 import SharpenerInfo from "./SharpenerInfo"
+import { type Order } from "../Types"
 import DriverOrderPaymentInfo from "./DriverOrderPaymentInfo"
 import { fetchOrderConstants, getOrders } from "@/app/actions/notion"
 import { formatOrders } from "@/lib/utils"
-import DriverDashboardTable from "./DriverDashboardTable"
+import DriverDashboardTable from "./DriverDashboardTable/DriverDashboardTable"
 
 async function getData(driverId: string): Promise<Order[]> {
   const orderConstants = await fetchOrderConstants();

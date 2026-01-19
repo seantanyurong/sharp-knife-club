@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { useCallback, useRef, useEffect } from "react"
+import { updateNotionPickupOrder, type NotionPickupOrder } from "@/lib/api"
 
 import {
   ColumnDef,
@@ -42,10 +44,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { type Order } from "@/components/admin/DriverDashboard/columns"
+import { type Order } from "../../Types"
 
 function DraggableRow({ row }: { row: Row<Order> }) {
-  console.log(row);
   const { transform, transition, setNodeRef, isDragging } = useSortable({
     id: row.original.orderId,
   })
@@ -69,6 +70,35 @@ function DraggableRow({ row }: { row: Row<Order> }) {
   )
 }
 
+function useUpdateNotionPickupOrder() {
+  const abortRef = useRef<AbortController | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const func = useCallback((data: NotionPickupOrder[]) => {
+    if (abortRef.current) {
+      abortRef.current.abort();
+    }
+    abortRef.current = new AbortController();
+
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(async () => {
+      await updateNotionPickupOrder(data, abortRef.current?.signal);
+    }, 250);
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort()
+      if (timerRef.current) window.clearTimeout(timerRef.current)
+    }
+  }, [])
+
+  return func;
+}
+
 export function DataTable({
   columns,
   data: initialData,
@@ -88,12 +118,13 @@ export function DataTable({
     () => data?.map(({ orderId }) => orderId) || [],
     [data]
   )
+  const updateNotionPickupOrder = useUpdateNotionPickupOrder();
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getRowId: (row) => row.orderId.toString(),
+    getRowId: (row) => row.orderId,
   })
 
   function handleDragEnd(event: DragEndEvent) {
@@ -102,7 +133,13 @@ export function DataTable({
       setData((data) => {
         const oldIndex = dataIds.indexOf(active.id)
         const newIndex = dataIds.indexOf(over.id)
-        return arrayMove(data, oldIndex, newIndex)
+        const sortedArr = arrayMove(data, oldIndex, newIndex)
+        const notionPickupOrder = sortedArr.map((row, index) => ({
+          pageId: row.pageId,
+          position: index + 1, // Notion pickup order is 1-indexed
+        }))
+        updateNotionPickupOrder(notionPickupOrder);
+        return sortedArr;
       })
     }
   }

@@ -14,21 +14,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CollectionPictureInput } from "@/components/admin/DriverDashboard/CollectionPictureInput"
+import { CollectionPictureInput } from "@/components/admin/DriverDashboard/DriverDashboardTable/CollectionPictureInput"
 import { IconGripVertical } from "@tabler/icons-react"
 import { useSortable } from "@dnd-kit/sortable"
-
-
-export type Order = {
-  pageId: string;
-  orderId: string;
-  customerName: string;
-  whatsApp: string;
-  address: string;
-  note: string;
-  collected: boolean;
-  delivered: boolean;
-};
+import { type Order } from "../../Types"
 
 type MakeColumnsProps = {
   collectedById: Record<string, boolean>;
@@ -57,7 +46,6 @@ function DragHandle({ id }: { id: string }) {
     </Button>
   )
 }
-
 
 export function makeColumns({ collectedById, setCollectedAction, deliveredById, setDeliveredAction }: MakeColumnsProps): ColumnDef<Order>[] {
   return [
