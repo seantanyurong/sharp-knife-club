@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from './ui/avatar';
 
 export default function GoogleReview({ profile, name, rating, comment }: { profile: string; name: string; rating: number; comment: string }) {
   return (
-    <div className='bg-white p-4 rounded-xl shadow-md max-w-sm border h-[275px] flex flex-col justify-between'>
+    <div className='bg-white p-4 rounded-xl shadow-md max-w-sm border h-[215px] lg:h-[275px] flex flex-col justify-between text-sm lg:text-base'>
       <div>
         <div className='flex items-center space-x-3'>
           <Avatar className="w-10 h-10">

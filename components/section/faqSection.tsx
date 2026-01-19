@@ -96,12 +96,12 @@ const ALL_FAQS: FAQ[] = [
     question: "Do you offer pick-up and delivery?",
     answer: (
       <>
-        Yes — we provide convenient, door-to-door pickup and return anywhere in Singapore.
+        Yes — we provide free convenient, door-to-door pickup and return anywhere in Singapore.
         Simply prepare your knives, and our driver will collect and return them within 24 hours. No need to visit a shop.
       </>
     ),
     plainTextAnswer:
-      "Yes, we provide convenient, door-to-door pickup and return anywhere in Singapore within 24 hours.",
+      "Yes, we provide free convenient, door-to-door pickup and return anywhere in Singapore within 24 hours.",
   },
   {
     slug: "turnaround-time",

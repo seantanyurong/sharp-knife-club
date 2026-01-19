@@ -4,10 +4,12 @@ import { Button } from "../ui/button"
 import GoogleReviewButton from "../googleReviewButton"
 import GoogleReviewCarousel from "../googleReviewCarousel"
 import NextPickupDate from "../NextPickupDate"
+import Image from "next/image"
+import CNA from "../../public/cna.webp"
 
 export default async function HeroSection() {
   return (
-    <div className='bg-[url(/images/hero-bg-alt.webp)] bg-cover py-20 lg:py-40'>
+    <div className='bg-[url(/images/hero-bg-alt.webp)] bg-cover pt-20 pb-16 lg:pt-40 lg:pb-32'>
       <div className='max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center '>
         <h1 className='text-primary-foreground text-3xl md:text-6xl font-black'>
           <Balancer>KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY</Balancer>
@@ -48,6 +50,10 @@ export default async function HeroSection() {
         </div>
       </div>
       <GoogleReviewCarousel />
+      <div className='max-w-6xl mx-auto flex px-6 text-center items-center justify-center text-white gap-4 mt-8 lg:mt-16'>
+        <p className='text-sm font-light'>As seen on:</p>
+        <Image src={CNA} alt='CNA' width={100} height={50} priority />
+      </div>
     </div>
   )
 }
