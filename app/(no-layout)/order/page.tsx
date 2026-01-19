@@ -211,7 +211,7 @@ export default function Order() {
               variant="secondary"
               className="w-full hidden md:block"
             >
-              <NextPickupDateClient pickupDate={''} />
+              <NextPickupDateClient />
             </Button>
             <Button
               size="lg"
@@ -226,7 +226,7 @@ export default function Order() {
               variant="secondary"
               className="w-full block md:hidden"
             >
-              <NextPickupDateClient pickupDate={''} />
+              <NextPickupDateClient />
             </Button>
             <Button
               size="sm"

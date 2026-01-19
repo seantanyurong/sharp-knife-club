@@ -7,7 +7,7 @@ import DriverDashboardTable from "./DriverDashboardTable/DriverDashboardTable"
 
 async function getData(driverId: string): Promise<Order[]> {
   const orderConstants = await fetchOrderConstants();
-  const orders = await getOrders({ orderGroup: orderConstants.driverOrderGroup, driverId });
+  const orders = await getOrders({ orderGroup: orderConstants.driverOrderGroup.orderGroupNumber, driverId });
   if (!orders) {
     return [];
   }
