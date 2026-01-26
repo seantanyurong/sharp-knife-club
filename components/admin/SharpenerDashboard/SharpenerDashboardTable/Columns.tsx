@@ -15,63 +15,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { CollectionPictureInput } from "@/components/admin/DriverDashboard/DriverDashboardTable/CollectionPictureInput"
-import { IconGripVertical } from "@tabler/icons-react"
-import { useSortable } from "@dnd-kit/sortable"
 import { type Order } from "../../Types"
 
 type MakeColumnsProps = {
   collectedById: Record<string, boolean>;
-  deliveredById: Record<string, boolean>;
   // eslint-disable-next-line
   setCollectedAction: (orderId: string, value: boolean) => void;
-  // eslint-disable-next-line
-  setDeliveredAction: (orderId: string, value: boolean) => void;
 };
 
-
-function DragHandle({ id }: { id: string }) {
-  const { attributes, listeners } = useSortable({
-    id,
-  })
-  return (
-    <Button
-      {...attributes}
-      {...listeners}
-      variant="ghost"
-      size="icon"
-      className="text-muted-foreground size-7 hover:bg-transparent"
-    >
-      <IconGripVertical className="text-muted-foreground size-3" />
-      <span className="sr-only">Drag to reorder</span>
-    </Button>
-  )
-}
-
-export function makeColumns({ collectedById, setCollectedAction, deliveredById, setDeliveredAction }: MakeColumnsProps): ColumnDef<Order>[] {
+export function makeColumns({ collectedById, setCollectedAction }: MakeColumnsProps): ColumnDef<Order>[] {
   return [
-    {
-      id: "drag",
-      header: () => null,
-      cell: ({ row }) => <DragHandle id={row.original.orderId} />,
-    },
     {
       accessorKey: "orderId",
       header: "Order",
     },
     {
-      accessorKey: "customerName",
-      header: "Name",
-    },
-    {
-      accessorKey: "whatsApp",
-      header: "WhatsApp",
-    },
-    {
-      accessorKey: "address",
-      header: "Address",
-    },
-    {
-      accessorKey: "note",
+      accessorKey: "sharpeningNote",
       header: "Note",
     },
     {
@@ -83,20 +42,6 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
         return (
           <Checkbox
             checked={collectedById[order.orderId]}
-            className="cursor-not-allowed"
-          />
-        )
-      },
-    },
-    {
-      accessorKey: "delivered",
-      header: "Delivered",
-      cell: ({ row }) => {
-        const order = row.original
-
-        return (
-          <Checkbox
-            checked={deliveredById[order.orderId]}
             className="cursor-not-allowed"
           />
         )
@@ -117,26 +62,6 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                className="cursor-pointer"
-                onClick={() => navigator.clipboard.writeText(order.address)}
-              >
-                Copy Address
-              </DropdownMenuItem>
-              <a href={`https://www.google.com/maps/search/?api=1&query=${order.address}`} target="_blank" rel="noreferrer">
-                <DropdownMenuItem
-                  className="cursor-pointer"
-                >
-                  Go to Google Maps
-                </DropdownMenuItem>
-              </a>
-              <a href={`https://wa.me/${order.whatsApp}`} target="_blank" rel="noreferrer">
-                <DropdownMenuItem
-                  className="cursor-pointer"
-                >
-                  WhatsApp Customer
-                </DropdownMenuItem>
-              </a>
               <Link href={`/admin/order/${order.pageId}`}>
                 <DropdownMenuItem
                   className="cursor-pointer"
@@ -146,7 +71,6 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
               </Link>
               <DropdownMenuSeparator />
               <CollectionPictureInput orderId={order.orderId} kind="collection" collected={collectedById[order.orderId]} setCollectedAction={setCollectedAction} />
-              <CollectionPictureInput orderId={order.orderId} kind="delivery" delivered={deliveredById[order.orderId]} setDeliveredAction={setDeliveredAction} />
             </DropdownMenuContent>
           </DropdownMenu>
         )
