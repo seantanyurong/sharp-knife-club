@@ -10,13 +10,13 @@ type Props = {
 }
 
 export default function SharpenerDashboardTable({ data }: Props) {
-  const [collectedById, setCollectedById] = useState<Record<string, boolean>>(() => Object.fromEntries(data.map((o) => [o.orderId, o.collected])));
+  const [submittedBeforePictureById, setSubmittedBeforePictureById] = useState<Record<string, boolean>>(() => Object.fromEntries(data.map((o) => [o.orderId, o.submittedBeforePicture])));
 
-  const setCollectedAction = (orderId: string, value: boolean) => {
-    setCollectedById((prev) => ({ ...prev, [orderId]: value }))
+  const setSubmittedBeforePictureAction = (orderId: string, value: boolean) => {
+    setSubmittedBeforePictureById((prev) => ({ ...prev, [orderId]: value }))
   }
 
-  const columns = makeColumns({ collectedById, setCollectedAction });
+  const columns = makeColumns({ submittedBeforePictureById, setSubmittedBeforePictureAction });
 
   return (
     <div className="w-full mx-auto py-2">

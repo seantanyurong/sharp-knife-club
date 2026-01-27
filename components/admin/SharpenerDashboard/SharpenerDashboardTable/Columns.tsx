@@ -18,12 +18,12 @@ import { CollectionPictureInput } from "@/components/admin/DriverDashboard/Drive
 import { type Order } from "../../Types"
 
 type MakeColumnsProps = {
-  collectedById: Record<string, boolean>;
+  submittedBeforePictureById: Record<string, boolean>;
   // eslint-disable-next-line
-  setCollectedAction: (orderId: string, value: boolean) => void;
+  setSubmittedBeforePictureAction: (orderId: string, value: boolean) => void;
 };
 
-export function makeColumns({ collectedById, setCollectedAction }: MakeColumnsProps): ColumnDef<Order>[] {
+export function makeColumns({ submittedBeforePictureById, setSubmittedBeforePictureAction }: MakeColumnsProps): ColumnDef<Order>[] {
   return [
     {
       accessorKey: "orderId",
@@ -34,14 +34,14 @@ export function makeColumns({ collectedById, setCollectedAction }: MakeColumnsPr
       header: "Note",
     },
     {
-      accessorKey: "collected",
-      header: "Collected",
+      accessorKey: "submittedBeforePicture",
+      header: "Submitted Before Picture",
       cell: ({ row }) => {
         const order = row.original
 
         return (
           <Checkbox
-            checked={collectedById[order.orderId]}
+            checked={submittedBeforePictureById[order.orderId]}
             className="cursor-not-allowed"
           />
         )
@@ -70,7 +70,7 @@ export function makeColumns({ collectedById, setCollectedAction }: MakeColumnsPr
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator />
-              <CollectionPictureInput orderId={order.orderId} kind="collection" collected={collectedById[order.orderId]} setCollectedAction={setCollectedAction} />
+              <CollectionPictureInput orderId={order.orderId} kind="collection" collected={submittedBeforePictureById[order.orderId]} setCollectedAction={setSubmittedBeforePictureAction} />
             </DropdownMenuContent>
           </DropdownMenu>
         )

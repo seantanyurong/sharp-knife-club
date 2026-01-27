@@ -63,6 +63,7 @@ export function formatOrder(order: PageObjectResponse) {
     getTextFromNotionProperty(properties["Collected"]) === "true";
   const delivered =
     getTextFromNotionProperty(properties["Delivered"]) === "true";
+  const submittedBeforePicture = getTextFromNotionProperty(properties["Submitted Before Picture"]) === "true";
 
   return {
     pageId,
@@ -74,6 +75,7 @@ export function formatOrder(order: PageObjectResponse) {
     sharpeningNote,
     collected,
     delivered,
+    submittedBeforePicture,
   };
 }
 

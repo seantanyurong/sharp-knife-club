@@ -5,6 +5,8 @@ export type Order = {
   whatsApp: string;
   address: string;
   note: string;
+  sharpeningNote: string;
   collected: boolean;
   delivered: boolean;
+  submittedBeforePicture: boolean;
 };
