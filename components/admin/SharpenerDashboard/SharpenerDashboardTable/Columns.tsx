@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { CollectionPictureInput } from "@/components/admin/DriverDashboard/DriverDashboardTable/CollectionPictureInput"
+import { BeforePictureInput } from "@/components/admin/SharpenerDashboard/SharpenerDashboardTable/BeforePictureInput"
 import { type Order } from "../../Types"
 
 type MakeColumnsProps = {
@@ -70,7 +70,7 @@ export function makeColumns({ submittedBeforePictureById, setSubmittedBeforePict
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator />
-              <CollectionPictureInput orderId={order.orderId} kind="collection" collected={submittedBeforePictureById[order.orderId]} setCollectedAction={setSubmittedBeforePictureAction} />
+              <BeforePictureInput orderId={order.orderId} submittedBeforePicture={submittedBeforePictureById[order.orderId]} setSubmittedBeforePictureAction={setSubmittedBeforePictureAction} />
             </DropdownMenuContent>
           </DropdownMenu>
         )

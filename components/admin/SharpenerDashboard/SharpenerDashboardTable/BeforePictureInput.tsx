@@ -5,41 +5,17 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { refreshDashboard } from "@/app/actions/helper";
 
-type Kind = "collection" | "delivery";
-
 type BaseProps = {
   orderId: string;
-  kind?: Kind;
-  collected?: boolean;
-  delivered?: boolean;
+  submittedBeforePicture?: boolean;
   // eslint-disable-next-line
-  setCollectedAction?: (orderId: string, value: boolean) => void;
-  // eslint-disable-next-line
-  setDeliveredAction?: (orderId: string, value: boolean) => void;
+  setSubmittedBeforePictureAction?: (orderId: string, value: boolean) => void;
 };
 
-const LABELS: Record<Kind, string> = {
-  collection: "Submit Collection Picture",
-  delivery: "Submit Delivery Picture",
-};
-
-const SUCCESS: Record<Kind, string> = {
-  collection: "Collection picture uploaded!",
-  delivery: "Delivery picture uploaded!",
-};
-
-const ENDPOINTS: Record<Kind, string> = {
-  collection: "/collection-picture",
-  delivery: "/delivery-picture",
-};
-
-export function CollectionPictureInput({
+export function BeforePictureInput({
   orderId,
-  kind = "collection",
-  collected,
-  delivered,
-  setCollectedAction,
-  setDeliveredAction,
+  submittedBeforePicture,
+  setSubmittedBeforePictureAction,
 }: BaseProps) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_SERVER_URL || 'https://server.knifesharpening.sg';
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -59,7 +35,7 @@ export function CollectionPictureInput({
       form.append("image", file);
       form.append("orderId", orderId);
 
-      const endpoint = ENDPOINTS[kind];
+      const endpoint = '/before-picture';
       const url = `${apiBaseUrl.replace(/\/$/, "")}${endpoint}`;
 
       const res = await fetch(url, {
@@ -72,10 +48,9 @@ export function CollectionPictureInput({
         throw new Error(msg);
       }
 
-      if (setCollectedAction) setCollectedAction(orderId, true);
-      if (setDeliveredAction) setDeliveredAction(orderId, true);
+      if (setSubmittedBeforePictureAction) setSubmittedBeforePictureAction(orderId, true);
 
-      toast.success(SUCCESS[kind]);
+      toast.success('Before picture uploaded!');
       refreshDashboard();
     } catch (err) {
       if (err instanceof Error) {
@@ -107,9 +82,9 @@ export function CollectionPictureInput({
           e.preventDefault(); // keep the menu open until the picker opens
           triggerPicker();
         }}
-        disabled={uploading || collected || delivered}
+        disabled={uploading || submittedBeforePicture}
       >
-        {uploading ? "Uploading…" : LABELS[kind]}
+        {uploading ? "Uploading…" : 'Submit Picture'}
       </DropdownMenuItem>
     </>
   );
