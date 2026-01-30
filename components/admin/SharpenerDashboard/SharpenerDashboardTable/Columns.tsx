@@ -30,6 +30,14 @@ export function makeColumns({ submittedBeforePictureById, setSubmittedBeforePict
       header: "Order",
     },
     {
+      accessorKey: 'knives',
+      header: 'Knives',
+    },
+    {
+      accessorKey: 'repairs',
+      header: 'Repairs',
+    },
+    {
       accessorKey: "sharpeningNote",
       header: "Note",
     },

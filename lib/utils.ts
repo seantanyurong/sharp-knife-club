@@ -37,6 +37,8 @@ export function getTextFromNotionProperty(property: PageObjectResponse['properti
     }
   } else if (propertyType === 'checkbox') {
     return property.checkbox.toString();
+  } else if (propertyType === 'number') {
+    return property.number?.toString();
   }
 }
 
@@ -64,6 +66,8 @@ export function formatOrder(order: PageObjectResponse) {
   const delivered =
     getTextFromNotionProperty(properties["Delivered"]) === "true";
   const submittedBeforePicture = getTextFromNotionProperty(properties["Submitted Before Picture"]) === "true";
+  const knives = getTextFromNotionProperty(properties["Knifes"]) ?? "NA";
+  const repairs = getTextFromNotionProperty(properties["Repairs"]) ?? "NA";
 
   return {
     pageId,
@@ -76,6 +80,8 @@ export function formatOrder(order: PageObjectResponse) {
     collected,
     delivered,
     submittedBeforePicture,
+    knives,
+    repairs
   };
 }
 
