@@ -35,25 +35,29 @@ function PostHogPageView() {
   const searchParams = useSearchParams()
   const posthog = usePostHog()
 
-  // Track UTM parameters once on load
+  // Track UTM parameters: persist to localStorage and register as super properties
   useEffect(() => {
     if (posthog) {
+      const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
       const utmParams: Record<string, string> = {};
 
-      const utm_source = searchParams.get("utm_source");
-      const utm_medium = searchParams.get("utm_medium");
-      const utm_campaign = searchParams.get("utm_campaign");
-      const utm_term = searchParams.get("utm_term");
-      const utm_content = searchParams.get("utm_content");
-
-      if (utm_source !== null) utmParams.utm_source = utm_source;
-      if (utm_medium !== null) utmParams.utm_medium = utm_medium;
-      if (utm_campaign !== null) utmParams.utm_campaign = utm_campaign;
-      if (utm_term !== null) utmParams.utm_term = utm_term;
-      if (utm_content !== null) utmParams.utm_content = utm_content;
+      for (const key of utmKeys) {
+        const value = searchParams.get(key);
+        if (value !== null) utmParams[key] = value;
+      }
 
       if (Object.keys(utmParams).length > 0) {
+        // New UTM params in URL: save to localStorage and register
+        localStorage.setItem("utm_params", JSON.stringify(utmParams));
+        posthog.register(utmParams);
         posthog.setPersonProperties(utmParams);
+      } else {
+        // No UTM params in URL: restore from localStorage
+        const stored = localStorage.getItem("utm_params");
+        if (stored) {
+          const storedParams = JSON.parse(stored);
+          posthog.register(storedParams);
+        }
       }
     }
   }, [posthog, searchParams])
