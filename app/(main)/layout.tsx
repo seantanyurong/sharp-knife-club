@@ -4,6 +4,8 @@ import { Open_Sans } from 'next/font/google';
 import '../globals.css';
 import { GoogleTagManager } from '@next/third-parties/google';
 import MetaPixel from "@/components/scripts/MetaPixel";
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
@@ -37,6 +39,8 @@ export default function RootLayout({
         </PostHogProvider>
       </body>
       <GoogleTagManager gtmId='GTM-KH7TZBT6' />
+      <Analytics />
+      <SpeedInsights />
     </html>
   );
 }
