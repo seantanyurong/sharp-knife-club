@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react';
+import { ReactNode, type JSX } from 'react';
 import posthog from 'posthog-js';
 
 interface PostHogEventCaptureProps {

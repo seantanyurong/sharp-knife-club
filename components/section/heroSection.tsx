@@ -9,8 +9,16 @@ import CNA from "../../public/cna.webp"
 
 export default async function HeroSection() {
   return (
-    <div className='bg-[url(/images/hero-bg-alt.webp)] bg-cover pt-20 pb-16 lg:pt-40 lg:pb-32'>
-      <div className='max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center '>
+    <div className='relative pt-20 pb-16 lg:pt-40 lg:pb-32 overflow-hidden'>
+      <Image
+        src="/images/hero-bg-alt.webp"
+        alt=""
+        fill
+        preload
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className='relative max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center z-10'>
         <h1 className='text-primary-foreground text-3xl md:text-6xl font-black'>
           <Balancer>KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY</Balancer>
         </h1>

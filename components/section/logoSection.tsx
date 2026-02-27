@@ -7,7 +7,7 @@ import Balancer from "react-wrap-balancer";
 export default function BrandMarquee() {
 
   return (
-    <div className='max-w-6xl mx-auto px-6 my-6 lg:my-12'>
+    <div className='max-w-6xl mx-auto px-6 my-6 lg:my-12 bg-muted'>
       <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row items-center overflow-hidden w-full bg-muted py-6 relative">
         {/* Static Left Text */}
         <div className="shrink-0 lg:w-[200px] text-center lg:text-left text-xl font-black leading-tight text-black lg:whitespace-nowrap z-10">
