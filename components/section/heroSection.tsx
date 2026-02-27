@@ -15,9 +15,10 @@ export default async function HeroSection() {
         alt=""
         fill
         preload
+        loading="eager"
+        fetchPriority="high"
         sizes="100vw"
         className="object-cover"
-        placeholder="blur"
       />
       <div className='relative max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center z-10'>
         <h1 className='text-primary-foreground text-3xl md:text-6xl font-black'>
