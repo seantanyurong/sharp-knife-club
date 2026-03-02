@@ -6,6 +6,7 @@ import GoogleReviewCarousel from "../googleReviewCarousel"
 import NextPickupDate from "../NextPickupDate"
 import Image from "next/image"
 import CNA from "../../public/cna.webp"
+import { Suspense } from "react"
 
 export default async function HeroSection() {
   return (
@@ -53,7 +54,7 @@ export default async function HeroSection() {
                 </svg>
                 BOOK KNIFE PICKUP
               </div>
-              <p className='text-sm text-secondary-foreground'>Next Collection: <NextPickupDate /></p>
+              <p className='text-sm text-secondary-foreground'>Next Collection: <Suspense fallback={<span>This Saturday</span>}><NextPickupDate /></Suspense></p>
             </Button>
           </WhatsAppLink>
           <GoogleReviewButton />
