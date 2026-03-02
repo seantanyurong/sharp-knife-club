@@ -60,7 +60,7 @@ export default async function HeroSection() {
         </div>
       </div>
       <GoogleReviewCarousel />
-      <div className='max-w-6xl mx-auto flex px-6 text-center items-center justify-center text-white gap-4 mt-8 lg:mt-16'>
+      <div className='relative max-w-6xl mx-auto flex px-6 text-center items-center justify-center text-white gap-4 mt-8 lg:mt-16 z-10'>
         <p className='text-sm font-light'>As seen on:</p>
         <Image src={CNA} alt='CNA' width={100} height={50} priority />
       </div>
