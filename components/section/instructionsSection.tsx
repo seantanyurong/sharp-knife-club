@@ -47,7 +47,7 @@ const StepTile = ({
   )
 }
 
-export default function InstructionSection() {
+export default function InstructionSection({ stepDescriptions }: { stepDescriptions?: [string?, string?, string?] } = {}) {
   return (
     <div className='pt-16 bg-muted py-12'>
       <div className='max-w-6xl mx-auto px-6 flex flex-col justify-center'>
@@ -56,7 +56,7 @@ export default function InstructionSection() {
           {
             STEPS.map((step, index) => {
               return (
-                <StepTile key={index} step={index + 1} image={step.image} title={step.title} description={step.description} />
+                <StepTile key={index} step={index + 1} image={step.image} title={step.title} description={stepDescriptions?.[index] ?? step.description} />
               )
             })
           }
