@@ -4,39 +4,31 @@ type BrowseIntroProps = Omit<BrowsePageConfig['intro'], 'faqs'>;
 
 export default function BrowseIntroSection({ heading, body, bullets, whyItMatters, ourProcess }: BrowseIntroProps) {
   return (
-    <div className='bg-white py-12 px-6'>
-      <div className='max-w-6xl mx-auto space-y-12'>
+    <div className='bg-white py-16 px-6'>
+      <div className='max-w-6xl mx-auto'>
 
-        {/* Intro */}
-        <div>
-          <h2 className='text-2xl md:text-3xl font-black text-primary mb-4'>{heading}</h2>
-          <p className='text-base text-gray-700 mb-6 max-w-2xl'>{body}</p>
-          <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3'>
-            {bullets.map((b) => (
-              <li key={b} className='bg-muted rounded-md px-4 py-3 text-sm font-medium text-primary text-center'>
-                {b}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Heading + body */}
+        <h2 className='text-2xl md:text-3xl font-black text-primary mb-3'>{heading}</h2>
+        <p className='text-gray-500 mb-8'>{body}</p>
 
-        {/* Why it matters */}
-        <div>
-          <h2 className='text-xl md:text-2xl font-black text-primary mb-4'>{whyItMatters.heading}</h2>
-          <div className='space-y-4 max-w-2xl'>
-            {whyItMatters.paragraphs.map((p, i) => (
-              <p key={i} className='text-base text-gray-700'>{p}</p>
-            ))}
+        {/* Pill grid */}
+        <ul className='flex flex-wrap gap-2 mb-12'>
+          {bullets.map((b) => (
+            <li key={b} className='flex items-center gap-1.5 bg-muted rounded-full px-4 py-2 text-sm font-semibold text-primary'>
+              <span className='text-secondary'>✓</span> {b}
+            </li>
+          ))}
+        </ul>
+
+        {/* Why + Process — two column cards */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <div className='bg-muted rounded-xl p-6 border-l-4 border-primary'>
+            <h3 className='font-black text-primary text-lg mb-3'>{whyItMatters.heading}</h3>
+            <p className='text-gray-600 text-sm leading-relaxed'>{whyItMatters.paragraphs[0]}</p>
           </div>
-        </div>
-
-        {/* Our process */}
-        <div>
-          <h2 className='text-xl md:text-2xl font-black text-primary mb-4'>{ourProcess.heading}</h2>
-          <div className='space-y-4 max-w-2xl'>
-            {ourProcess.paragraphs.map((p, i) => (
-              <p key={i} className='text-base text-gray-700'>{p}</p>
-            ))}
+          <div className='bg-muted rounded-xl p-6 border-l-4 border-secondary'>
+            <h3 className='font-black text-primary text-lg mb-3'>{ourProcess.heading}</h3>
+            <p className='text-gray-600 text-sm leading-relaxed'>{ourProcess.paragraphs[0]}</p>
           </div>
         </div>
 

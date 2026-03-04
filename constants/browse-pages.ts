@@ -37,7 +37,7 @@ export type BrowsePageConfig = {
 
 export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
   scissors: {
-    headline: 'SCISSORS SHARPENING IN ONE DAY — FREE PICKUP & DELIVERY',
+    headline: 'SCISSORS SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY',
     title: 'Scissors Sharpening Singapore | Knife Sharpening Singapore',
     tile: {
       label: 'Scissors',
@@ -59,7 +59,7 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
     },
     intro: {
       heading: 'Professional Scissors Sharpening in Singapore',
-      body: 'Knife Sharpening Singapore sharpens all types of scissors with free doorstep pickup and same-day delivery across Singapore. We restore a clean, precise edge so every cut is effortless — no more tearing, crushing, or dragging.',
+      body: 'We sharpen all types of scissors — restoring a clean, precise edge so every cut is effortless. No more tearing, crushing, or dragging.',
       bullets: [
         'Kitchen shears',
         'Fabric & sewing scissors',
@@ -71,15 +71,13 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
       whyItMatters: {
         heading: 'Why Sharp Scissors Matter',
         paragraphs: [
-          'Dull scissors do not just slow you down — they actively cause damage. Fabric scissors that have lost their edge crush and fray fibres instead of slicing through them cleanly, which ruins garments and wastes material. Kitchen shears that are past their prime tear food rather than cutting it, making prep messier and less precise. Hair scissors that drag rather than glide pull strands instead of cutting them, leading to uneven results and discomfort for whoever is in the chair.',
-          'The consequences of a dull edge are different for each type of scissors, but the root cause is always the same: the blade angle has degraded and can no longer make a clean shear. Professional sharpening restores that angle precisely — not just removes metal until something vaguely cuts again.',
+          'Dull scissors actively damage what they cut. Fabric frays instead of slicing cleanly. Hair gets pulled instead of cut. Food gets torn instead of separated. The damage is often immediate and visible — unlike a dull knife, which mostly just slows you down.',
         ],
       },
       ourProcess: {
-        heading: 'How We Sharpen Scissors',
+        heading: 'What Makes Scissors Different',
         paragraphs: [
-          'Scissors have a single-bevel edge — each blade is ground on one side only, unlike kitchen knives which are typically bevelled on both sides. This means sharpening scissors correctly requires a different technique and a higher angle, usually between 30° and 45°, compared to the 15°–20° used for most knives. We sharpen each blade individually to maintain the factory bevel, then check the blade tension and alignment before reassembly.',
-          'We test every pair on paper and fabric before returning them. If a pair of kitchen shears has a micro-serrated blade, we sharpen only the smooth blade and leave the serrations intact — removing them would change how the shear performs on poultry and tough cuts.',
+          'Scissors use a single-bevel edge at a steeper angle (30°–45°) than a typical kitchen knife. Each blade must be sharpened individually, and blade tension needs to be checked before reassembly — small details that determine whether the scissors shear cleanly or snag.',
         ],
       },
       faqs: [
@@ -108,11 +106,16 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
           answer:
             'We sharpen the non-serrated blade and lightly hone the flat side of the serrated blade to remove burrs. We do not grind the serrations themselves — removing them would change how the scissor performs and is not recommended.',
         },
+        {
+          question: 'Why do different types of scissors fail differently when dull?',
+          answer:
+            'Each type of scissors is used differently, so dullness shows up differently. Fabric scissors crush and fray fibres because fabric requires a very fine, clean slice. Kitchen shears tear food because they need enough sharpness to cut through cartilage and skin. Hair scissors pull strands because the edge needs to be fine enough to cut individual hairs cleanly. The blade angle required for each type also differs slightly, which is why professional sharpening tailored to the scissor type produces better results than a generic sharpen.',
+        },
       ],
     },
   },
   serrated: {
-    headline: 'SERRATED KNIFE SHARPENING IN ONE DAY — FREE PICKUP & DELIVERY',
+    headline: 'SERRATED KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY',
     title: 'Serrated Knife Sharpening Singapore | Knife Sharpening Singapore',
     tile: {
       label: 'Serrated Knives',
@@ -133,8 +136,8 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
       },
     },
     intro: {
-      heading: 'Professional Serrated Knife Sharpening in Singapore',
-      body: 'Knife Sharpening Singapore sharpens serrated knives with free doorstep pickup and same-day delivery across Singapore. Bread knives, tomato knives, steak knives — we restore the cutting performance of every serration so your knife glides through crusts and skins again.',
+      heading: 'More About Serrated Knives',
+      body: 'We restore every serration so your blade glides through crusts, skins, and tough cuts again instead of tearing through them.',
       bullets: [
         'Bread knives',
         'Tomato knives',
@@ -144,17 +147,15 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
         'Serrated chef knives',
       ],
       whyItMatters: {
-        heading: 'Why Serrated Knives Still Need Sharpening',
+        heading: 'Why Serrated Knives Still Dull',
         paragraphs: [
-          'Serrated knives have a reputation for staying sharp longer than straight-edge blades — and that is partly true. The pointed serrations act like micro-saws, concentrating cutting force on a small area, which means each serration wears down more slowly. But they do dull over time. A bread knife that once glided through a sourdough crust without pressure now crushes and tears the loaf. A tomato knife that used to pierce skin on contact now slides off. That is the sign of a serrated knife that needs professional attention.',
-          'The problem with dull serrated knives is that most people notice too late. Because they still technically cut, the gradual loss of performance is easy to overlook — until the knife is so far gone that it damages whatever you are cutting rather than slicing through it cleanly.',
+          'Serrations dull slowly, so the decline is easy to miss. By the time a bread knife is crushing the loaf instead of slicing it, or a tomato knife is sliding off the skin, the edge has already degraded significantly. They still technically cut — just not cleanly.',
         ],
       },
       ourProcess: {
-        heading: 'How We Sharpen Serrated Knives',
+        heading: 'What Makes Serrated Knives Different',
         paragraphs: [
-          'Sharpening serrated knives cannot be done on a flat whetstone the way straight-edge knives are sharpened. Each individual serration must be sharpened separately using a tapered diamond rod that matches the radius of the gullet. We work through every serration along the bevelled side of the blade, restoring the original angle and removing any flat spots or micro-chips. Once the serrations are done, we lightly hone the flat back of the blade to remove the burr raised during sharpening.',
-          'The goal is to restore the original factory geometry — not remove material aggressively or change the serration shape. Done correctly, a sharpened serrated knife performs like new and lasts many more years without needing replacement.',
+          'A flat whetstone cannot reach inside the serrations. Each gullet must be sharpened individually with a tapered rod matched to its radius — restoring the original bevel angle without altering the serration shape or spacing.',
         ],
       },
       faqs: [
@@ -182,6 +183,11 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
           question: 'Can I sharpen my serrated knife myself at home?',
           answer:
             'Technically yes, with a tapered ceramic or diamond rod. But it is time-consuming, easy to do unevenly, and mistakes can permanently alter the serration geometry. Most people find it not worth the effort compared to a professional service — especially for quality knives.',
+        },
+        {
+          question: 'What happens if a serrated knife goes too long without sharpening?',
+          answer:
+            'The serrations develop flat spots and micro-chips that worsen with use. At that point the knife does not just cut poorly — it actively damages food, crushing bread instead of slicing it and tearing tomato skin instead of piercing it cleanly. The longer it is left, the more material needs to be removed to restore the edge, which shortens the blade\'s overall lifespan.',
         },
       ],
     },
