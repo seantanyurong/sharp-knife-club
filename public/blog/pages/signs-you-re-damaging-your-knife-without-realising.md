@@ -1,7 +1,7 @@
 ---
 title: "Signs You’re Damaging Your Knife Without Realising"
 publishedAt: "2025-07-11"
-slug: 'signs-you-re-damanging-your-knife-without-realising'
+slug: 'signs-you-re-damaging-your-knife-without-realising'
 ---
 
 Your kitchen knife is one of the most important tools in your home kitchen, but you might be hurting it without even knowing. Many everyday habits – from the way we cut and clean to how we store our knives – can lead to dull blades, chips, rust, or other damage over time. If your trusty chef’s knife isn’t cutting as well as it used to or has mysterious nicks on the edge, your routine might be to blame. The good news is that by recognizing these habits and making a few simple changes, you can keep your knives sharper, safer, and lasting longer. Let’s explore some common ways you might be damaging your knife without realising it, how each habit harms the blade, and what to do instead to keep your knives in tip-top shape.

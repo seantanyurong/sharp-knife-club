@@ -16,9 +16,9 @@ import PostHogReady from '@/components/ui/posthogloadcheck';
 const openSans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Professional Knife Sharpening - Free Pickup Islandwide',
+  title: 'Knife Sharpening Singapore - Free Pickup Islandwide',
   description:
-    'We offer professional knife sharpening services in Singapore for kitchen knives, chef knives, scissors, serrated blades, and more. Free pickup and delivery islandwide.',
+    'Free pickup & delivery islandwide. Professional knife sharpening for kitchen knives, chef knives, scissors & serrated blades. Book online today.',
 };
 
 export default function RootLayout({

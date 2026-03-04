@@ -91,6 +91,8 @@ In general, these **specialty materials** are more relevant to professional chef
 
 **In conclusion**, most Singaporean home cooks will be best served by sticking to the basics: **stainless steel** for an all-around, worry-free experience; **carbon steel** if you’re keen on peak performance and are willing to pamper your knife; or **ceramic** as a light-duty helper for specific tasks with zero rust concerns. Each material has its pros and cons, but knowing how they align with your maintenance preferences and cooking style is the key. With this understanding, you can choose a kitchen knife that not only feels good in your hand but also fits *your* lifestyle – making meal prep easier, safer, and more enjoyable for years to come.
 
+**Not sure your knives are getting the right treatment?** Whether you have stainless or carbon steel, our [professional knife sharpening service in Singapore](/) handles all knife types with precision — free pickup and delivery islandwide.
+
 Still curious? Check out our [Ultimate Guide to Knife Sharpening](/blog/the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know).
 
 P.s. If you’re in Singapore and need professional sharpening, feel free to [visit our knife sharpening service](/)! We offer precision sharpening for all types of knives, ensuring your blades stay razor-sharp.
