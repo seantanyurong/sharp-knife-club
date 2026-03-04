@@ -54,6 +54,8 @@ In many cases, it’s not an all-or-nothing choice – you might sharpen a tool 
 
 **In conclusion**, most common cutting tools in the kitchen *can* be sharpened, though each in its own way. Scissors, shears, razors, peelers, and mandoline blades all have their quirks, but with the right technique or help, you can keep them in top shape. Always weigh the effort of sharpening versus the cost of replacement, and remember that safety comes first – a sharp tool used properly is safer than a dull one used with force. Whether you choose to sharpen at home or use a professional knife sharpening service, maintaining your kitchen tools’ edges will save you money, improve your results, and make your time in the kitchen (or workshop) much more enjoyable. Happy sharpening!
 
+**Want a professional to handle it?** Our [professional knife sharpening service](/) covers kitchen knives, scissors, shears, and more — free pickup and delivery across Singapore.
+
 Still curious? Check out our [Ultimate Guide to Knife Sharpening](/blog/the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know).
 
 P.s. If you’re in Singapore and need professional sharpening, feel free to [visit our knife sharpening service](/)! We offer precision sharpening for all types of knives, ensuring your blades stay razor-sharp.
