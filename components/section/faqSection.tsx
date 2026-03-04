@@ -250,8 +250,8 @@ function FAQSchema({ faqs }: { faqs: FAQ[] }) {
   );
 }
 
-export default function FaqSection({ homepage = false }: { homepage?: boolean }) {
-  const faqs = homepage ? ALL_FAQS.slice(0, 5) : ALL_FAQS;
+export default function FaqSection({ homepage = false, faqs: customFaqs }: { homepage?: boolean; faqs?: FAQ[] }) {
+  const faqs = customFaqs ?? (homepage ? ALL_FAQS.slice(0, 5) : ALL_FAQS);
 
   return (
     <section className="bg-muted py-16 px-6">
