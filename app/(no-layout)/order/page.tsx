@@ -1,17 +1,29 @@
 'use client';
 
 import { toast } from "sonner"
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@/public/logo.png';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
-import NextPickupDateClient from "@/components/NextPickupDateClient";
+import { getOrderConstants } from '@/lib/api';
+import type { OrderGroupDetails } from '@/app/actions/notion';
 
 export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
+  const [bookingDates, setBookingDates] = useState<OrderGroupDetails[]>([]);
+  const [selectedOrderGroup, setSelectedOrderGroup] = useState<number | null>(null);
+
+  useEffect(() => {
+    getOrderConstants().then((constants) => {
+      setBookingDates(constants.bookingOrderGroupArray);
+      if (constants.bookingOrderGroupArray.length > 0) {
+        setSelectedOrderGroup(constants.bookingOrderGroupArray[0].orderGroupNumber);
+      }
+    }).catch(console.error);
+  }, []);
 
   const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
     return getKnifePriceFromKnivesQuantity(knivesQuantity) * knivesQuantity;
@@ -29,8 +41,8 @@ export default function Order() {
   };
 
   const checkoutHref = useMemo(
-    () => `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}`,
-    [numberOfKnives, numberOfRepairs],
+    () => `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}&orderGroup=${selectedOrderGroup ?? ''}`,
+    [numberOfKnives, numberOfRepairs, selectedOrderGroup],
   );
 
   return (
@@ -203,39 +215,26 @@ export default function Order() {
             Select Pickup Date
           </h2>
           <p className="italic text-primary-foreground text-xs">
-            Your blades will be sharpened and returned to you within 24 hours.
+            Your blades will be sharpened and returned to you the next day.
           </p>
           <div className="flex items-center gap-1 mt-2">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="w-full hidden md:block"
-            >
-              <NextPickupDateClient />
-            </Button>
-            <Button
-              size="lg"
-              variant="muted"
-              disabled
-              className="w-full cursor-not-allowed hidden md:block"
-            >
-              No next date
-            </Button>
-            <Button
-              size="sm"
-              variant="secondary"
-              className="w-full block md:hidden"
-            >
-              <NextPickupDateClient />
-            </Button>
-            <Button
-              size="sm"
-              variant="muted"
-              disabled
-              className="w-full cursor-not-allowed block md:hidden"
-            >
-              No next date
-            </Button>
+            {bookingDates.length === 0 ? (
+              <Button size="lg" variant="muted" disabled className="w-full">
+                Loading...
+              </Button>
+            ) : (
+              bookingDates.map((date) => (
+                <Button
+                  key={date.orderGroupNumber}
+                  size="lg"
+                  variant={selectedOrderGroup === date.orderGroupNumber ? 'secondary' : 'outline'}
+                  className="w-full"
+                  onClick={() => setSelectedOrderGroup(date.orderGroupNumber)}
+                >
+                  {date.pickupDate}
+                </Button>
+              ))
+            )}
           </div>
         </div>
 
