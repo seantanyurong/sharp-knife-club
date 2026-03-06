@@ -13,6 +13,8 @@ export type OrderGroupDetails = {
   deliveryDate: string;
   timing: string;
   currentOrder: number;
+  pickupDateIso: string;
+  deliveryDateIso: string;
 };
 
 export type OrderConstants = {

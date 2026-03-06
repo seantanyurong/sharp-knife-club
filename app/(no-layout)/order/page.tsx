@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 import { getOrderConstants } from '@/lib/api';
 import type { OrderGroupDetails } from '@/app/actions/notion';
+import { formatForDisplay } from '@/lib/utils';
 
 export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
@@ -217,7 +218,7 @@ export default function Order() {
           <p className="italic text-primary-foreground text-xs">
             Your blades will be sharpened and returned to you the next day.
           </p>
-          <div className="flex items-center gap-1 mt-2">
+          <div className="flex flex-col md:flex-row items-center gap-1 mt-2">
             {bookingDates.length === 0 ? (
               <Button size="lg" variant="muted" disabled className="w-full">
                 Loading...
@@ -231,7 +232,7 @@ export default function Order() {
                   className="w-full"
                   onClick={() => setSelectedOrderGroup(date.orderGroupNumber)}
                 >
-                  {date.pickupDate}
+                  {formatForDisplay(date.pickupDateIso)}
                 </Button>
               ))
             )}
