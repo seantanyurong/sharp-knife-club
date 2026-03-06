@@ -60,7 +60,7 @@ function generateLineItems(knives, repairs, urgent) {
   return line_items;
 }
 
-export async function fetchClientSecret(knives, repairs, urgent, custom) {
+export async function fetchClientSecret(knives, repairs, urgent, custom, orderGroup) {
   const origin = (await headers()).get('origin');
 
   const line_items = generateLineItems(knives, repairs, urgent);
@@ -90,6 +90,7 @@ export async function fetchClientSecret(knives, repairs, urgent, custom) {
       knives: knives,
       repairs: repairs,
       custom: custom,
+      orderGroup: orderGroup,
     },
     mode: 'payment',
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
