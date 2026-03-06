@@ -1,7 +1,6 @@
 'use client';
 
 import { fetchOrderConstants } from "@/app/actions/notion";
-import { getNextPickupDate } from "@/constants/dates";
 import { useEffect, useState } from "react";
 
 function formatForDisplay(isoDate: string) {
@@ -19,7 +18,7 @@ function formatForDisplay(isoDate: string) {
 
 export default function NextPickupDateClient({ pickupDate }: { pickupDate?: string }) {
   const [displayDate, setDisplayDate] = useState(() =>
-    pickupDate ? formatForDisplay(pickupDate) : getNextPickupDate()
+    pickupDate ? formatForDisplay(pickupDate) : 'Loading...'
   );
 
   useEffect(() => {
