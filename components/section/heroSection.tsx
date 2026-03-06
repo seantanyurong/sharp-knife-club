@@ -54,7 +54,7 @@ export default async function HeroSection() {
                 </svg>
                 BOOK KNIFE PICKUP
               </div>
-              <p className='text-sm text-secondary-foreground'>Next Collection: <Suspense fallback={<span>This Saturday</span>}><NextPickupDate /></Suspense></p>
+              <p className='text-sm text-secondary-foreground'>Next Collection: <Suspense fallback={<span>Saturday</span>}><NextPickupDate /></Suspense></p>
             </Button>
           </WhatsAppLink>
           <GoogleReviewButton />
