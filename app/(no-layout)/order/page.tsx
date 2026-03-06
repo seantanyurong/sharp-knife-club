@@ -215,7 +215,7 @@ export default function Order() {
             Select Pickup Date
           </h2>
           <p className="italic text-primary-foreground text-xs">
-            Your blades will be sharpened and returned to you within 24 hours.
+            Your blades will be sharpened and returned to you the next day.
           </p>
           <div className="flex items-center gap-1 mt-2">
             {bookingDates.length === 0 ? (
