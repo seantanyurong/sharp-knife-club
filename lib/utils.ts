@@ -6,6 +6,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function formatForDisplay(isoDate: string) {
+  if (!isoDate) return '';
+  const [y, m, d] = isoDate.split('-').map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'Asia/Singapore',
+  });
+}
+
 export function getTextFromNotionProperty(property: PageObjectResponse['properties']['string']) {
   const propertyType = property.type;
 

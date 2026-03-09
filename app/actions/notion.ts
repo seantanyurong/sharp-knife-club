@@ -3,6 +3,9 @@
 import { unstable_noStore as noStore } from 'next/cache.js';
 import { notion } from '@/lib/notionClient';
 import type { QueryDataSourceParameters, PageObjectResponse } from '@notionhq/client'
+import { getOrderConstants } from '@/lib/api';
+
+const ORDERS_DATASOURCE_ID = '9c015ed7-2d42-4689-b036-794ac2ba6295';
 
 export type OrderGroupDetails = {
   orderGroupNumber: number;
@@ -10,106 +13,15 @@ export type OrderGroupDetails = {
   deliveryDate: string;
   timing: string;
   currentOrder: number;
+  pickupDateIso: string;
+  deliveryDateIso: string;
 };
 
 export type OrderConstants = {
   bookingOrderGroup: OrderGroupDetails;
+  bookingOrderGroupArray: OrderGroupDetails[];
   serviceOrderGroup: OrderGroupDetails;
 };
-
-const ORDER_STATUS_DATASOURCE_ID = '2edb653f-dfd3-8033-83ee-000b9e670c37';
-const ORDERS_DATASOURCE_ID = '9c015ed7-2d42-4689-b036-794ac2ba6295';
-
-
-async function getOrderStatusRow(name: 'Booking' | 'Service'): Promise<{ orderGroupId: string; orderGroupNumber: number }> {
-  const response: any = await notion.dataSources.query({
-    data_source_id: ORDER_STATUS_DATASOURCE_ID,
-    filter: {
-      property: 'Name',
-      title: { equals: name },
-    },
-  });
-
-  const row = response?.results?.[0];
-  if (!row) throw new Error(`No "${name}" row found in Order Status`);
-
-  const relation = row.properties['Order Group']?.relation?.[0];
-  if (!relation?.id) throw new Error(`No Order Group relation found for "${name}"`);
-
-  // Get the order group number from the relation's title
-  const orderGroupPage: any = await notion.pages.retrieve({ page_id: relation.id });
-  const orderGroupNumber = parseInt(orderGroupPage.properties['Name']?.title?.[0]?.plain_text, 10);
-
-  if (isNaN(orderGroupNumber)) throw new Error(`Invalid order group number for "${name}"`);
-
-  return { orderGroupId: relation.id, orderGroupNumber };
-}
-
-async function getOrderGroupDetails(orderGroupId: string): Promise<{ pickupDate: string; deliveryDate: string; timing: string }> {
-  const page: any = await notion.pages.retrieve({ page_id: orderGroupId });
-
-  const pickupDate = page.properties['Pickup Date']?.date?.start;
-  const deliveryDate = page.properties['Delivery Date']?.date?.start;
-  const timing = page.properties['Timing']?.rich_text?.[0]?.plain_text;
-
-  if (!pickupDate || !deliveryDate || typeof timing !== 'string') {
-    throw new Error('Order Group missing required fields');
-  }
-
-  return { pickupDate, deliveryDate, timing };
-}
-
-async function countOrdersForGroup(orderGroup: number): Promise<number> {
-  const response: any = await notion.dataSources.query({
-    data_source_id: ORDERS_DATASOURCE_ID,
-    filter: {
-      property: 'ID',
-      rich_text: { contains: `${orderGroup}O` },
-    },
-  });
-
-  return response?.results?.length ?? 0;
-}
-
-async function getOrderConstants(): Promise<OrderConstants> {
-  try {
-    // Fetch Booking and Service status in parallel
-    const [bookingStatus, serviceStatus] = await Promise.all([
-      getOrderStatusRow('Booking'),
-      getOrderStatusRow('Service'),
-    ]);
-
-    // Get order group details and count orders for both groups in parallel
-    const [bookingDetails, serviceDetails, bookingOrderCount, serviceOrderCount] = await Promise.all([
-      getOrderGroupDetails(bookingStatus.orderGroupId),
-      getOrderGroupDetails(serviceStatus.orderGroupId),
-      countOrdersForGroup(bookingStatus.orderGroupNumber),
-      countOrdersForGroup(serviceStatus.orderGroupNumber),
-    ]);
-
-    const constants: OrderConstants = {
-      bookingOrderGroup: {
-        orderGroupNumber: bookingStatus.orderGroupNumber,
-        pickupDate: bookingDetails.pickupDate,
-        deliveryDate: bookingDetails.deliveryDate,
-        timing: bookingDetails.timing,
-        currentOrder: bookingOrderCount,
-      },
-      serviceOrderGroup: {
-        orderGroupNumber: serviceStatus.orderGroupNumber,
-        pickupDate: serviceDetails.pickupDate,
-        deliveryDate: serviceDetails.deliveryDate,
-        timing: serviceDetails.timing,
-        currentOrder: serviceOrderCount,
-      },
-    };
-
-    return constants;
-  } catch (error: any) {
-    console.error('An error occurred:', error?.message || error);
-    throw error;
-  }
-}
 
 export async function fetchOrderConstants(): Promise<OrderConstants> {
   noStore();
