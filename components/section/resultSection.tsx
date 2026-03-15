@@ -20,7 +20,7 @@ export default function ResultSection() {
     <div className="w-full bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 pt-12 pb-4">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-        Hundreds of knives sharpened…
+        Thousands of knives sharpened…
       </h2>
       <Carousel opts={{ loop: true }} plugins={[autoplayPlugin.current]}>
         <CarouselContent>

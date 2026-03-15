@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-function PricingSection() {
+function PricingSection({ note }: { note?: string } = {}) {
 
   return (
     <div className='bg-primary px-6 relative'>
@@ -32,7 +32,7 @@ function PricingSection() {
               </div>
             </a>
           </div>
-          <p className='mt-4 italic text-primary-foreground'>Min. 3 blades (chef knives, serrated knives, scissors, etc.). Free pickup and delivery. Free repair of small chips. $10 for larger repairs.</p>
+          <p className='mt-4 italic text-primary-foreground'>{note ?? 'Min. 3 blades (chef knives, serrated knives, scissors, etc.). Free pickup and delivery. Free repair of small chips. $10 for larger repairs.'}</p>
         </div>
       </div>
     </div>

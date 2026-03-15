@@ -8,7 +8,7 @@ import Image from "next/image"
 import CNA from "../../public/cna.webp"
 import { Suspense } from "react"
 
-export default async function HeroSection() {
+export default async function HeroSection({ headline = 'KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY' }: { headline?: string }) {
   return (
     <div className='relative pt-20 pb-16 lg:pt-40 lg:pb-32 overflow-hidden'>
       <Image
@@ -23,7 +23,7 @@ export default async function HeroSection() {
       />
       <div className='relative max-w-6xl mx-auto grid grid-cols-1 lg:gap-8 px-6 text-center justify-center z-10'>
         <h1 className='text-primary-foreground text-3xl md:text-6xl font-black'>
-          <Balancer>KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY</Balancer>
+          <Balancer>{headline}</Balancer>
         </h1>
         <div className='mt-8 flex gap-4 flex-col lg:flex-row justify-center'>
           <WhatsAppLink origin='main'>

@@ -21,21 +21,25 @@ module.exports = {
 };
 
 async function fetchDynamicRoutes() {
-  const articlesDir = path.join(process.cwd(), 'public', 'blog', 'pages');
   const routes = [];
 
+  const blogDir = path.join(process.cwd(), 'public', 'blog', 'pages');
   try {
-    const files = fs.readdirSync(articlesDir);
-
+    const files = fs.readdirSync(blogDir);
     files.forEach(file => {
       if (path.extname(file) === '.md') {
-        const slug = path.basename(file, '.md');
-        routes.push(`/blog/${slug}`);
+        routes.push(`/blog/${path.basename(file, '.md')}`);
       }
     });
   } catch (error) {
-    console.error('Error reading markdown files:', error);
+    console.error('Error reading blog markdown files:', error);
   }
+
+  const sharpenSlugs = ['scissors', 'serrated', 'german-knives', 'japanese-knives'];
+  sharpenSlugs.forEach(slug => routes.push(`/sharpen/${slug}`));
+
+  const addonSlugs = ['derusting', 'chip-repairs'];
+  addonSlugs.forEach(slug => routes.push(`/add-on/${slug}`));
 
   return routes;
 }
