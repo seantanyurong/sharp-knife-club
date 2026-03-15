@@ -35,8 +35,11 @@ async function fetchDynamicRoutes() {
     console.error('Error reading blog markdown files:', error);
   }
 
-  const sharpenSlugs = ['scissors', 'serrated'];
+  const sharpenSlugs = ['scissors', 'serrated', 'german-knives', 'japanese-knives'];
   sharpenSlugs.forEach(slug => routes.push(`/sharpen/${slug}`));
+
+  const addonSlugs = ['derusting', 'chip-repairs'];
+  addonSlugs.forEach(slug => routes.push(`/add-on/${slug}`));
 
   return routes;
 }
