@@ -222,15 +222,15 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
       ourProcess: {
         heading: 'How We Sharpen German Knives',
         paragraphs: [
-          'German knives are sharpened at 15°–20° per side to match the factory bevel. We use a professional belt sharpener to remove the rolled or dull edge, re-establish the bevel, and refine the edge to a polished finish. The convex geometry is maintained so the knife retains its characteristic feel and cutting performance.',
-          'If the knife has a full bolster that has crept forward over years of use, we can reduce it so the blade makes full contact with the cutting board again — something most home sharpening tools cannot address.',
+          'German knives are sharpened at 15°–20° per side to match the standard factory bevel. We use a professional belt sharpener to remove the rolled or dull edge, re-establish the bevel, and refine the edge to a polished finish.',
+          'If your knife has any special requirements — such as a heavily built-up bolster or a non-standard edge angle — feel free to reach out before booking so we can advise.',
         ],
       },
       faqs: [
         {
           question: 'What angle do German knives use?',
           answer:
-            'Most German knives are factory-ground at 15°–20° per side. Wüsthof uses 14° on their PEtec-sharpened blades; Zwilling typically uses 15°. We match the factory angle unless you request a specific preference.',
+            'Most German knives are factory-ground at 15°–20° per side. Wüsthof uses 14° on their PEtec-sharpened blades; Zwilling typically uses 15°. German knives generally use a more obtuse angle than Japanese knives, which is part of what makes them more durable and chip-resistant.',
         },
         {
           question: 'My Wüsthof / Zwilling feels dull — is it a sharpening or honing issue?',
@@ -238,9 +238,9 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
             'Both, often. A honing rod realigns the edge between sharpenings but does not remove material. If regular honing is no longer restoring the edge, the knife needs sharpening. A good test: if the edge visibly reflects light along the cutting edge (a "white line"), the edge has rolled and sharpening is needed.',
         },
         {
-          question: 'Can you sharpen knives with a full bolster?',
+          question: 'What is a bolster and does it affect sharpening?',
           answer:
-            'Yes. If the bolster has built up over years of sharpening and prevents the heel from contacting the board, we can reduce it as part of the service. Let us know when you book and we will assess the knife.',
+            'The bolster is the thick band of metal between the blade and the handle on many German knives. On some knives, the bolster extends to the edge and can prevent the heel of the blade from making full contact with the cutting board over time. If you have concerns about your bolster, reach out to us before booking.',
         },
         {
           question: 'How often should a German knife be sharpened?',
@@ -248,14 +248,14 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
             'For a home cook, once every 6–12 months depending on use. German knives are durable and hold an edge well, but regular honing between sharpenings will extend the interval. If you cook daily, lean toward 6 months.',
         },
         {
-          question: 'Will sharpening remove the bolster finish or damage the handle?',
+          question: 'Is there a difference between German and Japanese knife steel?',
           answer:
-            'Sharpening focuses on the blade edge and does not touch the bolster finish or handle. We take care not to damage the aesthetic of the knife during the process.',
+            'Yes. German knives typically use softer stainless steel (around HRC 56–58), which makes them more flexible and chip-resistant but means the edge deforms more easily under use. Japanese knives use harder steel (HRC 60+), which holds a sharper edge for longer but is more brittle. Each type dulls differently and benefits from a different sharpening approach.',
         },
         {
-          question: 'Is there a difference between sharpening Wüsthof vs Zwilling?',
+          question: 'Do you have any special requirements for my knife?',
           answer:
-            'Both are German-style knives sharpened at similar angles, but Wüsthof\'s PEtec blades come factory-ground at 14° and Zwilling typically at 15°. The steel composition is also slightly different. We adjust our approach per knife to match the factory spec as closely as possible.',
+            'If your knife has unusual geometry, a heavily built-up bolster, or any other special requirements, contact us before booking and we will advise on the best approach.',
         },
       ],
     },
@@ -290,25 +290,25 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
       ourProcess: {
         heading: 'How We Sharpen Japanese Knives',
         paragraphs: [
-          'Japanese knives are sharpened using our professional belt sharpener at 10°–15° per side (or single-bevel for traditional Japanese knives like yanagiba and deba). We work through a grit progression — from repair or thinning if needed, through medium grits to establish the bevel, and finishing on a fine belt to produce the razor edge these knives are known for.',
-          'Single-bevel knives (chisel-ground on one side only) require a different technique than double-bevel knives and are assessed individually. We check the ura (hollow back) and restore the edge geometry as closely as possible to the original.',
+          'Japanese knives are sharpened using our professional belt sharpener at 10°–15° per side, working through a grit progression to establish the bevel and refine the edge to the fine finish these knives are known for.',
+          'If your knife has any special requirements — such as a single-bevel grind, unusual geometry, or damage — contact us before booking so we can advise on what is possible.',
         ],
       },
       faqs: [
         {
           question: 'What angle do Japanese knives use?',
           answer:
-            'Most double-bevel Japanese knives are ground at 10°–15° per side. Global uses 15°, Shun uses 16°, MAC uses 15°. Traditional single-bevel knives (yanagiba, deba, usuba) are 0° on one side and the full bevel angle on the other. We match the factory geometry for each brand.',
+            'Most double-bevel Japanese knives are ground at 10°–15° per side, which is more acute than the 15°–20° typical of German knives. This is what gives Japanese knives their exceptional sharpness — but it also makes the edge more brittle and prone to chipping if used on hard surfaces or bones.',
         },
         {
-          question: 'Can you sharpen single-bevel Japanese knives?',
+          question: 'What is a single-bevel Japanese knife?',
           answer:
-            'Yes. Single-bevel knives like yanagiba, deba, and usuba require a specialist approach — sharpening only the bevel side and lightly flattening the ura (back) to remove the burr. This is different from double-bevel sharpening and is something we do regularly.',
+            'Traditional Japanese knives like yanagiba, deba, and usuba are ground on one side only (single-bevel), with a flat or hollow back. This produces an extremely fine, one-directional edge suited to specific cutting techniques. Single-bevel knives are quite different from the double-bevel knives most home cooks use. If you have a single-bevel knife, reach out before booking so we can advise.',
         },
         {
-          question: 'My Global / Shun knife chipped — can it be repaired?',
+          question: 'My Japanese knife chipped — what should I do?',
           answer:
-            'In most cases yes, depending on the size of the chip. We can re-profile the edge to remove the damage, though this removes some material and may slightly shorten the blade over time. Large chips or structural damage may not be fully repairable without significant regrinding.',
+            'Chipping is common with Japanese knives due to their harder, more brittle steel. Small chips can sometimes be addressed during sharpening, but significant chip damage is a separate repair job. Check out our chip repair add-on service, or contact us with details before booking.',
         },
         {
           question: 'Can I use a pull-through sharpener on my Japanese knife?',
@@ -321,9 +321,9 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
             'Japanese knives hold a very fine edge, but that edge is more delicate. For a home cook, sharpening every 4–6 months is typical. If you use it daily or notice reduced performance, sharpen sooner. Regular stropping or light ceramic honing will extend the interval.',
         },
         {
-          question: 'Is there a difference between sharpening Global vs Shun vs MAC?',
+          question: 'Do you have any special requirements for my knife?',
           answer:
-            'Yes. Each brand uses different steel hardness, blade geometry, and factory angles. Global (Cromova 18 steel) is softer than Shun (VG-MAX) or MAC (proprietary high-carbon steel) and is more forgiving. Shun and MAC knives are harder and hold an edge longer but require more care during sharpening to avoid micro-chipping. We adjust our technique per brand.',
+            'If your knife has a single-bevel grind, unusual geometry, significant chipping, or any other special requirements, contact us before booking and we will advise on the best approach.',
         },
       ],
     },

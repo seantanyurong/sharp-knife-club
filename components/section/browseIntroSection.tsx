@@ -24,11 +24,15 @@ export default function BrowseIntroSection({ heading, body, bullets, whyItMatter
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <div className='bg-muted rounded-xl p-6 border-l-4 border-primary'>
             <h3 className='font-black text-primary text-lg mb-3'>{whyItMatters.heading}</h3>
-            <p className='text-gray-600 text-sm leading-relaxed'>{whyItMatters.paragraphs[0]}</p>
+            {whyItMatters.paragraphs.map((p, i) => (
+              <p key={i} className='text-gray-600 text-sm leading-relaxed mb-2 last:mb-0'>{p}</p>
+            ))}
           </div>
           <div className='bg-muted rounded-xl p-6 border-l-4 border-secondary'>
             <h3 className='font-black text-primary text-lg mb-3'>{ourProcess.heading}</h3>
-            <p className='text-gray-600 text-sm leading-relaxed'>{ourProcess.paragraphs[0]}</p>
+            {ourProcess.paragraphs.map((p, i) => (
+              <p key={i} className='text-gray-600 text-sm leading-relaxed mb-2 last:mb-0'>{p}</p>
+            ))}
           </div>
         </div>
 
