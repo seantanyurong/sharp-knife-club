@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PricingSection from '@/components/section/pricingSection';
-import WhatWeSharpenSection from '@/components/section/whatWeSharpenSection';
 import LogoSection from '@/components/section/logoSection';
 import FeaturedSection from './blog/featured_section';
 import InstructionSection from '@/components/section/instructionsSection';
@@ -17,7 +16,6 @@ export default function Home() {
         <HeroSection />
         <InstructionSection />
         <PricingSection />
-        <WhatWeSharpenSection />
         <LogoSection />
         <ContactSection />
         <ResultSection />
