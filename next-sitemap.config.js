@@ -41,5 +41,19 @@ async function fetchDynamicRoutes() {
   const addonSlugs = ['derusting', 'chip-repairs'];
   addonSlugs.forEach(slug => routes.push(`/add-on/${slug}`));
 
+  routes.push('/use-cases');
+
+  const useCasesDir = path.join(process.cwd(), 'public', 'for');
+  try {
+    const files = fs.readdirSync(useCasesDir);
+    files.forEach(file => {
+      if (path.extname(file) === '.md') {
+        routes.push(`/use-cases/${path.basename(file, '.md')}`);
+      }
+    });
+  } catch (error) {
+    console.error('Error reading use-cases markdown files:', error);
+  }
+
   return routes;
 }
