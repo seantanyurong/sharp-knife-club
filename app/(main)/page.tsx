@@ -12,7 +12,7 @@ import ResultSection from '@/components/section/resultSection';
 export default function Home() {
   return (
     <main>
-      <div className='pb-8 font-medium bg-muted'>
+      <div className='font-medium bg-muted'>
         <HeroSection />
         <InstructionSection />
         <PricingSection />

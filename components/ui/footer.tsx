@@ -3,8 +3,11 @@ import Link from "next/link";
 function Footer() {
   return (
     <footer className="bg-muted">
-      <div className='max-w-2xl mx-auto pb-16 px-6'>
+      <div className='max-w-2xl mx-auto py-16 px-6'>
         <div className="flex justify-center gap-4">
+          <Link href='/use-cases'>
+            <p className='text-center text-sm mb-1 text-gray-500 italic underline font-bold'>Use Cases</p>
+          </Link>          
           <Link href='/blog'>
             <p className='text-center text-sm mb-1 text-gray-500 italic underline font-bold'>Blog</p>
           </Link>
