@@ -75,6 +75,7 @@ export async function fetchClientSecret(knives, repairs, urgent, custom, orderGr
       enabled: true,
     },
     line_items: line_items,
+    allow_promotion_codes: true, // This enables the coupon input field
     custom_fields: [
       {
         key: 'additional_instructions',
