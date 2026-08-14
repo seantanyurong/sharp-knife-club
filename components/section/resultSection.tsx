@@ -27,7 +27,7 @@ export default function ResultSection() {
           {googleReviews.filter(item => item.image).map((item, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-4 cursor-pointer">
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+                <div className="relative aspect-[4/3] rounded-md overflow-hidden shadow-lg">
                   <Image
                     src={`/google-reviews/thumbnail/${item.src}.webp`}
                     alt="Sharpened Knives"

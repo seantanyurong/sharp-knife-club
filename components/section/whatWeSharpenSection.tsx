@@ -13,7 +13,7 @@ export default function WhatWeSharpenSection() {
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
           {sharpenPages.map(([slug, page]) => (
             <Link key={slug} href={`/sharpen/${slug}`}>
-              <div className='bg-white rounded-lg p-5 border border-gray-200 hover:border-primary hover:shadow-md transition-all h-full'>
+              <div className='bg-white rounded-md p-5 border border-gray-200 hover:border-primary hover:shadow-md transition-all h-full'>
                 <p className='font-black text-primary text-lg'>{page.tile.label}</p>
                 <p className='text-sm text-gray-500 mt-1'>{page.tile.tagline}</p>
               </div>
@@ -26,7 +26,7 @@ export default function WhatWeSharpenSection() {
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
           {addonPages.map(([slug, page]) => (
             <Link key={slug} href={`/add-on/${slug}`}>
-              <div className='bg-white rounded-lg p-5 border border-gray-200 hover:border-primary hover:shadow-md transition-all h-full'>
+              <div className='bg-white rounded-md p-5 border border-gray-200 hover:border-primary hover:shadow-md transition-all h-full'>
                 <p className='font-black text-primary text-lg'>{page.tile.label}</p>
                 <p className='text-sm text-gray-500 mt-1'>{page.tile.tagline}</p>
               </div>

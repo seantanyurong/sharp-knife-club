@@ -13,7 +13,7 @@ function FeaturedSection({ homepage = false }: { homepage?: boolean }) {
             alt="Featured Article"
             width={600}
             height={400}
-            className="rounded-lg shadow-lg"
+            className="rounded-md shadow-lg"
           />
         </div>
         {homepage
@@ -31,7 +31,7 @@ function FeaturedSection({ homepage = false }: { homepage?: boolean }) {
           <div className="md:w-1/2 text-center md:text-left">
             <h2 className="text-2xl text-primary-foreground font-bold">The Ultimate Guide to Knife Sharpening</h2>
             <p className="mt-4 text-primary-foreground">Discover why professional sharpening extends your knife&apos;s lifespan and enhances your cooking experience.</p>
-            <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-lg shadow-md hover:bg-yellow-600 transition">Read More</a>
+            <a href={`/blog/${featuredArticleSlug}`} className="mt-6 inline-block bg-[#faaf2e] text-md font-black text-white py-2 px-4 rounded-md shadow-md hover:bg-yellow-600 transition">Read More</a>
           </div>
         }
 

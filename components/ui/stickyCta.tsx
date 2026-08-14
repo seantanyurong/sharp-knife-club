@@ -30,7 +30,7 @@ function StickyCta() {
       )}
       aria-hidden={!visible}
     >
-      <div className='mx-auto max-w-5xl rounded-t-xl border border-white/10 bg-primary px-4 pt-3 shadow-2xl pb-[calc(env(safe-area-inset-bottom)+0.75rem)] md:px-6 md:pt-4 md:pb-4'>
+      <div className='mx-auto max-w-5xl rounded-t-md border border-white/10 bg-primary px-4 pt-3 shadow-2xl pb-[calc(env(safe-area-inset-bottom)+0.75rem)] md:px-6 md:pt-4 md:pb-4'>
         <div className='flex flex-col items-center gap-3 md:flex-row md:justify-between md:gap-6'>
           <div className='text-center md:text-left'>
             <p className='text-sm font-black text-primary-foreground md:text-base'>

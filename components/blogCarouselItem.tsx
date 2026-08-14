@@ -26,7 +26,7 @@ export default async function BlogCarouselItem() {
         return (
           <CarouselItem key={slug} className="w-full sm:w-1/2 lg:w-1/3">
             <Link href={`/blog/${slug}`}>
-              <div className="p-4 bg-white rounded-lg shadow-md">
+              <div className="p-4 bg-white rounded-md shadow-md">
                 <Image
                   src={`/blog/thumbnail/${slug}.webp`}
                   alt={title}

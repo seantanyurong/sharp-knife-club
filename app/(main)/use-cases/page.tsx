@@ -27,7 +27,7 @@ export default function UseCasesPage() {
       <div className='flex flex-col gap-4'>
         {pages.map(({ slug, frontMatter }) => (
           <Link key={slug} href={`/use-cases/${slug}`}>
-            <div className='border rounded-lg p-6 hover:border-gray-400 transition-colors'>
+            <div className='border rounded-md p-6 hover:border-gray-400 transition-colors'>
               <div className='flex items-center gap-3 mb-2'>
                 <span className='text-2xl'>{USE_CASE_ICONS[slug] ?? '🔪'}</span>
                 <h2 className='text-xl font-semibold'>{frontMatter.title}</h2>

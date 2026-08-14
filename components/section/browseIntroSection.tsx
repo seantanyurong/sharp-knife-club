@@ -22,13 +22,13 @@ export default function BrowseIntroSection({ heading, body, bullets, whyItMatter
 
         {/* Why + Process — two column cards */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          <div className='bg-muted rounded-xl p-6 border-l-4 border-primary'>
+          <div className='bg-muted rounded-md p-6 border-l-4 border-primary'>
             <h3 className='font-black text-primary text-lg mb-3'>{whyItMatters.heading}</h3>
             {whyItMatters.paragraphs.map((p, i) => (
               <p key={i} className='text-gray-600 text-sm leading-relaxed mb-2 last:mb-0'>{p}</p>
             ))}
           </div>
-          <div className='bg-muted rounded-xl p-6 border-l-4 border-secondary'>
+          <div className='bg-muted rounded-md p-6 border-l-4 border-secondary'>
             <h3 className='font-black text-primary text-lg mb-3'>{ourProcess.heading}</h3>
             {ourProcess.paragraphs.map((p, i) => (
               <p key={i} className='text-gray-600 text-sm leading-relaxed mb-2 last:mb-0'>{p}</p>

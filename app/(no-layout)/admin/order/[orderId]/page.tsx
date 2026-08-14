@@ -4,12 +4,22 @@ import { formatOrder } from "@/lib/utils";
 import type { BlockObjectResponse, PartialBlockObjectResponse } from '@notionhq/client'
 import Image from 'next/image';
 import Link from 'next/link';
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function OrderPage({
   params,
 }: {
   params: Promise<{ orderId: string }>
 }) {
+  // proxy.ts only checks that a session cookie exists, so validate it here.
+  const session = await auth.api.getSession({ headers: await headers() });
+
+  if (!session?.user) {
+    redirect('/auth/sign-in');
+  }
+
   const { orderId } = await params;
 
   const pageBody = await getPageBody(orderId);
