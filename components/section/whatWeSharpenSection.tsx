@@ -7,7 +7,7 @@ export default function WhatWeSharpenSection() {
 
   return (
     <div className='bg-muted py-12 px-6'>
-      <div className='max-w-6xl mx-auto'>
+      <div className='max-w-7xl mx-auto'>
         <h2 className='text-2xl md:text-3xl text-primary font-black text-center mb-2'>WHAT WE SHARPEN</h2>
         <p className='text-center text-gray-600 mb-8'>We can sharpen most blades, including these.</p>
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>

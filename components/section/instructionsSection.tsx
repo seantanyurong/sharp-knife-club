@@ -35,13 +35,13 @@ const StepTile = ({
   const bgImage = `url(${image})`;
 
   return (
-    <div className='col-span-1'>
-      <div style={{ backgroundImage: bgImage }} className="p-4 h-60 rounded-t-md bg-cover flex flex-col justify-end">
-        <p className="text-secondary font-black">STEP {step}</p>
-        <p className='text-3xl text-secondary-foreground font-black'>{title}</p>
+    <div className='col-span-1 flex flex-col h-full overflow-hidden rounded-md bg-primary'>
+      <div style={{ backgroundImage: bgImage }} className="p-6 aspect-[4/3] bg-cover bg-center flex flex-col justify-end">
+        <p className="text-secondary text-xs font-bold tracking-[0.2em]">STEP {step}</p>
+        <p className='mt-1 text-3xl lg:text-4xl text-secondary-foreground font-black'>{title}</p>
       </div>
-      <div className="bg-primary text-primary-foreground p-4 h-32 rounded-b-md">
-        <p>{description}</p>
+      <div className="bg-primary p-6 flex-1">
+        <p className='text-base font-normal leading-relaxed text-primary-foreground/70'>{description}</p>
       </div>
     </div >
   )
@@ -50,9 +50,9 @@ const StepTile = ({
 export default function InstructionSection({ stepDescriptions }: { stepDescriptions?: [string?, string?, string?] } = {}) {
   return (
     <div className='pt-16 bg-muted py-12'>
-      <div className='max-w-6xl mx-auto px-6 flex flex-col justify-center'>
-        <h1 className='text-2xl md:text-3xl text-primary font-black mb-8 text-center'>FREE PICKUP ISLANDWIDE | DELIVERED WITHIN ONE DAY</h1>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
+      <div className='max-w-7xl mx-auto px-6 flex flex-col justify-center'>
+        <h1 className='text-3xl md:text-4xl text-primary font-black mb-12 text-center'>FREE PICKUP ISLANDWIDE | DELIVERED WITHIN ONE DAY</h1>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch'>
           {
             STEPS.map((step, index) => {
               return (

@@ -18,7 +18,7 @@ export default function ResultSection() {
   )
   return (
     <div className="w-full bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 pt-12 pb-4">
+      <div className="max-w-7xl mx-auto px-4 pt-12 pb-4">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
         Thousands of knives sharpened…
       </h2>

@@ -8,7 +8,7 @@ import WhatsAppLink from '@/components/ui/whatsapp';
 function Header() {
   return (
     <div className='bg-primary text-primary-foreground py-4 md:py-6'>
-      <div className='max-w-6xl flex justify-between items-center mx-auto px-6'>
+      <div className='max-w-7xl flex justify-between items-center mx-auto px-6'>
         <Link href='/'>
           <Image src={Logo} alt='Knife Sharpening Singapore' width={250} height={180} priority />
         </Link>

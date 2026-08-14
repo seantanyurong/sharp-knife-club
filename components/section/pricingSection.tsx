@@ -6,7 +6,7 @@ function PricingSection({ note }: { note?: string } = {}) {
 
   return (
     <div className='bg-primary px-6 relative'>
-      <div className='max-w-6xl mx-auto flex flex-col-reverse lg:flex-row lg:gap-8'>
+      <div className='max-w-7xl mx-auto flex flex-col-reverse lg:flex-row lg:gap-8'>
         <div className=' flex justify-center'>
           <Image src={`/images/price-alt.png`} alt='Price' width={500} height={500} />
         </div>
