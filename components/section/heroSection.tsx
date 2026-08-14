@@ -1,4 +1,3 @@
-import Balancer from 'react-wrap-balancer';
 import WhatsAppLink from '../ui/whatsapp';
 import { Button } from '../ui/button';
 import NextPickupDate from '../NextPickupDate';
@@ -55,12 +54,12 @@ export default async function HeroSection({
           </span>
         </a>
 
-        <h1 className="mt-6 text-3xl md:text-6xl font-black tracking-tight text-primary-foreground">
-          <Balancer>{headline}</Balancer>
+        <h1 className="mt-6 text-3xl md:text-6xl font-black tracking-tight text-balance text-primary-foreground">
+          {headline}
         </h1>
 
-        <p className="mt-5 max-w-2xl text-base md:text-lg italic text-white/85">
-          <Balancer>{subheadline}</Balancer>
+        <p className="mt-5 max-w-2xl text-base md:text-lg italic text-balance text-white/85">
+          {subheadline}
         </p>
 
         <div className="mt-8 w-full lg:w-auto">
