@@ -1,5 +1,5 @@
 import { Star } from 'lucide-react';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { googleReviews } from '@/constants/google_reviews';
 import { cn } from '@/lib/utils';
 
@@ -7,6 +7,19 @@ const GOOGLE_REVIEWS_URL = 'https://g.co/kgs/aXcTBcs';
 
 // Reviews beyond this index are hidden on mobile to keep the section scannable.
 const MOBILE_VISIBLE_COUNT = 3;
+
+const TITLES = ['mr', 'mrs', 'ms', 'miss', 'dr'];
+
+// Initials for reviewers with no avatar file on disk.
+const getInitials = (name: string) => {
+  const parts = name
+    .split(' ')
+    .filter((p) => !TITLES.includes(p.toLowerCase().replace('.', '')));
+  if (parts.length === 0) return '';
+  const first = parts[0][0] ?? '';
+  const last = parts.length > 1 ? (parts[parts.length - 1][0] ?? '') : '';
+  return (first + last).toUpperCase();
+};
 
 const ReviewCard = ({
   profile,
@@ -35,6 +48,9 @@ const ReviewCard = ({
     <div className='mt-4 flex items-center gap-3'>
       <Avatar className='h-8 w-8'>
         <AvatarImage src={`/google-reviews/profile/${profile}.png`} alt='' />
+        <AvatarFallback className='bg-white/10 text-xs font-bold text-primary-foreground'>
+          {getInitials(name)}
+        </AvatarFallback>
       </Avatar>
       <div>
         <p className='text-sm font-bold text-primary-foreground'>{name}</p>
