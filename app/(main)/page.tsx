@@ -7,6 +7,7 @@ import HeroSection from '@/components/section/heroSection';
 import ContactSection from '@/components/section/contactSection';
 import SingleReviewSection from '@/components/section/singleReviewSection';
 import ReviewWallSection from '@/components/section/reviewWallSection';
+import GuaranteeSection from '@/components/section/guaranteeSection';
 import FaqSection from '@/components/section/faqSection';
 import ResultSection from '@/components/section/resultSection';
 
@@ -20,6 +21,7 @@ export default function Home() {
         <PricingSection />
         <LogoSection />
         <ReviewWallSection />
+        <GuaranteeSection />
         <ContactSection />
         <ResultSection />
         <FaqSection homepage />
