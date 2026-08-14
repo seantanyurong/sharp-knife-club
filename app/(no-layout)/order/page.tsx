@@ -1,6 +1,6 @@
 'use client';
 
-import { toast } from "sonner"
+import { toast } from 'sonner';
 import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,15 +15,21 @@ export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
   const [bookingDates, setBookingDates] = useState<OrderGroupDetails[]>([]);
-  const [selectedOrderGroup, setSelectedOrderGroup] = useState<number | null>(null);
+  const [selectedOrderGroup, setSelectedOrderGroup] = useState<number | null>(
+    null,
+  );
 
   useEffect(() => {
-    getOrderConstants().then((constants) => {
-      setBookingDates(constants.bookingOrderGroupArray);
-      if (constants.bookingOrderGroupArray.length > 0) {
-        setSelectedOrderGroup(constants.bookingOrderGroupArray[0].orderGroupNumber);
-      }
-    }).catch(console.error);
+    getOrderConstants()
+      .then((constants) => {
+        setBookingDates(constants.bookingOrderGroupArray);
+        if (constants.bookingOrderGroupArray.length > 0) {
+          setSelectedOrderGroup(
+            constants.bookingOrderGroupArray[0].orderGroupNumber,
+          );
+        }
+      })
+      .catch(console.error);
   }, []);
 
   const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
@@ -42,7 +48,8 @@ export default function Order() {
   };
 
   const checkoutHref = useMemo(
-    () => `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}&orderGroup=${selectedOrderGroup ?? ''}`,
+    () =>
+      `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}&orderGroup=${selectedOrderGroup ?? ''}`,
     [numberOfKnives, numberOfRepairs, selectedOrderGroup],
   );
 
@@ -74,7 +81,7 @@ export default function Order() {
           </div>
           <a target="_blank" href="https://g.co/kgs/aXcTBcs" rel="noreferrer">
             <span className="text-xs text-gray-500 font-medium underline">
-              (144)
+              (163)
             </span>
           </a>
         </div>
@@ -92,14 +99,12 @@ export default function Order() {
             <Button
               variant="outline"
               size="lg"
-              onClick={
-                () => {
-                  if (numberOfKnives === 3) {
-                    toast("Minimum order count of 3 knives!")
-                  }
-                  setNumberOfKnives((r) => Math.max(3, r - 1)) // clamp at 3
+              onClick={() => {
+                if (numberOfKnives === 3) {
+                  toast('Minimum order count of 3 knives!');
                 }
-              }
+                setNumberOfKnives((r) => Math.max(3, r - 1)); // clamp at 3
+              }}
               aria-label="Decrease knives"
             >
               -
@@ -122,14 +127,12 @@ export default function Order() {
             <Button
               variant="outline"
               size="sm"
-              onClick={
-                () => {
-                  if (numberOfKnives === 3) {
-                    toast("Minimum order count of 3 knives!")
-                  }
-                  setNumberOfKnives((r) => Math.max(3, r - 3)) // clamp at 3
+              onClick={() => {
+                if (numberOfKnives === 3) {
+                  toast('Minimum order count of 3 knives!');
                 }
-              }
+                setNumberOfKnives((r) => Math.max(3, r - 3)); // clamp at 3
+              }}
               aria-label="Decrease knives"
             >
               -
@@ -228,7 +231,11 @@ export default function Order() {
                 <Button
                   key={date.orderGroupNumber}
                   size="lg"
-                  variant={selectedOrderGroup === date.orderGroupNumber ? 'secondary' : 'outline'}
+                  variant={
+                    selectedOrderGroup === date.orderGroupNumber
+                      ? 'secondary'
+                      : 'outline'
+                  }
                   className="w-full"
                   onClick={() => setSelectedOrderGroup(date.orderGroupNumber)}
                 >
