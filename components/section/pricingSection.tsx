@@ -32,7 +32,7 @@ function PricingSection({ note }: { note?: string } = {}) {
               </div>
             </a>
           </div>
-          <p className='mt-4 italic text-primary-foreground'>{note ?? 'Min. 3 blades (chef knives, serrated knives, scissors, etc.). Free pickup and delivery. Free repair of small chips. $10 for larger repairs.'}</p>
+          <p className='mt-4 italic text-primary-foreground'>{note ?? 'Free pickup and delivery. We sharpen chef knives, serrated knives, scissors, etc. Free repair of small chips. $10 for larger repairs.'}</p>
         </div>
       </div>
     </div>

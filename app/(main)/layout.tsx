@@ -9,7 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
-import Chat from '@/components/ui/chat';
+import StickyCta from '@/components/ui/stickyCta';
 import { PostHogProvider } from './providers';
 import PostHogReady from '@/components/ui/posthogloadcheck';
 
@@ -35,7 +35,7 @@ export default function RootLayout({
           <PostHogReady />
           {children}
           <Footer />
-          <Chat />
+          <StickyCta />
         </PostHogProvider>
       </body>
       <GoogleTagManager gtmId='GTM-KH7TZBT6' />

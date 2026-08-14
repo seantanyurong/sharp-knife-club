@@ -1,8 +1,12 @@
 import { Star } from 'lucide-react';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { googleReviews } from '@/constants/google_reviews';
+import { cn } from '@/lib/utils';
 
 const GOOGLE_REVIEWS_URL = 'https://g.co/kgs/aXcTBcs';
+
+// Reviews beyond this index are hidden on mobile to keep the section scannable.
+const MOBILE_VISIBLE_COUNT = 3;
 
 const ReviewCard = ({
   profile,
@@ -10,14 +14,16 @@ const ReviewCard = ({
   handle,
   rating,
   comment,
+  className,
 }: {
   profile: string;
   name: string;
   handle: string;
   rating: number;
   comment: string;
+  className?: string;
 }) => (
-  <div className='break-inside-avoid mb-4 rounded-md bg-primary p-6'>
+  <div className={cn('break-inside-avoid mb-4 rounded-md bg-primary p-6', className)}>
     <div className='flex gap-1'>
       {[...Array(rating)].map((_, i) => (
         <Star key={i} className='h-4 w-4 text-secondary fill-secondary' />
@@ -66,6 +72,7 @@ export default function ReviewWallSection() {
               handle={review.handle}
               rating={review.rating}
               comment={review.comment}
+              className={index >= MOBILE_VISIBLE_COUNT ? 'hidden md:block' : undefined}
             />
           ))}
         </div>

@@ -54,7 +54,7 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
         ],
       },
       pricing: {
-        note: 'Min. 3 blades (kitchen shears, fabric scissors, hair scissors, etc.). Free pickup and delivery.',
+        note: 'Free pickup and delivery. We sharpen kitchen shears, fabric scissors, hair scissors, etc.',
       },
     },
     intro: {
@@ -132,7 +132,7 @@ export const SHARPEN_PAGES: Record<string, BrowsePageConfig> = {
         ],
       },
       pricing: {
-        note: 'Min. 3 blades (bread knives, steak knives, serrated chef knives, etc.). Free pickup and delivery.',
+        note: 'Free pickup and delivery. We sharpen bread knives, steak knives, serrated chef knives, etc.',
       },
     },
     intro: {
