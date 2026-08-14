@@ -36,11 +36,12 @@ const StepTile = ({
 
   return (
     <div className='col-span-1 flex flex-col h-full overflow-hidden rounded-md bg-primary'>
-      <div style={{ backgroundImage: bgImage }} className="p-6 aspect-[4/3] bg-cover bg-center flex flex-col justify-end">
-        <p className="text-secondary text-xs font-bold tracking-[0.2em]">STEP {step}</p>
-        <p className='mt-1 text-3xl lg:text-4xl text-secondary-foreground font-black'>{title}</p>
+      <div style={{ backgroundImage: bgImage }} className="relative px-6 pt-6 pb-4 aspect-[4/3] bg-cover bg-center flex flex-col justify-end">
+        <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-primary via-primary/80 to-transparent" aria-hidden />
+        <p className="relative text-secondary text-xs font-bold tracking-[0.2em]">STEP {step}</p>
+        <p className='relative mt-1 text-3xl lg:text-4xl text-secondary-foreground font-black'>{title}</p>
       </div>
-      <div className="bg-primary p-6 flex-1">
+      <div className="bg-primary px-6 pb-6 pt-0 flex-1">
         <p className='text-base font-normal leading-relaxed text-primary-foreground/70'>{description}</p>
       </div>
     </div >
