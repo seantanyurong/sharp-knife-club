@@ -2,6 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '../../public/logo.png';
 import { SHARPEN_PAGES, ADDON_PAGES } from '@/constants/browse-pages';
+import PostHogEventCapture from '@/components/ui/posthogeventcapture';
+
+const GUIDE_SLUG =
+  'the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know';
 
 const COMPANY_LINKS = [
   { href: '/use-cases', label: 'Use Cases' },
@@ -73,6 +77,13 @@ function Footer() {
           <div>
             <h3 className={headingClass}>COMPANY</h3>
             <ul className='mt-4 flex flex-col gap-2'>
+              <li>
+                <Link href={`/blog/${GUIDE_SLUG}`} className={linkClass}>
+                  <PostHogEventCapture name='ultimate-guide' origin='footer'>
+                    The Ultimate Guide to Knife Sharpening
+                  </PostHogEventCapture>
+                </Link>
+              </li>
               {COMPANY_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className={linkClass}>

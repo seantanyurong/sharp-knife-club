@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 export default function SingleReviewSection() {
   return (
-    <div className='bg-white py-16 px-6'>
+    <div className='bg-muted py-16 px-6'>
       <div className='max-w-3xl mx-auto text-center'>
         <div className='flex space-x-1 mx-auto justify-center'>
           {[...Array(5)].map((_, i) => (
