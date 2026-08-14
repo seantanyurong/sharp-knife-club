@@ -8,7 +8,7 @@ import { Star } from 'lucide-react';
 import { Suspense } from 'react';
 
 const DEFAULT_SUBHEADLINE =
-  "Don't put up with your dull knives. Singaporean cooks deserve better. We pick up, sharpen, and deliver your knives back to your door — all in 24 hours.";
+  "Don't put up with dull knives. Singaporean cooks deserve better. We pick up, sharpen, and deliver your knives back to your door — all in 24 hours.";
 
 export default async function HeroSection({
   headline = 'KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY',

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Marquee } from "@/components/ui/marquee";
-import Balancer from "react-wrap-balancer";
 
 export default function BrandMarquee() {
 
@@ -10,9 +9,9 @@ export default function BrandMarquee() {
     <div className='max-w-7xl mx-auto px-6 my-6 lg:my-12 bg-muted'>
       <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row items-center overflow-hidden w-full bg-muted py-6 relative">
         {/* Static Left Text */}
-        <div className="shrink-0 lg:w-[200px] text-center lg:text-left text-xl font-black leading-tight text-black lg:whitespace-nowrap z-10">
+        <div className="shrink-0 lg:w-[200px] text-center lg:text-left text-xl font-black leading-tight text-balance text-black lg:whitespace-nowrap z-10">
           <span className="hidden lg:inline">WE SHARPEN<br />YOUR FAVOURITE<br />BRANDS</span>
-          <span className="inline lg:hidden"><Balancer>WE SHARPEN YOUR FAVOURITE BRANDS</Balancer></span>
+          <span className="inline lg:hidden">WE SHARPEN YOUR FAVOURITE BRANDS</span>
         </div>
 
         {/* Vertical Divider */}

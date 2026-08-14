@@ -6,6 +6,7 @@ import InstructionSection from '@/components/section/instructionsSection';
 import HeroSection from '@/components/section/heroSection';
 import ContactSection from '@/components/section/contactSection';
 import SingleReviewSection from '@/components/section/singleReviewSection';
+import ReviewWallSection from '@/components/section/reviewWallSection';
 import FaqSection from '@/components/section/faqSection';
 import ResultSection from '@/components/section/resultSection';
 
@@ -14,12 +15,13 @@ export default function Home() {
     <main>
       <div className='font-medium bg-muted'>
         <HeroSection />
+        <SingleReviewSection />
         <InstructionSection />
         <PricingSection />
         <LogoSection />
+        <ReviewWallSection />
         <ContactSection />
         <ResultSection />
-        <SingleReviewSection />
         <FaqSection homepage />
         <FeaturedSection homepage />
       </div>

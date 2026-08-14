@@ -1,5 +1,4 @@
 import { Star } from 'lucide-react'
-import Balancer from 'react-wrap-balancer'
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 export default function SingleReviewSection() {
@@ -11,7 +10,7 @@ export default function SingleReviewSection() {
             <Star key={i} className='w-8 h-8 text-secondary fill-secondary' />
           ))}
         </div>
-        <p className='mt-6 text-xl'><Balancer>“Extremely efficient with pick up and drop off. Great communication and also loved how sharp the knives were after! 100% recommend.”</Balancer></p>
+        <p className='mt-6 text-xl text-balance'>“Extremely efficient with pick up and drop off. Great communication and also loved how sharp the knives were after! 100% recommend.”</p>
         <div className='flex justify-center gap-4 items-center mt-6'>
           <Avatar>
             <AvatarImage src="/images/karmen.png" />
