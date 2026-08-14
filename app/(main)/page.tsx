@@ -16,14 +16,14 @@ export default function Home() {
     <main>
       <div className='font-medium bg-muted'>
         <HeroSection />
-        <SingleReviewSection />
+        <ResultSection />
         <InstructionSection />
         <PricingSection />
         <LogoSection />
         <ReviewWallSection />
+        <SingleReviewSection />
         <GuaranteeSection />
         <ContactSection />
-        <ResultSection />
         <FaqSection homepage />
         <FeaturedSection homepage />
       </div>

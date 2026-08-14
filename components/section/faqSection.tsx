@@ -1,6 +1,7 @@
 import React from "react";
 import PostHogEventCapture from "@/components/ui/posthogeventcapture";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 export type FAQ = {
   slug: string;
@@ -260,13 +261,43 @@ export default function FaqSection({ homepage = false, faqs: customFaqs }: { hom
 
         <FAQSchema faqs={faqs} />
 
-        <Accordion type="single" collapsible className="w-full mt-6 text-base">
+        <Accordion
+          type="single"
+          collapsible
+          className={cn(
+            'w-full mt-6 text-base',
+            homepage && 'divide-y divide-stone-200 border-y border-stone-200'
+          )}
+        >
           {faqs.map((f, idx) => (
             <PostHogEventCapture key={f.slug} name="faq" origin={f.slug}>
-              <AccordionItem value={`item-${idx + 1}`} id={f.slug}>
-                <AccordionTrigger>{f.question}</AccordionTrigger>
-                <AccordionContent>
-                  <div className="prose prose-sm max-w-none text-foreground">{f.answer}</div>
+              <AccordionItem
+                value={`item-${idx + 1}`}
+                id={f.slug}
+                className={cn(homepage && 'border-0')}
+              >
+                <AccordionTrigger
+                  className={cn(
+                    homepage &&
+                      'py-5 text-lg font-bold text-stone-900 hover:no-underline [&>svg]:hidden [&[data-state=open]>span]:rotate-45'
+                  )}
+                >
+                  {f.question}
+                  {homepage && (
+                    <span className='shrink-0 text-amber-600 transition-transform duration-200'>
+                      +
+                    </span>
+                  )}
+                </AccordionTrigger>
+                <AccordionContent className={cn(homepage && 'text-base text-stone-600')}>
+                  <div
+                    className={cn(
+                      'prose prose-sm max-w-none',
+                      homepage ? 'text-stone-600' : 'text-foreground'
+                    )}
+                  >
+                    {f.answer}
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             </PostHogEventCapture>
