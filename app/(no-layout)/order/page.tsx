@@ -1,7 +1,7 @@
 'use client';
 
 import { toast } from 'sonner';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@/public/logo.png';
@@ -10,6 +10,67 @@ import { Star } from 'lucide-react';
 import { getOrderConstants } from '@/lib/api';
 import type { OrderGroupDetails } from '@/app/actions/notion';
 import { formatForDisplay } from '@/lib/utils';
+
+const REPAIR_PRICE = 10;
+
+const StepCard = ({
+  step,
+  title,
+  note,
+  children,
+}: {
+  step: number;
+  title: string;
+  note: string;
+  children: ReactNode;
+}) => (
+  <div className="mt-4 rounded-md border border-white/10 bg-white/[0.03] p-5">
+    <p className="text-xs font-black tracking-[0.2em] text-secondary">
+      STEP {step}
+    </p>
+    <h2 className="mt-1 text-lg font-black text-primary-foreground">{title}</h2>
+    <p className="mt-1 text-xs leading-relaxed text-primary-foreground/60">
+      {note}
+    </p>
+    <div className="mt-4">{children}</div>
+  </div>
+);
+
+const Stepper = ({
+  value,
+  onDecrease,
+  onIncrease,
+  label,
+}: {
+  value: number;
+  onDecrease: () => void;
+  onIncrease: () => void;
+  label: string;
+}) => (
+  <div className="flex gap-2">
+    <Button
+      variant="outline"
+      size="lg"
+      onClick={onDecrease}
+      aria-label={`Decrease ${label}`}
+      className="w-14 shrink-0 text-lg font-black"
+    >
+      −
+    </Button>
+    <div className="flex h-10 w-full items-center justify-center rounded-md bg-secondary text-lg font-black text-secondary-foreground shadow">
+      {value}
+    </div>
+    <Button
+      variant="outline"
+      size="lg"
+      onClick={onIncrease}
+      aria-label={`Increase ${label}`}
+      className="w-14 shrink-0 text-lg font-black"
+    >
+      +
+    </Button>
+  </div>
+);
 
 export default function Order() {
   const [numberOfKnives, setNumberOfKnives] = useState(3);
@@ -32,10 +93,6 @@ export default function Order() {
       .catch(console.error);
   }, []);
 
-  const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
-    return getKnifePriceFromKnivesQuantity(knivesQuantity) * knivesQuantity;
-  };
-
   const getKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
     switch (knivesQuantity) {
       case 3:
@@ -47,6 +104,14 @@ export default function Order() {
     }
   };
 
+  const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
+    return getKnifePriceFromKnivesQuantity(knivesQuantity) * knivesQuantity;
+  };
+
+  const knivesTotal = getTotalKnifePriceFromKnivesQuantity(numberOfKnives);
+  const repairsTotal = numberOfRepairs * REPAIR_PRICE;
+  const orderTotal = knivesTotal + repairsTotal;
+
   const checkoutHref = useMemo(
     () =>
       `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}&orderGroup=${selectedOrderGroup ?? ''}`,
@@ -54,174 +119,85 @@ export default function Order() {
   );
 
   return (
-    <main className="bg-primary min-h-screen pb-28">
+    <main className="bg-primary min-h-screen pb-16">
       <div className="flex justify-center items-center py-6">
-        <Image
-          src={Logo}
-          alt="Knife Sharpening Singapore"
-          width={150}
-          height={90}
-          priority
-        />
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="Knife Sharpening Singapore"
+            width={150}
+            height={90}
+            priority
+          />
+        </Link>
       </div>
 
-      <div className="p-4 max-w-xl mx-auto">
-        <h1 className="text-2xl font-bold text-primary-foreground">
-          Book Knife Sharpening Service
-        </h1>
-
-        <div className="flex items-center gap-1 mt-2">
-          <div className="flex">
-            {[...Array(5)].map((_, index) => (
-              <Star
-                key={index}
-                className="w-4 h-4 text-secondary fill-secondary"
-              />
-            ))}
-          </div>
-          <a target="_blank" href="https://g.co/kgs/aXcTBcs" rel="noreferrer">
-            <span className="text-xs text-gray-500 font-medium underline">
-              (163)
+      <div className="px-4 max-w-xl mx-auto">
+        <div className="flex flex-col items-center text-center">
+          <a
+            href="https://g.co/kgs/aXcTBcs"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-white/20 bg-white/5 px-3 py-1.5 transition-colors hover:bg-white/10"
+          >
+            <span className="text-xs font-bold text-white">5.0</span>
+            <span className="flex shrink-0">
+              {[...Array(5)].map((_, index) => (
+                <Star
+                  key={index}
+                  className="h-3.5 w-3.5 text-secondary fill-secondary"
+                />
+              ))}
             </span>
+            <span className="text-xs text-white/80">163 reviews</span>
           </a>
+
+          <h1 className="mt-4 text-3xl font-black tracking-tight text-balance text-primary-foreground">
+            BOOK KNIFE SHARPENING
+          </h1>
+          <p className="mt-2 text-sm text-balance text-primary-foreground/60">
+            Free pickup and delivery islandwide. Back at your door within 24
+            hours.
+          </p>
         </div>
 
-        {/* Knives */}
-        <div>
-          <h2 className="text-start mt-8 text-primary-foreground">
-            How Many Knives / Scissors?
-          </h2>
-          <p className="italic text-primary-foreground text-xs">
-            ${getTotalKnifePriceFromKnivesQuantity(numberOfKnives)} ($
-            {getKnifePriceFromKnivesQuantity(numberOfKnives)} per blade)
-          </p>
-          <div className="gap-1 mt-2 hidden md:flex">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => {
-                if (numberOfKnives === 3) {
-                  toast('Minimum order count of 3 knives!');
-                }
-                setNumberOfKnives((r) => Math.max(3, r - 1)); // clamp at 3
-              }}
-              aria-label="Decrease knives"
-            >
-              -
-            </Button>
-            <div
-              className={`${numberOfKnives > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-10 rounded-md px-8 shadow w-full flex justify-center items-center`}
-            >
-              <p>{numberOfKnives}</p>
-            </div>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => setNumberOfKnives((r) => r + 1)}
-              aria-label="Increase knives"
-            >
-              +
-            </Button>
-          </div>
-          <div className="gap-1 mt-2 flex md:hidden">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                if (numberOfKnives === 3) {
-                  toast('Minimum order count of 3 knives!');
-                }
-                setNumberOfKnives((r) => Math.max(3, r - 3)); // clamp at 3
-              }}
-              aria-label="Decrease knives"
-            >
-              -
-            </Button>
-            <div
-              className={`${numberOfKnives > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-8 text-xs rounded-md px-8 shadow w-full flex justify-center items-center`}
-            >
-              <p>{numberOfKnives}</p>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setNumberOfKnives((r) => r + 1)}
-              aria-label="Increase knives"
-            >
-              +
-            </Button>
-          </div>
-        </div>
-
-        {/* Repairs */}
-        <div>
-          <h2 className="text-start mt-8 text-primary-foreground">
-            How Many Repairs?
-          </h2>
-          <p className="italic text-primary-foreground text-xs">
-            Repairing small chips are free. Repairing large chips, de-rusting,
-            and straightening blades are all an additional $10/repair.
-          </p>
-          <div className="gap-1 mt-2 hidden md:flex">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={
-                () => setNumberOfRepairs((r) => Math.max(0, r - 1)) // clamp at 0
+        <StepCard
+          step={1}
+          title="How many knives / scissors?"
+          note={`$${knivesTotal} total — $${getKnifePriceFromKnivesQuantity(numberOfKnives)} per blade. The more blades, the lower the price.`}
+        >
+          <Stepper
+            label="knives"
+            value={numberOfKnives}
+            onDecrease={() => {
+              if (numberOfKnives === 3) {
+                toast('Minimum order count of 3 knives!');
               }
-              aria-label="Decrease repairs"
-            >
-              -
-            </Button>
-            <div
-              className={`${numberOfRepairs > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-10 rounded-md px-8 shadow w-full flex justify-center items-center`}
-            >
-              <p>{numberOfRepairs}</p>
-            </div>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => setNumberOfRepairs((r) => r + 1)}
-              aria-label="Increase repairs"
-            >
-              +
-            </Button>
-          </div>
-          <div className="gap-1 mt-2 flex md:hidden">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={
-                () => setNumberOfRepairs((r) => Math.max(0, r - 1)) // clamp at 0
-              }
-              aria-label="Decrease repairs"
-            >
-              -
-            </Button>
-            <div
-              className={`${numberOfRepairs > 0 ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground'} h-8 text-xs rounded-md px-8 shadow w-full flex justify-center items-center`}
-            >
-              <p>{numberOfRepairs}</p>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setNumberOfRepairs((r) => r + 1)}
-              aria-label="Increase repairs"
-            >
-              +
-            </Button>
-          </div>
-        </div>
+              setNumberOfKnives((r) => Math.max(3, r - 1)); // clamp at 3
+            }}
+            onIncrease={() => setNumberOfKnives((r) => r + 1)}
+          />
+        </StepCard>
 
-        <div>
-          <h2 className="text-start mt-8 text-primary-foreground">
-            Select Pickup Date
-          </h2>
-          <p className="italic text-primary-foreground text-xs">
-            Your blades will be sharpened and returned to you the next day.
-          </p>
-          <div className="flex flex-col md:flex-row items-center gap-1 mt-2">
+        <StepCard
+          step={2}
+          title="How many repairs?"
+          note={`Repairing small chips is free. Large chips, de-rusting, and straightening blades are $${REPAIR_PRICE} per repair.`}
+        >
+          <Stepper
+            label="repairs"
+            value={numberOfRepairs}
+            onDecrease={() => setNumberOfRepairs((r) => Math.max(0, r - 1))} // clamp at 0
+            onIncrease={() => setNumberOfRepairs((r) => r + 1)}
+          />
+        </StepCard>
+
+        <StepCard
+          step={3}
+          title="Select pickup date"
+          note="Your blades will be sharpened and returned to you the next day."
+        >
+          <div className="flex flex-col md:flex-row items-center gap-2">
             {bookingDates.length === 0 ? (
               <Button size="lg" variant="muted" disabled className="w-full">
                 Loading...
@@ -236,7 +212,7 @@ export default function Order() {
                       ? 'secondary'
                       : 'outline'
                   }
-                  className="w-full"
+                  className="w-full font-bold"
                   onClick={() => setSelectedOrderGroup(date.orderGroupNumber)}
                 >
                   {formatForDisplay(date.pickupDateIso)}
@@ -244,29 +220,45 @@ export default function Order() {
               ))
             )}
           </div>
+        </StepCard>
+
+        <div className="mt-8 rounded-md border border-white/10 bg-white/[0.03] p-5">
+          <div className="flex justify-between text-sm text-primary-foreground/60">
+            <span>
+              {numberOfKnives} blades × $
+              {getKnifePriceFromKnivesQuantity(numberOfKnives)}
+            </span>
+            <span>${knivesTotal}</span>
+          </div>
+          {numberOfRepairs > 0 && (
+            <div className="mt-2 flex justify-between text-sm text-primary-foreground/60">
+              <span>
+                {numberOfRepairs} repairs × ${REPAIR_PRICE}
+              </span>
+              <span>${repairsTotal}</span>
+            </div>
+          )}
+          <div className="mt-3 flex justify-between border-t border-white/10 pt-3 text-lg font-black text-primary-foreground">
+            <span>Total</span>
+            <span>${orderTotal}</span>
+          </div>
         </div>
 
-        {/* Bottom actions */}
-        {numberOfKnives === 0 ? (
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="w-full mt-12 cursor-not-allowed"
-          >
-            <p>Please select knives</p>
-          </Button>
-        ) : (
-          <Button
-            asChild
-            size="lg"
-            variant="destructive"
-            className="w-full mt-12"
-          >
-            <Link href={checkoutHref}>Make Payment</Link>
-          </Button>
-        )}
-        <Button asChild variant="whatsapp" size="lg" className="w-full mt-4">
+        <Button
+          asChild
+          size="xl"
+          variant="secondary"
+          className="w-full mt-6 text-base font-black tracking-widest uppercase"
+        >
+          <Link href={checkoutHref}>Make Payment — ${orderTotal}</Link>
+        </Button>
+
+        <p className="mt-3 text-center text-xs text-primary-foreground/50">
+          Not sharper than new? We’ll re-sharpen at no extra cost — or refund
+          you in full.
+        </p>
+
+        <Button asChild variant="whatsapp" size="lg" className="w-full mt-6">
           <a
             href={`https://wa.me/6580684206`}
             target="_blank"
