@@ -4,19 +4,14 @@ export type NotionPickupOrder = {
 }
 
 /**
- * These endpoints now live in this app under /api. In the browser a relative
- * path is enough; on the server (server components / actions) fetch needs an
- * absolute URL, so resolve one from the deployment environment.
+ * Client-side helpers for this app's own /api routes.
+ *
+ * Server components and server actions must NOT use these — a deployment
+ * cannot fetch its own routes during build/prerender. They should import from
+ * lib/server/notion directly instead.
  */
 function apiUrl(path: string) {
-  if (typeof window !== 'undefined') return `/api${path}`;
-
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`) ||
-    'http://localhost:3000';
-
-  return `${base}/api${path}`;
+  return `/api${path}`;
 }
 
 export async function getOrderConstants() {

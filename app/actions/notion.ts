@@ -3,7 +3,8 @@
 import { unstable_noStore as noStore } from 'next/cache.js';
 import { notion } from '@/lib/notionClient';
 import type { QueryDataSourceParameters, PageObjectResponse } from '@notionhq/client'
-import { getOrderConstants } from '@/lib/api';
+import { getOrderConstants as getOrderConstantsFromNotion } from '@/lib/server/notion';
+import { formatDate } from '@/lib/server/orderUtils';
 
 const ORDERS_DATASOURCE_ID = '9c015ed7-2d42-4689-b036-794ac2ba6295';
 
@@ -12,7 +13,9 @@ export type OrderGroupDetails = {
   pickupDate: string;
   deliveryDate: string;
   timing: string;
-  currentOrder: number;
+  // Never populated by the order-constants source — kept optional so the type
+  // matches what is actually returned.
+  currentOrder?: number;
   pickupDateIso: string;
   deliveryDateIso: string;
 };
@@ -23,11 +26,34 @@ export type OrderConstants = {
   serviceOrderGroup: OrderGroupDetails;
 };
 
+// Formats an order group the same way /api/notion/get-order-constants does.
+const formatGroup = (group: {
+  orderGroupNumber: number;
+  pickupDate: string;
+  deliveryDate: string;
+  timing: string;
+}): OrderGroupDetails => ({
+  ...group,
+  pickupDate: formatDate(group.pickupDate),
+  pickupDateIso: group.pickupDate,
+  deliveryDate: formatDate(group.deliveryDate),
+  deliveryDateIso: group.deliveryDate,
+});
+
 export async function fetchOrderConstants(): Promise<OrderConstants> {
   noStore();
 
   try {
-    return await getOrderConstants();
+    // Called directly rather than over HTTP — this runs on the server, and a
+    // deployment cannot fetch its own routes during build/prerender.
+    const constants = await getOrderConstantsFromNotion();
+
+    return {
+      bookingOrderGroup: formatGroup(constants.bookingOrderGroup),
+      bookingOrderGroupArray:
+        constants.bookingOrderGroupArray.map(formatGroup),
+      serviceOrderGroup: formatGroup(constants.serviceOrderGroup),
+    };
   } catch (err) {
     console.error('[fetchOrderConstants] Failed:', (err as any)?.message || err);
     throw new Error('Failed to fetch order constants.');

@@ -1,5 +1,7 @@
 import { type Order } from "../Types"
-import { getOrderConstants, getOrders } from "@/lib/api"
+// Server component — call the Notion helpers directly rather than fetching
+// this app's own API routes over HTTP.
+import { getOrderConstants, getOrders } from "@/lib/server/notion"
 import { formatOrders } from "@/lib/utils"
 import SharpenerDashboardTable from "./SharpenerDashboardTable/SharpenerDashboardTable"
 
