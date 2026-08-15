@@ -3,10 +3,24 @@ export type NotionPickupOrder = {
   position: number // or rank/index
 }
 
-const SERVER_URL = process.env.NEXT_PUBLIC_API_SERVER_URL || 'http://server.knifesharpening.sg';
+/**
+ * These endpoints now live in this app under /api. In the browser a relative
+ * path is enough; on the server (server components / actions) fetch needs an
+ * absolute URL, so resolve one from the deployment environment.
+ */
+function apiUrl(path: string) {
+  if (typeof window !== 'undefined') return `/api${path}`;
+
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`) ||
+    'http://localhost:3000';
+
+  return `${base}/api${path}`;
+}
 
 export async function getOrderConstants() {
-  const res = await fetch(`${SERVER_URL}/notion/get-order-constants`, {
+  const res = await fetch(apiUrl('/notion/get-order-constants'), {
     method: "GET",
     headers: { "content-type": "application/json" },
   })
@@ -30,7 +44,7 @@ export async function getOrders({ orderGroup, driverId, sharpenerId, includeUrge
     ...(sharpenerId && { sharpenerId }),
     includeUrgent: includeUrgent.toString(),
   })
-  const res = await fetch(`${SERVER_URL}/notion/get-orders?${params.toString()}`, {
+  const res = await fetch(apiUrl(`/notion/get-orders?${params.toString()}`), {
     method: "GET",
     headers: { "content-type": "application/json" },
   })
@@ -41,7 +55,7 @@ export async function getOrders({ orderGroup, driverId, sharpenerId, includeUrge
 }
 
 export async function updateNotionPickupOrder(pickupOrder: NotionPickupOrder[], signal?: AbortSignal) {
-  const res = await fetch(`${SERVER_URL}/notion/update-pickup-order`, {
+  const res = await fetch(apiUrl("/notion/update-pickup-order"), {
     method: "PUT",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ pickupOrder }),

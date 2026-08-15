@@ -29,8 +29,8 @@ const SUCCESS: Record<Kind, string> = {
 };
 
 const ENDPOINTS: Record<Kind, string> = {
-  collection: "/collection-picture",
-  delivery: "/delivery-picture",
+  collection: "/api/collection-picture",
+  delivery: "/api/delivery-picture",
 };
 
 export function CollectionPictureInput({
@@ -41,7 +41,6 @@ export function CollectionPictureInput({
   setCollectedAction,
   setDeliveredAction,
 }: BaseProps) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_SERVER_URL || 'https://server.knifesharpening.sg';
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = React.useState(false);
 
@@ -59,10 +58,7 @@ export function CollectionPictureInput({
       form.append("image", file);
       form.append("orderId", orderId);
 
-      const endpoint = ENDPOINTS[kind];
-      const url = `${apiBaseUrl.replace(/\/$/, "")}${endpoint}`;
-
-      const res = await fetch(url, {
+      const res = await fetch(ENDPOINTS[kind], {
         method: "POST",
         body: form,
       });

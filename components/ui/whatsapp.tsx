@@ -24,7 +24,7 @@ function WhatsAppLink({ origin, children }: { origin: string; children: React.Re
     }
 
     try {
-      fetch('https://server.knifesharpening.sg/analytics/whatsapp-click', {
+      fetch('/api/analytics/whatsapp-click', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ distinctId, origin, clickedAt }),

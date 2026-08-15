@@ -17,7 +17,6 @@ export function BeforePictureInput({
   submittedBeforePicture,
   setSubmittedBeforePictureAction,
 }: BaseProps) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_SERVER_URL || 'https://server.knifesharpening.sg';
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = React.useState(false);
 
@@ -35,10 +34,7 @@ export function BeforePictureInput({
       form.append("image", file);
       form.append("orderId", orderId);
 
-      const endpoint = '/before-picture';
-      const url = `${apiBaseUrl.replace(/\/$/, "")}${endpoint}`;
-
-      const res = await fetch(url, {
+      const res = await fetch('/api/before-picture', {
         method: "POST",
         body: form,
       });
