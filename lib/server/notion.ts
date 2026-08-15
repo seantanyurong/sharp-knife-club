@@ -78,32 +78,63 @@ export function getTextFromNotionProperty(
   return undefined;
 }
 
+const SG_TIME_ZONE = 'Asia/Singapore';
+
+/**
+ * A calendar date in Singapore, offset by `days`, as yyyy-MM-dd — independent
+ * of the runtime's timezone.
+ *
+ * These guards decide whether customer reminders go out, and the app runs on
+ * Vercel in UTC while the business runs in SGT (UTC+8). With a bare
+ * `new Date()`, between 00:00 and 08:00 Singapore time UTC is still on the
+ * previous calendar day, so "tomorrow" resolves to Singapore's "today" and the
+ * guards fire on the wrong date.
+ */
+const sgDateOffset = (days: number) => {
+  // en-CA formats as yyyy-MM-dd.
+  const todayInSg = new Intl.DateTimeFormat('en-CA', {
+    timeZone: SG_TIME_ZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date());
+
+  return format(addDays(parseISO(todayInSg), days), 'yyyy-MM-dd');
+};
+
+/**
+ * Notion pickup/delivery values are already calendar dates. Passing them
+ * through `format()` reparses them as UTC midnight, which formats to the
+ * previous day in any negative-offset timezone — so take the date part as-is.
+ */
+const toDateOnly = (date: string) => date.slice(0, 10);
+
 export const isPickupTomorrow = async () => {
   const orderConstants = await getOrderConstants();
-  const tomorrow = format(addDays(new Date(), 1), 'yyyy-MM-dd');
-  const pickupDate = format(orderConstants.serviceOrderGroup.pickupDate, 'yyyy-MM-dd');
+  const tomorrow = sgDateOffset(1);
+  const pickupDate = toDateOnly(orderConstants.serviceOrderGroup.pickupDate);
   return tomorrow === pickupDate;
 };
 
 export const isDeliveryTomorrow = async () => {
   const orderConstants = await getOrderConstants();
-  const tomorrow = format(addDays(new Date(), 1), 'yyyy-MM-dd');
-  const deliveryDate = format(orderConstants.serviceOrderGroup.deliveryDate, 'yyyy-MM-dd');
+  const tomorrow = sgDateOffset(1);
+  const deliveryDate = toDateOnly(orderConstants.serviceOrderGroup.deliveryDate);
   return tomorrow === deliveryDate;
 };
 
 export const isServiceEnded = async () => {
   const orderConstants = await getOrderConstants();
-  const yesterday = format(addDays(new Date(), -1), 'yyyy-MM-dd');
-  const deliveryDate = format(orderConstants.serviceOrderGroup.deliveryDate, 'yyyy-MM-dd');
+  const yesterday = sgDateOffset(-1);
+  const deliveryDate = toDateOnly(orderConstants.serviceOrderGroup.deliveryDate);
 
   return yesterday === deliveryDate;
 };
 
 export const isBookingEnded = async () => {
   const orderConstants = await getOrderConstants();
-  const tomorrow = format(addDays(new Date(), 1), 'yyyy-MM-dd');
-  const pickupDate = format(orderConstants.bookingOrderGroup.pickupDate, 'yyyy-MM-dd');
+  const tomorrow = sgDateOffset(1);
+  const pickupDate = toDateOnly(orderConstants.bookingOrderGroup.pickupDate);
 
   return tomorrow === pickupDate;
 };
