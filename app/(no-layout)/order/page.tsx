@@ -164,7 +164,7 @@ export default function Order() {
         <StepCard
           step={1}
           title="How many knives / scissors?"
-          note={`$${knivesTotal} total — $${getKnifePriceFromKnivesQuantity(numberOfKnives)} per blade. The more blades, the lower the price.`}
+          note="As low as $15 per blade."
         >
           <Stepper
             label="knives"
