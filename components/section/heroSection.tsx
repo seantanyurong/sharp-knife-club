@@ -7,7 +7,7 @@ import { Star } from 'lucide-react';
 import { Suspense } from 'react';
 
 const DEFAULT_SUBHEADLINE =
-  'From HDB kitchens to hawker stalls — we sharpen the knives Singapore cooks with. Free pickup, delivered back to your door in 24 hours.';
+  'From HDB kitchens to Michelin restaurants — we sharpen the knives Singapore cooks with. Free pickup, delivered back to your door in 24 hours.';
 
 export default async function HeroSection({
   headline = 'KNIFE SHARPENING IN ONE DAY - FREE PICKUP & DELIVERY',
