@@ -78,7 +78,7 @@ export function makeColumns({ submittedBeforePictureById, setSubmittedBeforePict
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator />
-              <BeforePictureInput orderId={order.orderId} submittedBeforePicture={submittedBeforePictureById[order.orderId]} setSubmittedBeforePictureAction={setSubmittedBeforePictureAction} />
+              <BeforePictureInput orderId={order.orderId} pageId={order.pageId} submittedBeforePicture={submittedBeforePictureById[order.orderId]} setSubmittedBeforePictureAction={setSubmittedBeforePictureAction} />
             </DropdownMenuContent>
           </DropdownMenu>
         )

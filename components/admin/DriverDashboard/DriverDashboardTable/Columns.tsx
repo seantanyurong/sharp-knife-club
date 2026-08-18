@@ -145,8 +145,8 @@ export function makeColumns({ collectedById, setCollectedAction, deliveredById, 
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator />
-              <CollectionPictureInput orderId={order.orderId} kind="collection" collected={collectedById[order.orderId]} setCollectedAction={setCollectedAction} />
-              <CollectionPictureInput orderId={order.orderId} kind="delivery" delivered={deliveredById[order.orderId]} setDeliveredAction={setDeliveredAction} />
+              <CollectionPictureInput orderId={order.orderId} pageId={order.pageId} customerName={order.customerName} whatsApp={order.whatsApp} kind="collection" collected={collectedById[order.orderId]} setCollectedAction={setCollectedAction} />
+              <CollectionPictureInput orderId={order.orderId} pageId={order.pageId} customerName={order.customerName} whatsApp={order.whatsApp} kind="delivery" delivered={deliveredById[order.orderId]} setDeliveredAction={setDeliveredAction} />
             </DropdownMenuContent>
           </DropdownMenu>
         )

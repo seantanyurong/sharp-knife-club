@@ -110,27 +110,43 @@ const sendOrderStatusMessage = async (
   orderId: string,
   imageUrl: string,
   reminderType: 'collected' | 'delivered',
+  customer?: { name: string; phone: string },
 ) => {
+  // Fast path: the dashboard already knows the customer, so the webhook can
+  // fire directly without the two Notion queries (getOrderConstants +
+  // getOrders) the lookup path requires.
+  if (customer) {
+    await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, {
+      id: orderId,
+      name: customer.name,
+      phone: customer.phone.replaceAll(' ', ''),
+      imageUrl,
+      reminderType,
+    });
+    return;
+  }
+
+  // Fallback for callers that don't have the customer handy.
   const orderConstants = await getOrderConstants();
   const orders = await getOrders({
     orderGroup: orderConstants.serviceOrderGroup.orderGroupNumber,
     includeUrgent: false,
   });
 
-  const customer = ((orders ?? []) as any[]).find(
+  const matchedOrder = ((orders ?? []) as any[]).find(
     (order) => order.properties['ID'].title[0].text.content === orderId,
   );
 
-  if (!customer) {
+  if (!matchedOrder) {
     console.log(`Unable to find customer with order ID ${orderId}`);
     return;
   }
 
   await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, {
-    id: customer.id,
-    name: customer.properties['Customer Name'].rollup.array[0].title[0]
+    id: matchedOrder.id,
+    name: matchedOrder.properties['Customer Name'].rollup.array[0].title[0]
       .plain_text,
-    phone: customer.properties['Customer Phone'].rollup.array[0].phone_number.replaceAll(
+    phone: matchedOrder.properties['Customer Phone'].rollup.array[0].phone_number.replaceAll(
       ' ',
       '',
     ),
@@ -139,8 +155,14 @@ const sendOrderStatusMessage = async (
   });
 };
 
-export const sendCollectedMessage = async (orderId: string, imageUrl: string) =>
-  sendOrderStatusMessage(orderId, imageUrl, 'collected');
+export const sendCollectedMessage = async (
+  orderId: string,
+  imageUrl: string,
+  customer?: { name: string; phone: string },
+) => sendOrderStatusMessage(orderId, imageUrl, 'collected', customer);
 
-export const sendDeliveredMessage = async (orderId: string, imageUrl: string) =>
-  sendOrderStatusMessage(orderId, imageUrl, 'delivered');
+export const sendDeliveredMessage = async (
+  orderId: string,
+  imageUrl: string,
+  customer?: { name: string; phone: string },
+) => sendOrderStatusMessage(orderId, imageUrl, 'delivered', customer);

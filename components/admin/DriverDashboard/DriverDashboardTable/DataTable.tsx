@@ -85,7 +85,15 @@ function useUpdateNotionPickupOrder() {
     }
 
     timerRef.current = setTimeout(async () => {
-      await updateNotionPickupOrder(data, abortRef.current?.signal);
+      try {
+        await updateNotionPickupOrder(data, abortRef.current?.signal);
+      } catch (err: unknown) {
+        // Swallow intentional cancellations — the debounce pattern means
+        // a newer drag event may have aborted this request before it
+        // completed, and that's expected, not an error.
+        if (err instanceof DOMException && err.name === 'AbortError') return;
+        console.error('Failed to update pickup order', err);
+      }
     }, 250);
   }, [])
 
@@ -130,17 +138,15 @@ export function DataTable({
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
     if (active && over && active.id !== over.id) {
-      setData((data) => {
-        const oldIndex = dataIds.indexOf(active.id)
-        const newIndex = dataIds.indexOf(over.id)
-        const sortedArr = arrayMove(data, oldIndex, newIndex)
-        const notionPickupOrder = sortedArr.map((row, index) => ({
-          pageId: row.pageId,
-          position: index + 1, // Notion pickup order is 1-indexed
-        }))
-        updateNotionPickupOrder(notionPickupOrder);
-        return sortedArr;
-      })
+      const oldIndex = dataIds.indexOf(active.id)
+      const newIndex = dataIds.indexOf(over.id)
+      const sortedArr = arrayMove(data, oldIndex, newIndex)
+      const notionPickupOrder = sortedArr.map((row, index) => ({
+        pageId: row.pageId,
+        position: index + 1, // Notion pickup order is 1-indexed
+      }))
+      setData(sortedArr)
+      updateNotionPickupOrder(notionPickupOrder)
     }
   }
 
