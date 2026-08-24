@@ -28,28 +28,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'NA');
 const BOTSPACE_NEW_ORDER_WEBHOOK_URL =
   'https://hook.bot.space/ZHVAL4hD99ef/v1/webhook/automation/68da50444ce0c3f496978e79/flow/68e4cbdbbf1d5ae408c5657d';
 
-async function getOrCreateStripeCustomer({
-  name,
-  email,
-  phone,
-}: {
-  name: string;
-  email: string;
-  phone: string;
-}): Promise<string | null> {
-  const existing = await stripe.customers.search({
-    query: `phone:'${phone}'`,
-    limit: 1,
-  });
-
-  if (existing.data.length > 0) {
-    return existing.data[0].id;
-  }
-
-  const customer = await stripe.customers.create({ name, email, phone });
-  return customer.id;
-}
-
 export async function POST(request: Request) {
   if (!endpointSecret) {
     console.error('STRIPE_SIGNING_KEY is not set');
@@ -148,23 +126,46 @@ export async function POST(request: Request) {
       customerId = customer.id;
     }
 
-    // Awaited — the Express version ran this in a floating IIFE, which a
-    // serverless runtime may kill before it completes.
+    // Stripe rejects a later `customer` update on a PaymentIntent that Checkout
+    // created ("cannot be used when modifying a PaymentIntent that was created
+    // by Checkout"), so the customer has to come from the session itself — see
+    // where app/actions/stripe.js passes `customer`. Awaited because the
+    // Express version ran this in a floating IIFE, which a serverless runtime
+    // may kill before it completes.
     const paymentIntentId = eventData.payment_intent as string | null;
+    const stripeCustomerId =
+      typeof eventData.customer === 'string'
+        ? eventData.customer
+        : (eventData.customer?.id ?? null);
     try {
-      const stripeCustomerId = await getOrCreateStripeCustomer({
-        name: customerName,
-        email: customerData.email ?? '',
-        phone: customerPhone,
-      });
-
-      if (stripeCustomerId && paymentIntentId) {
-        await stripe.paymentIntents.update(paymentIntentId, {
-          customer: stripeCustomerId,
-        });
+      if (!stripeCustomerId) {
+        throw new Error(
+          'Checkout session completed without a customer — is customer_creation still if_required?',
+        );
       }
+
+      // Checkout writes back name, address and shipping itself (customer_update
+      // in app/actions/stripe.js), but it has no equivalent for email or phone,
+      // and a customer created by the phone gate starts with only a phone. Fill
+      // those in here, along with the Notion id that ties the records together.
+      await stripe.customers.update(stripeCustomerId, {
+        name: customerName,
+        phone: customerPhone,
+        metadata: { notion_customer_id: customerId },
+        ...(customerData.email ? { email: customerData.email } : {}),
+      });
     } catch (err) {
-      console.error('Stripe customer association failed:', err);
+      // The order still goes through — but log the Stripe status and code, not
+      // just the error object: a bare console.error is what let the previous
+      // 403 run unnoticed.
+      const stripeErr = err as Stripe.StripeRawError;
+      console.error('Stripe customer association failed:', {
+        statusCode: stripeErr?.statusCode,
+        code: stripeErr?.code,
+        message: stripeErr?.message,
+        paymentIntentId,
+        customerPhone,
+      });
     }
 
     await insertNotionOrder({

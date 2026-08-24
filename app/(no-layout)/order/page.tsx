@@ -7,9 +7,14 @@ import Link from 'next/link';
 import Logo from '@/public/logo.png';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import type { CountryCode } from 'libphonenumber-js';
 import { getOrderConstants } from '@/lib/api';
 import type { OrderGroupDetails } from '@/app/actions/notion';
 import { formatForDisplay } from '@/lib/utils';
+import { PhoneInput } from '@/components/ui/phoneInput';
+import { toE164 } from '@/lib/phone';
+import { CHECKOUT_PHONE_KEY } from '@/constants/checkout';
 
 const REPAIR_PRICE = 10;
 
@@ -73,7 +78,11 @@ const Stepper = ({
 );
 
 export default function Order() {
+  const router = useRouter();
   const [numberOfKnives, setNumberOfKnives] = useState(3);
+  const [country, setCountry] = useState<CountryCode>('SG');
+  const [phone, setPhone] = useState('');
+  const [phoneError, setPhoneError] = useState('');
   const [numberOfRepairs, setNumberOfRepairs] = useState(0);
   const [bookingDates, setBookingDates] = useState<OrderGroupDetails[]>([]);
   const [selectedOrderGroup, setSelectedOrderGroup] = useState<number | null>(
@@ -117,6 +126,21 @@ export default function Order() {
       `/checkout?knives=${numberOfKnives}&repairs=${numberOfRepairs}&orderGroup=${selectedOrderGroup ?? ''}`,
     [numberOfKnives, numberOfRepairs, selectedOrderGroup],
   );
+
+  const goToCheckout = () => {
+    const normalized = toE164(phone, country);
+    if (!normalized) {
+      setPhoneError(
+        'Enter a valid mobile number for the country you selected.',
+      );
+      toast('Add your mobile number to continue.');
+      return;
+    }
+
+    // Kept out of the URL so the number never lands in analytics or referrers.
+    sessionStorage.setItem(CHECKOUT_PHONE_KEY, normalized);
+    router.push(checkoutHref);
+  };
 
   return (
     <main className="bg-primary min-h-screen pb-16">
@@ -222,6 +246,33 @@ export default function Order() {
           </div>
         </StepCard>
 
+        <StepCard
+          step={4}
+          title="What's your mobile number?"
+          note="We use it to send you reminders for your pickup and delivery — and to pull up your details if you've ordered before."
+        >
+          <PhoneInput
+            country={country}
+            onCountryChange={(event) => {
+              setCountry(event.target.value as CountryCode);
+              setPhoneError('');
+            }}
+            value={phone}
+            onNumberChange={(event) => {
+              setPhone(event.target.value);
+              setPhoneError('');
+            }}
+            invalid={Boolean(phoneError)}
+            placeholder="9123 4567"
+            aria-label="Mobile number"
+          />
+          {phoneError ? (
+            <p className="mt-2 text-sm font-medium text-red-400">
+              {phoneError}
+            </p>
+          ) : null}
+        </StepCard>
+
         <div className="mt-8 rounded-md border border-white/10 bg-white/[0.03] p-5">
           <div className="flex justify-between text-sm text-primary-foreground/60">
             <span>
@@ -245,12 +296,12 @@ export default function Order() {
         </div>
 
         <Button
-          asChild
           size="xl"
           variant="secondary"
+          onClick={goToCheckout}
           className="w-full mt-6 text-base font-black tracking-widest uppercase"
         >
-          <Link href={checkoutHref}>Make Payment — ${orderTotal}</Link>
+          Make Payment — ${orderTotal}
         </Button>
 
         <p className="mt-3 text-center text-xs text-primary-foreground/50">
