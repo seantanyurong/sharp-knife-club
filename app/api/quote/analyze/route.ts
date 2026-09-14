@@ -1,4 +1,14 @@
 import { NextResponse } from 'next/server';
+import {
+  getClientIp,
+  hashIp,
+  isSameOriginRequest,
+} from '@/lib/server/requestGuards';
+import {
+  QUOTE_DAILY_LIMIT,
+  QUOTE_SHORT_LIMIT,
+  checkQuoteRateLimit,
+} from '@/lib/server/rateLimit';
 
 /**
  * POST /api/quote/analyze
@@ -14,6 +24,9 @@ import { NextResponse } from 'next/server';
  *      Optional QUOTE_VISION_MODEL override (default gpt-4o-mini).
  *
  * Stateless by design: the image is analysed and discarded, never stored.
+ *
+ * Not a public API: same-origin only, and rate limited per IP. See
+ * lib/server/requestGuards.ts for what that does and does not guarantee.
  */
 
 const MODEL = process.env.QUOTE_VISION_MODEL ?? 'gpt-4o-mini';
@@ -70,12 +83,51 @@ function clampInt(v: unknown, fallback = 0): number {
 }
 
 export async function POST(request: Request) {
+  // Cheapest checks first — reject before reading the upload off the wire.
+  if (!isSameOriginRequest(request)) {
+    return NextResponse.json({ error: 'Not found.' }, { status: 404 });
+  }
+
+  const ip = getClientIp(request);
+  if (!ip) {
+    // No forwarded IP means we cannot rate limit this caller, so we do not
+    // serve them. On Vercel this header is always present.
+    console.error('quote/analyze: no client IP on request');
+    return NextResponse.json({ error: 'Not found.' }, { status: 404 });
+  }
+
+  const limit = await checkQuoteRateLimit(hashIp(ip));
+  if (!limit.allowed) {
+    return NextResponse.json(
+      {
+        error:
+          limit.reason === 'daily'
+            ? `You've used all ${QUOTE_DAILY_LIMIT} photo counts for today. Message us on WhatsApp and we'll quote you directly.`
+            : `That's ${QUOTE_SHORT_LIMIT} photos in a few minutes — give it a moment and try again, or message us on WhatsApp.`,
+      },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(limit.retryAfterSeconds) },
+      },
+    );
+  }
+
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     console.error('quote/analyze: OPENAI_API_KEY not configured');
     return NextResponse.json(
       { error: 'Vision analysis is not configured on the server yet.' },
       { status: 503 },
+    );
+  }
+
+  // Declared size check: bail before buffering a large body into memory. The
+  // real check still runs below, since Content-Length can lie or be absent.
+  const declaredLength = Number(request.headers.get('content-length'));
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_BYTES) {
+    return NextResponse.json(
+      { error: 'Image too large — please upload a photo under 2 MB.' },
+      { status: 413 },
     );
   }
 
