@@ -5,6 +5,17 @@ import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
+  // Build output and generated files — never our code to fix.
+  {
+    ignores: [
+      ".next/**",
+      "out/**",
+      "build/**",
+      "coverage/**",
+      "next-env.d.ts",
+      "public/**",
+    ],
+  },
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
@@ -22,6 +33,10 @@ export default defineConfig([
       "react/react-in-jsx-scope": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "react/prop-types": "off",
+      // The base rule can't read TypeScript, so it flags parameter names inside
+      // type signatures (`onPhoto: (file: File) => void`). The @typescript-eslint
+      // version below understands them and stays on.
+      "no-unused-vars": "off",
     },
   },
 ]);
