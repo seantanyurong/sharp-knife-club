@@ -4,6 +4,7 @@ import {
   hashIp,
   isSameOriginRequest,
 } from '@/lib/server/requestGuards';
+import { normalizeRepairs, type RepairKind } from '@/constants/repairs';
 import {
   QUOTE_DAILY_LIMIT,
   QUOTE_SHORT_LIMIT,
@@ -41,7 +42,8 @@ type AnalysisResult = {
   standard: number; // chef / utility / paring / cleaver / boning / double-bevel knives
   serrated: number; // bread knives, any scalloped edge
   scissors: number; // pairs of scissors (a pair counts as 1)
-  repairs: number; // blades needing repair: large chips, broken/rolled tips, rust (de-rusting), bent blades (straightening)
+  repairs: RepairKind[]; // one entry per blade needing repair, naming the work
+
   ceramic: boolean; // any blade that does NOT look like steel (ceramic, colored, matte, coated, non-metallic)
   note: string; // short human summary, e.g. "Found 4 blades, 1 needs a repair"
 };
@@ -59,12 +61,18 @@ const SYSTEM_PROMPT = [
   '- scissors: pairs of scissors (count one pair as 1)',
   '- when you cannot confidently classify an item, count it as standard',
   '',
-  'Count repairs:',
-  '- repairs: how many blades need repair work. Repairs include LARGE chips or nicks,',
-  '  broken or rolled tips, visible rust or heavy corrosion (de-rusting), and bent or',
-  '  warped blades (straightening). Tiny hairline chips that barely affect the edge do',
-  '  NOT count as repairs. If unsure whether damage is significant, count it — the',
-  '  customer confirms the final number at booking.',
+  'Report repairs:',
+  '- repairs: an array with one entry per blade that needs repair work, each entry',
+  '  naming the kind of repair using EXACTLY one of these words:',
+  '    "chip" — a large chip or nick in the edge',
+  '    "tip"  — a broken or rolled tip',
+  '    "rust" — visible rust or heavy corrosion (de-rusting)',
+  '    "bend" — a bent or warped blade (straightening)',
+  '  Pick the closest word; if a blade needs two kinds of work, list the more serious.',
+  '  Two knives each with a large chip is ["chip", "chip"]. No repairs is [].',
+  '  Tiny hairline chips that barely affect the edge are NOT repairs — leave them out.',
+  '  If unsure whether damage is significant, include it — the customer confirms the',
+  '  final number at booking.',
   '',
   'Flag non-steel blades:',
   '- ceramic: true if ANY blade does not look like steel — e.g. white or ivory ceramic,',
@@ -73,7 +81,7 @@ const SYSTEM_PROMPT = [
   '  and reflective — do NOT flag those.',
   '',
   'Be conservative. When uncertain whether an object is a knife, do NOT count it.',
-  'Return exactly: {"standard": number, "serrated": number, "scissors": number, "repairs": number, "ceramic": boolean, "note": string}',
+  'Return exactly: {"standard": number, "serrated": number, "scissors": number, "repairs": string[], "ceramic": boolean, "note": string}',
 ].join('\n');
 
 function clampInt(v: unknown, fallback = 0): number {
@@ -236,7 +244,7 @@ export async function POST(request: Request) {
     standard: clampInt(parsed.standard),
     serrated: clampInt(parsed.serrated),
     scissors: clampInt(parsed.scissors),
-    repairs: clampInt(parsed.repairs),
+    repairs: normalizeRepairs(parsed.repairs),
     ceramic: parsed.ceramic === true,
     note: typeof parsed.note === 'string' ? parsed.note.slice(0, 300) : '',
   };

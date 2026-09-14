@@ -13,12 +13,17 @@ import { getOrderConstants } from '@/lib/api';
 import { formatForDisplay } from '@/lib/utils';
 import { Camera, Loader2, Sparkles, X } from 'lucide-react';
 import { MIN_BLADES, REPAIR_PRICE, getBladePrice } from '@/constants/pricing';
+import {
+  REPAIR_LABELS,
+  summarizeRepairs,
+  type RepairKind,
+} from '@/constants/repairs';
 
 type AiResult = {
   standard: number;
   serrated: number;
   scissors: number;
-  repairs: number;
+  repairs: RepairKind[];
   ceramic: boolean;
   note: string;
 };
@@ -238,7 +243,8 @@ export default function QuoteDrawer({
       setAiResult(result);
       posthog.capture('quote_calculator_ai_analysis', {
         blades: result.standard + result.serrated + result.scissors,
-        repairs: result.repairs,
+        repairs: result.repairs.length,
+        repair_kinds: result.repairs,
         ceramic: result.ceramic,
       });
     } catch (err) {
@@ -260,7 +266,11 @@ export default function QuoteDrawer({
   // Customer can remove a confirmed-ceramic blade from the count.
   const blades = countedBlades - (ceramicDetected && ceramicRemoved ? 1 : 0);
   const belowMinimum = aiResult !== null && blades < MIN_BLADES;
-  const repairs = aiResult ? aiResult.repairs : 0;
+  // The list is the source of truth for the price and the wording alike:
+  // its length is what the customer is charged for.
+  const repairList = aiResult?.repairs ?? [];
+  const repairs = repairList.length;
+  const repairSummary = summarizeRepairs(repairList);
   const bladePrice = blades > 0 ? getBladePrice(blades) : 0;
   const total = blades * bladePrice + repairs * REPAIR_PRICE;
 
@@ -379,12 +389,24 @@ export default function QuoteDrawer({
                     <span>${blades * bladePrice}</span>
                   </div>
                   {repairs > 0 && (
-                    <div className="flex justify-between">
-                      <span>
-                        {repairs} repair{repairs === 1 ? '' : 's'} × $
-                        {REPAIR_PRICE}
-                      </span>
-                      <span>${repairs * REPAIR_PRICE}</span>
+                    <div>
+                      <div className="flex justify-between">
+                        <span>
+                          {repairs} repair{repairs === 1 ? '' : 's'} × $
+                          {REPAIR_PRICE}
+                        </span>
+                        <span>${repairs * REPAIR_PRICE}</span>
+                      </div>
+                      {/* Name the work, so the charge isn't an unexplained line. */}
+                      <p className="mt-1 text-xs text-primary-foreground/50">
+                        {repairSummary
+                          .map(({ kind, count }) =>
+                            count > 1
+                              ? `${REPAIR_LABELS[kind]} × ${count}`
+                              : REPAIR_LABELS[kind],
+                          )
+                          .join(' · ')}
+                      </p>
                     </div>
                   )}
                   <div className="flex justify-between border-t border-white/10 pt-2 text-lg font-black text-primary-foreground">
