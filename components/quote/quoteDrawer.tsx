@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -89,7 +89,9 @@ function PhotoIntake({
           className="flex w-full flex-col items-center justify-center gap-2 rounded-md border border-dashed border-white/20 bg-white/[0.03] px-6 py-10 text-center transition hover:border-white/40"
         >
           <Camera className="h-7 w-7 text-primary-foreground/40" />
-          <p className="font-bold text-primary-foreground">Snap or upload a photo</p>
+          <p className="font-bold text-primary-foreground">
+            Snap or upload a photo
+          </p>
           <p className="text-xs leading-relaxed text-primary-foreground/50">
             We&apos;ll count your blades and repairs, then take you to booking.
             Tap to browse, or drag &amp; drop.
@@ -228,7 +230,10 @@ export default function QuoteDrawer({
 
       const form = new FormData();
       form.append('image', compressed);
-      const res = await fetch('/api/quote/analyze', { method: 'POST', body: form });
+      const res = await fetch('/api/quote/analyze', {
+        method: 'POST',
+        body: form,
+      });
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data?.error ?? 'Analysis failed.');
@@ -310,10 +315,10 @@ export default function QuoteDrawer({
         <div className="flex items-start justify-between px-6 pb-2 pt-7">
           <div className="text-left">
             <p className="text-xs font-black tracking-[0.2em] text-secondary">
-              INSTANT QUOTE
+              TAKE A PHOTO
             </p>
             <h2 className="mt-1 text-2xl font-black tracking-tight text-primary-foreground">
-              Count your blades
+              Instant Quote
             </h2>
           </div>
           <button
@@ -328,20 +333,14 @@ export default function QuoteDrawer({
 
         <div className="flex-1 space-y-4 px-6 pb-8 pt-3">
           <p className="text-sm leading-relaxed text-primary-foreground/60">
-            Snap a photo of your blades and we&apos;ll count them for you.
-          </p>
-
-          {/* Stated up front so a customer isn't turned away after uploading. */}
-          <p className="text-xs leading-relaxed text-primary-foreground/50">
-            Minimum order is {MIN_BLADES} blades — scissors count towards it.
+            Take a photo of all your blades, and we&apos;ll give you a quote.
+            Minimum order is {MIN_BLADES} blades.
           </p>
 
           <p className="flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-bold text-primary-foreground/80">
             <span aria-hidden>📦</span>
             Next collection:{' '}
-            <span className="text-secondary">
-              {pickupDate ?? 'Loading…'}
-            </span>
+            <span className="text-secondary">{pickupDate ?? 'Loading…'}</span>
           </p>
 
           <PhotoIntake
@@ -386,7 +385,8 @@ export default function QuoteDrawer({
                   {repairs > 0 && (
                     <div className="flex justify-between">
                       <span>
-                        {repairs} repair{repairs === 1 ? '' : 's'} × ${REPAIR_PRICE}
+                        {repairs} repair{repairs === 1 ? '' : 's'} × $
+                        {REPAIR_PRICE}
                       </span>
                       <span>${repairs * REPAIR_PRICE}</span>
                     </div>
@@ -408,8 +408,8 @@ export default function QuoteDrawer({
                     <p className="mt-1 text-xs leading-relaxed text-primary-foreground/70">
                       It may be ceramic — ceramic blades can&apos;t be
                       sharpened. Check with a fridge magnet — if it sticks,
-                      it&apos;s metal and we can sharpen it. If it
-                      doesn&apos;t stick, remove it from your count.
+                      it&apos;s metal and we can sharpen it. If it doesn&apos;t
+                      stick, remove it from your count.
                     </p>
                     <button
                       type="button"
@@ -490,8 +490,12 @@ export default function QuoteDrawer({
           {/* Error → still funnel to booking (quantities entered there) */}
           {aiError && (
             <div className="rounded-md border border-red-400/30 bg-red-500/10 p-5">
-              <p className="text-sm font-bold text-red-300">Photo counting unavailable</p>
-              <p className="mt-1 text-sm leading-relaxed text-red-200/80">{aiError}</p>
+              <p className="text-sm font-bold text-red-300">
+                Photo counting unavailable
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-red-200/80">
+                {aiError}
+              </p>
               <Button
                 size="lg"
                 variant="secondary"
@@ -504,10 +508,7 @@ export default function QuoteDrawer({
           )}
 
           {/* Talk to a real person */}
-          <WhatsAppLink
-            origin="quote-drawer-chat"
-            className="block pt-1"
-          >
+          <WhatsAppLink origin="quote-drawer-chat" className="block pt-1">
             <span className="flex h-10 w-full items-center justify-center gap-2 rounded-md bg-[#47C856] px-8 text-sm font-black tracking-widest uppercase text-white shadow-sm transition-colors hover:bg-[#31B740]">
               <WhatsAppIcon className="h-4 w-4" />
               Talk to a real person
