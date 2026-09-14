@@ -2,6 +2,7 @@ import WhatsAppLink from '../ui/whatsapp';
 import { Button } from '../ui/button';
 import NextPickupDate from '../NextPickupDate';
 import Image from 'next/image';
+import { QuoteTrigger } from '../quote/quoteProvider';
 import CNA from '../../public/cna.webp';
 import { Star } from 'lucide-react';
 import { Suspense } from 'react';
@@ -62,8 +63,8 @@ export default async function HeroSection({
           {subheadline}
         </p>
 
-        <div className="mt-8 w-full lg:w-auto">
-          <WhatsAppLink origin="main">
+        <div className="mt-8 flex w-full flex-col gap-4 lg:w-auto lg:flex-row lg:items-center lg:justify-center">
+          <WhatsAppLink origin="main" className="block w-full lg:w-auto">
             <Button
               variant={'secondary'}
               size={'xl'}
@@ -97,13 +98,18 @@ export default async function HeroSection({
               Book Knife Pickup
             </Button>
           </WhatsAppLink>
-          <p className="mt-3 text-sm font-light text-white/70">
-            Next collection:{' '}
-            <Suspense fallback={<span>Saturday</span>}>
-              <NextPickupDate />
-            </Suspense>
-          </p>
+          <QuoteTrigger
+            className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-md border border-white/30 bg-black/30 px-8 text-sm font-black uppercase tracking-widest text-white backdrop-blur-sm transition-colors hover:bg-black/50 lg:w-auto"
+            label="Or get an instant quote →"
+          />
         </div>
+
+        <p className="mt-4 text-sm font-light text-white/70">
+          Next collection:{' '}
+          <Suspense fallback={<span>Saturday</span>}>
+            <NextPickupDate />
+          </Suspense>
+        </p>
 
         <div className="mt-10 flex items-center justify-center gap-4 text-white">
           <p className="text-sm font-light">As seen on:</p>

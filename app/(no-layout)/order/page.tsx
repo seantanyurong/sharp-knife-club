@@ -1,13 +1,13 @@
 'use client';
 
 import { toast } from 'sonner';
-import { useMemo, useState, useEffect, type ReactNode } from 'react';
+import { useMemo, useState, useEffect, Suspense, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@/public/logo.png';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import type { CountryCode } from 'libphonenumber-js';
 import { getOrderConstants } from '@/lib/api';
 import type { OrderGroupDetails } from '@/app/actions/notion';
@@ -15,8 +15,12 @@ import { formatForDisplay } from '@/lib/utils';
 import { PhoneInput } from '@/components/ui/phoneInput';
 import { toE164 } from '@/lib/phone';
 import { CHECKOUT_PHONE_KEY } from '@/constants/checkout';
-
-const REPAIR_PRICE = 10;
+import {
+  MIN_BLADES,
+  REPAIR_PRICE,
+  getBladePrice,
+  getBladesTotal,
+} from '@/constants/pricing';
 
 const StepCard = ({
   step,
@@ -77,9 +81,10 @@ const Stepper = ({
   </div>
 );
 
-export default function Order() {
+function OrderForm() {
   const router = useRouter();
-  const [numberOfKnives, setNumberOfKnives] = useState(3);
+  const searchParams = useSearchParams();
+  const [numberOfKnives, setNumberOfKnives] = useState(MIN_BLADES);
   const [country, setCountry] = useState<CountryCode>('SG');
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
@@ -88,6 +93,21 @@ export default function Order() {
   const [selectedOrderGroup, setSelectedOrderGroup] = useState<number | null>(
     null,
   );
+
+  // Pre-fill from the quote calculator (e.g. /order?knives=7&repairs=1).
+  // Quantities remain editable — the customer confirms here.
+  useEffect(() => {
+    const knivesParam = searchParams.get('knives');
+    const repairsParam = searchParams.get('repairs');
+    if (knivesParam) {
+      const n = parseInt(knivesParam, 10);
+      if (Number.isFinite(n)) setNumberOfKnives(Math.max(MIN_BLADES, n));
+    }
+    if (repairsParam) {
+      const n = parseInt(repairsParam, 10);
+      if (Number.isFinite(n)) setNumberOfRepairs(Math.max(0, n));
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     getOrderConstants()
@@ -102,22 +122,7 @@ export default function Order() {
       .catch(console.error);
   }, []);
 
-  const getKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
-    switch (knivesQuantity) {
-      case 3:
-        return 20;
-      case 4:
-        return 18;
-      default:
-        return 15;
-    }
-  };
-
-  const getTotalKnifePriceFromKnivesQuantity = (knivesQuantity: number) => {
-    return getKnifePriceFromKnivesQuantity(knivesQuantity) * knivesQuantity;
-  };
-
-  const knivesTotal = getTotalKnifePriceFromKnivesQuantity(numberOfKnives);
+  const knivesTotal = getBladesTotal(numberOfKnives);
   const repairsTotal = numberOfRepairs * REPAIR_PRICE;
   const orderTotal = knivesTotal + repairsTotal;
 
@@ -185,6 +190,19 @@ export default function Order() {
           </p>
         </div>
 
+        {searchParams.get('ceramic') === '1' && (
+          <div className="mt-4 rounded-md border border-secondary/40 bg-secondary/10 p-4">
+            <p className="text-sm font-black text-secondary">
+              Possible ceramic blade
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-primary-foreground/70">
+              One blade from your quote photo may be ceramic — ceramic blades
+              can&apos;t be sharpened. We&apos;ll verify at pickup and advise
+              you there.
+            </p>
+          </div>
+        )}
+
         <StepCard
           step={1}
           title="How many knives / scissors?"
@@ -194,10 +212,10 @@ export default function Order() {
             label="knives"
             value={numberOfKnives}
             onDecrease={() => {
-              if (numberOfKnives === 3) {
-                toast('Minimum order count of 3 knives!');
+              if (numberOfKnives === MIN_BLADES) {
+                toast(`Minimum order count of ${MIN_BLADES} knives!`);
               }
-              setNumberOfKnives((r) => Math.max(3, r - 1)); // clamp at 3
+              setNumberOfKnives((r) => Math.max(MIN_BLADES, r - 1));
             }}
             onIncrease={() => setNumberOfKnives((r) => r + 1)}
           />
@@ -276,8 +294,7 @@ export default function Order() {
         <div className="mt-8 rounded-md border border-white/10 bg-white/[0.03] p-5">
           <div className="flex justify-between text-sm text-primary-foreground/60">
             <span>
-              {numberOfKnives} blades × $
-              {getKnifePriceFromKnivesQuantity(numberOfKnives)}
+              {numberOfKnives} blades × ${getBladePrice(numberOfKnives)}
             </span>
             <span>${knivesTotal}</span>
           </div>
@@ -320,5 +337,13 @@ export default function Order() {
         </Button>
       </div>
     </main>
+  );
+}
+
+export default function OrderPage() {
+  return (
+    <Suspense fallback={null}>
+      <OrderForm />
+    </Suspense>
   );
 }
