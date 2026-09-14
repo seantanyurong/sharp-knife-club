@@ -92,10 +92,6 @@ function PhotoIntake({
           <p className="font-bold text-primary-foreground">
             Snap or upload a photo
           </p>
-          <p className="text-xs leading-relaxed text-primary-foreground/50">
-            We&apos;ll count your blades and repairs, then take you to booking.
-            Tap to browse, or drag &amp; drop.
-          </p>
           <span className="mt-2 rounded-md bg-secondary px-5 py-2.5 text-sm font-black text-secondary-foreground shadow-sm">
             Choose photo
           </span>
