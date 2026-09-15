@@ -77,17 +77,17 @@ function StickyCta() {
               )}
             </div>
 
-            <div className="flex w-full flex-col items-stretch gap-2 md:w-auto md:flex-row md:items-center md:gap-3">
+            <div className="flex w-full flex-row items-stretch gap-2 md:w-auto md:items-center md:gap-3">
               <WhatsAppLink
                 origin={isBoard ? 'sticky_cta_board' : 'sticky_cta'}
                 message={isBoard ? WAITLIST_MSG : undefined}
-                className="block w-full md:w-auto"
+                className="block min-w-0 flex-1 md:flex-none"
               >
                 <Button
                   variant={'secondary'}
                   size={'xl'}
                   tabIndex={visible ? undefined : -1}
-                  className='w-full text-base font-black tracking-widest uppercase md:w-auto md:px-10'
+                  className='h-12 w-full px-3 text-sm font-black tracking-wider uppercase md:h-16 md:w-auto md:px-10 md:text-base md:tracking-widest'
                 >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -119,7 +119,7 @@ function StickyCta() {
               </WhatsAppLink>
               {!isBoard && (
                 <QuoteTrigger
-                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-md border border-white/30 bg-black/30 px-8 text-sm font-black uppercase tracking-widest text-white transition-colors hover:bg-black/50 md:w-auto"
+                  className="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-white/30 bg-black/30 px-3 text-sm font-black uppercase tracking-wider text-white transition-colors hover:bg-black/50 md:h-16 md:flex-none md:px-8 md:tracking-widest"
                   label="Get Quote"
                   tabIndex={visible ? undefined : -1}
                 />
