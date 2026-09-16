@@ -28,7 +28,7 @@ export default async function HeroSection({
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-black/50" aria-hidden />
+      <div className="absolute inset-0 bg-black/35" aria-hidden />
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center px-6 text-center">
         <a

@@ -15,7 +15,7 @@ export default async function ClosingCtaSection() {
         sizes="100vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-black/70" aria-hidden />
+      <div className="absolute inset-0 bg-black/25" aria-hidden />
 
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
         <h2 className="text-3xl md:text-5xl font-black tracking-tight text-balance text-primary-foreground">
