@@ -8,7 +8,7 @@ export default function BrowseIntroSection({ heading, body, bullets, whyItMatter
       <div className='max-w-7xl mx-auto'>
 
         {/* Heading + body */}
-        <h2 className='text-2xl md:text-3xl font-black text-primary mb-3'>{heading}</h2>
+        <h2 className='text-3xl md:text-4xl font-black uppercase text-primary mb-3'>{heading}</h2>
         <p className='text-gray-500 mb-8'>{body}</p>
 
         {/* Pill grid */}

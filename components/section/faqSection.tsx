@@ -257,7 +257,7 @@ export default function FaqSection({ homepage = false, faqs: customFaqs }: { hom
   return (
     <section className="bg-muted py-16 px-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl md:text-4xl text-primary font-black text-center">Frequently Asked Questions</h1>
+        <h1 className="text-3xl md:text-4xl text-primary font-black text-center">FREQUENTLY ASKED QUESTIONS</h1>
 
         <FAQSchema faqs={faqs} />
 
