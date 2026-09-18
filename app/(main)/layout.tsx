@@ -10,7 +10,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
 import StickyCta from '@/components/ui/stickyCta';
-import BoardBanner from '@/components/ui/boardBanner';
 import { PostHogProvider } from './providers';
 import { QuoteDrawerProvider } from '@/components/quote/quoteProvider';
 import PostHogReady from '@/components/ui/posthogloadcheck';
@@ -34,7 +33,6 @@ export default function RootLayout({
         <MetaPixel />
         <PostHogProvider>
           <QuoteDrawerProvider>
-            <BoardBanner />
             <Header />
             <PostHogReady />
             {children}
