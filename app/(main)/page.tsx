@@ -10,6 +10,7 @@ import GuaranteeSection from '@/components/section/guaranteeSection';
 import ClosingCtaSection from '@/components/section/closingCtaSection';
 import FaqSection from '@/components/section/faqSection';
 import ResultSection from '@/components/section/resultSection';
+import InstagramSection from '@/components/section/instagramSection';
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <GuaranteeSection />
         <FeaturedSection homepage />
         <FaqSection homepage />
+        <InstagramSection />
         <ClosingCtaSection />
       </div>
     </main >
