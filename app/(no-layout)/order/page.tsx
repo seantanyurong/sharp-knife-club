@@ -254,7 +254,7 @@ function OrderForm() {
                       ? 'secondary'
                       : 'outline'
                   }
-                  className="w-full font-bold"
+                  className="w-full md:min-w-0 md:flex-1 md:px-3 font-bold"
                   onClick={() => setSelectedOrderGroup(date.orderGroupNumber)}
                 >
                   {formatForDisplay(date.pickupDateIso)}
