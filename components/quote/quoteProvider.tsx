@@ -8,6 +8,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import posthog from 'posthog-js';
 import QuoteDrawer from './quoteDrawer';
 
 /**
@@ -20,7 +21,7 @@ import QuoteDrawer from './quoteDrawer';
  * lives here.
  */
 
-type QuoteDrawerContextValue = { openQuote: () => void };
+type QuoteDrawerContextValue = { openQuote: (origin: string) => void };
 
 const QuoteDrawerContext = createContext<QuoteDrawerContextValue | null>(null);
 
@@ -35,7 +36,10 @@ export function useQuoteDrawer() {
 export function QuoteDrawerProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
 
-  const openQuote = useCallback(() => setOpen(true), []);
+  const openQuote = useCallback((origin: string) => {
+    posthog.capture('quote_calculator_opened', { origin });
+    setOpen(true);
+  }, []);
   const value = useMemo(() => ({ openQuote }), [openQuote]);
 
   return (
@@ -51,15 +55,23 @@ export function QuoteTrigger({
   className,
   label = 'Get an instant quote →',
   tabIndex,
+  origin,
 }: {
   className?: string;
   label?: string;
   tabIndex?: number;
+  /** Where this trigger lives, e.g. "hero" or "sticky-cta" — lets us see which placement drives usage. */
+  origin: string;
 }) {
   const { openQuote } = useQuoteDrawer();
 
   return (
-    <button type="button" onClick={openQuote} tabIndex={tabIndex} className={className}>
+    <button
+      type="button"
+      onClick={() => openQuote(origin)}
+      tabIndex={tabIndex}
+      className={className}
+    >
       {label}
     </button>
   );

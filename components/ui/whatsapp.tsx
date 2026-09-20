@@ -5,12 +5,9 @@ import posthog from 'posthog-js'
 
 function WhatsAppLink({ origin, message, className, children }: { origin: string; message?: string; className?: string; children: React.ReactNode }) {
   const handleClick = () => {
-    const distinctId = posthog.get_distinct_id();
-    const clickedAt = new Date().toISOString();
-
     posthog.capture('clicked_whatsapp_chat', {
       origin,
-      clicked_at: clickedAt,
+      clicked_at: new Date().toISOString(),
     });
 
     if (typeof window !== 'undefined' && window.fbq) {
@@ -21,16 +18,6 @@ function WhatsAppLink({ origin, message, className, children }: { origin: string
         currency: 'SGD',
         status: true,
       });
-    }
-
-    try {
-      fetch('/api/analytics/whatsapp-click', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ distinctId, origin, clickedAt }),
-      });
-    } catch (e) {
-      console.error(e);
     }
   };
 

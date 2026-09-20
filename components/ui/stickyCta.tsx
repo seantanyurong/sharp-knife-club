@@ -122,6 +122,7 @@ function StickyCta() {
                   className="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-white/30 bg-black/30 px-3 text-sm font-black uppercase tracking-wider text-white transition-colors hover:bg-black/50 md:h-16 md:flex-none md:px-8 md:tracking-widest"
                   label="Get Quote"
                   tabIndex={visible ? undefined : -1}
+                  origin="sticky-cta"
                 />
               )}
             </div>
