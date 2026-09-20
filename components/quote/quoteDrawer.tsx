@@ -197,11 +197,28 @@ export default function QuoteDrawer({
   };
 
   const close = () => {
+    // Where the user was in the flow when they gave up — the key signal for
+    // telling "the flow lost them" apart from "they just weren't interested".
+    const stage = aiError
+      ? 'error'
+      : aiResult
+        ? belowMinimum
+          ? 'below_minimum'
+          : 'result_shown'
+        : analyzing
+          ? 'analyzing'
+          : photoUrl
+            ? 'photo_added'
+            : 'no_photo';
+    posthog.capture('quote_calculator_closed', { stage });
     resetPhoto();
     onClose();
   };
 
   const handlePhoto = (file: File) => {
+    posthog.capture('quote_calculator_photo_added', {
+      replaced: photoUrlRef.current !== null,
+    });
     setAiError(null);
     setAiResult(null);
     setCeramicRemoved(false);
@@ -241,19 +258,22 @@ export default function QuoteDrawer({
       }
       const result = data as AiResult;
       setAiResult(result);
+      const totalBlades = result.standard + result.serrated + result.scissors;
       posthog.capture('quote_calculator_ai_analysis', {
-        blades: result.standard + result.serrated + result.scissors,
+        blades: totalBlades,
         repairs: result.repairs.length,
         repair_kinds: result.repairs,
         ceramic: result.ceramic,
+        below_minimum: totalBlades < MIN_BLADES,
       });
     } catch (err) {
       console.error(err);
-      setAiError(
+      const message =
         err instanceof Error && err.message
           ? err.message
-          : 'Could not analyse the photo — please try again.',
-      );
+          : 'Could not analyse the photo — please try again.';
+      posthog.capture('quote_calculator_ai_analysis_error', { message });
+      setAiError(message);
     } finally {
       setAnalyzing(false);
     }

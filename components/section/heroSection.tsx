@@ -101,6 +101,7 @@ export default async function HeroSection({
           <QuoteTrigger
             className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-md border border-white/30 bg-black/30 px-8 text-sm font-black uppercase tracking-widest text-white backdrop-blur-sm transition-colors hover:bg-black/50 lg:w-auto"
             label="Or get an instant quote →"
+            origin="hero"
           />
         </div>
 
