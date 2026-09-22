@@ -12,6 +12,7 @@ import { Button } from './ui/button';
 import { PhoneInput } from './ui/phoneInput';
 import { toE164 } from '@/lib/phone';
 import { CHECKOUT_PHONE_KEY } from '@/constants/checkout';
+import { readQuotePhotoKey } from '@/lib/quotePhoto';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
@@ -88,17 +89,28 @@ function CheckoutComponent() {
   const orderGroup = searchParams.get('orderGroup');
 
   const [phone, setPhone] = useState(null);
+  const [quotePhotoKey, setQuotePhotoKey] = useState(null);
 
   useEffect(() => {
     const stored = sessionStorage.getItem(CHECKOUT_PHONE_KEY);
     if (stored) {
       setPhone(stored);
     }
+    setQuotePhotoKey(readQuotePhotoKey());
   }, []);
 
   const getClientSecret = useCallback(
-    () => fetchClientSecret(knives, repairs, urgent, custom, orderGroup, phone),
-    [knives, repairs, urgent, custom, orderGroup, phone],
+    () =>
+      fetchClientSecret(
+        knives,
+        repairs,
+        urgent,
+        custom,
+        orderGroup,
+        phone,
+        quotePhotoKey,
+      ),
+    [knives, repairs, urgent, custom, orderGroup, phone, quotePhotoKey],
   );
 
   if (!phone) {

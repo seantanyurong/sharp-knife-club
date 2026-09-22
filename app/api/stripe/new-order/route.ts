@@ -16,7 +16,10 @@ import {
   updateNotionProspectToCustomer,
   updateNotionCustomer180DayFollowUp,
   clearNotionCustomerReminderDate,
+  addImageToNotionOrder,
 } from '@/lib/server/notion';
+import { s3PublicUrl } from '@/lib/server/aws';
+import { isQuotePhotoKey } from '@/lib/quotePhoto';
 import { fetchBotspace } from '@/lib/server/botspace';
 import {
   createNewOrderNotificationMessage,
@@ -168,7 +171,7 @@ export async function POST(request: Request) {
       });
     }
 
-    await insertNotionOrder({
+    const notionOrder = await insertNotionOrder({
       knives: parseInt(orderKnives),
       repairs: parseInt(orderRepairs),
       orderTotal,
@@ -180,6 +183,11 @@ export async function POST(request: Request) {
       pickupDate: bookingGroup.pickupDate,
       deliveryDate: bookingGroup.deliveryDate,
     });
+
+    const quotePhotoKey = orderData?.quotePhoto;
+    if (notionOrder && isQuotePhotoKey(quotePhotoKey)) {
+      await addImageToNotionOrder(notionOrder.id, s3PublicUrl(quotePhotoKey));
+    }
 
     const botspaceBody = {
       name: customerName,
