@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 
 import { stripe } from '../../lib/stripe';
 import { isValidE164 } from '../../lib/phone';
+import { isQuotePhotoKey } from '../../lib/quotePhoto';
 
 function getKnifePriceIdFromKnifeQuantity(knives) {
   switch (Number(knives)) {
@@ -101,6 +102,7 @@ export async function fetchClientSecret(
   custom,
   orderGroup,
   phone,
+  quotePhotoKey,
 ) {
   const origin = (await headers()).get('origin');
 
@@ -148,6 +150,7 @@ export async function fetchClientSecret(
       repairs: repairs,
       custom: custom,
       orderGroup: orderGroup,
+      ...(isQuotePhotoKey(quotePhotoKey) ? { quotePhoto: quotePhotoKey } : {}),
     },
     mode: 'payment',
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,

@@ -9,6 +9,7 @@ import WhatsAppLink from '@/components/ui/whatsapp';
 import WhatsAppIcon from '@/components/ui/whatsappIcon';
 import { Button } from '@/components/ui/button';
 import { compressImage } from '@/lib/client-compress';
+import { clearQuotePhotoKey, saveQuotePhotoKey } from '@/lib/quotePhoto';
 import { getOrderConstants } from '@/lib/api';
 import { formatForDisplay } from '@/lib/utils';
 import { Camera, Loader2, Sparkles, X } from 'lucide-react';
@@ -18,6 +19,8 @@ import {
   summarizeRepairs,
   type RepairKind,
 } from '@/constants/repairs';
+
+const PHOTO_UPLOAD_TIMEOUT_MS = 10_000;
 
 type AiResult = {
   standard: number;
@@ -129,7 +132,9 @@ export default function QuoteDrawer({
   const [aiResult, setAiResult] = useState<AiResult | null>(null);
   const [ceramicRemoved, setCeramicRemoved] = useState(false);
   const [pickupDate, setPickupDate] = useState<string | null>(null);
+  const [booking, setBooking] = useState(false);
   const photoFileRef = useRef<File | null>(null);
+  const analysedFileRef = useRef<File | null>(null);
   const photoUrlRef = useRef<string | null>(null);
   const pickupDateRequested = useRef(false);
 
@@ -190,6 +195,8 @@ export default function QuoteDrawer({
     if (photoUrlRef.current) URL.revokeObjectURL(photoUrlRef.current);
     photoUrlRef.current = null;
     photoFileRef.current = null;
+    analysedFileRef.current = null;
+    clearQuotePhotoKey();
     setPhotoUrl(null);
     setAiResult(null);
     setAiError(null);
@@ -246,6 +253,8 @@ export default function QuoteDrawer({
         compressed = file; // worst case, send the original
       }
 
+      analysedFileRef.current = compressed;
+
       const form = new FormData();
       form.append('image', compressed);
       const res = await fetch('/api/quote/analyze', {
@@ -294,20 +303,52 @@ export default function QuoteDrawer({
   const bladePrice = blades > 0 ? getBladePrice(blades) : 0;
   const total = blades * bladePrice + repairs * REPAIR_PRICE;
 
-  const goToBooking = () => {
-    if (!aiResult || belowMinimum) return;
+  /** Never blocks the booking — a failed upload just means no photo. */
+  const storeQuotePhoto = async () => {
+    const file = analysedFileRef.current;
+    if (!file) return false;
 
+    try {
+      const form = new FormData();
+      form.append('image', file);
+      const res = await fetch('/api/quote/photo', {
+        method: 'POST',
+        body: form,
+        signal: AbortSignal.timeout(PHOTO_UPLOAD_TIMEOUT_MS),
+      });
+      if (!res.ok) throw new Error(`upload failed: ${res.status}`);
+
+      const { key } = (await res.json()) as { key?: string };
+      if (!key) throw new Error('upload returned no key');
+
+      saveQuotePhotoKey(key);
+      return true;
+    } catch (err) {
+      console.error(err);
+      clearQuotePhotoKey();
+      return false;
+    }
+  };
+
+  const goToBooking = async () => {
+    if (!aiResult || belowMinimum || booking) return;
+
+    setBooking(true);
+    const photoSaved = await storeQuotePhoto();
     posthog.capture('quote_calculator_book', {
       blades,
       repairs,
       ceramic: ceramicDetected,
+      photo_saved: photoSaved,
     });
     router.push(
       `/order?knives=${blades}&repairs=${repairs}${ceramicDetected ? '&ceramic=1' : ''}`,
     );
+    setBooking(false);
   };
 
   const goToBookingEmpty = () => {
+    clearQuotePhotoKey();
     posthog.capture('quote_calculator_book_manual', {});
     router.push('/order');
   };
@@ -512,9 +553,17 @@ export default function QuoteDrawer({
                     size="xl"
                     variant="secondary"
                     onClick={goToBooking}
+                    disabled={booking}
                     className="w-full text-base font-black tracking-widest uppercase"
                   >
-                    Book Sharpening — ${total}
+                    {booking ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Getting your booking ready…
+                      </>
+                    ) : (
+                      `Book Sharpening — $${total}`
+                    )}
                   </Button>
                   <p className="text-center text-xs text-primary-foreground/50">
                     Free pickup &amp; delivery islandwide. You&apos;ll confirm

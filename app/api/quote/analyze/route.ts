@@ -24,7 +24,8 @@ import {
  * Env: OPENAI_API_KEY (server-side only — never exposed to the browser).
  *      Optional QUOTE_VISION_MODEL override (default gpt-4o-mini).
  *
- * Stateless by design: the image is analysed and discarded, never stored.
+ * Stateless by design: this route analyses the image and discards it. The
+ * photo is only stored once the customer books, by /api/quote/photo.
  *
  * Not a public API: same-origin only, and rate limited per IP. See
  * lib/server/requestGuards.ts for what that does and does not guarantee.
