@@ -347,9 +347,9 @@ export default function QuoteDrawer({
     setBooking(false);
   };
 
-  const goToBookingEmpty = () => {
+  const goToBookingEmpty = (source: 'no_photo' | 'error') => {
     clearQuotePhotoKey();
-    posthog.capture('quote_calculator_book_manual', {});
+    posthog.capture('quote_calculator_book_manual', { source });
     router.push('/order');
   };
 
@@ -404,6 +404,13 @@ export default function QuoteDrawer({
             Minimum order is {MIN_BLADES} blades.
           </p>
 
+          {/* Prices up front, so the photo is a shortcut rather than a gate. */}
+          <p className="text-sm font-bold text-primary-foreground/80">
+            ${getBladePrice(MIN_BLADES)} per blade for {MIN_BLADES} · $
+            {getBladePrice(MIN_BLADES + 1)} for {MIN_BLADES + 1} · $
+            {getBladePrice(MIN_BLADES + 2)} each for {MIN_BLADES + 2}+
+          </p>
+
           <p className="flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-bold text-primary-foreground/80">
             <span aria-hidden>📦</span>
             Next collection:{' '}
@@ -415,6 +422,16 @@ export default function QuoteDrawer({
             onPhoto={handlePhoto}
             onClear={resetPhoto}
           />
+
+          {!photoUrl && (
+            <button
+              type="button"
+              onClick={() => goToBookingEmpty('no_photo')}
+              className="w-full rounded-md border border-white/20 px-5 py-3 text-sm font-bold text-primary-foreground transition hover:bg-white/10"
+            >
+              No photo handy? Enter your blade count instead →
+            </button>
+          )}
 
           {photoUrl && !analyzing && !aiResult && (
             <Button
@@ -586,7 +603,7 @@ export default function QuoteDrawer({
               <Button
                 size="lg"
                 variant="secondary"
-                onClick={goToBookingEmpty}
+                onClick={() => goToBookingEmpty('error')}
                 className="mt-4 w-full text-sm font-black tracking-widest uppercase"
               >
                 Continue to booking
