@@ -33,9 +33,6 @@ Keep these away from durian:
 
 If you have already done this and noticed a chip, a missing tip, or an edge that catches on paper, the damage can often be fixed. Read [how chip repairs work on knives](/blog/how-do-chip-repairs-work-on-knives) to understand what is possible.
 
-![A Japanese knife with a thin, hard blade](/blog/knife_japanese.webp)
-*A beautiful Japanese blade belongs on fish and vegetables, not on durian husks.*
-
 ###### The Right Tools for Opening Durian
 
 **A durian opener or heavy, inexpensive knife.** Many households keep a cheap, thick-spined knife just for durian, coconuts, and other rough jobs. Softer, tougher steel bends slightly instead of chipping, and if it gets damaged, you have not lost much.
@@ -53,9 +50,6 @@ If you have already done this and noticed a chip, a missing tip, or an edge that
 5. **Repeat for each section.**
 
 The knife should only start the opening. Your hands, protected by gloves or a towel, should do most of the prying.
-
-![A cleaver and heavy knives suited for rough kitchen work](/blog/knife_german.webp)
-*Thicker, tougher German-style steel copes with rough work better than thin Japanese blades.*
 
 ###### After Durian: Look After the Knife
 

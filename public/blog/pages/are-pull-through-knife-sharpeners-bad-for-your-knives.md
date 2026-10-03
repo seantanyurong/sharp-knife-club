@@ -66,9 +66,6 @@ If you do use one, these habits make a big difference:
 4. **Stop at 3 to 5 pulls.** If it still isn't sharp, more pulls won't fix it.
 5. **Wipe the blade afterwards** to remove metal filings before you cut food.
 
-![Whetstones and sharpening tools on a bench](/blog/knife_sharpening_whetstone.webp)
-*Whetstones take longer to learn, but they let you control exactly how much steel comes off.*
-
 ###### Signs a Pull-Through Has Already Damaged Your Knife
 
 Check your knife for:

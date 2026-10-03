@@ -18,9 +18,6 @@ The most common cleaver mistake in Singapore is using a thin vegetable cleaver t
 
 **A quick way to tell:** look at the spine. If it's thin, a few millimetres at most, it's a vegetable cleaver. If it's thick and the knife feels heavy in your hand, it's a bone chopper.
 
-![A range of knife types laid out on a surface](/blog/knife_types.webp)
-*Cleavers come in very different weights and thicknesses, and each is built for a specific job.*
-
 ###### What a Vegetable Cleaver Does Better Than a Chef Knife
 
 **Transferring food.** The wide blade works as a scoop. Chop, flip the cleaver flat, slide it under the food, and carry it to the wok.
@@ -46,9 +43,6 @@ For more technique basics, see [the best knife techniques every home cook should
 - Twist the blade inside dense squash or pumpkin
 - Use the edge to scrape food across the board (use the spine)
 - Leave it wet in the sink
-
-![Vegetables being prepared with a sharp knife](/blog/knife_vegetables.webp)
-*Vegetable prep is where a thin cleaver shines.*
 
 ###### Caring for Older Carbon Steel Cleavers
 

@@ -57,9 +57,6 @@ Snow skin is soft and sticky, so:
 - Arrange quarters with the yolk side facing outward so it shows
 - Serve with tea. The bitterness balances the sweetness of the filling.
 
-![A wooden cutting board ready for food preparation](/blog/knife_board.webp)
-*Cut on a board, not the serving plate, to protect both the plate and your knife's edge.*
-
 ###### Don't Cut on the Plate
 
 It is tempting to cut mooncakes straight on the serving plate. Ceramic and porcelain are much harder than knife steel, and even a few cuts can dull a fine edge noticeably. Use a cutting board, then transfer.

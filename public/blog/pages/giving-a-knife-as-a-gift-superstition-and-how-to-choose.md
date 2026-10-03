@@ -26,9 +26,6 @@ This turns the gift into a "purchase." The knife has technically been bought, no
 
 It is a small gesture, but it shows thoughtfulness and makes the gift easy to accept.
 
-![A display of quality kitchen knives](/blog/knife_display.webp)
-*A good knife is a gift used every day, which makes it worth choosing carefully.*
-
 ###### Who Is a Knife a Good Gift For?
 
 - Newlyweds or people moving into their first BTO
@@ -51,9 +48,6 @@ When in doubt, ask yourself whether they cook at least a few times a week. If th
 - **Avoid carbon steel** for anyone who won't dry knives immediately in Singapore's humidity
 
 **Size matters.** An 18 to 21 cm blade suits most home cooks. Longer knives can feel unwieldy in compact HDB kitchens.
-
-![Japanese and Western knives side by side](/blog/knife_japanese.webp)
-*Japanese knives make a beautiful gift for enthusiasts, but they need more care than German-style knives.*
 
 ###### Make the Gift Complete
 

@@ -51,9 +51,6 @@ A long blade lets you cut each slice in a single stroke. Good choices:
 
 The most important factor is sharpness. A sharp edge slices cleanly through firm meat. A dull edge slips on the surface or tears it.
 
-![A sharp knife slicing meat cleanly](/blog/knife_steak.webp)
-*A long, sharp blade lets you cut each slice in one smooth stroke.*
-
 ###### Step 4: Slice Against the Grain, in One Stroke
 
 1. **Find the grain.** Look for the lines of muscle fibre running through the meat.
@@ -67,9 +64,6 @@ Keep your guiding hand in a claw grip, with fingertips tucked away from the edge
 ###### Step 5: Arrange and Chill
 
 Lay slices on a cold plate in a single layer, slightly overlapping. Cover and refrigerate until the steamboat is ready. If you're slicing a lot, work in batches and keep the rest of the meat in the freezer so it stays firm.
-
-![Fresh fish being sliced for a meal](/blog/knife_salmon.webp)
-*The same technique works for fish: firm flesh, a long blade, and a single stroke.*
 
 ###### Don't Forget the Fish
 

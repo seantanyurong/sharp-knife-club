@@ -33,9 +33,6 @@ If you're paying for the pattern, make sure it's real. If you're paying for perf
 
 Named steel is not a guarantee, but vague descriptions are a warning sign. Our guide to [knife materials](/blog/a-comparison-of-the-different-materials-used-for-knives) explains what these names mean in practice.
 
-![A display of kitchen knives of different styles](/blog/knife_display.webp)
-*Photos can make very different knives look almost identical online.*
-
 ###### 3. Check the Hardness (HRC), If It's Listed
 
 Hardness is measured on the Rockwell C scale (HRC). As a rough guide:
