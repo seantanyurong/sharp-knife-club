@@ -21,6 +21,7 @@ import {
 import { s3PublicUrl } from '@/lib/server/aws';
 import { isQuotePhotoKey } from '@/lib/quotePhoto';
 import { fetchBotspace } from '@/lib/server/botspace';
+import { trackOrderPaid } from '@/lib/server/orderAnalytics';
 import {
   createNewOrderNotificationMessage,
   sendMessageToTelegramNotifications,
@@ -102,8 +103,21 @@ export async function POST(request: Request) {
       bookingGroup.orderGroupNumber,
     );
 
+    const orderAnalytics = {
+      phone: customerPhone,
+      posthogDistinctId: orderData?.posthogDistinctId,
+      stripeSessionId: eventData.id,
+      total: orderTotal,
+      knives: parseInt(orderKnives),
+      repairs: parseInt(orderRepairs),
+      custom: Number(orderCustom) > 0,
+      orderGroup: bookingGroup.orderGroupNumber,
+      hasQuotePhoto: isQuotePhotoKey(orderData?.quotePhoto),
+    };
+
     // Custom orders are handled manually — don't create an order record.
     if (Number(orderCustom) > 0) {
+      await trackOrderPaid(orderAnalytics);
       return NextResponse.json({ received: true });
     }
 
@@ -210,6 +224,8 @@ export async function POST(request: Request) {
     await sendMessageToTelegramNotifications(
       createNewOrderNotificationMessage(botspaceBody),
     );
+    // Last, so a failure above (which makes Stripe retry) can't double-count.
+    await trackOrderPaid(orderAnalytics);
 
     return NextResponse.json({ received: true });
   } catch (err) {

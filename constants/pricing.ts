@@ -1,7 +1,7 @@
 /**
  * Single source of truth for sharpening prices.
  *
- * Used by the booking form (app/(no-layout)/order/page.tsx) and the instant
+ * Used by the booking form (app/(no-layout)/(booking)/order/page.tsx) and the instant
  * quote calculator (components/quote/quoteDrawer.tsx) — the two must never
  * disagree, or a customer is quoted one price and charged another.
  *
