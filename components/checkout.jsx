@@ -13,6 +13,7 @@ import { PhoneInput } from './ui/phoneInput';
 import { toE164 } from '@/lib/phone';
 import { CHECKOUT_PHONE_KEY } from '@/constants/checkout';
 import { readQuotePhotoKey } from '@/lib/quotePhoto';
+import posthog from 'posthog-js';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
@@ -109,6 +110,7 @@ function CheckoutComponent() {
         orderGroup,
         phone,
         quotePhotoKey,
+        posthog.get_distinct_id(),
       ),
     [knives, repairs, urgent, custom, orderGroup, phone, quotePhotoKey],
   );

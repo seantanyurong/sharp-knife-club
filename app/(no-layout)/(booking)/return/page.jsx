@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { stripe } from '../../../lib/stripe.js';
+import { stripe } from '@/lib/stripe.js';
 
 import { Button } from '@/components/ui/button';
 

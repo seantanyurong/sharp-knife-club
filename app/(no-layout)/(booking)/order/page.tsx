@@ -1,6 +1,7 @@
 'use client';
 
 import { toast } from 'sonner';
+import posthog from 'posthog-js';
 import { useMemo, useState, useEffect, Suspense, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -141,6 +142,17 @@ function OrderForm() {
       toast('Add your mobile number to continue.');
       return;
     }
+
+    posthog.capture('order_checkout_started', {
+      knives: numberOfKnives,
+      repairs: numberOfRepairs,
+      total: orderTotal,
+      order_group: selectedOrderGroup,
+      pickup_option: bookingDates.findIndex(
+        (group) => group.orderGroupNumber === selectedOrderGroup,
+      ),
+      from_quote: searchParams.has('knives'),
+    });
 
     // Kept out of the URL so the number never lands in analytics or referrers.
     sessionStorage.setItem(CHECKOUT_PHONE_KEY, normalized);

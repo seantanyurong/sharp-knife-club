@@ -103,6 +103,7 @@ export async function fetchClientSecret(
   orderGroup,
   phone,
   quotePhotoKey,
+  posthogDistinctId,
 ) {
   const origin = (await headers()).get('origin');
 
@@ -151,6 +152,12 @@ export async function fetchClientSecret(
       custom: custom,
       orderGroup: orderGroup,
       ...(isQuotePhotoKey(quotePhotoKey) ? { quotePhoto: quotePhotoKey } : {}),
+      // Lets the webhook join the paid order to this visitor's PostHog history.
+      ...(typeof posthogDistinctId === 'string' &&
+      posthogDistinctId.length > 0 &&
+      posthogDistinctId.length <= 200
+        ? { posthogDistinctId }
+        : {}),
     },
     mode: 'payment',
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
