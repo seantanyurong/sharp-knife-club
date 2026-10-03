@@ -19,6 +19,16 @@ function WhatsAppLink({ origin, message, className, children }: { origin: string
         status: true,
       });
     }
+
+    // Lets the server tie the WhatsApp chat this opens back to this visitor
+    // (lib/server/whatsappClicks.ts). keepalive so the request survives the
+    // page losing focus to WhatsApp.
+    fetch('/api/analytics/whatsapp-click', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ distinctId: posthog.get_distinct_id(), origin }),
+      keepalive: true,
+    }).catch(() => {});
   };
 
   const defaultMessage = 'Hello%21%20Can%20you%20share%20more%20information%3F';

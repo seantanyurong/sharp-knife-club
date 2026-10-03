@@ -1,4 +1,5 @@
 import { posthog } from './posthogClient';
+import { toPhoneDistinctId } from '@/lib/phone';
 
 type BotspacePayload = {
   contact?: string;
@@ -14,7 +15,7 @@ export async function trackWhatsAppAnalytics(
   payload: BotspacePayload,
 ) {
   try {
-    const phone = payload?.contact || null;
+    const phone = payload?.contact ? toPhoneDistinctId(payload.contact) : null;
 
     if (!phone) {
       console.error('No phone found in BotSpace payload');

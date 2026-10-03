@@ -50,3 +50,29 @@ happens when the database is unreachable (currently: fail open).
 
 Rows accumulate one per IP indefinitely. There's an index on `updated_at` ready
 for a cleanup job; nothing runs one yet.
+
+## Supabase: `whatsapp_clicks`
+
+Attributes WhatsApp chats to the website visitor who opened them
+(`lib/server/whatsappClicks.ts`). Created by the old Express server and reused
+as-is; there is no migration file for it. The columns the app relies on:
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| `id` | uuid | default `gen_random_uuid()` |
+| `distinct_id` | text | the visitor's PostHog distinct id |
+| `origin` | text | which WhatsApp button they clicked |
+| `clicked_at` | timestamptz | server time of the click |
+| `created_at` | timestamptz | default `now()` |
+| `matched_at` | timestamptz | set when a chat claims the click |
+| `matched_phone` | text | that chat's number, digits only |
+
+Flow: `WhatsAppLink` → `POST /api/analytics/whatsapp-click` stores a click.
+BotSpace → `POST /api/analytics/whatsapp/chat_started?token=…` claims the
+latest unmatched click from the previous 10 minutes, and the chat event is
+aliased to that visitor in PostHog. `chat_order_request` and
+`chat_order_conversion` post to the same route with their own step name.
+
+Needs `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and
+`BOTSPACE_ANALYTICS_TOKEN` (any long random string, also put in the BotSpace
+webhook URLs).

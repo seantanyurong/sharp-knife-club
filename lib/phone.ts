@@ -56,3 +56,12 @@ export function isValidE164(value: string): boolean {
   if (!value.startsWith('+')) return false;
   return parsePhoneNumberFromString(value)?.isValid() ?? false;
 }
+
+/**
+ * The PostHog distinct id for a customer: their number as bare digits
+ * (6591234567). BotSpace reports WhatsApp contacts in this shape and Stripe in
+ * E.164, so both are reduced to it — otherwise one person becomes two.
+ */
+export function toPhoneDistinctId(phone: string): string {
+  return phone.replace(/\D/g, '');
+}
