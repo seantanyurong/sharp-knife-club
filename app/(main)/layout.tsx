@@ -12,7 +12,6 @@ import Footer from '@/components/ui/footer';
 import StickyCta from '@/components/ui/stickyCta';
 import { PostHogProvider } from './providers';
 import { QuoteDrawerProvider } from '@/components/quote/quoteProvider';
-import PostHogReady from '@/components/ui/posthogloadcheck';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -34,7 +33,6 @@ export default function RootLayout({
         <PostHogProvider>
           <QuoteDrawerProvider>
             <Header />
-            <PostHogReady />
             {children}
             <Footer />
             <StickyCta />
