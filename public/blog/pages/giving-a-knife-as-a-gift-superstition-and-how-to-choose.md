@@ -58,6 +58,9 @@ A knife gift goes further with a few practical extras:
 - **A note about care**: hand wash, dry immediately, avoid glass boards
 - **A coin taped to the box**, for those who believe
 
+![Kitchen knives stored in a leather knife roll](/blog/knife_rolls.webp)
+*A knife roll or sheath protects the edge and makes the gift feel complete.*
+
 You can point them to [our guide on avoiding common knife care mistakes](/blog/5-common-knife-care-mistakes-and-how-to-avoid-them) so they get started on the right foot.
 
 ###### The Gift Nobody Thinks Of: Sharpening Their Existing Knives

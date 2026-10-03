@@ -66,14 +66,14 @@ A 15-piece block set for a low price usually means 15 mediocre knives. Most home
 
 See [5 must-have knives for every home cook](/blog/5-must-have-knives-for-every-home-cook) for a practical starting kit.
 
+![Five kitchen knives laid out on a slate board](/blog/knife_display.webp)
+*A handful of knives you will actually use beats a 15-piece block.*
+
 ###### 7. Plan for the First Sharpening
 
 Here's something most listings won't tell you: many budget knives ship with a mediocre factory edge. It feels sharp on paper but has a thick, uneven bevel.
 
 The good news is that a decent but inexpensive blade can often be improved a lot by proper sharpening. We covered this in [can a cheap knife be sharpened to perform like an expensive one?](/blog/can-a-cheap-knife-be-sharpened-to-perform-like-an-expensive-one).
-
-![A sharp knife slicing through a tomato](/blog/sharp_knife_cut_tomatoes.webp)
-*A good edge often matters more than the price tag.*
 
 ###### Quick Checklist Before You Buy
 

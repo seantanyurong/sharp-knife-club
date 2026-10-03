@@ -59,6 +59,9 @@ The most important factor is sharpness. A sharp edge slices cleanly through firm
 4. **Let the blade do the work.** Use gentle downward pressure, and don't saw.
 5. **Aim for 2 to 3 mm thickness.** Thinner is better for shabu-shabu.
 
+![Meat being sliced across the grain on a wooden board](/blog/knife_steak.webp)
+*Slice across the grain in one long, smooth stroke.*
+
 Keep your guiding hand in a claw grip, with fingertips tucked away from the edge.
 
 ###### Step 5: Arrange and Chill
@@ -68,6 +71,9 @@ Lay slices on a cold plate in a single layer, slightly overlapping. Cover and re
 ###### Don't Forget the Fish
 
 The same method works well for fish slices in fish soup or steamboat. Firm, chilled fillets and a sharp, long knife give you clean slices that hold together in the broth.
+
+![A salmon fillet being sliced on a chilled surface](/blog/knife_salmon.webp)
+*Chilled, firm fish slices cleanly with a long, sharp blade.*
 
 ###### Food Safety Reminders
 

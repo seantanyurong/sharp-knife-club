@@ -31,6 +31,9 @@ Keep these away from durian:
 - **Ceramic knives**: brittle, and almost impossible to repair after a bad chip
 - **Your expensive "good knife"**: if you would be upset to see it chipped, don't use it
 
+![A fine Damascus-style kitchen knife](/blog/knife_sharp.webp)
+*A thin, finely finished blade like this should stay well away from durian husks.*
+
 If you have already done this and noticed a chip, a missing tip, or an edge that catches on paper, the damage can often be fixed. Read [how chip repairs work on knives](/blog/how-do-chip-repairs-work-on-knives) to understand what is possible.
 
 ###### The Right Tools for Opening Durian

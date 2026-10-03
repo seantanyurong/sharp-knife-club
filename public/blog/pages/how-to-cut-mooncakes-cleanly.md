@@ -28,9 +28,6 @@ A dull knife has to push hard to get through the filling. That pressure crushes 
 
 **For mixed nut (wu ren) mooncakes**, use a slightly sturdier knife, since the nuts and candied fruit resist more.
 
-![A sharp knife cutting cleanly through a tomato](/blog/sharp_knife_cut_tomatoes.webp)
-*If your knife can cleanly start a cut on a tomato skin, it can cut a mooncake crust.*
-
 ###### The Technique for Clean Mooncake Slices
 
 1. **Chill it briefly.** For baked mooncakes, 15 to 20 minutes in the fridge firms up the filling. Snow skin mooncakes should already be cold.
@@ -60,6 +57,9 @@ Snow skin is soft and sticky, so:
 ###### Don't Cut on the Plate
 
 It is tempting to cut mooncakes straight on the serving plate. Ceramic and porcelain are much harder than knife steel, and even a few cuts can dull a fine edge noticeably. Use a cutting board, then transfer.
+
+![A wooden cutting board with prepared ingredients](/blog/knife_board.webp)
+*Cut on a wooden or plastic board, then move the slices to the plate.*
 
 We explain why in [best cutting boards for keeping knives sharp](/blog/best-cutting-boards-for-keeping-knives-sharp).
 
