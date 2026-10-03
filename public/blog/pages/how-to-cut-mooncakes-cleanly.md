@@ -39,6 +39,9 @@ A dull knife has to push hard to get through the filling. That pressure crushes 
 
 For perfect quarters, make the first cut through the centre, rotate the plate 90 degrees, and cut again. For eighths, repeat on the diagonals.
 
+![Baked mooncakes cut open to show the filling](/blog/mooncake_cut.webp)
+*Clean cuts show off the filling. Wipe the blade between every slice.*
+
 ###### Cutting Snow Skin Mooncakes
 
 Snow skin is soft and sticky, so:

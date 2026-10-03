@@ -75,6 +75,9 @@ Here's something most listings won't tell you: many budget knives ship with a me
 
 The good news is that a decent but inexpensive blade can often be improved a lot by proper sharpening. We covered this in [can a cheap knife be sharpened to perform like an expensive one?](/blog/can-a-cheap-knife-be-sharpened-to-perform-like-an-expensive-one).
 
+![A shopper checking a parcel against her phone](/blog/online_parcel.webp)
+*Check the knife against the listing as soon as it arrives.*
+
 ###### Quick Checklist Before You Buy
 
 - Is the steel named specifically?

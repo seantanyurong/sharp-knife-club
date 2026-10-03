@@ -22,6 +22,9 @@ Levering and twisting are exactly what fine kitchen knives are not designed for.
 
 Thin Japanese knives made from hard steel are especially at risk. Their hardness lets them hold a beautiful edge, but it also makes them less forgiving when bent.
 
+![Durians piled up at a fruit stall](/blog/durian_stall.webp)
+*A durian husk is thick, fibrous, and spiky, and it behaves more like wood than fruit.*
+
 ###### The Knife You Should Never Use
 
 Keep these away from durian:
