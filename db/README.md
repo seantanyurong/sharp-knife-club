@@ -68,11 +68,11 @@ as-is; there is no migration file for it. The columns the app relies on:
 | `matched_phone` | text | that chat's number, digits only |
 
 Flow: `WhatsAppLink` → `POST /api/analytics/whatsapp-click` stores a click.
-BotSpace → `POST /api/analytics/whatsapp/chat_started?token=…` claims the
+BotSpace → `POST /api/analytics/whatsapp/chat_started` claims the
 latest unmatched click from the previous 10 minutes, and the chat event is
 aliased to that visitor in PostHog. `chat_order_request` and
 `chat_order_conversion` post to the same route with their own step name.
 
-Needs `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and
-`BOTSPACE_ANALYTICS_TOKEN` (any long random string, also put in the BotSpace
-webhook URLs).
+Needs `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. Optionally set
+`BOTSPACE_ANALYTICS_TOKEN` (any long random string) to require `?token=…` on
+the BotSpace webhook URLs; without it the webhook is open.
