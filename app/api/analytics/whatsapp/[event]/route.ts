@@ -7,7 +7,11 @@ import { toPhoneDistinctId } from '@/lib/phone';
 /**
  * BotSpace webhook: one URL per WhatsApp funnel step, e.g.
  *
- *   POST /api/analytics/whatsapp/chat_started?token=<BOTSPACE_ANALYTICS_TOKEN>
+ *   POST /api/analytics/whatsapp/chat_started
+ *
+ * Optionally protected by a shared token: when BOTSPACE_ANALYTICS_TOKEN is set,
+ * calls must carry it as `?token=...`. Without it the route is open, so anyone
+ * who finds the URL can post fake chat events — set it if that ever happens.
  *
  * with a body carrying at least `contact` (the customer's number). Each step
  * becomes a `whatsapp_<step>` PostHog event keyed by that number; a new chat is
@@ -22,10 +26,7 @@ const EVENTS = {
 
 function hasValidToken(request: Request): boolean {
   const expected = process.env.BOTSPACE_ANALYTICS_TOKEN;
-  if (!expected) {
-    console.error('BOTSPACE_ANALYTICS_TOKEN is not set');
-    return false;
-  }
+  if (!expected) return true;
 
   const given = new URL(request.url).searchParams.get('token') ?? '';
   const a = Buffer.from(given);
