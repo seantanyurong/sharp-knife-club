@@ -20,7 +20,7 @@ import {
 } from '@/lib/server/notion';
 import { s3PublicUrl } from '@/lib/server/aws';
 import { isQuotePhotoKey } from '@/lib/quotePhoto';
-import { fetchBotspace } from '@/lib/server/botspace';
+import { sendNewOrderMessage } from '@/lib/server/whatsapp';
 import { trackOrderPaid } from '@/lib/server/orderAnalytics';
 import {
   createNewOrderNotificationMessage,
@@ -29,8 +29,6 @@ import {
 
 const endpointSecret = process.env.STRIPE_SIGNING_KEY;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'NA');
-const BOTSPACE_NEW_ORDER_WEBHOOK_URL =
-  'https://hook.bot.space/ZHVAL4hD99ef/v1/webhook/automation/68da50444ce0c3f496978e79/flow/68e4cbdbbf1d5ae408c5657d';
 
 export async function POST(request: Request) {
   if (!endpointSecret) {
@@ -220,7 +218,7 @@ export async function POST(request: Request) {
       orderTotal,
     };
 
-    await fetchBotspace(BOTSPACE_NEW_ORDER_WEBHOOK_URL, botspaceBody);
+    await sendNewOrderMessage(botspaceBody);
     await sendMessageToTelegramNotifications(
       createNewOrderNotificationMessage(botspaceBody),
     );
