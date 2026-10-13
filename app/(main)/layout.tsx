@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/constants/site';
 import { Open_Sans } from 'next/font/google';
 import '../globals.css';
 import { GoogleTagManager } from '@next/third-parties/google';
@@ -15,7 +16,11 @@ import { QuoteDrawerProvider } from '@/components/quote/quoteProvider';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
+// Canonical URLs resolve against the www host (the bare domain redirects there).
+// Each page sets its own `alternates.canonical`: one set here would be
+// inherited by every page and point them all at the home page.
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Knife Sharpening Singapore - Free Pickup Islandwide',
   description:
     'Free pickup & delivery islandwide. Professional knife sharpening for kitchen knives, chef knives, scissors & serrated blades. Book online today.',

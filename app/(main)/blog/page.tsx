@@ -1,4 +1,12 @@
+import type { Metadata } from 'next'
 import ArticleCards from './article_cards'
+
+export const metadata: Metadata = {
+  title: 'Knife Care & Sharpening Blog | Knife Sharpening Singapore',
+  description:
+    'Guides on knife sharpening, knife care in Singapore\'s humidity, steels, repairs and choosing the right knife, from the team at Knife Sharpening Singapore.',
+  alternates: { canonical: '/blog' },
+}
 import FeaturedSection from './featured_section'
 
 function page() {

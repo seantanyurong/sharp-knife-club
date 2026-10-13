@@ -13,7 +13,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const { frontMatter } = getForPage(slug);
-  return { title: frontMatter.title, description: frontMatter.description };
+  return {
+    title: frontMatter.title,
+    description: frontMatter.description,
+    alternates: { canonical: `/use-cases/${slug}` },
+  };
 }
 
 export default async function ForPage({ params }: { params: Promise<{ slug: string }> }) {

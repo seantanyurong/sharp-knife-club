@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Who We Sharpen For | Knife Sharpening Singapore',
   description: 'Professional sharpening for restaurants, hair salons, barbers, and pet groomers in Singapore. Free pickup and delivery, 1-day turnaround.',
+  alternates: { canonical: '/use-cases' },
 };
 
 const USE_CASE_ICONS: Record<string, string> = {

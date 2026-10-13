@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { Metadata } from 'next';
 import PricingSection from '@/components/section/pricingSection';
 import FeaturedSection from './blog/featured_section';
 import LogoSection from '@/components/section/logoSection';
@@ -11,6 +12,10 @@ import ClosingCtaSection from '@/components/section/closingCtaSection';
 import FaqSection from '@/components/section/faqSection';
 import ResultSection from '@/components/section/resultSection';
 import InstagramSection from '@/components/section/instagramSection';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   return (

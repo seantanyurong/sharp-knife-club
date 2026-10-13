@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     'End-Grain Chopping Boards Singapore | Rescued Local Wood | Knife Sharpening SG',
   description:
     'Handcrafted end-grain chopping boards made from rescued Singapore hardwood, built by a local woodworker. The board that keeps your freshly sharpened knives sharp. Delivered free with your next knife pickup.',
+  alternates: { canonical: '/chopping-board' },
 };
 
 /* ------------------------------------------------------------------ */
