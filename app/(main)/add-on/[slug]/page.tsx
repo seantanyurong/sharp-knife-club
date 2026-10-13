@@ -11,7 +11,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const page = ADDON_PAGES[slug];
   if (!page) return {};
-  return { title: page.title, description: page.description };
+  return {
+    title: page.title,
+    description: page.description,
+    alternates: { canonical: `/add-on/${slug}` },
+  };
 }
 
 export default async function AddonPage({ params }: { params: Promise<{ slug: string }> }) {

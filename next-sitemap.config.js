@@ -4,6 +4,19 @@ const path = require('path');
 module.exports = {
   siteUrl: 'https://www.knifesharpening.sg',
   generateRobotsTxt: true,
+  // Booking steps, sign-in and admin are noindex (app/(no-layout)/layout.tsx),
+  // and the share images aren't pages. They were listed here, which asked
+  // Google to index them.
+  exclude: [
+    '/order',
+    '/checkout',
+    '/return',
+    '/auth/*',
+    '/admin',
+    '/admin/*',
+    '/opengraph-image.png',
+    '/twitter-image.png',
+  ],
   async additionalPaths(config) {
     const dynamicRoutes = await fetchDynamicRoutes();
     const allRoutes = [

@@ -11,7 +11,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const page = SHARPEN_PAGES[slug];
   if (!page) return {};
-  return { title: page.title, description: page.description };
+  return {
+    title: page.title,
+    description: page.description,
+    alternates: { canonical: `/sharpen/${slug}` },
+  };
 }
 
 export default async function SharpenPage({ params }: { params: Promise<{ slug: string }> }) {
