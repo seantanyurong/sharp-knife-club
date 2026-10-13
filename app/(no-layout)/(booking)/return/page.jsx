@@ -11,7 +11,7 @@ export default async function Return({ searchParams }) {
   if (!session_id)
     throw new Error('Please provide a valid session_id (`cs_test_...`)');
 
-  const { status, amount_total, currency } = await stripe.checkout.sessions.retrieve(session_id, {
+  const { status, amount_total, currency, customer_details } = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ['line_items', 'payment_intent'],
   });
 
@@ -26,6 +26,8 @@ export default async function Return({ searchParams }) {
           transactionId={session_id}
           value={(amount_total ?? 0) / 100}
           currency={(currency ?? 'sgd').toUpperCase()}
+          email={customer_details?.email ?? undefined}
+          phone={customer_details?.phone ?? undefined}
         />
         <div className="bg-secondary min-h-screen flex flex-col items-center justify-center p-4 text-center">
           <div className="max-w-xl text-primary">

@@ -13,15 +13,25 @@ import { sendGTMEvent } from '@next/third-parties/google';
  * `ecommerce.currency` and `ecommerce.transaction_id` from the data layer.
  * The transaction id is the Stripe session id, which Google Ads uses to drop
  * duplicates; the sessionStorage guard also stops a refresh re-sending it.
+ *
+ * `user_data` (email, E.164 phone from Stripe) is for enhanced conversions:
+ * most customers pay from the link we send on WhatsApp, which opens in a
+ * different browser from the one that clicked the ad, so there's no gclid
+ * cookie here. The Google Ads tag hashes these before sending; the GTM tag
+ * reads them through a User-Provided Data variable.
  */
 export default function PurchaseEvent({
   transactionId,
   value,
   currency,
+  email,
+  phone,
 }: {
   transactionId: string;
   value: number;
   currency: string;
+  email?: string;
+  phone?: string;
 }) {
   useEffect(() => {
     const key = `purchase_sent_${transactionId}`;
@@ -33,12 +43,16 @@ export default function PurchaseEvent({
     }
 
     // Clear any previous ecommerce object so fields don't carry over.
-    sendGTMEvent({ ecommerce: null });
+    sendGTMEvent({ ecommerce: null, user_data: null });
     sendGTMEvent({
       event: 'purchase',
       ecommerce: { transaction_id: transactionId, value, currency },
+      user_data: {
+        ...(email ? { email } : {}),
+        ...(phone ? { phone_number: phone } : {}),
+      },
     });
-  }, [transactionId, value, currency]);
+  }, [transactionId, value, currency, email, phone]);
 
   return null;
 }
