@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { stripe } from '@/lib/stripe.js';
 
 import { Button } from '@/components/ui/button';
+import PurchaseEvent from '@/components/scripts/PurchaseEvent';
 
 export default async function Return({ searchParams }) {
   const { session_id } = await searchParams;
@@ -10,7 +11,7 @@ export default async function Return({ searchParams }) {
   if (!session_id)
     throw new Error('Please provide a valid session_id (`cs_test_...`)');
 
-  const { status } = await stripe.checkout.sessions.retrieve(session_id, {
+  const { status, amount_total, currency } = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ['line_items', 'payment_intent'],
   });
 
@@ -21,6 +22,11 @@ export default async function Return({ searchParams }) {
   if (status === 'complete') {
     return (
       <section id="success">
+        <PurchaseEvent
+          transactionId={session_id}
+          value={(amount_total ?? 0) / 100}
+          currency={(currency ?? 'sgd').toUpperCase()}
+        />
         <div className="bg-secondary min-h-screen flex flex-col items-center justify-center p-4 text-center">
           <div className="max-w-xl text-primary">
             <h1 className="text-3xl font-bold">Order Confirmed!</h1>
