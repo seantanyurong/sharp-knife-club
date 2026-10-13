@@ -10,18 +10,15 @@ import { ADDON_PAGES, SHARPEN_PAGES } from '@/constants/browse-pages';
  * 11% from the home page), partly because posts ended without one.
  *
  * Booking goes through WhatsApp only, never straight to /order: we price and
- * confirm each job from a photo of the knives first. The prefilled message
- * asks for one. Taps carry origin `blog_post` so blog-driven chats can be
- * counted; the page URL on the event says which post.
+ * confirm each job from a photo of the knives first. The button uses the same
+ * greeting as every other WhatsApp button on the site. Taps carry origin
+ * `blog_post` so blog-driven chats can be counted; the page URL on the event
+ * says which post.
  *
  * `service` is an optional front-matter key naming a /sharpen or /add-on page
  * that matches the post (e.g. `scissors`, `chip-repairs`), linked for readers
  * who want the details.
  */
-const PHOTO_MESSAGE = encodeURIComponent(
-  "Hi! I'd like to get my knives sharpened. Here's a photo of them:",
-);
-
 function findServicePage(service?: string) {
   if (!service) return undefined;
   if (SHARPEN_PAGES[service]) {
@@ -51,11 +48,7 @@ export default function BookingCta({ service }: { service?: string }) {
       </p>
 
       <div className="mt-6">
-        <WhatsAppLink
-          origin="blog_post"
-          message={PHOTO_MESSAGE}
-          className="block sm:inline-block"
-        >
+        <WhatsAppLink origin="blog_post" className="block sm:inline-block">
           <Button
             variant="secondary"
             size="lg"
