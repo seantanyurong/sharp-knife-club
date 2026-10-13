@@ -2,6 +2,7 @@
 title: "Carbon Steel Knives in Singapore: Patina, Rust, and Daily Care"
 publishedAt: "2026-05-01"
 slug: 'carbon-steel-knives-singapore-patina-rust-care'
+service: 'derusting'
 ---
 
 Carbon steel knives have a devoted following for good reason. They can take an extremely keen edge, they are satisfying to sharpen, and many cooks love the way they feel on the board. But in Singapore, they ask for more discipline than stainless knives.
