@@ -2,6 +2,8 @@
 title: "Japanese Knife Sharpening: Traditional Techniques vs Western Methods"
 publishedAt: "2025-11-14"
 slug: 'japanese-knife-sharpening-traditional-techniques-vs-western-methods'
+description: "How Japanese sharpening differs from Western methods: single and double bevels, water stones, edge angles, and what suits your knives."
+service: 'japanese-knives'
 ---
 
 A sharp knife isn't just a tool - it's an extension of the chef's hand. But here's something fascinating: the way Japanese chefs sharpen their knives is fundamentally different from Western methods. These aren't just minor variations in technique; they represent entirely different philosophies about what makes a blade truly sharp.

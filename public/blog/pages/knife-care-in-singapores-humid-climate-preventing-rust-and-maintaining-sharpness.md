@@ -2,6 +2,8 @@
 title: "Knife Care in Singapore's Humid Climate: Preventing Rust and Maintaining Sharpness Year-Round"
 publishedAt: "2025-12-26"
 slug: 'knife-care-in-singapores-humid-climate-preventing-rust-and-maintaining-sharpness'
+description: "Singapore's 80–90% humidity is hard on knives. Daily habits, storage and carbon steel care that keep rust off and your edges sharp all year."
+service: 'derusting'
 ---
 
 Living in Singapore means enjoying incredible food diversity and a vibrant culinary scene. But our tropical climate, with humidity levels consistently hovering between 80-90%, presents unique challenges for knife maintenance. If you've ever noticed rust spots on your favourite chef's knife or found your blades dulling faster than expected, Singapore's humidity is likely the culprit.

@@ -2,6 +2,7 @@
 title: "When Should You Replace Your Knives?"
 publishedAt: "2025-08-22"
 slug: 'when-should-you-replace-your-knives'
+description: "The signs a kitchen knife needs replacing rather than sharpening, how long knives last with good care, and a quick checklist to decide."
 ---
 
 A well-cared-for kitchen knife can last for many years, but even the best knives will eventually wear out. Most home cooks rely on a **chef’s knife**, **paring knife**, and **serrated bread knife** every day. Over time, these trusty tools may show signs that it’s time for a replacement. Knowing what to look for can help you stay safe and keep your cooking efficient. Below, we’ll explain clear signs that a knife needs to be replaced and how long you can expect your knives to last with good care.

@@ -1,7 +1,7 @@
 import Article from './article';
 // import TableOfContentsSidebar from './sidebar';
-import { getArticle } from '../utils';
-import NextPickupDate from '@/components/NextPickupDate';
+import { getArticle, getMetaDescription } from '../utils';
+import BookingCta from '@/components/blog/BookingCta';
 import ArticleCards from '../article_cards';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -9,11 +9,11 @@ import type { Metadata } from 'next';
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const articleInfo = getArticle(slug);
-  const { frontMatter: metadata, markdownContent: article } = articleInfo;
+  const { frontMatter: metadata } = articleInfo;
 
   return {
     title: metadata.title,
-    description: article.slice(0, 250),
+    description: getMetaDescription(articleInfo),
   };
 }
 
@@ -39,11 +39,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         <Article text={article} />
 
-        <p className='text-sm text-gray-500 mb-8'>
-          <i>
-            We are currently only operating in Singapore. Our next pick up will be on <NextPickupDate />.
-          </i>
-        </p>
+        <BookingCta service={typeof metadata.service === 'string' ? metadata.service : undefined} />
 
         <section className="relative">
           <div className="py-8 md:py-12">

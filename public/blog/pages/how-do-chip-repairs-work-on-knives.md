@@ -2,6 +2,8 @@
 title: "How do chip repairs work on knives?"
 publishedAt: "2025-10-31"
 slug: 'how-do-chip-repairs-work-on-knives'
+description: "Why knife edges chip, how a sharpener grinds a chipped blade back to a clean edge, and how to avoid chips in the first place."
+service: 'chip-repairs'
 ---
 
 Knives **“chip”** when a piece of metal breaks out from the edge, leaving a nick or missing section.  This can happen if the blade hits something very hard (a bone, a ceramic plate, a metal fastener, or even a glass cutting surface) or is misused as a prying tool.  Experts note that chips often occur during impact or from cutting overly hard or frozen foods.  In humid or acidic conditions, even stainless steel can pit and chip: moisture and acids left on a blade can weaken it over time and cause tiny “micro-corrosion” chips.  The seriousness of a chip depends on its size.  **Minor chips** (well under 1–2 mm) may only show up as roughness, while **medium chips** (a few millimeters) can catch food or snag when slicing.  **Large chips** (several millimeters) can drastically shorten the cutting edge and ruin fine cutting tasks.  In general, bigger chips interrupt the smooth slicing action of a knife and must be ground away to restore performance.

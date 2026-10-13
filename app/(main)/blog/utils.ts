@@ -58,3 +58,40 @@ export const getAllArticles = (): ArticleInfo[] => {
 
   return articles;
 }
+
+const META_DESCRIPTION_LIMIT = 160;
+
+/**
+ * The search snippet for a post: its `description` front matter when set,
+ * otherwise the opening paragraph with the markdown stripped, cut at the last
+ * full sentence (or word) that fits in 160 characters. Raw markdown used to go
+ * straight in, so snippets showed `[link](/blog/…)` syntax and stopped
+ * mid-word.
+ */
+export const getMetaDescription = ({ frontMatter, markdownContent }: ArticleInfo): string => {
+  if (typeof frontMatter.description === 'string' && frontMatter.description.trim()) {
+    return frontMatter.description.trim();
+  }
+
+  const paragraph =
+    markdownContent
+      .split(/\n\s*\n/)
+      .map((block) => block.trim())
+      // Skip headings, images, tables and other non-prose blocks.
+      .find((block) => block && !/^(#|!\[|\||<|>|-{3,}|\*\s|-\s|\d+\.\s)/.test(block)) ?? '';
+
+  const text = paragraph
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/(\*\*|__|\*|_|`)/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (text.length <= META_DESCRIPTION_LIMIT) return text;
+
+  const cut = text.slice(0, META_DESCRIPTION_LIMIT);
+  const sentenceEnd = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('? '), cut.lastIndexOf('! '));
+  if (sentenceEnd >= 80) return cut.slice(0, sentenceEnd + 1);
+
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:–—-]$/, '')}…`;
+};

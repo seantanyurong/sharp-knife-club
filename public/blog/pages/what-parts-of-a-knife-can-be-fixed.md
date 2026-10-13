@@ -2,6 +2,8 @@
 title: "What Parts of a Knife Can Be Fixed?"
 publishedAt: "2025-08-29"
 slug: 'what-parts-of-a-knife-can-be-fixed'
+description: "Dull or chipped edges, bent or broken tips, loose handles: which knife damage can be repaired, and the signs a knife is past saving."
+service: 'chip-repairs'
 ---
 
 **Introduction:** A good kitchen knife is made up of several key parts, and understanding them can help you know what’s repairable. These parts include the **blade** (the main metal cutting portion), the **edge** (the sharpened cutting side of the blade), the **tip** (the pointed end of the blade for fine work), the **spine** (the top, blunt side of the blade, opposite the edge), the **handle** (the part you hold), and the **tang** (the part of the blade that extends into the handle to give it stability). Over time and with heavy use, different parts of a knife can wear out or get damaged. The good news is that some issues – like a dull edge or a small chip – can be fixed, while other severe problems mean it’s time to retire the knife. In this article, we’ll go through each area of a kitchen knife, explain what can be repaired (and how), and note which kinds of damage aren’t practical to fix.
