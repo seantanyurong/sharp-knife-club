@@ -2,6 +2,7 @@
 title: "Choosing the Best Knife Sharpening Stones: A Beginner's Guide"
 publishedAt: "2025-02-07"
 slug: 'choosing-the-best-knife-sharpening-stones-a-beginners-guide'
+description: "Water, oil or diamond? How to choose your first knife sharpening stone, which grits you need, and how to use a whetstone without damaging your edge."
 ---
 
 A sharp knife is a chef’s best friend. Whether you’re a [home cook](/blog/why-regular-knife-sharpening-is-essential-for-home-cooks), a professional chef, or a knife enthusiast, keeping your blades in top condition is essential. Dull knives not only make cutting inefficient but also increase the risk of accidents due to the extra force required.

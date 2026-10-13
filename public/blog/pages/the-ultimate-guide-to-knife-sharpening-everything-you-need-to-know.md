@@ -2,6 +2,7 @@
 title: "The Ultimate Guide to Knife Sharpening: Everything You Need to Know"
 publishedAt: "2025-02-12"
 slug: 'the-ultimate-guide-to-knife-sharpening-everything-you-need-to-know'
+description: "Why sharp knives matter, the science of blade angle and edge finish, and how to sharpen, hone and look after your knives between sharpenings."
 ---
 
 A sharp knife isn’t just a kitchen essential; it’s a tool that ensures precision, safety, and efficiency. More than that, it makes your time spent cooking a joy. In this guide, we’ll take you through the art and science of knife sharpening, from basic techniques to expert tips, making it your go-to resource for achieving razor-sharp edges.

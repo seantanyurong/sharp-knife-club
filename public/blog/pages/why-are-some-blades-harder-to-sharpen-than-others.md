@@ -2,6 +2,7 @@
 title: "Why are some blades harder to sharpen than others?"
 publishedAt: "2025-10-17"
 slug: 'why-are-some-blades-harder-to-sharpen-than-others'
+description: "Why some knife steels sharpen easily and others fight back: steel composition, hardness (HRC) and wear resistance explained."
 ---
 
 Not all knife steels are created equal. Two knives of different steels (or even two of the same steel tempered differently) can behave very differently under the stone. The key factors are **steel composition**, **hardness (HRC)**, and **wear resistance**, which largely comes from hard carbide particles in the steel. In general, a higher hardness and more alloy carbides mean **better edge retention** but **more effort to sharpen**. For example, modern “super steels” like CPM-S30V, M390 or VG-10 contain lots of vanadium, chromium, or tungsten carbides. These carbides are extremely hard and resist wear (helping the edge stay sharp), but they also **tear the sharpening stone** and make grinding slower. As one metallurgy guide observes, “blades with higher carbon and carbide contents are more difficult to sharpen”.

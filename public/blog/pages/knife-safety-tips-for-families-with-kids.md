@@ -2,6 +2,7 @@
 title: "Knife Safety Tips for Families with Kids"
 publishedAt: "2025-08-01"
 slug: 'knife-safety-tips-for-families-with-kids'
+description: "Keep a kitchen with kids safe: storing knives out of reach, child-friendly knives for learning, supervision, basic cutting skills and house rules."
 ---
 
 *A young child practices cutting a soft fruit with a child-safe knife under close adult supervision.* Cooking together as a family can be a wonderful experience for kids and parents alike. The kitchen is full of fascinating sights, smells, and activities that naturally attract curious little helpers. It’s normal for parents to feel a bit anxious about letting their child use a knife, but with the right precautions and guidance, even young kids can learn to handle kitchen tools safely. Below, we offer practical, age-appropriate tips – from safe storage and kid-friendly knives to adult supervision, basic cutting skills, and household rules – so you can cook with your children confidently and safely.
