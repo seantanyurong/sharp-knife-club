@@ -2,6 +2,7 @@
 title: "Can You Sharpen a Serrated Knife? (Yes, and Here's How)"
 publishedAt: "2025-07-18"
 slug: 'can-you-sharpen-a-serrated-knife-yes-and-heres-how'
+service: 'serrated'
 ---
 
 Serrated knives – those **“toothy”** blades you often use for slicing bread – have a reputation for staying sharp seemingly forever. Many home cooks assume these saw-toothed knives never need sharpening or, if they do get dull, that they cannot be sharpened at home. The good news is **yes, you *can* sharpen a serrated knife at home**. It just requires a different approach (and a bit more patience) compared to sharpening a straight-edged knife. In this article, we’ll explain what makes a serrated knife unique, why it eventually dulls (albeit slowly), and walk you through a **beginner-friendly guide** to sharpening your serrated knife safely and effectively. Let’s dive in!
