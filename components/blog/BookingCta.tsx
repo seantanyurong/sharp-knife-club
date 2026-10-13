@@ -2,22 +2,39 @@ import Link from 'next/link';
 import WhatsAppLink from '@/components/ui/whatsapp';
 import NextPickupDate from '@/components/NextPickupDate';
 import { Button } from '@/components/ui/button';
-import { SHARPEN_PAGES } from '@/constants/browse-pages';
+import { ADDON_PAGES, SHARPEN_PAGES } from '@/constants/browse-pages';
 
 /**
  * Closes every blog post with a way to book. Search visitors who start on a
  * post almost never reached WhatsApp or the order form before this (0.9% vs
  * 11% from the home page), partly because posts ended without one.
  *
- * WhatsApp taps carry origin `blog_post` so blog-driven chats can be counted;
- * the page URL on the event says which post. "Book online" shows up as an
- * /order pageview whose referrer is the post.
+ * Booking goes through WhatsApp only, never straight to /order: we price and
+ * confirm each job from a photo of the knives first. The prefilled message
+ * asks for one. Taps carry origin `blog_post` so blog-driven chats can be
+ * counted; the page URL on the event says which post.
  *
- * `service` is an optional front-matter key naming a /sharpen page that
- * matches the post (e.g. `scissors`), linked for readers who want the details.
+ * `service` is an optional front-matter key naming a /sharpen or /add-on page
+ * that matches the post (e.g. `scissors`, `chip-repairs`), linked for readers
+ * who want the details.
  */
+const PHOTO_MESSAGE = encodeURIComponent(
+  "Hi! I'd like to get my knives sharpened. Here's a photo of them:",
+);
+
+function findServicePage(service?: string) {
+  if (!service) return undefined;
+  if (SHARPEN_PAGES[service]) {
+    return { href: `/sharpen/${service}`, page: SHARPEN_PAGES[service] };
+  }
+  if (ADDON_PAGES[service]) {
+    return { href: `/add-on/${service}`, page: ADDON_PAGES[service] };
+  }
+  return undefined;
+}
+
 export default function BookingCta({ service }: { service?: string }) {
-  const servicePage = service ? SHARPEN_PAGES[service] : undefined;
+  const servicePage = findServicePage(service);
 
   return (
     <aside className="mt-12 mb-8 rounded-md bg-primary p-6 md:p-8 text-primary-foreground">
@@ -29,11 +46,16 @@ export default function BookingCta({ service }: { service?: string }) {
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">
         Free pickup and delivery anywhere in Singapore, back at your door within
-        24 hours. From $15 per blade. Our next pickup is on <NextPickupDate />.
+        24 hours. From $15 per blade. Send us a photo of your knives on WhatsApp
+        and we&apos;ll confirm the price. Our next pickup is on <NextPickupDate />.
       </p>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <WhatsAppLink origin="blog_post" className="block sm:w-auto">
+      <div className="mt-6">
+        <WhatsAppLink
+          origin="blog_post"
+          message={PHOTO_MESSAGE}
+          className="block sm:inline-block"
+        >
           <Button
             variant="secondary"
             size="lg"
@@ -42,23 +64,15 @@ export default function BookingCta({ service }: { service?: string }) {
             Book on WhatsApp
           </Button>
         </WhatsAppLink>
-        <Button
-          asChild
-          variant="outline"
-          size="lg"
-          className="w-full sm:w-auto border-white/20 bg-transparent font-black tracking-widest uppercase text-primary-foreground hover:bg-white/10 hover:text-primary-foreground"
-        >
-          <Link href="/order">Book online</Link>
-        </Button>
       </div>
 
-      {servicePage && service && (
+      {servicePage && (
         <p className="mt-5 text-sm">
           <Link
-            href={`/sharpen/${service}`}
+            href={servicePage.href}
             className="font-bold text-secondary underline-offset-4 hover:underline"
           >
-            More about our {servicePage.tile.label.toLowerCase()} service →
+            More about our {servicePage.page.tile.label.toLowerCase()} service →
           </Link>
         </p>
       )}
