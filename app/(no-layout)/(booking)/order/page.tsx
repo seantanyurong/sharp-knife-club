@@ -23,6 +23,8 @@ import {
   getBladesTotal,
 } from '@/constants/pricing';
 
+const MAX_COUNT = 200;
+
 const StepCard = ({
   step,
   title,
@@ -46,41 +48,78 @@ const StepCard = ({
   </div>
 );
 
+// Big orders shouldn't take ten taps of "+", so the count is also typeable.
+// The draft is kept as text so the field can be cleared mid-edit; it's
+// clamped to `min` when the field loses focus.
 const Stepper = ({
   value,
+  min,
+  minMessage,
+  onChange,
   onDecrease,
   onIncrease,
   label,
 }: {
   value: number;
+  min: number;
+  minMessage?: string;
+  onChange: (value: number) => void;
   onDecrease: () => void;
   onIncrease: () => void;
   label: string;
-}) => (
-  <div className="flex gap-2">
-    <Button
-      variant="outline"
-      size="lg"
-      onClick={onDecrease}
-      aria-label={`Decrease ${label}`}
-      className="w-14 shrink-0 text-lg font-black"
-    >
-      −
-    </Button>
-    <div className="flex h-10 w-full items-center justify-center rounded-md bg-secondary text-lg font-black text-secondary-foreground shadow">
-      {value}
+}) => {
+  const [draft, setDraft] = useState(String(value));
+
+  useEffect(() => {
+    setDraft(String(value));
+  }, [value]);
+
+  const commit = () => {
+    const n = parseInt(draft, 10);
+    if (minMessage && (!Number.isFinite(n) || n < min)) toast(minMessage);
+    const next = Number.isFinite(n) ? Math.min(MAX_COUNT, Math.max(min, n)) : min;
+    setDraft(String(next));
+    onChange(next);
+  };
+
+  return (
+    <div className="flex gap-2">
+      <Button
+        variant="outline"
+        size="lg"
+        onClick={onDecrease}
+        aria-label={`Decrease ${label}`}
+        className="w-14 shrink-0 text-lg font-black"
+      >
+        −
+      </Button>
+      <input
+        id={`${label}-count`}
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        aria-label={`Number of ${label}`}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value.replace(/\D/g, '').slice(0, 3))}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') e.currentTarget.blur();
+        }}
+        onFocus={(e) => e.currentTarget.select()}
+        className="flex h-10 w-full min-w-0 items-center rounded-md bg-secondary text-center text-lg font-black text-secondary-foreground shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      />
+      <Button
+        variant="outline"
+        size="lg"
+        onClick={onIncrease}
+        aria-label={`Increase ${label}`}
+        className="w-14 shrink-0 text-lg font-black"
+      >
+        +
+      </Button>
     </div>
-    <Button
-      variant="outline"
-      size="lg"
-      onClick={onIncrease}
-      aria-label={`Increase ${label}`}
-      className="w-14 shrink-0 text-lg font-black"
-    >
-      +
-    </Button>
-  </div>
-);
+  );
+};
 
 function OrderForm() {
   const router = useRouter();
@@ -223,6 +262,9 @@ function OrderForm() {
           <Stepper
             label="knives"
             value={numberOfKnives}
+            min={MIN_BLADES}
+            minMessage={`Minimum order count of ${MIN_BLADES} knives!`}
+            onChange={setNumberOfKnives}
             onDecrease={() => {
               if (numberOfKnives === MIN_BLADES) {
                 toast(`Minimum order count of ${MIN_BLADES} knives!`);
@@ -241,6 +283,8 @@ function OrderForm() {
           <Stepper
             label="repairs"
             value={numberOfRepairs}
+            min={0}
+            onChange={setNumberOfRepairs}
             onDecrease={() => setNumberOfRepairs((r) => Math.max(0, r - 1))} // clamp at 0
             onIncrease={() => setNumberOfRepairs((r) => r + 1)}
           />
