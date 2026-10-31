@@ -5,7 +5,7 @@ export default function ContactSection() {
   return (
     <div className='bg-primary bg-[url(/images/contact-bg.webp)] bg-cover bg-center bg-no-repeat py-16 px-6'>
       <div className='max-w-7xl mx-auto'>
-        <h1 className='text-3xl md:text-4xl text-primary-foreground font-black text-center'>CONTACT US</h1>
+        <h2 className='text-3xl md:text-4xl text-primary-foreground font-black text-center'>CONTACT US</h2>
         <p className='mt-4 text-center text-balance text-primary-foreground'>
           We are available to answer 24/7 and will reply in &lt;10 minutes most of the time.
         </p>

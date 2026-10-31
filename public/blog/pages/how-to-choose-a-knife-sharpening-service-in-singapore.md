@@ -1,12 +1,13 @@
 ---
-title: "How to Choose a Knife Sharpening Service in Singapore"
+title: "7 Things to Check Before You Hand Over Your Knives for Sharpening"
+description: "Inspection, heat, edge angle, safe transport, pricing and reviews: what to check with any knife sharpener before you book, and the answers to look for."
 publishedAt: "2026-03-20"
 slug: 'how-to-choose-a-knife-sharpening-service-in-singapore'
 ---
 
 Choosing a knife sharpening service is partly about convenience, but the more important question is whether the sharpener understands edge geometry, blade steel, food safety, and long-term knife care. A properly sharpened knife should cut cleanly with less force, hold its edge for a reasonable period, and return with the blade's useful life preserved.
 
-In Singapore, the decision also has a practical layer: humid kitchens, compact storage, frequent wet prep, and pickup or delivery logistics can all affect how knives are handled before and after sharpening. Here is what to look for before sending your knives out.
+In Singapore, the decision also has a practical layer: humid kitchens, compact storage, frequent wet prep, and pickup or delivery logistics can all affect how knives are handled before and after sharpening. Below are seven things to check with any sharpener, including us, before you send your knives out. If you want to see how we answer them, start with our [knife sharpening service in Singapore](/).
 
 ##### 1. Look for a Service That Inspects Before Sharpening
 
