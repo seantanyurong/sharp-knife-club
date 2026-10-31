@@ -69,9 +69,9 @@ export default function InstructionSection({
   return (
     <div className="pt-16 bg-muted py-12">
       <div className="max-w-7xl mx-auto px-6 flex flex-col justify-center">
-        <h1 className="text-3xl md:text-4xl text-primary font-black mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl text-primary font-black mb-12 text-center">
           FREE PICKUP ISLANDWIDE | DELIVERED WITHIN ONE DAY
-        </h1>
+        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           {STEPS.map((step, index) => {
             return (

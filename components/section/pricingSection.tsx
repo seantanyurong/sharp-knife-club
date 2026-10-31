@@ -11,17 +11,17 @@ function PricingSection({ note }: { note?: string } = {}) {
           <Image src={`/images/price-alt.png`} alt='Price' width={500} height={500} />
         </div>
         <div className=' mt-8 lg:my-0 lg:mt-0 flex flex-col justify-center'>
-          <h1 className='text-primary-foreground text-3xl md:text-4xl font-black'>PRICING</h1>
+          <h2 className='text-primary-foreground text-3xl md:text-4xl font-black'>PRICING</h2>
           <div className='mt-4 flex gap-4 flex-col'>
             <div className='bg-muted rounded-md p-4'>
-              <h1 className='text-lg md:text-2xl font-black'>3 BLADES - $20 PER KNIFE</h1>
+              <h3 className='text-lg md:text-2xl font-black'>3 BLADES - $20 PER KNIFE</h3>
             </div>
             <div className='bg-muted rounded-md p-4'>
-              <h1 className='text-lg md:text-2xl font-black'>4 BLADES - $18 PER KNIFE</h1>
+              <h3 className='text-lg md:text-2xl font-black'>4 BLADES - $18 PER KNIFE</h3>
             </div>
             <a href='https://wa.me/6580684206?text=Hello%21%20Can%20you%20share%20more%20information%3F'>
               <div className='bg-secondary rounded-md p-4 relative'>
-                <h1 className='text-lg md:text-2xl text-white font-black'>5+ BLADES — $15 PER KNIFE</h1>
+                <h3 className='text-lg md:text-2xl text-white font-black'>5+ BLADES — $15 PER KNIFE</h3>
                 <Image
                   src={'/images/best-deal.png'}
                   alt='Price'
