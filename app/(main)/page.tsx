@@ -12,6 +12,7 @@ import ClosingCtaSection from '@/components/section/closingCtaSection';
 import FaqSection from '@/components/section/faqSection';
 import ResultSection from '@/components/section/resultSection';
 import InstagramSection from '@/components/section/instagramSection';
+import LocalBusinessSchema from '@/components/localBusinessSchema';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
+      <LocalBusinessSchema />
       <div className='font-medium bg-muted'>
         <HeroSection />
         <ResultSection />
