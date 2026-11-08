@@ -24,16 +24,30 @@ export type TemplateMessage = {
   name: string;
   language: string;
   category: "UTILITY" | "MARKETING";
-  /** Body variables in order: {{1}}, {{2}}, ... */
+  /**
+   * Body variables in order: {{1}}, {{2}}, ... Must match the template exactly,
+   * and none may be empty: Chatwoot drops empty values, which shifts the rest.
+   */
   body: string[];
-  /** For templates with an image header (e.g. the collected/delivered photo). */
+  /** For templates with an image header. */
   headerImageUrl?: string;
+  /**
+   * One entry per template button, in the template's order (Chatwoot matches
+   * them by position). URL buttons with a {{1}} take the value in `parameter`.
+   */
+  buttons?: TemplateButton[];
   /** What the team sees in Chatwoot for this message. */
   preview: string;
 };
 
+export type TemplateButton =
+  | { type: "url"; parameter: string }
+  | { type: "quick_reply" };
+
 type Contact = { id: number; phone_number: string | null };
 type Conversation = { id: number; inbox_id: number; status: string };
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const api = async <T>(
   path: string,
@@ -44,17 +58,24 @@ const api = async <T>(
       "Chatwoot is not configured (CHATWOOT_URL, CHATWOOT_API_TOKEN, CHATWOOT_INBOX_ID)",
     );
   }
-  const response = await fetch(
-    `${CHATWOOT_URL}/api/v1/accounts/${CHATWOOT_ACCOUNT_ID}${path}`,
-    {
-      ...init,
-      headers: {
-        "Content-Type": "application/json",
-        api_access_token: CHATWOOT_API_TOKEN,
-        ...init.headers,
+  let response: Response;
+  // Chatwoot rate-limits some endpoints (e.g. contact search) during a batch.
+  // A 429 means nothing happened, so retrying is safe for every method.
+  for (let attempt = 0; ; attempt++) {
+    response = await fetch(
+      `${CHATWOOT_URL}/api/v1/accounts/${CHATWOOT_ACCOUNT_ID}${path}`,
+      {
+        ...init,
+        headers: {
+          "Content-Type": "application/json",
+          api_access_token: CHATWOOT_API_TOKEN,
+          ...init.headers,
+        },
       },
-    },
-  );
+    );
+    if (response.status !== 429 || attempt >= 5) break;
+    await sleep(2000 * (attempt + 1));
+  }
   if (!response.ok) {
     throw new Error(
       `Chatwoot ${init.method ?? "GET"} ${path} -> ${response.status} ${await response.text()}`,
@@ -97,12 +118,14 @@ const templateParams = (template: TemplateMessage) => ({
   language: template.language,
   category: template.category,
   processed_params: {
+    // Always present (even empty) so Chatwoot reads this as its current format.
     body: Object.fromEntries(
       template.body.map((value, i) => [String(i + 1), value]),
     ),
     ...(template.headerImageUrl && {
       header: { media_url: template.headerImageUrl, media_type: "image" },
     }),
+    ...(template.buttons && { buttons: template.buttons }),
   },
 });
 

@@ -63,43 +63,63 @@ export type NewOrderPayload = {
   orderTotal: number;
 };
 
-// TODO before switching to Chatwoot: check each template's variables and
-// language code against WhatsApp Manager (BotSpace's flow holds the current
-// mapping). The body arrays below are the expected order of {{1}}, {{2}}, ...
-const LANGUAGE = process.env.WHATSAPP_TEMPLATE_LANGUAGE || "en";
+// Checked against the approved templates synced into Chatwoot (Nov 2026). Each
+// body array must match the template's {{1}}, {{2}}, ... exactly; templates
+// without variables get an empty body. Language must match exactly too.
+const LANGUAGE = process.env.WHATSAPP_TEMPLATE_LANGUAGE || "en_US";
 
-const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
+// The URL buttons on these templates still point at BotSpace's redirector
+// ("https://link.bot.space/redirect?to={{1}}"), so the variable is the encoded
+// destination. They stop working once BotSpace is cancelled: replace them with
+// _v5 templates whose buttons link to our own URLs before then.
+const PACKING_VIDEO_URL = "https://www.instagram.com/reel/DVOULr9Eh1e/";
+const WEBSITE_URL = "https://www.knifesharpening.sg";
+const linkButton = (url: string) =>
+  ({ type: "url", parameter: encodeURIComponent(url) }) as const;
+
+// Chatwoot drops empty variables, which would shift the rest and fail the send.
+const orDash = (value: string | undefined) => value?.trim() || "-";
+
+export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
   switch (p.reminderType) {
     case "collection":
+      // {{1}} timing, {{2}} address, {{3}} notes; button: packing instructions
       return {
         name: "collection_reminder_v4",
         language: LANGUAGE,
         category: "UTILITY",
-        body: [p.name, p.timing ?? ""],
-        preview: `Collection reminder: tomorrow, ${p.timing ?? ""}`,
+        body: [orDash(p.timing), orDash(p.address), orDash(p.note)],
+        buttons: [linkButton(PACKING_VIDEO_URL)],
+        preview: `Collection reminder: tomorrow between ${orDash(p.timing)}`,
       };
     case "delivery":
       return {
         name: "return_delivery_reminder_v4",
         language: LANGUAGE,
         category: "UTILITY",
-        body: [p.name, p.timing ?? ""],
-        preview: `Return delivery reminder: tomorrow, ${p.timing ?? ""}`,
+        body: [],
+        preview: "Return delivery reminder: knives delivered tomorrow",
       };
     case "oneeighty":
+      // Buttons: "Yes, please", "No, thank you", then the "Learn more" link
       return {
         name: "one_eighty_reminder",
         language: LANGUAGE,
         category: "MARKETING",
-        body: [p.name],
+        body: [],
+        buttons: [
+          { type: "quick_reply" },
+          { type: "quick_reply" },
+          linkButton(WEBSITE_URL),
+        ],
         preview: "180-day reminder: time to sharpen again?",
       };
     case "request":
       return {
         name: "requested_reminder",
         language: LANGUAGE,
-        category: "MARKETING",
-        body: [p.name],
+        category: "UTILITY",
+        body: [],
         preview: "Requested reminder",
       };
     case "followup":
@@ -107,35 +127,46 @@ const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         name: "reaching_order_capacity",
         language: LANGUAGE,
         category: "MARKETING",
-        body: [p.name],
-        preview: "Follow-up: slots are filling up",
+        body: [],
+        preview: "Follow-up: reaching order capacity",
       };
     case "collected":
+      // Button: "Image Proof" (the collection photo)
       return {
         name: "order_collected",
         language: LANGUAGE,
         category: "UTILITY",
-        body: [p.name],
-        headerImageUrl: p.imageUrl,
+        body: [],
+        buttons: [linkButton(p.imageUrl || WEBSITE_URL)],
         preview: "Order collected",
       };
     case "delivered":
+      // Button: "Image Proof" (the delivery photo)
       return {
         name: "delivered_v5",
         language: LANGUAGE,
-        category: "UTILITY",
-        body: [p.name],
-        headerImageUrl: p.imageUrl,
+        category: "MARKETING",
+        body: [],
+        buttons: [linkButton(p.imageUrl || WEBSITE_URL)],
         preview: "Order delivered",
       };
   }
 };
 
-const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
+// {{1}} pickup date, {{2}} timing, {{3}} return date, {{4}} address, {{5}} note;
+// button: packing instructions
+export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
   name: "new_order_v2",
   language: LANGUAGE,
   category: "UTILITY",
-  body: [p.pickupDate, p.timing, p.deliveryDate, p.address, p.note || "NA"],
+  body: [
+    orDash(p.pickupDate),
+    orDash(p.timing),
+    orDash(p.deliveryDate),
+    orDash(p.address),
+    p.note?.trim() || "NA",
+  ],
+  buttons: [linkButton(PACKING_VIDEO_URL)],
   preview: `Payment received: order ${p.orderNumber}, pickup ${p.pickupDate} ${p.timing}, return ${p.deliveryDate}`,
 });
 
