@@ -68,12 +68,9 @@ export type NewOrderPayload = {
 // without variables get an empty body. Language must match exactly too.
 const LANGUAGE = process.env.WHATSAPP_TEMPLATE_LANGUAGE || "en_US";
 
-// The packing and website buttons are static links in the templates, so they take
-// no parameter. The photo buttons are "https://knife-sharpening-sg.s3.us-east-1.amazonaws.com/{{1}}":
-// the parameter is the S3 key, as already encoded in the image URL.
-const PHOTO_BASE = "https://knife-sharpening-sg.s3.us-east-1.amazonaws.com/";
-const photoButton = (imageUrl: string | undefined) =>
-  ({ type: "url", parameter: imageUrl?.startsWith(PHOTO_BASE) ? imageUrl.slice(PHOTO_BASE.length) : "-" }) as const;
+// The website_* templates are the website's own copies, built so they can also be sent by
+// hand from Chatwoot: the packing and website buttons are static links (no parameter),
+// and the collected/delivered photo is an image header rather than a {{1}} button.
 
 // Chatwoot drops empty variables, which would shift the rest and fail the send.
 const orDash = (value: string | undefined) => value?.trim() || "-";
@@ -83,7 +80,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
     case "collection":
       // {{1}} timing, {{2}} address, {{3}} notes
       return {
-        name: "collection_reminder_v4",
+        name: "website_collection_reminder",
         language: LANGUAGE,
         category: "UTILITY",
         body: [orDash(p.timing), orDash(p.address), orDash(p.note)],
@@ -91,7 +88,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
       };
     case "delivery":
       return {
-        name: "return_delivery_reminder_v4",
+        name: "website_return_delivery_reminder",
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
@@ -100,7 +97,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
     case "oneeighty":
       // Buttons: "Yes, please", "No, thank you", then the static "Learn more" link
       return {
-        name: "one_eighty_reminder",
+        name: "website_one_eighty_reminder",
         language: LANGUAGE,
         category: "MARKETING",
         body: [],
@@ -112,7 +109,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
       };
     case "request":
       return {
-        name: "requested_reminder",
+        name: "website_requested_reminder",
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
@@ -120,30 +117,30 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
       };
     case "followup":
       return {
-        name: "reaching_order_capacity",
+        name: "website_reaching_order_capacity",
         language: LANGUAGE,
         category: "MARKETING",
         body: [],
         preview: "Follow-up: reaching order capacity",
       };
     case "collected":
-      // Button: "Image Proof" (the collection photo)
+      // Image header: the collection photo
       return {
-        name: "order_collected",
+        name: "website_order_collected",
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
-        buttons: [photoButton(p.imageUrl)],
+        headerImageUrl: p.imageUrl,
         preview: "Order collected",
       };
     case "delivered":
-      // Button: "Image Proof" (the delivery photo)
+      // Image header: the delivery photo
       return {
-        name: "delivered_v5",
+        name: "website_delivered",
         language: LANGUAGE,
         category: "MARKETING",
         body: [],
-        buttons: [photoButton(p.imageUrl)],
+        headerImageUrl: p.imageUrl,
         preview: "Order delivered",
       };
   }
@@ -151,7 +148,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
 
 // {{1}} pickup date, {{2}} timing, {{3}} return date, {{4}} address, {{5}} note
 export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
-  name: "new_order_v2",
+  name: "website_new_order",
   language: LANGUAGE,
   category: "UTILITY",
   body: [

@@ -20,7 +20,7 @@ const CHATWOOT_ACCOUNT_ID = process.env.CHATWOOT_ACCOUNT_ID || "1";
 const CHATWOOT_INBOX_ID = Number(process.env.CHATWOOT_INBOX_ID);
 
 export type TemplateMessage = {
-  /** Approved template name in WhatsApp Manager, e.g. "collection_reminder_v4". */
+  /** Approved template name in WhatsApp Manager, e.g. "website_collection_reminder". */
   name: string;
   language: string;
   category: "UTILITY" | "MARKETING";
