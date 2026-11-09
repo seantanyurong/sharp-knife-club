@@ -8,24 +8,7 @@ import {
   getProspectsCreatedThisWeek,
   formatOrders,
 } from './notion';
-
-const BOTSPACE_REMINDER_WEBHOOK_URL =
-  'https://hook.bot.space/ZHVAL4hD99ef/v1/webhook/automation/68da50444ce0c3f496978e79/flow/68eff0c8bf1d5ae40860a005';
-
-export const fetchBotspace = async (url: string, body: unknown) => {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-    const data = await response.json();
-    console.log('Success:', data);
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
+import { sendReminder } from './whatsapp';
 
 // NOTE: these all use `for...of` rather than `forEach(async ...)`. forEach does
 // not await its callback, so on a serverless runtime the function can freeze
@@ -46,7 +29,7 @@ const sendServiceGroupReminder = async (reminderType: 'collection' | 'delivery')
   const formattedOrders = formatOrders(orders);
 
   for (const order of formattedOrders) {
-    await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, {
+    await sendReminder({
       name: order.customerName,
       phone: order.whatsApp,
       timing: serviceGroup.timing,
@@ -71,9 +54,9 @@ export const send180DayReminder = async () => {
       id: customer.id,
       name: customer.properties['Name'].title[0].plain_text,
       phone: customer.properties['Phone'].phone_number.replaceAll(' ', ''),
-      reminderType: 'oneeighty',
+      reminderType: 'oneeighty' as const,
     };
-    await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, customerBody);
+    await sendReminder(customerBody);
     await updateNotionCustomer180DayFollowUp(customerBody.id, true);
   }
 };
@@ -86,9 +69,9 @@ export const sendRequestedReminder = async () => {
       id: customer.id,
       name: customer.properties['Name'].title[0].plain_text,
       phone: customer.properties['Phone'].phone_number.replaceAll(' ', ''),
-      reminderType: 'request',
+      reminderType: 'request' as const,
     };
-    await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, customerBody);
+    await sendReminder(customerBody);
     await clearNotionCustomerReminderDate(customerBody.id);
   }
 };
@@ -97,7 +80,7 @@ export const sendProspectReminder = async () => {
   const prospects = await getProspectsCreatedThisWeek();
 
   for (const prospect of prospects as any[]) {
-    await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, {
+    await sendReminder({
       id: prospect.id,
       name: prospect.properties['Name'].title[0].plain_text,
       phone: prospect.properties['Phone'].phone_number.replaceAll(' ', ''),
@@ -116,7 +99,7 @@ const sendOrderStatusMessage = async (
   // fire directly without the two Notion queries (getOrderConstants +
   // getOrders) the lookup path requires.
   if (customer) {
-    await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, {
+    await sendReminder({
       id: orderId,
       name: customer.name,
       phone: customer.phone.replaceAll(' ', ''),
@@ -142,7 +125,7 @@ const sendOrderStatusMessage = async (
     return;
   }
 
-  await fetchBotspace(BOTSPACE_REMINDER_WEBHOOK_URL, {
+  await sendReminder({
     id: matchedOrder.id,
     name: matchedOrder.properties['Customer Name'].rollup.array[0].title[0]
       .plain_text,
