@@ -68,14 +68,12 @@ export type NewOrderPayload = {
 // without variables get an empty body. Language must match exactly too.
 const LANGUAGE = process.env.WHATSAPP_TEMPLATE_LANGUAGE || "en_US";
 
-// The URL buttons on these templates still point at BotSpace's redirector
-// ("https://link.bot.space/redirect?to={{1}}"), so the variable is the encoded
-// destination. They stop working once BotSpace is cancelled: replace them with
-// _v5 templates whose buttons link to our own URLs before then.
-const PACKING_VIDEO_URL = "https://www.instagram.com/reel/DVOULr9Eh1e/";
-const WEBSITE_URL = "https://www.knifesharpening.sg";
-const linkButton = (url: string) =>
-  ({ type: "url", parameter: encodeURIComponent(url) }) as const;
+// The packing and website buttons are static links in the templates, so they take
+// no parameter. The photo buttons are "https://knife-sharpening-sg.s3.us-east-1.amazonaws.com/{{1}}":
+// the parameter is the S3 key, as already encoded in the image URL.
+const PHOTO_BASE = "https://knife-sharpening-sg.s3.us-east-1.amazonaws.com/";
+const photoButton = (imageUrl: string | undefined) =>
+  ({ type: "url", parameter: imageUrl?.startsWith(PHOTO_BASE) ? imageUrl.slice(PHOTO_BASE.length) : "-" }) as const;
 
 // Chatwoot drops empty variables, which would shift the rest and fail the send.
 const orDash = (value: string | undefined) => value?.trim() || "-";
@@ -83,13 +81,12 @@ const orDash = (value: string | undefined) => value?.trim() || "-";
 export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
   switch (p.reminderType) {
     case "collection":
-      // {{1}} timing, {{2}} address, {{3}} notes; button: packing instructions
+      // {{1}} timing, {{2}} address, {{3}} notes
       return {
         name: "collection_reminder_v4",
         language: LANGUAGE,
         category: "UTILITY",
         body: [orDash(p.timing), orDash(p.address), orDash(p.note)],
-        buttons: [linkButton(PACKING_VIDEO_URL)],
         preview: `Collection reminder: tomorrow between ${orDash(p.timing)}`,
       };
     case "delivery":
@@ -101,7 +98,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         preview: "Return delivery reminder: knives delivered tomorrow",
       };
     case "oneeighty":
-      // Buttons: "Yes, please", "No, thank you", then the "Learn more" link
+      // Buttons: "Yes, please", "No, thank you", then the static "Learn more" link
       return {
         name: "one_eighty_reminder",
         language: LANGUAGE,
@@ -110,7 +107,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         buttons: [
           { type: "quick_reply" },
           { type: "quick_reply" },
-          linkButton(WEBSITE_URL),
         ],
         preview: "180-day reminder: time to sharpen again?",
       };
@@ -137,7 +133,7 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
-        buttons: [linkButton(p.imageUrl || WEBSITE_URL)],
+        buttons: [photoButton(p.imageUrl)],
         preview: "Order collected",
       };
     case "delivered":
@@ -147,14 +143,13 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "MARKETING",
         body: [],
-        buttons: [linkButton(p.imageUrl || WEBSITE_URL)],
+        buttons: [photoButton(p.imageUrl)],
         preview: "Order delivered",
       };
   }
 };
 
-// {{1}} pickup date, {{2}} timing, {{3}} return date, {{4}} address, {{5}} note;
-// button: packing instructions
+// {{1}} pickup date, {{2}} timing, {{3}} return date, {{4}} address, {{5}} note
 export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
   name: "new_order_v2",
   language: LANGUAGE,
@@ -166,7 +161,6 @@ export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
     orDash(p.address),
     p.note?.trim() || "NA",
   ],
-  buttons: [linkButton(PACKING_VIDEO_URL)],
   preview: `Payment received: order ${p.orderNumber}, pickup ${p.pickupDate} ${p.timing}, return ${p.deliveryDate}`,
 });
 
