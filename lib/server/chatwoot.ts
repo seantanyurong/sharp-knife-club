@@ -44,7 +44,7 @@ export type TemplateButton =
   | { type: "url"; parameter: string }
   | { type: "quick_reply" };
 
-type Contact = { id: number; phone_number: string | null };
+type Contact = { id: number; name: string | null; phone_number: string | null };
 type Conversation = { id: number; inbox_id: number; status: string };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -115,6 +115,20 @@ const findOrCreateContact = async (
   return created.payload.contact;
 };
 
+// Order numbers look like "38O9". A repeat customer's name lists them all.
+const ORDER_PREFIX = /^(\d+O\d+(?:\/\d+O\d+)*) - /;
+
+/** "39O1/38O9 - Jane Tan": latest order first, as the team names contacts. */
+const orderContactName = (
+  current: string | null,
+  orderNumber: string,
+  name: string,
+) => {
+  const previous = current?.match(ORDER_PREFIX)?.[1].split("/") ?? [];
+  const orders = [orderNumber, ...previous.filter((n) => n !== orderNumber)];
+  return `${orders.join("/")} - ${name}`;
+};
+
 const templateParams = (template: TemplateMessage) => ({
   name: template.name,
   language: template.language,
@@ -138,9 +152,16 @@ const templateParams = (template: TemplateMessage) => ({
 export const sendChatwootTemplate = async (
   customer: { name: string; phone: string },
   template: TemplateMessage,
+  /** Adds this order to the contact's name: "<latest>/<previous> - <name>". */
+  orderNumber?: string,
 ) => {
   const phone = toE164(customer.phone);
-  const contact = await findOrCreateContact(customer.name, phone);
+  const contact = await findOrCreateContact(
+    orderNumber
+      ? orderContactName(null, orderNumber, customer.name)
+      : customer.name,
+    phone,
+  );
   const conversations = await api<{ payload: Conversation[] }>(
     `/contacts/${contact.id}/conversations`,
   );
@@ -171,4 +192,18 @@ export const sendChatwootTemplate = async (
     });
   }
   console.log(`[chatwoot] sent ${template.name} to contact ${contact.id}`);
+
+  const name =
+    orderNumber && orderContactName(contact.name, orderNumber, customer.name);
+  if (name && name !== contact.name) {
+    // After sending: a failed rename must not cost the customer their message.
+    try {
+      await api(`/contacts/${contact.id}`, {
+        method: "PUT",
+        body: JSON.stringify({ name }),
+      });
+    } catch (error) {
+      console.error(`[chatwoot] couldn't rename contact ${contact.id}`, error);
+    }
+  }
 };
