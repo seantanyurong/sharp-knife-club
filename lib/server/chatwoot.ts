@@ -68,7 +68,9 @@ const api = async <T>(
         ...init,
         headers: {
           "Content-Type": "application/json",
-          api_access_token: CHATWOOT_API_TOKEN,
+          // Hyphens, not underscores: nginx drops headers with underscores,
+          // and Chatwoot accepts either spelling.
+          "api-access-token": CHATWOOT_API_TOKEN,
           ...init.headers,
         },
       },
