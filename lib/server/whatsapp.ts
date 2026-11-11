@@ -178,7 +178,11 @@ export const sendNewOrderMessage = async (payload: NewOrderPayload) => {
     return fetchBotspace(BOTSPACE_NEW_ORDER_WEBHOOK_URL, payload);
   }
   try {
-    await sendChatwootTemplate(payload, newOrderTemplate(payload));
+    await sendChatwootTemplate(
+      payload,
+      newOrderTemplate(payload),
+      payload.orderNumber,
+    );
   } catch (error) {
     console.error("[whatsapp] new order message failed", error);
   }

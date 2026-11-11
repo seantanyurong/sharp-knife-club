@@ -44,7 +44,7 @@ export type TemplateButton =
   | { type: "url"; parameter: string }
   | { type: "quick_reply" };
 
-type Contact = { id: number; phone_number: string | null };
+type Contact = { id: number; name: string | null; phone_number: string | null };
 type Conversation = { id: number; inbox_id: number; status: string };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -138,9 +138,14 @@ const templateParams = (template: TemplateMessage) => ({
 export const sendChatwootTemplate = async (
   customer: { name: string; phone: string },
   template: TemplateMessage,
+  /** Names the contact "<order number> - <name>", as the team does for every order. */
+  orderNumber?: string,
 ) => {
   const phone = toE164(customer.phone);
-  const contact = await findOrCreateContact(customer.name, phone);
+  const name = orderNumber
+    ? `${orderNumber} - ${customer.name}`
+    : customer.name;
+  const contact = await findOrCreateContact(name, phone);
   const conversations = await api<{ payload: Conversation[] }>(
     `/contacts/${contact.id}/conversations`,
   );
@@ -171,4 +176,16 @@ export const sendChatwootTemplate = async (
     });
   }
   console.log(`[chatwoot] sent ${template.name} to contact ${contact.id}`);
+
+  if (orderNumber && contact.name !== name) {
+    // After sending: a failed rename must not cost the customer their message.
+    try {
+      await api(`/contacts/${contact.id}`, {
+        method: "PUT",
+        body: JSON.stringify({ name }),
+      });
+    } catch (error) {
+      console.error(`[chatwoot] couldn't rename contact ${contact.id}`, error);
+    }
+  }
 };
