@@ -68,6 +68,9 @@ export type NewOrderPayload = {
 // without variables get an empty body. Language must match exactly too.
 const LANGUAGE = process.env.WHATSAPP_TEMPLATE_LANGUAGE || "en_US";
 
+// What the team and the KSS agent see in Chatwoot is rendered from the approved
+// template itself (chatwoot.ts renderTemplate), so it always matches the customer's copy.
+
 // The website_* templates are the website's own copies, built so they can also be sent by
 // hand from Chatwoot: the packing and website buttons are static links (no parameter),
 // and the collected/delivered photo is an image header rather than a {{1}} button.
@@ -84,7 +87,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [orDash(p.timing), orDash(p.address), orDash(p.note)],
-        preview: `Collection reminder: tomorrow between ${orDash(p.timing)}`,
       };
     case "delivery":
       return {
@@ -92,7 +94,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
-        preview: "Return delivery reminder: knives delivered tomorrow",
       };
     case "oneeighty":
       // Buttons: "Yes, please", "No, thank you", then the static "Learn more" link
@@ -105,7 +106,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
           { type: "quick_reply" },
           { type: "quick_reply" },
         ],
-        preview: "180-day reminder: time to sharpen again?",
       };
     case "request":
       return {
@@ -113,7 +113,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
-        preview: "Requested reminder",
       };
     case "followup":
       return {
@@ -121,7 +120,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "MARKETING",
         body: [],
-        preview: "Follow-up: reaching order capacity",
       };
     case "collected":
       // Image header: the collection photo
@@ -131,7 +129,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         category: "UTILITY",
         body: [],
         headerImageUrl: p.imageUrl,
-        preview: "Order collected",
       };
     case "delivered":
       // Image header: the delivery photo
@@ -141,43 +138,23 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         category: "MARKETING",
         body: [],
         headerImageUrl: p.imageUrl,
-        preview: "Order delivered",
       };
   }
 };
 
 // {{1}} pickup date, {{2}} timing, {{3}} return date, {{4}} address, {{5}} note
-export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => {
-  const [pickup, timing, returnDate, address, note] = [
+export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
+  name: "website_new_order",
+  language: LANGUAGE,
+  category: "UTILITY",
+  body: [
     orDash(p.pickupDate),
     orDash(p.timing),
     orDash(p.deliveryDate),
     orDash(p.address),
     p.note?.trim() || "NA",
-  ];
-  return {
-    name: "website_new_order",
-    language: LANGUAGE,
-    category: "UTILITY",
-    body: [pickup, timing, returnDate, address, note],
-    // The template text with the variables filled in, so the team sees in Chatwoot
-    // what the customer got (as BotSpace showed it).
-    preview: [
-      "Payment Received",
-      "We'll send you a reminder and packing instructions the day before.",
-      "Pick Up and Drop Off Time",
-      `${pickup} between ${timing}. Will be returned on ${returnDate}.`,
-      "Address",
-      address,
-      "Note",
-      note,
-      "Instructions",
-      "Feel free to leave your knives outside the door and send us a picture before you go to sleep / in the morning, and we'll collect it from there!",
-      "Disclaimer",
-      "Unless otherwise requested, knives will be collected from and returned to outside your door. We will not be held responsible for any loss, theft, or damage to knives that are left unattended. If you'd prefer to hand over or receive your knives in person, please let us know in advance.",
-    ].join("\n\n"),
-  };
-};
+  ],
+});
 
 export const sendReminder = async (payload: ReminderPayload) => {
   if (PROVIDER === "botspace") {

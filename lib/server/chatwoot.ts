@@ -36,13 +36,24 @@ export type TemplateMessage = {
    * them by position). URL buttons with a {{1}} take the value in `parameter`.
    */
   buttons?: TemplateButton[];
-  /** What the team sees in Chatwoot for this message. */
-  preview: string;
 };
 
 export type TemplateButton =
   | { type: "url"; parameter: string }
   | { type: "quick_reply" };
+
+/** A template as WhatsApp approved it, from Chatwoot's synced copy. */
+export type ApprovedTemplate = {
+  name: string;
+  language: string;
+  status: string;
+  components: {
+    type: string;
+    format?: string;
+    text?: string;
+    buttons?: { type: string; text: string; url?: string }[];
+  }[];
+};
 
 type Contact = { id: number; name: string | null; phone_number: string | null };
 type Conversation = { id: number; inbox_id: number; status: string };
@@ -145,6 +156,92 @@ const templateParams = (template: TemplateMessage) => ({
   },
 });
 
+const fill = (text: string, values: string[]) =>
+  text.replace(/{{(\d+)}}/g, (_, n) => values[Number(n) - 1]);
+
+const placeholderCount = (text = "") =>
+  new Set(text.match(/{{\d+}}/g) ?? []).size;
+
+/**
+ * The message as the customer sees it: header, body with the variables filled
+ * in, footer, then buttons. Chatwoot stores whatever text we give it, so this is
+ * what the team and the KSS agent see. Throws if our variables don't fit the
+ * approved template, since WhatsApp would reject the send anyway.
+ */
+export const renderTemplate = (
+  approved: ApprovedTemplate,
+  template: TemplateMessage,
+): string => {
+  const part = (type: string) =>
+    approved.components.find((c) => c.type === type);
+  const header = part("HEADER");
+  const body = part("BODY");
+  const footer = part("FOOTER");
+  const buttons = part("BUTTONS")?.buttons ?? [];
+
+  const expected = placeholderCount(body?.text);
+  if (template.body.length !== expected) {
+    throw new Error(
+      `${template.name}: approved template has ${expected} body variables, we sent ${template.body.length}`,
+    );
+  }
+  if (header?.format === "IMAGE" && !template.headerImageUrl) {
+    throw new Error(`${template.name}: approved template needs a header image`);
+  }
+
+  // URL buttons with a {{1}} take our url parameters, in order.
+  const urlParams = (template.buttons ?? []).flatMap((b) =>
+    b.type === "url" ? [b.parameter] : [],
+  );
+  const buttonLine = (b: { type: string; text: string; url?: string }) => {
+    if (b.type !== "URL" || !b.url) return `[${b.text}]`;
+    const url = b.url.includes("{{1}}")
+      ? fill(b.url, [urlParams.shift() ?? ""])
+      : b.url;
+    return `[${b.text}] ${url}`;
+  };
+
+  return [
+    header?.format === "TEXT" ? (header.text ?? null) : null,
+    header?.format === "IMAGE" ? `[Photo] ${template.headerImageUrl}` : null,
+    body?.text ? fill(body.text, template.body) : null,
+    footer?.text ?? null,
+    buttons.length ? buttons.map(buttonLine).join("\n") : null,
+  ]
+    .filter((line): line is string => !!line)
+    .join("\n\n");
+};
+
+let templatesCache: { at: number; templates: ApprovedTemplate[] } | null = null;
+
+/** The approved template, as Chatwoot synced it from WhatsApp. */
+const approvedTemplate = async (
+  template: TemplateMessage,
+): Promise<ApprovedTemplate> => {
+  // Cached briefly: a reminder batch sends many messages in one invocation.
+  if (!templatesCache || Date.now() - templatesCache.at > 5 * 60_000) {
+    const inbox = await api<{ message_templates?: ApprovedTemplate[] }>(
+      `/inboxes/${CHATWOOT_INBOX_ID}`,
+    );
+    templatesCache = {
+      at: Date.now(),
+      templates: inbox.message_templates ?? [],
+    };
+  }
+  const found = templatesCache.templates.find(
+    (t) =>
+      t.name === template.name &&
+      t.language === template.language &&
+      t.status === "APPROVED",
+  );
+  if (!found) {
+    throw new Error(
+      `${template.name} (${template.language}) is not an approved template in Chatwoot inbox ${CHATWOOT_INBOX_ID}`,
+    );
+  }
+  return found;
+};
+
 /**
  * Sends a template into the customer's latest WhatsApp conversation, or starts
  * one. New conversations start as "pending" so the KSS agent answers replies.
@@ -155,6 +252,8 @@ export const sendChatwootTemplate = async (
   /** Adds this order to the contact's name: "<latest>/<previous> - <name>". */
   orderNumber?: string,
 ) => {
+  // First, so a template that doesn't fit fails before we touch the contact.
+  const content = renderTemplate(await approvedTemplate(template), template);
   const phone = toE164(customer.phone);
   const contact = await findOrCreateContact(
     orderNumber
@@ -170,7 +269,7 @@ export const sendChatwootTemplate = async (
     .sort((a, b) => b.id - a.id)[0];
 
   const message = {
-    content: template.preview,
+    content,
     message_type: "outgoing",
     template_params: templateParams(template),
   };
