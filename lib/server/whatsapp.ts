@@ -68,6 +68,9 @@ export type NewOrderPayload = {
 // without variables get an empty body. Language must match exactly too.
 const LANGUAGE = process.env.WHATSAPP_TEMPLATE_LANGUAGE || "en_US";
 
+// What the team and the KSS agent see in Chatwoot is rendered from the approved
+// template itself (chatwoot.ts renderTemplate), so it always matches the customer's copy.
+
 // The website_* templates are the website's own copies, built so they can also be sent by
 // hand from Chatwoot: the packing and website buttons are static links (no parameter),
 // and the collected/delivered photo is an image header rather than a {{1}} button.
@@ -84,7 +87,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [orDash(p.timing), orDash(p.address), orDash(p.note)],
-        preview: `Collection reminder: tomorrow between ${orDash(p.timing)}`,
       };
     case "delivery":
       return {
@@ -92,7 +94,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
-        preview: "Return delivery reminder: knives delivered tomorrow",
       };
     case "oneeighty":
       // Buttons: "Yes, please", "No, thank you", then the static "Learn more" link
@@ -105,7 +106,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
           { type: "quick_reply" },
           { type: "quick_reply" },
         ],
-        preview: "180-day reminder: time to sharpen again?",
       };
     case "request":
       return {
@@ -113,7 +113,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "UTILITY",
         body: [],
-        preview: "Requested reminder",
       };
     case "followup":
       return {
@@ -121,7 +120,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         language: LANGUAGE,
         category: "MARKETING",
         body: [],
-        preview: "Follow-up: reaching order capacity",
       };
     case "collected":
       // Image header: the collection photo
@@ -131,7 +129,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         category: "UTILITY",
         body: [],
         headerImageUrl: p.imageUrl,
-        preview: "Order collected",
       };
     case "delivered":
       // Image header: the delivery photo
@@ -141,7 +138,6 @@ export const reminderTemplate = (p: ReminderPayload): TemplateMessage => {
         category: "MARKETING",
         body: [],
         headerImageUrl: p.imageUrl,
-        preview: "Order delivered",
       };
   }
 };
@@ -158,7 +154,6 @@ export const newOrderTemplate = (p: NewOrderPayload): TemplateMessage => ({
     orDash(p.address),
     p.note?.trim() || "NA",
   ],
-  preview: `Payment received: order ${p.orderNumber}, pickup ${p.pickupDate} ${p.timing}, return ${p.deliveryDate}`,
 });
 
 export const sendReminder = async (payload: ReminderPayload) => {
